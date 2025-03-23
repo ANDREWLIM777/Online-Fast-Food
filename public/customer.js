@@ -31,7 +31,6 @@ document.getElementById('logout').addEventListener('click', () => {
     token = '';
     customerName = '';
     showSection('login-section');
-    document.getElementById('profile-section').style.display = 'none';
     alert('Logged out!');
 });
 
