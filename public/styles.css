@@ -25,54 +25,27 @@ header {
     height: 80px;
 }
 
-nav {
-    display: flex;
-    align-items: center;
-}
-
-.main-nav, .user-nav {
+nav ul {
     list-style: none;
     display: flex;
 }
 
-.main-nav li, .user-nav li {
+nav ul li {
     margin-right: 20px;
-    position: relative;
 }
 
-.main-nav li a, .user-nav li a {
+nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
     font-style: italic;
 }
 
-.main-nav li a:hover, .user-nav li a:hover {
+nav ul li a:hover {
     color: #ffeb3b; /* Yellow */
 }
 
-/* Dropdown for Profile */
-.user-nav .dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #ff0000;
-    list-style: none;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.user-nav li:hover .dropdown {
-    display: block;
-}
-
-.dropdown li a {
-    color: #fff;
-    font-style: normal;
-}
-
-/* Main Content */
+/* Main Content (index.html specific) */
 main {
     padding: 20px;
 }
@@ -123,37 +96,6 @@ main {
 
 .menu-item p {
     color: #333;
-}
-
-/* Forms */
-.form-section {
-    padding: 20px;
-    text-align: center;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 300px;
-    margin: 0 auto;
-}
-
-input, button {
-    padding: 10px;
-    font-size: 1em;
-}
-
-button {
-    background-color: #ff0000;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #ffeb3b;
-    color: #000;
 }
 
 /* Footer */
