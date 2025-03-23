@@ -37,9 +37,9 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Routes
+// Customer Routes
 // Customer Registration
-app.post('/register', async (req, res) => {
+app.post('/customer/register', async (req, res) => {
     const { email, password, name } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     db.run(`INSERT INTO customers (email, password, name) VALUES (?, ?, ?)`, 
@@ -49,15 +49,15 @@ app.post('/register', async (req, res) => {
     });
 });
 
-// Customer Login (for profile editing/password change)
-app.post('/login', (req, res) => {
+// Customer Login
+app.post('/customer/login', (req, res) => {
     const { email, password } = req.body;
     db.get(`SELECT * FROM customers WHERE email = ?`, [email], async (err, row) => {
         if (err || !row || !(await bcrypt.compare(password, row.password))) {
             return res.status(401).send('Invalid credentials.');
         }
         const token = jwt.sign({ id: row.id }, SECRET, { expiresIn: '1h' });
-        res.json({ token });
+        res.json({ token, name: row.name });
     });
 });
 
@@ -75,7 +75,7 @@ const authenticate = (req, res, next) => {
 };
 
 // Edit Profile
-app.put('/profile', authenticate, (req, res) => {
+app.put('/customer/profile', authenticate, (req, res) => {
     const { name } = req.body;
     db.run(`UPDATE customers SET name = ? WHERE id = ?`, [name, req.user.id], (err) => {
         if (err) return res.status(500).send('Error updating profile.');
@@ -84,7 +84,7 @@ app.put('/profile', authenticate, (req, res) => {
 });
 
 // Change Password
-app.put('/change-password', authenticate, async (req, res) => {
+app.put('/customer/change-password', authenticate, async (req, res) => {
     const { oldPassword, newPassword } = req.body;
     db.get(`SELECT password FROM customers WHERE id = ?`, [req.user.id], async (err, row) => {
         if (err || !(await bcrypt.compare(oldPassword, row.password))) {
@@ -99,7 +99,7 @@ app.put('/change-password', authenticate, async (req, res) => {
 });
 
 // Reset Password Request
-app.post('/reset-password', (req, res) => {
+app.post('/customer/reset-password', (req, res) => {
     const { email } = req.body;
     db.get(`SELECT * FROM customers WHERE email = ?`, [email], (err, row) => {
         if (err || !row) return res.status(404).send('Email not found.');
@@ -110,7 +110,7 @@ app.post('/reset-password', (req, res) => {
             from: 'your-email@gmail.com',
             to: email,
             subject: 'Password Reset Request',
-            text: `Click this link to reset your password: http://localhost:3000/reset/${resetToken}`
+            text: `Click this link to reset your password: http://localhost:3000/customer/reset/${resetToken}`
         };
         transporter.sendMail(mailOptions, (err) => {
             if (err) return res.status(500).send('Error sending email.');
@@ -120,7 +120,7 @@ app.post('/reset-password', (req, res) => {
 });
 
 // Reset Password Confirmation
-app.post('/reset/:token', (req, res) => {
+app.post('/customer/reset/:token', (req, res) => {
     const { token } = req.params;
     const { newPassword } = req.body;
     db.get(`SELECT * FROM customers WHERE resetToken = ?`, [token], async (err, row) => {
@@ -139,9 +139,13 @@ app.post('/reset/:token', (req, res) => {
     });
 });
 
-// Serve the homepage
+// Serve Pages
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/customer', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'customer.html'));
 });
 
 app.listen(PORT, () => {
