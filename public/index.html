@@ -13,23 +13,11 @@
             <img src="logo.png" alt="Brizo Fast Food Melaka Logo">
         </div>
         <nav>
-            <ul class="main-nav">
+            <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#menu">Menu</a></li>
                 <li><a href="#contact">Contact</a></li>
-            </ul>
-            <ul class="user-nav">
-                <li id="login-link"><a href="#">Login</a></li>
-                <li id="register-link"><a href="#">Register</a></li>
-                <li id="profile-link" style="display: none;">
-                    <a href="#">Profile</a>
-                    <ul class="dropdown">
-                        <li><a href="#" id="edit-profile-link">Edit Profile</a></li>
-                        <li><a href="#" id="change-password-link">Change Password</a></li>
-                        <li><a href="#" id="logout-link">Logout</a></li>
-                    </ul>
-                </li>
-                <li id="reset-link"><a href="#">Reset Password</a></li>
+                <li><a href="/public/customer.html">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -57,51 +45,6 @@
                     <p>Crispy fries served hot and fast - RM 5.90</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Customer Forms (Hidden by Default) -->
-        <section id="login-form" class="form-section" style="display: none;">
-            <h2>Login</h2>
-            <form id="login-form-inner">
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
-        </section>
-
-        <section id="register-form" class="form-section" style="display: none;">
-            <h2>Register</h2>
-            <form id="register-form-inner">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Register</button>
-            </form>
-        </section>
-
-        <section id="edit-profile-form" class="form-section" style="display: none;">
-            <h2>Edit Profile</h2>
-            <form id="profile-form-inner">
-                <input type="text" name="name" placeholder="New Name" required>
-                <button type="submit">Update Profile</button>
-            </form>
-        </section>
-
-        <section id="change-password-form" class="form-section" style="display: none;">
-            <h2>Change Password</h2>
-            <form id="change-password-form-inner">
-                <input type="password" name="oldPassword" placeholder="Old Password" required>
-                <input type="password" name="newPassword" placeholder="New Password" required>
-                <button type="submit">Change Password</button>
-            </form>
-        </section>
-
-        <section id="reset-password-form" class="form-section" style="display: none;">
-            <h2>Reset Password</h2>
-            <form id="reset-form-inner">
-                <input type="email" name="email" placeholder="Email" required>
-                <button type="submit">Send Reset Link</button>
-            </form>
         </section>
     </main>
 
