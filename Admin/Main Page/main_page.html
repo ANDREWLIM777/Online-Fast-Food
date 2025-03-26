@@ -13,7 +13,7 @@
             --primary-color: #FF6B6B;
             --secondary-color: #4ECDC4;
             --dark-color: #2D3436;
-            --light-color: #fffafa;
+            --light-color: #f1f0ff;
         }
 
         body {
@@ -153,14 +153,14 @@
         .dashboard {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap:20px;
             padding: 20px;
         }
 
         .card {
             background: rgba(199, 247, 255, 0.438);
             border-radius: 25px;
-            padding: 25px;
+            padding: 40px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.3s;
             cursor: pointer;
@@ -172,19 +172,20 @@
         }
 
         .card-icon {
-            font-size: 2em;
+            font-size: 2.5em;
             color: var(--primary-color);
             margin-bottom: 15px;
         }
 
         .card h3 {
             margin: 0 0 10px;
+            font-size: 1.5em;
             color: var(--dark-color);
         }
 
         .card p {
             color: #666;
-            font-size: 0.9em;
+            font-size: 1.1em;
         }
 
         /* 通知铃 */
@@ -208,16 +209,27 @@
             font-size: 0.6em;
         }
 
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-            
-            .logo {
-                margin-left: 50px;
-            }
-        }
+/* 响应式布局调整 */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* 大屏幕适配 3x2 */
+@media (min-width: 769px) {
+    .dashboard {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 小屏幕适配 1 列 */
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
     </style>
 </head>
 <body>
