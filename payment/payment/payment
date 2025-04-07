@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Module</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+    h2 {
+      color: #0077cc;
+      margin-top: 40px;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    button {
+      background-color: #0077cc;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    input, select {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fast Food Payment Module</h1>
+
+    <!-- Payment Gateway Integration -->
+    <div class="card">
+      <h2>Payment Gateway</h2>
+      <p>Make a payment securely using our integrated payment gateway.</p>
+      <input type="text" placeholder="Amount (RM)" />
+      <select>
+        <option>Credit/Debit Card</option>
+        <option>Online Banking</option>
+        <option>e-Wallet</option>
+      </select>
+      <button>Pay Now</button>
+    </div>
+
+    <!-- Payment Confirmation Page -->
+    <div class="card">
+      <h2>Payment Confirmation</h2>
+      <p>Your payment of RM25.00 was successful.</p>
+      <button>Back to Home</button>
+    </div>
+
+    <!-- Payment History Page -->
+    <div class="card">
+      <h2>Payment History</h2>
+      <ul>
+        <li>01-Apr-2025 - RM25.00 - Completed</li>
+        <li>28-Mar-2025 - RM18.00 - Completed</li>
+      </ul>
+    </div>
+
+    <!-- Refund Request Page -->
+    <div class="card">
+      <h2>Refund Request</h2>
+      <input type="text" placeholder="Order ID" />
+      <input type="text" placeholder="Reason for Refund" />
+      <button>Submit Refund</button>
+    </div>
+
+    <!-- Add Payment Method Page -->
+    <div class="card">
+      <h2>Add Payment Method</h2>
+      <input type="text" placeholder="Card Number" />
+      <input type="text" placeholder="Expiry Date (MM/YY)" />
+      <input type="text" placeholder="CVV" />
+      <button>Add Card</button>
+    </div>
+
+    <!-- Remove Payment Method Page -->
+    <div class="card">
+      <h2>Remove Payment Method</h2>
+      <select>
+        <option>Visa - **** 1234</option>
+        <option>Mastercard - **** 5678</option>
+      </select>
+      <button>Remove</button>
+    </div>
+
+    <!-- Transaction Receipt Page -->
+    <div class="card">
+      <h2>Transaction Receipt</h2>
+      <p>Order ID: #FF123456</p>
+      <p>Amount: RM25.00</p>
+      <p>Date: 01-Apr-2025</p>
+      <p>Status: Paid</p>
+      <button>Download Receipt</button>
+    </div>
+
+    <!-- Secure Payment Authentication Page -->
+    <div class="card">
+      <h2>Secure Payment Authentication</h2>
+      <p>Enter the OTP sent to your phone:</p>
+      <input type="text" placeholder="Enter OTP" />
+      <button>Verify</button>
+    </div>
+  </div>
+</body>
+</html>
