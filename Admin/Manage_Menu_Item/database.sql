@@ -1,4 +1,3 @@
--- Create database and table
 CREATE DATABASE IF NOT EXISTS brizo;
 USE brizo;
 
@@ -10,4 +9,6 @@ CREATE TABLE menu_items (
     is_available BOOLEAN DEFAULT TRUE,
     promotion VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    COLUMN photo VARCHAR(255) DEFAULT NULL;
+
 );

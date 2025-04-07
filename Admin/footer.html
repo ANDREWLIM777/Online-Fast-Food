@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <style>
@@ -10,7 +10,7 @@
             left: 0;
             right: 0;
             height: 70px;
-            background: #ffffff;
+            background: #fffbed;
             box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-around;
@@ -45,6 +45,15 @@
             transition: color 0.3s ease;
         }
 
+        /* 🖱️ Hover effect with color */
+.nav-item:hover svg {
+    stroke: var(--active-color);
+}
+
+.nav-item:hover .nav-label {
+    color: var(--active-color);
+}
+
         /* éä¸­ç¶æ */
         .nav-item.active svg {
             stroke: var(--active-color);
@@ -55,30 +64,37 @@
 
         /* æ¬åææ */
         .nav-item:hover {
-            background: #f8f9fa;
+            background: #fafaf8db;
             transform: translateY(-4px);
         }
 
-        /* Bz å­ä½æ ·å¼ */
-        .bz-text {
-            font-size: 35px;
-            font-weight: bold;
-            fill: #ff6b6b;
-            transition: all 0.3s ease;
-        }
+/* Default Bz style */
+.bz-text {
+    font-size: 35px;
+    font-weight: bold;
+    fill: #ff6b6b;
+    transition: all 0.3s ease;
+}
 
-        /* Brizo ç¶æ */
-        .bz-item.active .bz-text {
-            font-size: 18px;
-            fill: var(--active-color);
-        }
-    </style>
+/* Active Bz (clicked) */
+.bz-item.active .bz-text {
+    font-size: 18px;
+    fill: var(--active-color);
+}
+
+/* 🔥 Hover effect: Brizo + shrink */
+.bz-item:hover .bz-text {
+    font-size: 18px;
+    fill: var(--active-color);
+}
+</style>
+
 </head>
 <body>
     <!-- åºé¨å¯¼èªæ  -->
     <nav class="footer-nav">
         <!-- Bz èå -->
-        <div class="nav-item bz-item" style="--active-color: #ff6b6b;">
+        <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.html">
             <svg viewBox="0 0 50 24">
                 <text x="5" y="18" class="bz-text">Bz</text>
             </svg>
@@ -109,13 +125,17 @@
     </svg>
     <span class="nav-label">Manage Order</span>
 </div>
-        <!-- èç³»æ¹å¼ -->
-        <div class="nav-item other-item" style="--active-color: #3498db;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-            <span class="nav-label">Contact</span>
-        </div>
+
+<!-- 菜单管理方式 -->
+<div class="nav-item other-item" style="--active-color: #3498db;" data-link="../Manage_Menu_Item/index.php">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <rect x="3" y="3" width="7" height="7" rx="1" ry="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" ry="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" ry="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" ry="1" />
+    </svg>
+    <span class="nav-label">Menu Manage</span>
+</div>
 
         <!-- æ´å¤éé¡¹ -->
         <div class="nav-item other-item" style="--active-color: #8e44ad;">
@@ -130,30 +150,74 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // 获取所有导航项
             const navItems = document.querySelectorAll('.nav-item');
             const bzItem = document.querySelector('.bz-item');
-            const bzText = bzItem.querySelector('.bz-text');
+            const bzText = bzItem?.querySelector('.bz-text');
     
-            // 处理点击事件
-            function handleNavClick(event) {
-                let clickedItem = event.currentTarget;
+            const ACTIVE_KEY = 'activeNav'; // localStorage key
     
-                // 移除所有激活状态
-                navItems.forEach(item => item.classList.remove('active'));
-    
-                // 添加激活状态
-                clickedItem.classList.add('active');
-    
-                // 处理Bz特殊逻辑
-                bzText.textContent = (clickedItem === bzItem) ? 'Brizo' : 'Bz';
+            // 🔁 On load: restore active state
+            const savedLabel = localStorage.getItem(ACTIVE_KEY);
+            if (savedLabel) {
+                navItems.forEach(item => {
+                    const label = item.querySelector('.nav-label')?.textContent.trim();
+                    if (label === savedLabel) {
+                        item.classList.add('active');
+                        if (bzText) {
+                            bzText.textContent = (item === bzItem) ? 'Brizo' : 'Bz';
+                        }
+                    }
+                });
             }
     
-            // 绑定事件（支持 click 和 touchstart 以兼容手机）
+            function handleNavClick(event) {
+                const clickedItem = event.currentTarget;
+    
+                // Clear all active states
+                navItems.forEach(item => item.classList.remove('active'));
+    
+                // Activate clicked
+                clickedItem.classList.add('active');
+    
+                // Update Bz logic
+                if (bzText) {
+                    bzText.textContent = (clickedItem === bzItem) ? 'Brizo' : 'Bz';
+                }
+// 💾 Save active label to localStorage
+const label = clickedItem.querySelector('.nav-label')?.textContent.trim();
+if (label) {
+    localStorage.setItem(ACTIVE_KEY, label);
+}
+
+
+// 🚀 Redirect if data-link present
+const targetLink = clickedItem.getAttribute('data-link');
+if (targetLink) {
+    window.location.href = targetLink;
+}
+
+
+            }
+    
+
+
+            if (bzItem && bzText) {
+    bzItem.addEventListener('mouseenter', () => {
+        bzText.textContent = 'Brizo';
+    });
+
+    bzItem.addEventListener('mouseleave', () => {
+        // Only revert if not active
+        if (!bzItem.classList.contains('active')) {
+            bzText.textContent = 'Bz';
+        }
+    });
+}
+
+            // Attach handlers
             navItems.forEach(item => {
                 item.addEventListener('click', handleNavClick);
                 item.addEventListener('touchstart', handleNavClick, { passive: true });
             });
         });
     </script>
-    
