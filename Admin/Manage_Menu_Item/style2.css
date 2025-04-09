@@ -1,0 +1,85 @@
+/* style2.css */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f9fa;
+    color: #333;
+}
+
+header, footer {
+    background-color: #343a40;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+a, button {
+    cursor: pointer;
+}
+
+a.btn, button.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+a.btn:hover, button.btn:hover {
+    background-color: #0056b3;
+}
+
+main.content-wrapper {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+.form-container, .card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+}
+
+.form-actions {
+    margin-top: 1.5rem;
+    text-align: right;
+}
+
+.alert {
+    padding: 1rem;
+    background-color: #ffc107;
+    color: #856404;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 8px;
+}

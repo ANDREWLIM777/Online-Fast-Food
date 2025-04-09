@@ -10,5 +10,7 @@ CREATE TABLE menu_items (
     promotion VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     COLUMN photo VARCHAR(255) DEFAULT NULL;
-
 );
+ALTER TABLE menu_items ADD category ENUM('burger','chicken','drink','snacks','meal') NOT NULL AFTER id;
+ADD FULLTEXT INDEX ft_search (item_name, description);
+
