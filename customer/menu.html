@@ -1,0 +1,22 @@
+<div class="menu-container" id="menu-items">
+    <!-- Dynamically populated by JavaScript -->
+</div>
+
+<script>
+fetch('php/get_menu.php')
+    .then(response => response.json())
+    .then(data => {
+        let html = '';
+        data.forEach(item => {
+            html += `
+            <div class="menu-item">
+                <img src="${item.image_url}" alt="${item.name}">
+                <h3>${item.name}</h3>
+                <p>${item.description}</p>
+                <p>RM ${item.price.toFixed(2)}</p>
+                <button onclick="addToCart(${item.item_id})">Add to Cart</button>
+            </div>`;
+        });
+        document.getElementById('menu-items').innerHTML = html;
+    });
+</script>
