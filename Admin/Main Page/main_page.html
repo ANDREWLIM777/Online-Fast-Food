@@ -64,6 +64,60 @@
     transition: all 0.3s ease;
 }
 
+.profile-container {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    z-index: 1001;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(145deg, #f5e8d0, #e6d8b3);
+    border: 2px solid #c8a951;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #725c1d;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: all 0.2s ease-in-out;
+}
+
+.profile-icon:hover {
+    transform: scale(1.08);
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    min-width: 180px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #eee;
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+.profile-dropdown a:hover {
+    background: #f8f8f8;
+}
+
 .sub-title {
     font-size: 1.05rem;
     color: #907722;
@@ -108,6 +162,7 @@
     right: -35px;
     width: 35px;
 }
+
 
 /* 动态光晕背景 */
 .header::after {
@@ -237,6 +292,16 @@
     <!--#include virtual="menu_icon.html" -->
 
     <div class="header">
+        <div class="profile-container">
+            <div class="profile-icon" onclick="toggleProfile()">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="edit_staff.php"><i class="fas fa-user-edit"></i> Edit Staff Profile</a>
+                <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        
         <div class="title-group">
             <div class="main-title">BRIZO MELAKA</div>
             <div class="sub-title">Admin Page</div>
@@ -288,6 +353,19 @@
     <!--#include virtual="footer.html" -->
 
     <script>
+        
+function toggleProfile() {
+    const dropdown = document.getElementById("profileDropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}
+
+window.onclick = function(event) {
+    const dropdown = document.getElementById("profileDropdown");
+    if (!event.target.closest('.profile-container')) {
+        dropdown.style.display = "none";
+    }
+};
+
         // 动态卡片交互
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('mouseover', () => {
@@ -299,12 +377,6 @@
             });
         });
 
-        // 通知系统
-        const notificationBell = document.querySelector('.notification-bell');
-        notificationBell.addEventListener('click', () => {
-            // 这里可以添加显示通知列表的逻辑
-            alert('显示最新3条通知：\n1. 新订单 #235\n2. 库存预警 - 薯条\n3. 员工换班提醒');
-        });
     </script>
 </body>
 </html>

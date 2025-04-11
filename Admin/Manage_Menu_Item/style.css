@@ -5,7 +5,7 @@
     --success: #3BB273;
     --danger: #D64933;
     --text: #FDFFFC;
-    --gradient: linear-gradient(145deg, #000000 0%, #dddaf9 100%);
+    --gradient: linear-gradient(145deg, #171718 0%, #302e37 100%);
     --neumorph: 8px 8px 16px #222325, 
                 -8px -8px 16px #323337;
 }
@@ -264,13 +264,13 @@ body {
     top: 0;
     width: 100%;
     background: 
-        linear-gradient(135deg, #f8efce 0%, #fffcf5 100%),
+        linear-gradient(135deg, #000000 0%, #0c0a10 100%),
         repeating-linear-gradient(-30deg, 
             transparent 0px 10px, 
             #f4e3b215 10px 12px,
             transparent 12px 22px);
     padding: 1.8rem 0;
-   
+    /*#f8efce #fffcf5*/
     box-shadow: 0 4px 25px rgba(0,0,0,0.06);
     z-index: 999;
     display: flex;
@@ -373,8 +373,8 @@ body {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 20% 30%, #f4e3b210 1px, transparent 2px),
-        radial-gradient(circle at 80% 70%, #f4e3b210 1px, transparent 2px);
+    radial-gradient(circle at 20% 30%, #f4e4b239 1px, transparent 2px),
+    radial-gradient(circle at 80% 70%, #f4e4b236 1px, transparent 2px);
     background-size: 40px 40px;
     animation: stardust 20s linear infinite;
 }

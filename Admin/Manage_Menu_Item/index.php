@@ -154,7 +154,7 @@ $items = $stmt->fetchAll();
             position: absolute;
             height: 3px;
             width: 100%;
-            background: #333;
+            background:rgb(192, 168, 61);
             border-radius: 3px;
             transition: all 0.3s ease;
         }
@@ -198,7 +198,7 @@ $items = $stmt->fetchAll();
         }
 
         .dropdown-menu a:hover {
-            background: #f5f5f5;
+            background:#f5f5f5;
         }
 
         @keyframes slideDown {
@@ -248,14 +248,14 @@ $items = $stmt->fetchAll();
             left: 0;
             right: 0;
             height: 70px;
-            background: #fffbed;
+            background:rgb(30, 26, 32);
             box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-around;
             align-items: center;
             z-index: 1000;
         }
-
+/*#fffbed; */
         /* å¯¼èªé¡¹ */
         .nav-item {
             display: flex;
@@ -271,7 +271,7 @@ $items = $stmt->fetchAll();
         .nav-item svg {
             width: 32px;
             height: 32px;
-            stroke: #636e72;
+            stroke:rgb(255, 220, 93);
             transition: all 0.3s ease;
         }
 
@@ -279,10 +279,10 @@ $items = $stmt->fetchAll();
         .nav-label {
             font-family: 'Segoe UI', sans-serif;
             font-size: 12px;
-            color: #636e72;
+            color:rgb(255, 220, 93);
             transition: color 0.3s ease;
         }
-
+/* #636e72;*/
         /* 🖱️ Hover effect with color */
 .nav-item:hover svg {
     stroke: var(--active-color);
@@ -302,10 +302,10 @@ $items = $stmt->fetchAll();
 
         /* æ¬åææ */
         .nav-item:hover {
-            background: #fafaf8db;
+            background:rgb(32, 32, 32);
             transform: translateY(-4px);
         }
-
+/* #fafaf8db; */
 /* Default Bz style */
 .bz-text {
     font-size: 35px;
