@@ -1,5 +1,7 @@
 <?php
 require_once 'db_connect.php';
+include '../auth.php';
+check_permission('superadmin');
 
 // 搜索和分类处理
 $search = $_GET['search'] ?? '';
@@ -215,7 +217,7 @@ $items = $stmt->fetchAll();
             <span></span>
         </div>
         <nav class="dropdown-menu">
-            <a href="../Main Page/main_page.html">Home</a>
+            <a href="../Main Page/main_page.php">Home</a>
             <a href="#about">About</a>
             <a href="#services">Services</a>
             <a href="#contact">Contact</a>
@@ -332,7 +334,7 @@ $items = $stmt->fetchAll();
     <!-- åºé¨å¯¼èªæ  -->
     <nav class="footer-nav">
         <!-- Bz èå -->
-        <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.html">
+        <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.php">
             <svg viewBox="0 0 50 24">
                 <text x="5" y="18" class="bz-text">Bz</text>
             </svg>

@@ -1,3 +1,44 @@
+<?php
+include '../auth.php';
+include '../Admin_Account/db.php';
+
+/*  获取当前用户信息 */
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT * FROM admin WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+/* 处理表单提交更新 */
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
+    $age = $_POST['age'];
+    $phone = $_POST['phone'];
+
+    // 上传照片处理
+    if ($_FILES['photo']['name']) {
+        $photo_name = time() . '_' . basename($_FILES['photo']['name']);
+        $target = "../Admin_Account/upload/" . $photo_name;
+        move_uploaded_file($_FILES['photo']['tmp_name'], $target);
+
+        $update = "UPDATE admin SET age=?, phone=?, photo=? WHERE id=?";
+        $stmt = $conn->prepare($update);
+        $stmt->bind_param("issi", $age, $phone, $photo_name, $user_id);
+    } else {
+        $update = "UPDATE admin SET age=?, phone=? WHERE id=?";
+        $stmt = $conn->prepare($update);
+        $stmt->bind_param("isi", $age, $phone, $user_id);
+    }
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Profile updated successfully'); window.location.href='main_page.php';</script>";
+        exit();
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +68,8 @@
 
 /* 黄金比例艺术标题 */
 .header {
+    left: 0;
+    right: 0;
     position: fixed;
     top: 0;
     width: 100%;
@@ -297,8 +340,8 @@
                 <i class="fas fa-user"></i>
             </div>
             <div class="profile-dropdown" id="profileDropdown">
-                <a href="edit_staff.php"><i class="fas fa-user-edit"></i> Edit Staff Profile</a>
-                <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="../Admin_Account/profile.php"><i class="fas fa-user-edit"></i> Edit Staff Profile</a>
+                <a href="../Admin_Account/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </div>
         
@@ -330,10 +373,10 @@
             <p>Real-time order tracking and processing</p>
         </div>
 
-        <div class="card" onclick="location.href='reservations.html'">
-            <i class="fas fa-calendar-alt card-icon"></i>
-            <h3>Reservation System</h3>
-            <p>Manage table bookings and customer reservations</p>
+        <div class="card" onclick="location.href='../Admin_Account/register.php'">
+              <i class="fas fa-user-shield card-icon"></i>
+             <h3>Admin Account Management</h3>
+             <p>Create and manage administrator access credentials</p>
         </div>
 
         <div class="card" onclick="location.href='staff.html'">
@@ -349,8 +392,6 @@
         </div>
     </main>
 
-    <!-- 导入底部导航 -->
-    <!--#include virtual="footer.html" -->
 
     <script>
         
@@ -466,7 +507,7 @@ window.onclick = function(event) {
             <span></span>
         </div>
         <nav class="dropdown-menu">
-            <a href="main_page.html">Home</a>
+            <a href="main_page.php">Home</a>
             <a href="#about">About</a>
             <a href="#services">Services</a>
             <a href="#contact">Contact</a>
@@ -581,7 +622,7 @@ window.onclick = function(event) {
     <!-- åºé¨å¯¼èªæ  -->
     <nav class="footer-nav">
         <!-- Bz èå -->
-        <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.html">
+        <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.php">
             <svg viewBox="0 0 50 24">
                 <text x="5" y="18" class="bz-text">Bz</text>
             </svg>

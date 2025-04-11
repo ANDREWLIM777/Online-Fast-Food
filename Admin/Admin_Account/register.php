@@ -1,0 +1,447 @@
+<?php
+/* 注册处理逻辑 */
+include 'db.php';
+include '../auth.php';
+check_permission('superadmin');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $gender = $_POST['gender'];
+    $age = $_POST['age'];
+    $position = $_POST['position'];
+    $phone = $_POST['phone'];
+    $role = $_POST['role'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    // 验证 @brizo.com 邮箱
+    if (!str_ends_with($email, '@brizo.com')) {
+        echo "<script>alert('Only @brizo.com email allowed'); window.history.back();</script>";
+        exit();
+    }
+
+    // 处理照片上传
+    $photo = "default.jpg";
+    if (!empty($_FILES['photo']['name'])) {
+        $photo = time() . '_' . basename($_FILES["photo"]["name"]);
+        $target_file = "upload/" . $photo;
+        move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file);
+    }
+
+    // 插入数据库
+    $stmt = $conn->prepare("INSERT INTO admin (name, gender, age, position, phone, role, email, password, photo) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssissssss", $name, $gender, $age, $position, $phone, $role, $email, $password, $photo);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Registration Successful'); window.location.href='../Main Page/main_page.php';</script>";
+    } else {
+        echo "<script>alert('Registration Failed: " . $conn->error . "');</script>";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Brizo Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+   
+  <style>
+    
+    /* 黄金比例艺术标题 */
+.header {
+    left: 0;
+    right: 0;
+    min-height: 80px;
+    background-repeat: repeat;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: 
+        linear-gradient(135deg, #000000 0%, #0c0a10 100%),
+        repeating-linear-gradient(-30deg, 
+            transparent 0px 10px, 
+            #f4e3b215 10px 12px,
+            transparent 12px 22px);
+    padding: 1.8rem 0;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #eee3c975;
+    overflow: hidden;
+}
+
+.title-group {
+    position: relative;
+    text-align: center;
+    padding: 0 2.5rem;
+}
+
+.main-title {
+    font-size: 2.1rem;/* 中间尺寸 */
+    background: linear-gradient(45deg, #c0a23d, #907722);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1.8px;
+    line-height: 1.15;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+    margin-bottom: 0.4rem;
+    transition: all 0.3s ease;
+}
+
+.sub-title {
+    font-size: 1.05rem;
+    color: #907722;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    opacity: 0.9;
+    position: relative;
+    display: inline-block;
+    padding: 0 15px;
+}
+
+/* 双装饰线动画 */
+.sub-title::before,
+.sub-title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 35px;
+    height: 1.2px;
+    background: linear-gradient(90deg, #c9a227aa, transparent);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.sub-title::before {
+    left: -30px;
+    transform: translateY(-50%) rotate(-15deg);
+}
+
+.sub-title::after {
+    right: -30px;
+    transform: translateY(-50%) rotate(15deg);
+}
+
+.title-group:hover .sub-title::before {
+    left: -35px;
+    width: 35px;
+}
+
+.title-group:hover .sub-title::after {
+    right: -35px;
+    width: 35px;
+}
+
+/* 动态光晕背景 */
+.header::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 50%, 
+        #f4e3b210 0%, 
+        transparent 60%);
+    animation: auraPulse 8s infinite;
+    pointer-events: none;
+}
+
+@keyframes auraPulse {
+    0% { transform: scale(0.8); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.1; }
+    100% { transform: scale(0.8); opacity: 0.3; }
+}
+
+/* 微光粒子 */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, #f4e4b239 1px, transparent 2px),
+        radial-gradient(circle at 80% 70%, #f4e4b236 1px, transparent 2px);
+    background-size: 40px 40px;
+    animation: stardust 20s linear infinite;
+}
+
+@keyframes stardust {
+    0% { background-position: 0 0, 100px 100px; }
+    100% { background-position: 100px 100px, 0 0; }
+}
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #0c0a10;
+            color: #eee;
+            margin: 0;
+            padding-top: 160px;
+        }
+
+        .form-back-btn {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    background: linear-gradient(45deg, #0c0a10, #1a1a1a);
+    border: 2px solid #c0a23d;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(192, 162, 61, 0.2);
+    z-index: 100;
+        }
+
+.form-back-btn i {
+    color: #c0a23d;
+    font-size: 1.4rem;
+    margin-right: 2px;
+    transition: transform 0.3s ease;
+}
+
+.form-back-btn:hover {
+    transform: translateX(-3px) scale(1.05);
+    border-color: #907722;
+    box-shadow: 0 6px 20px rgba(144, 119, 34, 0.3);
+}
+
+.form-back-btn:hover i {
+    transform: translateX(-2px);
+    color: #907722;
+}
+
+/* 调整表单容器定位 */
+.form-container {
+    position: relative; /* 为绝对定位按钮建立基准 */
+    margin-top: 40px; /* 为按钮留出空间 */
+    padding-top: 50px; /* 防止内容被遮挡 */
+}
+
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px #00000080;
+        }
+
+        h2 {
+            text-align: center;
+            background: linear-gradient(45deg, #c0a23d,rgb(208, 171, 50));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Playfair Display', serif;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 500;
+            color: #c8b071;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: none;
+            background: #262626;
+            color: #fff;
+        }
+
+        input[type="file"] {
+            background: none;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right,rgb(192, 175, 61),rgb(230, 189, 55));
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            color: #000;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #b49836;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+
+                <div class="title-group">
+                    <div class="main-title">BRIZO MELAKA</div>
+                    <div class="sub-title">Manage Menu Page</div>
+                </div>
+            </div>
+    <div class="form-container">
+    <a href="../Main Page/main_page.php" class="form-back-btn">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    
+        <h2>Register New Administration</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <label>Upload Photo</label>
+            <input type="file" name="photo" accept="image/*">
+
+            <label>Full Name</label>
+            <input type="text" name="name" required>
+
+            <label>Gender</label>
+            <select name="gender" required>
+                <option value="">-- Select --</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label>Age</label>
+            <input type="number" name="age" required>
+
+            <label>Position</label>
+            <input type="text" name="position" required>
+
+            <label>Phone</label>
+            <input type="text" name="phone" required>
+
+            <label>Role</label>
+            <select name="role" required>
+                <option value="admin">Admin</option>
+                <option value="superadmin">Superadmin</option>
+            </select>
+
+            <label>Email (@brizo.com)</label>
+            <input type="email" name="email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .menu-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon span {
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background:rgb(192, 168, 61);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon span:nth-child(1) { top: 0; }
+        .menu-icon span:nth-child(2) { top: 10px; }
+        .menu-icon span:nth-child(3) { top: 20px; }
+
+        .menu-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-icon.active span:nth-child(2) { opacity: 0; }
+
+        .menu-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            padding: 10px 0;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover {
+            background:#f5f5f5;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="dropdown-menu">
+            <a href="../Main Page/main_page.php">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const icon = document.querySelector('.menu-icon');
+            const menu = document.querySelector('.dropdown-menu');
+            
+            icon.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

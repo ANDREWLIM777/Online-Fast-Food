@@ -260,6 +260,8 @@ body {
 
 /* 黄金比例艺术标题 */
 .header {
+    left: 0;
+    right: 0;   
     position: fixed;
     top: 0;
     width: 100%;
