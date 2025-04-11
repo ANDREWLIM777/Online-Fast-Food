@@ -1,43 +1,77 @@
+<!-- register.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>BRIZO - Register</title>
-    <link rel="stylesheet" href="css/style.css">
+  <title>Register - BRIZO</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="auth-container">
-        <h2>Create Account</h2>
-        <form id="registrationForm" onsubmit="return validateForm()">
-            <div class="form-group">
-                <label>Full Name:</label>
-                <input type="text" id="fullName" name="full_name" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Phone Number:</label>
-                <input type="tel" id="phone" name="phone" pattern="[0-9]{10,12}" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Password:</label>
-                <input type="password" id="password" name="password" minlength="8" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Confirm Password:</label>
-                <input type="password" id="confirmPassword" required>
-            </div>
-            
-            <button type="submit">Register</button>
-        </form>
-        <p>Already have an account? <a href="login.html">Login here</a></p>
-    </div>
-
-    <script src="js/register.js"></script>
+  <h2>Customer Registration</h2>
+  <form action="php/register.php" method="post">
+    <input type="text" name="fullname" placeholder="Full Name" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+    <input type="text" name="phone" placeholder="Phone Number" required><br>
+    <button type="submit">Register</button>
+  </form>
 </body>
 </html>
+
+<!-- db/db_connect.php -->
+<?php
+$host = 'localhost';
+$user = 'root';
+$pass = '';
+$dbname = 'brizo';
+
+$conn = new mysqli($host, $user, $pass, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
+<!-- php/register.php -->
+<?php
+require 'db_connect.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $fullname = trim($_POST['fullname'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
+
+    if (empty($fullname) || empty($email) || empty($password) || empty($phone)) {
+        echo "All fields are required. <a href='../register.html'>Try again</a>";
+        exit();
+    }
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    $check = $conn->prepare("SELECT id FROM customers WHERE email = ?");
+    if (!$check) {
+        echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
+        exit();
+    }
+    $check->bind_param("s", $email);
+    $check->execute();
+    $check->store_result();
+
+    if ($check->num_rows > 0) {
+        echo "Email is already registered. <a href='../register.html'>Try again</a>";
+        exit();
+    }
+
+    $stmt = $conn->prepare("INSERT INTO customers (fullname, email, password, phone) VALUES (?, ?, ?, ?)");
+    if (!$stmt) {
+        echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
+        exit();
+    }
+    $stmt->bind_param("ssss", $fullname, $email, $hashedPassword, $phone);
+
+    if ($stmt->execute()) {
+        echo "Registration successful! <a href='../login.html'>Login here</a>";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+}
+?>
