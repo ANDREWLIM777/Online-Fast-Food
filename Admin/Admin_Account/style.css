@@ -4,11 +4,13 @@ body {
     color: #eee;
     margin: 0;
     padding: 0;
+
 }
+
 
 .container {
     max-width: 600px;
-    margin: 100px auto;
+    margin: 100px auto ;
     background: #181818;
     padding: 30px;
     border-radius: 15px;

@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Register - Brizo Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
-   
+
   <style>
     
     /* 黄金比例艺术标题 */
@@ -290,12 +290,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="title-group">
                     <div class="main-title">BRIZO MELAKA</div>
-                    <div class="sub-title">Manage Menu Page</div>
+                    <div class="sub-title">Administrative Register Page</div>
                 </div>
             </div>
     <div class="form-container">
     <a href="../Main Page/main_page.php" class="form-back-btn">
-        <i class="fas fa-arrow-left"></i>
+        <i class="fas fa-chevron-left"></i>
     </a>
     
         <h2>Register New Administration</h2>
@@ -332,15 +332,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="email" name="email" required>
 
             <label>Password</label>
-            <input type="password" name="password" required>
+<div style="position: relative;">
+    <input type="password" name="password" id="passwordField" required style="padding-right: 10px;">
+    <span onclick="togglePassword()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #c0a23d;">
+        <i id="eyeIcon" class="fas fa-eye-slash"></i>
+    </span>
+</div>
 
             <button type="submit">Register</button>
         </form>
     </div>
-
+    <script>
+function togglePassword() {
+    const passwordInput = document.getElementById("passwordField");
+    const eyeIcon = document.getElementById("eyeIcon");
+    
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.classList.remove("fa-eye-slash");
+        eyeIcon.classList.add("fa-eye");
+    } else {
+        passwordInput.type = "password";
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+    }
+}
+</script>
 </body>
 </html>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -375,6 +394,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .menu-icon span:nth-child(2) { top: 10px; }
         .menu-icon span:nth-child(3) { top: 20px; }
 
+        .menu-icon:hover span {
+            background: #eace7c; /* 悬停亮金色 */
+        }
+
+        .menu-icon.active span {
+            background: #c0a23d;
+            box-shadow: 0 0 8px rgba(192,162,61,0.3);
+        }
+
         .menu-icon.active span:nth-child(1) {
             transform: rotate(45deg) translate(8px, 8px);
         }
@@ -390,32 +418,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             position: absolute;
             top: 40px;
             left: 0;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            border-radius: 4px;
-            padding: 10px 0;
+            background: #0c0a10; /* 深黑背景 */
+            border: 1px solid rgba(192, 162, 61, 0.2); /* 金色边框 */
+            border-radius: 6px;
+            padding: 8px 0;
+            box-shadow: 0 4px 20px rgba(192, 162, 61, 0.1); /* 金色阴影 */
+            backdrop-filter: blur(8px); /* 毛玻璃效果 */
         }
 
         .dropdown-menu.active {
             display: block;
-            animation: slideDown 0.3s ease;
+            animation: slideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
         }
 
         .dropdown-menu a {
             display: block;
-            padding: 10px 20px;
+            padding: 12px 24px;
             text-decoration: none;
-            color: #333;
-            white-space: nowrap;
+            color: #c0a23d; /* 主金色 */
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            position: relative;
         }
 
         .dropdown-menu a:hover {
-            background:#f5f5f5;
+            background: rgba(192, 162, 61, 0.1); /* 淡金背景 */
+            color: #f4e3b2; /* 亮金色 */
+            padding-left: 28px;
+            text-shadow: 0 0 8px rgba(244, 227, 178, 0.3);
+        }
+
+        .dropdown-menu a:hover::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            background: #f4e3b2;
+            border-radius: 50%;
         }
 
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(-15px) rotateX(-15deg);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) rotateX(0);
+            }
         }
     </style>
 </head>

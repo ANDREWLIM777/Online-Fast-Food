@@ -31,6 +31,15 @@
         .menu-icon span:nth-child(2) { top: 10px; }
         .menu-icon span:nth-child(3) { top: 20px; }
 
+        .menu-icon:hover span {
+            background: #eace7c; /* 悬停亮金色 */
+        }
+
+        .menu-icon.active span {
+            background: #c0a23d;
+            box-shadow: 0 0 8px rgba(192,162,61,0.3);
+        }
+
         .menu-icon.active span:nth-child(1) {
             transform: rotate(45deg) translate(8px, 8px);
         }
@@ -46,32 +55,57 @@
             position: absolute;
             top: 40px;
             left: 0;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            border-radius: 4px;
-            padding: 10px 0;
+            background: #0c0a10; /* 深黑背景 */
+            border: 1px solid rgba(192, 162, 61, 0.2); /* 金色边框 */
+            border-radius: 6px;
+            padding: 8px 0;
+            box-shadow: 0 4px 20px rgba(192, 162, 61, 0.1); /* 金色阴影 */
+            backdrop-filter: blur(8px); /* 毛玻璃效果 */
         }
 
         .dropdown-menu.active {
             display: block;
-            animation: slideDown 0.3s ease;
+            animation: slideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
         }
 
         .dropdown-menu a {
             display: block;
-            padding: 10px 20px;
+            padding: 12px 24px;
             text-decoration: none;
-            color: #333;
-            white-space: nowrap;
+            color: #c0a23d; /* 主金色 */
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            position: relative;
         }
 
         .dropdown-menu a:hover {
-            background:#f5f5f5;
+            background: rgba(192, 162, 61, 0.1); /* 淡金背景 */
+            color: #f4e3b2; /* 亮金色 */
+            padding-left: 28px;
+            text-shadow: 0 0 8px rgba(244, 227, 178, 0.3);
+        }
+
+        .dropdown-menu a:hover::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            background: #f4e3b2;
+            border-radius: 50%;
         }
 
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(-15px) rotateX(-15deg);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) rotateX(0);
+            }
         }
     </style>
 </head>

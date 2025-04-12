@@ -50,31 +50,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        :root {
-            --primary-color: #FF6B6B;
-            --secondary-color: #4ECDC4;
-            --dark-color: #2D3436;
-            --light-color: #f1f0ff;
-        }
+     :root {
+    --gold-dark: #c0a23d;
+    --gold-light: #d9c88e;
+    --bg-dark: #0c0a10;
+    --text-light: #eee;
+    --box-glow: rgba(255, 215, 0, 0.1);
+}
 
-        body {
-            margin: 0;
-            padding: 130px 0 70px;
-            font-family: 'Segoe UI', system-ui;
-            background: var(--light-color);
-        }
+body {
+    margin: 0;
+    padding: 130px 0 70px;
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-light);
+}
 
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap');
 
 /* 黄金比例艺术标题 */
 .header {
     left: 0;
-    right: 0;
+    right: 0;   
     position: fixed;
     top: 0;
     width: 100%;
     background: 
-        linear-gradient(135deg, #f8efce 0%, #fffcf5 100%),
+        linear-gradient(135deg, #000000 0%, #0c0a10 100%),
         repeating-linear-gradient(-30deg, 
             transparent 0px 10px, 
             #f4e3b215 10px 12px,
@@ -95,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
 }
 
 .main-title {
-    font-size: 2.1rem; /* 中间尺寸 */
+    font-size: 2.1rem;/* 中间尺寸 */
     background: linear-gradient(45deg, #c0a23d, #907722);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -105,60 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
     margin-bottom: 0.4rem;
     transition: all 0.3s ease;
-}
-
-.profile-container {
-    position: fixed;
-    top: 25px;
-    right: 30px;
-    z-index: 1001;
-}
-
-.profile-icon {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(145deg, #f5e8d0, #e6d8b3);
-    border: 2px solid #c8a951;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #725c1d;
-    font-size: 1.2rem;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    transition: all 0.2s ease-in-out;
-}
-
-.profile-icon:hover {
-    transform: scale(1.08);
-}
-
-.profile-dropdown {
-    display: none;
-    position: absolute;
-    top: 50px;
-    right: 0;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    overflow: hidden;
-    min-width: 180px;
-    font-family: 'Roboto', sans-serif;
-    border: 1px solid #eee;
-}
-
-.profile-dropdown a {
-    display: block;
-    padding: 12px 16px;
-    color: #333;
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: background 0.2s;
-}
-
-.profile-dropdown a:hover {
-    background: #f8f8f8;
 }
 
 .sub-title {
@@ -206,7 +154,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     width: 35px;
 }
 
-
 /* 动态光晕背景 */
 .header::after {
     content: '';
@@ -237,8 +184,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 20% 30%, #f4e3b210 1px, transparent 2px),
-        radial-gradient(circle at 80% 70%, #f4e3b210 1px, transparent 2px);
+        radial-gradient(circle at 20% 30%, #f4e4b239 1px, transparent 2px),
+        radial-gradient(circle at 80% 70%, #f4e4b236 1px, transparent 2px);
     background-size: 40px 40px;
     animation: stardust 20s linear infinite;
 }
@@ -247,54 +194,132 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     0% { background-position: 0 0, 100px 100px; }
     100% { background-position: 100px 100px, 0 0; }
 }
+
+
+.profile-container {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    z-index: 1001;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(145deg,rgb(0, 0, 0),rgb(48, 46, 41));
+    border: 2px solid rgb(206, 176, 42);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:rgb(206, 176, 42);
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(36, 35, 35, 0.15);
+    transition: all 0.2s ease-in-out;
+}
+
+.profile-icon:hover {
+    transform: scale(1.08);
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: #0c0a10; /* 深黑底色 */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(192, 162, 61, 0.15); /* 金色阴影 */
+    overflow: hidden;
+    min-width: 180px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #c0a23d55; /* 半透明金色边框 */
+    backdrop-filter: blur(8px); /* 毛玻璃效果 */
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 12px 16px;
+    color: #c0a23d; /* 主金色 */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+    border-bottom: 1px solid #1a1a1a; /* 分隔线 */
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 12px 16px;
+    color: #c0a23d; /* 主金色 */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    border-bottom: 1px solid #1a1a1a; /* 分隔线 */
+}
+
+.profile-dropdown a:last-child {
+    border-bottom: none;
+}
+
+/* 悬停效果 */
+.profile-dropdown a:hover {
+    background: #c0a23d15; /* 浅金底色 */
+    color: #f4e3b2; /* 亮金色 */
+    padding-left: 20px; /* 动态缩进 */
+}
+
+/* 当前选中状态 */
+.profile-dropdown a.active {
+    background: linear-gradient(90deg, #c0a23d20, transparent);
+    border-left: 3px solid #c0a23d;
+}
+
+
         /* 主要内容区域 */
         .dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap:20px;
-            padding: 20px;
-        }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 30px;
+}
 
-        .card {
-            background: rgba(199, 247, 255, 0.438);
-            border-radius: 25px;
-            padding: 40px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            cursor: pointer;
-            position: relative;
-        }
+.card {
+    background: rgba(32, 32, 32, 0.85);
+    border: 1px solid #c0a23d33;
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: 0 0 12px var(--box-glow);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+}
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 18px #c0a23d88;
+}
 
-        .card-icon {
-            font-size: 2.5em;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
+.card-icon {
+    font-size: 2.8em;
+    color: var(--gold-dark);
+    margin-bottom: 18px;
+}
 
-        .card h3 {
-            margin: 0 0 10px;
-            font-size: 1.5em;
-            color: var(--dark-color);
-        }
+.card h3 {
+    margin: 0 0 10px;
+    font-size: 1.6em;
+    color: var(--gold-light);
+    font-family: 'Playfair Display', serif;
+}
 
-        .card p {
-            color: #666;
-            font-size: 1.1em;
-        }
+.card p {
+    font-size: 1em;
+    color: #bfbfbf;
+    line-height: 1.5;
+}
 
-        /* 通知铃 */
-        .notification-bell {
-            position: fixed;
-            top: 15px;
-            right: 20px;
-            font-size: 1.6em;
-            cursor: pointer;
-            z-index: 1001;
-        }
+   
 
         .badge {
             position: absolute;
@@ -374,21 +399,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
         </div>
 
         <div class="card" onclick="location.href='../Admin_Account/register.php'">
-              <i class="fas fa-user-shield card-icon"></i>
-             <h3>Admin Account Management</h3>
-             <p>Create and manage administrator access credentials</p>
+              <i class="fas fa-id-card card-icon"></i>
+              <h3>New Admin Registration</h3>
+              <p>Create and authorize new administrator accounts</p>
         </div>
 
         <div class="card" onclick="location.href='staff.html'">
-            <i class="fas fa-users card-icon"></i>
+            <i class="fas fa-star card-icon"></i>
             <h3>Staff Performance</h3>
             <p>Track employee productivity and ratings</p>
         </div>
 
         <div class="card" onclick="location.href='analytics.html'">
-            <i class="fas fa-chart-line card-icon"></i>
-            <h3>Sales Analytics</h3>
-            <p>Detailed sales reports and trends analysis</p>
+            <i class="fas fa-users-cog card-icon"></i>
+            <h3>Admin Account Control Panel</h3>
+<p>Manage existing administrator profiles and access privileges</p>
         </div>
     </main>
 
@@ -446,7 +471,7 @@ window.onclick = function(event) {
             position: absolute;
             height: 3px;
             width: 100%;
-            background: #333;
+            background:rgb(192, 168, 61);
             border-radius: 3px;
             transition: all 0.3s ease;
         }
@@ -454,6 +479,15 @@ window.onclick = function(event) {
         .menu-icon span:nth-child(1) { top: 0; }
         .menu-icon span:nth-child(2) { top: 10px; }
         .menu-icon span:nth-child(3) { top: 20px; }
+
+        .menu-icon:hover span {
+            background: #eace7c; /* 悬停亮金色 */
+        }
+
+        .menu-icon.active span {
+            background: #c0a23d;
+            box-shadow: 0 0 8px rgba(192,162,61,0.3);
+        }
 
         .menu-icon.active span:nth-child(1) {
             transform: rotate(45deg) translate(8px, 8px);
@@ -470,32 +504,57 @@ window.onclick = function(event) {
             position: absolute;
             top: 40px;
             left: 0;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            border-radius: 4px;
-            padding: 10px 0;
+            background: #0c0a10; /* 深黑背景 */
+            border: 1px solid rgba(192, 162, 61, 0.2); /* 金色边框 */
+            border-radius: 6px;
+            padding: 8px 0;
+            box-shadow: 0 4px 20px rgba(192, 162, 61, 0.1); /* 金色阴影 */
+            backdrop-filter: blur(8px); /* 毛玻璃效果 */
         }
 
         .dropdown-menu.active {
             display: block;
-            animation: slideDown 0.3s ease;
+            animation: slideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
         }
 
         .dropdown-menu a {
             display: block;
-            padding: 10px 20px;
+            padding: 12px 24px;
             text-decoration: none;
-            color: #333;
-            white-space: nowrap;
+            color: #c0a23d; /* 主金色 */
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            position: relative;
         }
 
         .dropdown-menu a:hover {
-            background: #f5f5f5;
+            background: rgba(192, 162, 61, 0.1); /* 淡金背景 */
+            color: #f4e3b2; /* 亮金色 */
+            padding-left: 28px;
+            text-shadow: 0 0 8px rgba(244, 227, 178, 0.3);
+        }
+
+        .dropdown-menu a:hover::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            background: #f4e3b2;
+            border-radius: 50%;
         }
 
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(-15px) rotateX(-15deg);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) rotateX(0);
+            }
         }
     </style>
 </head>
@@ -507,7 +566,7 @@ window.onclick = function(event) {
             <span></span>
         </div>
         <nav class="dropdown-menu">
-            <a href="main_page.php">Home</a>
+            <a href="../Main Page/main_page.php">Home</a>
             <a href="#about">About</a>
             <a href="#services">Services</a>
             <a href="#contact">Contact</a>
@@ -526,6 +585,7 @@ window.onclick = function(event) {
 </body>
 </html>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -538,14 +598,14 @@ window.onclick = function(event) {
             left: 0;
             right: 0;
             height: 70px;
-            background: #fffbed;
+            background:rgb(30, 26, 32);
             box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-around;
             align-items: center;
             z-index: 1000;
         }
-
+/*#fffbed; */
         /* å¯¼èªé¡¹ */
         .nav-item {
             display: flex;
@@ -561,7 +621,7 @@ window.onclick = function(event) {
         .nav-item svg {
             width: 32px;
             height: 32px;
-            stroke: #636e72;
+            stroke:rgb(255, 220, 93);
             transition: all 0.3s ease;
         }
 
@@ -569,10 +629,10 @@ window.onclick = function(event) {
         .nav-label {
             font-family: 'Segoe UI', sans-serif;
             font-size: 12px;
-            color: #636e72;
+            color:rgb(255, 220, 93);
             transition: color 0.3s ease;
         }
-
+/* #636e72;*/
         /* 🖱️ Hover effect with color */
 .nav-item:hover svg {
     stroke: var(--active-color);
@@ -592,10 +652,10 @@ window.onclick = function(event) {
 
         /* æ¬åææ */
         .nav-item:hover {
-            background: #fafaf8db;
+            background:rgb(32, 32, 32);
             transform: translateY(-4px);
         }
-
+/* #fafaf8db; */
 /* Default Bz style */
 .bz-text {
     font-size: 35px;

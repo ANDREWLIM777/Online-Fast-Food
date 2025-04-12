@@ -103,13 +103,157 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Edit Item</title>
-    <link rel="stylesheet" href="style2.css">
+<style>
+    /* 黑金系列 Brizo */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap');
+
+:root {
+    --gold: #c0a23d;
+    --gold-light: #e8d48b;
+    --bg-dark: #0c0a10;
+    --panel-dark: #181818;
+    --text-light: #eee;
+    --text-faint: #999;
+    --input-dark: #252525;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--bg-dark);
+    color: var(--text-light);
+}
+
+
+header {
+    background: linear-gradient(135deg, #000, #121212);
+    padding: 1.3rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #444;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.05);
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.3rem;
+    background: linear-gradient(to right, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+a.btn, button.btn {
+    background: linear-gradient(to right, var(--gold), var(--gold-light));
+    color: #000;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+a.btn:hover, button.btn:hover {
+    background: var(--gold-light);
+    box-shadow: 0 0 10px var(--gold-light);
+    transform: scale(1.03);
+}
+
+main.content-wrapper {
+    padding: 2rem;
+    max-width: 850px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+}
+
+.form-container {
+    background: var(--panel-dark);
+    padding: 2rem;
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
+    border: 1px solid #2e2e2e;
+}
+
+.form-group {
+    margin-bottom: 1.4rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background: var(--input-dark);
+    color: #fff;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.form-group input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 10px;
+}
+
+.form-actions {
+    text-align: right;
+    margin-top: 2rem;
+}
+
+.alert {
+    padding: 1rem;
+    background: #b88e14;
+    color: #1b1b1b;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid #d3a800;
+    background: linear-gradient(to right, #f5d77f, #e1c45f);
+}
+
+img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 2px solid var(--gold-light);
+    margin-top: 0.5rem;
+}
+
+</style>
 </head>
 <body>
-    <header>
-        <h1>Brizo Fast Food</h1>
-        <a href="index.php" class="btn">Back</a>
-    </header>
+<header>
+  <div class="header-glow"></div>
+  <h1>Brizo Melaka Fast Food</h1>
+  <a href="index.php" class="btn">
+    <i class="fas fa-chevron-left"></i>
+    Back to Dashboard
+  </a>
+</header>
 
     <main class="content-wrapper">
         <h2>Edit Menu Item</h2>
