@@ -1,85 +1,278 @@
 <?php
-require 'db_connect.php';
+require_once 'db_connect.php';
+include '../auth.php';
+check_permission('superadmin');
 
-try {
-    $stmt = $pdo->query("SELECT * FROM menu_items ORDER BY created_at DESC");
-    $menuItems = $stmt->fetchAll();
-} catch (PDOException $e) {
-    $errorMessage = "Failed to load menu items: " . $e->getMessage();
+// 搜索和分类处理
+$search = $_GET['search'] ?? '';
+$category = $_GET['category'] ?? 'all';
+
+// 构建高级查询
+$query = "SELECT *, 
+            MATCH(item_name, description) AGAINST(:search IN BOOLEAN MODE) AS relevance
+          FROM menu_items";
+$params = [];
+$conditions = [];
+
+// 始终绑定 :search 参数，无论 $search 是否为空
+$params[':search'] = $search !== '' ? $search . '*' : '';
+
+if($category !== 'all') {
+    $conditions[] = "category = :category";
+    $params[':category'] = $category;
 }
+
+if(!empty($search)) {
+    $conditions[] = "MATCH(item_name, description) AGAINST(:search IN BOOLEAN MODE)";
+}
+
+if(!empty($conditions)) {
+    $query .= " WHERE " . implode(" AND ", $conditions);
+}
+
+$query .= " ORDER BY relevance DESC, created_at DESC";
+
+$stmt = $pdo->prepare($query);
+$stmt->execute($params);
+$items = $stmt->fetchAll();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 新增字体 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <style><?php include 'style.css'; ?></style>
+</head>
+<body>
+
+<div class="header">
+        <div class="title-group">
+            <div class="main-title">BRIZO MELAKA</div>
+            <div class="sub-title">Manage Menu Page</div>
+        </div>
+    </div>
+
+
+<div class="admin-container">
+        <main class="dashboard">
+            <!-- 新版控制面板 -->
+            <div class="control-panel">
+            <div class="search-box">
+                <div class="filter-group">
+                <select id="categoryFilter" class="luxury-select">
+    <?php
+    $categories = ['all' => 'All Categories', 'burger' => '🍔 Burgers', 'chicken' => '🍗 Chicken', 'drink' => '🥤 Drinks', 'snacks' => '🍩 Snacks', 'meal' => '🍱 Meals'];
+    foreach ($categories as $value => $label):
+        $isSelected = $value === $category ? 'selected' : '';
+        echo "<option value=\"$value\" $isSelected>$label</option>";
+    endforeach;
+    ?>
+</select>
+                </div>
+                <a href="add.php" class="premium-3d-button">
+                    <div class="button-content">
+                        <i class="fas fa-plus"></i>
+                        <span>New Item</span>
+                    </div>
+                    <div class="button-shine"></div>
+                </a>
+            </div>
+            <div class="card-grid">
+                <?php foreach($items as $item): ?>
+                <div class="neo-card" data-id="<?= $item['id'] ?>">
+                    <div class="card-media">
+                        <div class="image-overlay"></div>
+                        <?php if($item['photo']): ?>
+                        <img src="<?= htmlspecialchars($item['photo']) ?>" 
+                             alt="<?= htmlspecialchars($item['item_name']) ?>"
+                             class="hover-zoom">
+                        <?php endif; ?>
+                        <div class="availability <?= $item['is_available'] ? 'available' : 'unavailable' ?>">
+    <i class="fas fa-<?= $item['is_available'] ? 'check' : 'times' ?>"></i>
+</div>
+
+                        <span class="category-tag <?= $item['category'] ?>">
+                            <?= ucfirst($item['category']) ?>
+                        </span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="item-title"><?= htmlspecialchars($item['item_name']) ?></h3>
+                        <p class="item-desc"><?= htmlspecialchars($item['description']) ?></p>
+                        <div class="price-row">
+                            <div class="price-bubble">
+                                $<?= number_format($item['price'], 2) ?>
+                                <?php if($item['promotion']): ?>
+                                <span class="promo-flag"><?= htmlspecialchars($item['promotion']) ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <div class="action-buttons">
+                                <a href="edit.php?id=<?= $item['id'] ?>" class="icon-btn edit-btn">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <button class="icon-btn delete-btn" data-id="<?= $item['id'] ?>">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+
+
+<!-- Menu Icon -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brizo Gourmet Menu</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Separate CSS file -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        .menu-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon span {
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background:rgb(192, 168, 61);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon span:nth-child(1) { top: 0; }
+        .menu-icon span:nth-child(2) { top: 10px; }
+        .menu-icon span:nth-child(3) { top: 20px; }
+
+        .menu-icon:hover span {
+            background: #eace7c; /* 悬停亮金色 */
+        }
+
+        .menu-icon.active span {
+            background: #c0a23d;
+            box-shadow: 0 0 8px rgba(192,162,61,0.3);
+        }
+
+        .menu-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-icon.active span:nth-child(2) { opacity: 0; }
+
+        .menu-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background: #0c0a10; /* 深黑背景 */
+            border: 1px solid rgba(192, 162, 61, 0.2); /* 金色边框 */
+            border-radius: 6px;
+            padding: 8px 0;
+            box-shadow: 0 4px 20px rgba(192, 162, 61, 0.1); /* 金色阴影 */
+            backdrop-filter: blur(8px); /* 毛玻璃效果 */
+        }
+
+        .dropdown-menu.active {
+            display: block;
+            animation: slideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 24px;
+            text-decoration: none;
+            color: #c0a23d; /* 主金色 */
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(192, 162, 61, 0.1); /* 淡金背景 */
+            color: #f4e3b2; /* 亮金色 */
+            padding-left: 28px;
+            text-shadow: 0 0 8px rgba(244, 227, 178, 0.3);
+        }
+
+        .dropdown-menu a:hover::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            background: #f4e3b2;
+            border-radius: 50%;
+        }
+
+        @keyframes slideDown {
+            from { 
+                opacity: 0; 
+                transform: translateY(-15px) rotateX(-15deg);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) rotateX(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Main Content Area -->
-    <main class="content-wrapper">
-        <header class="dashboard-header">
-            <div class="header-left">
-                <h1>Brizo Gourmet</h1>
-                <a href="add.php" class="btn add-btn">
-                    <i class="fas fa-plus"></i> Add New Item
-                </a>
-            </div>
-            <div class="search-bar">
-                <input type="text" placeholder="Search items..." id="searchInput">
-                <button class="search-btn"><i class="fas fa-search"></i></button>
-            </div>
-        </header>
+    <div class="menu-container">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="dropdown-menu">
+            <a href="../Main Page/main_page.php">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
 
-        <?php if(isset($errorMessage)): ?>
-            <div class="error-alert">
-                <i class="fas fa-exclamation-circle"></i>
-                <?= htmlspecialchars($errorMessage) ?>
-            </div>
-        <?php endif; ?>
+    <script>
+        function toggleMenu() {
+            const icon = document.querySelector('.menu-icon');
+            const menu = document.querySelector('.dropdown-menu');
+            
+            icon.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
 
-        <section class="card-grid">
-            <?php foreach ($menuItems as $item): ?>
-            <article class="menu-card" data-category="<?= htmlspecialchars($item['category'] ?? 'uncategorized') ?>">
-                <?php if (!empty($item['photo'])): ?>
-                <div class="card-image">
-                    <img src="<?= htmlspecialchars($item['photo']) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>">
-                </div>
-                <?php endif; ?>
-                <div class="card-header">
-                    <h2><?= htmlspecialchars($item['item_name']) ?></h2>
-                    <span class="price-badge">$<?= number_format($item['price'], 2) ?></span>
-                </div>
-                <div class="card-body">
-                    <p class="description"><?= nl2br(htmlspecialchars($item['description'])) ?></p>
-                    <div class="status-indicator <?= $item['is_available'] ? 'available' : 'unavailable' ?>">
-                        <i class="fas fa-<?= $item['is_available'] ? 'check' : 'times' ?>-circle"></i>
-                        <?= $item['is_available'] ? 'Available' : 'Unavailable' ?>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="action-buttons">
-                        <a href="edit.php?id=<?= $item['id'] ?>" class="btn edit-btn">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
-                        <button class="btn delete-btn" data-id="<?= $item['id'] ?>">
-                            <i class="fas fa-trash-alt"></i> Delete
-                        </button>
-                    </div>
-                    <?php if($item['promotion']): ?>
-                    <div class="promo-tag">
-                        <i class="fas fa-tag"></i> <?= htmlspecialchars($item['promotion']) ?>
-                    </div>
-                    <?php endif; ?>
-                </div>
-            </article>
-            <?php endforeach; ?>
-        </section>
-    </main>
-    <!DOCTYPE html>
+<!-- footer -->
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -91,14 +284,14 @@ try {
             left: 0;
             right: 0;
             height: 70px;
-            background: #fffbed;
+            background:rgb(30, 26, 32);
             box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-around;
             align-items: center;
             z-index: 1000;
         }
-
+/*#fffbed; */
         /* å¯¼èªé¡¹ */
         .nav-item {
             display: flex;
@@ -114,7 +307,7 @@ try {
         .nav-item svg {
             width: 32px;
             height: 32px;
-            stroke: #636e72;
+            stroke:rgb(255, 220, 93);
             transition: all 0.3s ease;
         }
 
@@ -122,10 +315,10 @@ try {
         .nav-label {
             font-family: 'Segoe UI', sans-serif;
             font-size: 12px;
-            color: #636e72;
+            color:rgb(255, 220, 93);
             transition: color 0.3s ease;
         }
-
+/* #636e72;*/
         /* 🖱️ Hover effect with color */
 .nav-item:hover svg {
     stroke: var(--active-color);
@@ -145,10 +338,10 @@ try {
 
         /* æ¬åææ */
         .nav-item:hover {
-            background: #fafaf8db;
+            background:rgb(32, 32, 32);
             transform: translateY(-4px);
         }
-
+/* #fafaf8db; */
 /* Default Bz style */
 .bz-text {
     font-size: 35px;
@@ -175,7 +368,7 @@ try {
     <!-- åºé¨å¯¼èªæ  -->
     <nav class="footer-nav">
         <!-- Bz èå -->
-        <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.html">
+        <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.php">
             <svg viewBox="0 0 50 24">
                 <text x="5" y="18" class="bz-text">Bz</text>
             </svg>
@@ -302,107 +495,3 @@ if (targetLink) {
             });
         });
     </script>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <style>
-        .menu-container {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-        }
-
-        .menu-icon {
-            cursor: pointer;
-            width: 30px;
-            height: 24px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .menu-icon span {
-            position: absolute;
-            height: 3px;
-            width: 100%;
-            background: #333;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .menu-icon span:nth-child(1) { top: 0; }
-        .menu-icon span:nth-child(2) { top: 10px; }
-        .menu-icon span:nth-child(3) { top: 20px; }
-
-        .menu-icon.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .menu-icon.active span:nth-child(2) { opacity: 0; }
-
-        .menu-icon.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 40px;
-            left: 0;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            border-radius: 4px;
-            padding: 10px 0;
-        }
-
-        .dropdown-menu.active {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: #333;
-            white-space: nowrap;
-        }
-
-        .dropdown-menu a:hover {
-            background: #f5f5f5;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-</head>
-<body>
-    <div class="menu-container">
-        <div class="menu-icon" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <nav class="dropdown-menu">
-            <a href="../Main Page/main_page.html">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            const icon = document.querySelector('.menu-icon');
-            const menu = document.querySelector('.dropdown-menu');
-            
-            icon.classList.toggle('active');
-            menu.classList.toggle('active');
-        }
-    </script>
-</body>
-</html>

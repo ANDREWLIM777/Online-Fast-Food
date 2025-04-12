@@ -1,0 +1,8 @@
+Admin
+<?php include '../auth.php'; ?>
+
+Superadmin
+<?php
+include '../auth.php';
+check_permission('superadmin');
+?>
