@@ -1,11 +1,9 @@
 <?php
-// 防止直接访问
 if(basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME'])) {
     http_response_code(403);
     die('Access denied');
 }
 
-// 数据库配置
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'brizo');
 define('DB_USER', 'root');
