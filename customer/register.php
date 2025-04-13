@@ -10,37 +10,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone = trim($_POST['phone'] ?? '');
 
     if (empty($fullname) || empty($email) || empty($password) || empty($phone)) {
-        echo "All fields are required. <a href='register.html'>Try again</a>";
-        exit();
-    }
-
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    $check = $conn->prepare("SELECT id FROM customers WHERE email = ?");
-    if (!$check) {
-        echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
-        exit();
-    }
-    $check->bind_param("s", $email);
-    $check->execute();
-    $check->store_result();
-
-    if ($check->num_rows > 0) {
-        echo "Email is already registered. <a href='register.html'>Try again</a>";
-        exit();
-    }
-
-    $stmt = $conn->prepare("INSERT INTO customers (fullname, email, password, phone) VALUES (?, ?, ?, ?)");
-    if (!$stmt) {
-        echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
-        exit();
-    }
-    $stmt->bind_param("ssss", $fullname, $email, $hashedPassword, $phone);
-
-    if ($stmt->execute()) {
-        echo "Registration successful! <a href='login.php'>Login here</a>";
+        $showError = "All fields are required.";
     } else {
-        echo "Error: " . $stmt->error;
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $check = $conn->prepare("SELECT id FROM customers WHERE email = ?");
+        if (!$check) {
+            $showError = "Database error (prepare failed).";
+        } else {
+            $check->bind_param("s", $email);
+            $check->execute();
+            $check->store_result();
+
+            if ($check->num_rows > 0) {
+                $showError = "⚠️ This email is already registered. Try logging in instead.";
+            } else {
+                $stmt = $conn->prepare("INSERT INTO customers (fullname, email, password, phone) VALUES (?, ?, ?, ?)");
+                if (!$stmt) {
+                    $showError = "Database error (prepare failed).";
+                } else {
+                    $stmt->bind_param("ssss", $fullname, $email, $hashedPassword, $phone);
+                    if ($stmt->execute()) {
+                      header("Location: register-success.php");
+
+                        exit();
+                    } else {
+                        $showError = "Something went wrong. Please try again.";
+                    }
+                }
+            }
+        }
     }
 }
 ?>
@@ -58,7 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
   <div class="register-container">
-    <div class="logo">🍔 BRIZO FAST FOOD MELAKA</div>
+    <!-- Brizo Logo Image -->
+    <div class="logo">
+      <img src="logo.png" alt="Brizo Fast Food Melaka Logo" width="160" />
+      <noscript><strong>🍔 BRIZO FAST FOOD MELAKA</strong></noscript>
+    </div>
+
     <h2>Customer Registration</h2>
 
     <?php if ($showError): ?>
@@ -67,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form action="register.php" method="POST">
       <label for="fullname">Full Name</label>
-      <input type="text" id="fullname" name="fullname" placeholder="e.g. Brizo The BEST" required>
+      <input type="text" id="fullname" name="fullname" placeholder="e.g. Brizo Is The BEST" required>
 
       <label for="email">Email</label>
       <input type="email" id="email" name="email" placeholder="e.g. brizo@email.com" required>
@@ -75,15 +79,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="form-group password-group">
         <label for="password">Password</label>
         <div class="password-wrapper">
-        <input
-  type="password"
-  id="registerPassword"
-  name="password"
-  placeholder="••••••••"
-  minlength="8"
-  required
->
-
+          <input
+            type="password"
+            id="registerPassword"
+            name="password"
+            placeholder="••••••••"
+            minlength="8"
+            required
+          >
           <span id="toggleRegisterPassword" class="eye-icon">👁️</span>
         </div>
       </div>

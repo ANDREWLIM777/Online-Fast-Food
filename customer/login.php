@@ -1,48 +1,45 @@
-<!-- php/register.php -->
 <?php
+session_start();
 require 'db_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $fullname = trim($_POST['fullname'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = trim($_POST['password'] ?? '');
-    $phone = trim($_POST['phone'] ?? '');
 
-    if (empty($fullname) || empty($email) || empty($password) || empty($phone)) {
-        echo "All fields are required. <a href='../register.html'>Try again</a>";
+    if (empty($email) || empty($password)) {
+        header("Location: login.php?error=empty_fields");
         exit();
     }
 
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    $check = $conn->prepare("SELECT id FROM customers WHERE email = ?");
-    if (!$check) {
-        echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
-        exit();
-    }
-    $check->bind_param("s", $email);
-    $check->execute();
-    $check->store_result();
-
-    if ($check->num_rows > 0) {
-        echo "Email is already registered. <a href='../register.html'>Try again</a>";
-        exit();
-    }
-
-    $stmt = $conn->prepare("INSERT INTO customers (fullname, email, password, phone) VALUES (?, ?, ?, ?)");
+    $stmt = $conn->prepare("SELECT id, fullname, password FROM customers WHERE email = ?");
     if (!$stmt) {
-        echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
-        exit();
+        die("Database error: " . $conn->error);
     }
-    $stmt->bind_param("ssss", $fullname, $email, $hashedPassword, $phone);
 
-    if ($stmt->execute()) {
-        echo "Registration successful! <a href='../login.html'>Login here</a>";
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows === 1) {
+        $stmt->bind_result($id, $fullname, $hashedPassword);
+        $stmt->fetch();
+
+        if (password_verify($password, $hashedPassword)) {
+            $_SESSION['customer_id'] = $id;
+            $_SESSION['customer_name'] = $fullname;
+            header("Location: menu.php"); // 👈 redirect to menu or dashboard
+            exit();
+        } else {
+            header("Location: login.php?error=wrong_password");
+            exit();
+        }
     } else {
-        echo "Error: " . $stmt->error;
+        header("Location: login.php?error=email_not_found");
+        exit();
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,32 +51,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="login.css">
 </head>
-<script src="login.js"></script>
 
 <body>
   <div class="login-container">
-    <div class="logo">🍔 BRIZO FAST FOOD MELAKA</div>
+    <!-- Brizo Logo Image -->
+    <div class="logo">
+      <img src="logo.png" alt="Brizo Fast Food Melaka Logo" width="160" />
+      <noscript><strong>🍔 BRIZO FAST FOOD MELAKA</strong></noscript>
+    </div>
+
     <h2>Welcome Back!</h2>
     <p class="subtitle">Please login to your customer account</p>
+    
+    <?php if (isset($_GET['error'])): ?>
+  <div class="error-box">
+    <?php
+      switch ($_GET['error']) {
+        case 'empty_fields': echo "Please fill in all fields."; break;
+        case 'email_not_found': echo "Email not found. Try registering."; break;
+        case 'wrong_password': echo "Incorrect password. Please try again."; break;
+        default: echo "Something went wrong.";
+      }
+    ?>
+  </div>
+<?php endif; ?>
 
     <form action="login.php" method="POST">
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="e.g. brizo@email.com" required>
-      </div>
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="e.g. brizo@email.com" required>
 
       <div class="form-group password-group">
-  <label for="password">Password</label>
-  <div class="password-wrapper">
-    <input type="password" id="password" name="password" placeholder="••••••••" required>
-    <span id="togglePassword" class="eye-icon">👁️</span>
-  </div>
-</div>
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            required
+          >
+          <span id="togglePassword" class="eye-icon">👁️</span>
+        </div>
+      </div>
 
-      <button type="submit">Login</button>
+      <button type="submit">🍟 Login</button>
     </form>
 
-    <p class="auth-link">Don't have an account? <a href="register.php">Register here</a></p>
+    <p>Don't have an account? <a href="register.php">Register here</a></p>
   </div>
+
+  <script src="login.js"></script>
 </body>
 </html>

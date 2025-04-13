@@ -1,0 +1,42 @@
+<?php
+require 'db_connect.php';
+
+// Fetch menu items
+$sql = "SELECT * FROM menu_items WHERE is_available = 1 ORDER BY category, id";
+$result = $conn->query($sql);
+
+$menu_items = [];
+while ($row = $result->fetch_assoc()) {
+    $menu_items[] = $row;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brizo Menu</title>
+  <link rel="stylesheet" href="menu.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="menu-header">
+    <img src="logo.png" alt="Brizo Logo" />
+    <h1>Brizo Fast Food Menu</h1>
+  </div>
+
+  <div class="menu-container">
+    <?php foreach ($menu_items as $item): ?>
+      <div class="menu-card">
+        <img src="<?= htmlspecialchars($item['photo']) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>" />
+        <h3><?= htmlspecialchars($item['item_name']) ?></h3>
+        <p class="price">RM <?= number_format($item['price'], 2) ?></p>
+        <?php if (!empty($item['promotion'])): ?>
+          <p class="promo"><?= htmlspecialchars($item['promotion']) ?></p>
+        <?php endif; ?>
+        <p class="desc"><?= htmlspecialchars($item['description']) ?></p>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</body>
+</html>
