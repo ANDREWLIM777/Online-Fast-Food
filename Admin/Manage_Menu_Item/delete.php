@@ -1,5 +1,7 @@
 <?php
 require_once 'db_connect.php';
+include '../auth_menu.php';
+check_permission('superadmin');
 
 header('Content-Type: application/json');
 

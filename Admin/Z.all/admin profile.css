@@ -173,7 +173,24 @@
         <div class="profile-role"><?= strtolower($_SESSION['user_role']); ?></div>
     </div>
     <hr>
-    <a href="../Admin_Account/profile.php"><i class="fas fa-user-edit"></i> Edit Staff Profile</a>
+    <a href="../Admin_Account/profile.php"><i class="fas fa-user-edit"></i> Edit Your Profile</a>
     <a href="../Admin_Account/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
 </div>
 </div>
+
+<script>
+function toggleProfile() {
+    const dropdown = document.getElementById("profileDropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}
+
+// 点击其他区域时关闭 dropdown
+window.onclick = function(event) {
+    const profileContainer = document.querySelector('.profile-container');
+    const dropdown = document.getElementById("profileDropdown");
+    
+    if (!profileContainer.contains(event.target)) {
+        dropdown.style.display = "none";
+    }
+};
+</script>

@@ -1,5 +1,7 @@
 <?php
 require 'db_connect.php';
+include '../auth_menu.php';
+check_permission('superadmin');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $photoPath = null;

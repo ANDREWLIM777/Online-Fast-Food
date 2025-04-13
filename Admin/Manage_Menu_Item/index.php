@@ -1,7 +1,6 @@
 <?php
 require_once 'db_connect.php';
 include '../auth.php';
-check_permission('superadmin');
 
 // 搜索和分类处理
 $search = $_GET['search'] ?? '';
@@ -44,10 +43,25 @@ $items = $stmt->fetchAll();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <style><?php include 'style.css'; ?></style>
+
 </head>
 <body>
 
 <div class="header">
+<div class="profile-container">
+<div class="profile-icon" onclick="toggleProfile()">
+    <i class="fas fa-user"></i>
+</div>
+<div class="profile-dropdown" id="profileDropdown">
+    <div class="profile-header">
+        <div class="profile-name"><?= strtoupper($_SESSION['user_name']); ?></div>
+        <div class="profile-role"><?= strtolower($_SESSION['user_role']); ?></div>
+    </div>
+    <hr>
+    <a href="../Admin_Account/profile.php"><i class="fas fa-user-edit"></i> Edit Your Profile</a>
+    <a href="../Admin_Account/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+</div>
+</div>
         <div class="title-group">
             <div class="main-title">BRIZO MELAKA</div>
             <div class="sub-title">Manage Menu Page</div>
@@ -122,6 +136,22 @@ $items = $stmt->fetchAll();
             </div>
         </main>
     </div>
+    <script>
+function toggleProfile() {
+    const dropdown = document.getElementById("profileDropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}
+
+// 点击其他区域时关闭 dropdown
+window.onclick = function(event) {
+    const profileContainer = document.querySelector('.profile-container');
+    const dropdown = document.getElementById("profileDropdown");
+    
+    if (!profileContainer.contains(event.target)) {
+        dropdown.style.display = "none";
+    }
+};
+</script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="scripts.js"></script>

@@ -400,7 +400,7 @@ body {
             <div class="profile-role"><?= strtolower($_SESSION['user_role']); ?></div>
         </div>
         <hr>
-        <a href="../Admin_Account/profile.php"><i class="fas fa-user-edit"></i> Edit Staff Profile</a>
+        <a href="../Admin_Account/profile.php"><i class="fas fa-user-edit"></i> Edit Your Profile</a>
         <a href="../Admin_Account/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 </div>
@@ -416,7 +416,7 @@ body {
     <!-- 主内容 -->
     <main class="dashboard">
         <div class="card" onclick="location.href='../Manage_Menu_Item/index.php'">
-            <i class="fas fa-utensils card-icon"></i>
+            <i class="fas fa-hamburger card-icon"></i>
             <h3>Manage Menu Items</h3>
             <p>Add, edit or remove menu items and set pricing</p>
         </div>

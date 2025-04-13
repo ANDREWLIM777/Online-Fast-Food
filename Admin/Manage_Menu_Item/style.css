@@ -31,6 +31,115 @@ body {
     transition: all 0.3s ease;
 }
 
+
+.profile-container {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    z-index: 1001;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(145deg,rgb(0, 0, 0),rgb(48, 46, 41));
+    border: 2px solid rgb(206, 176, 42);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:rgb(206, 176, 42);
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(36, 35, 35, 0.15);
+    transition: all 0.2s ease-in-out;
+}
+
+.profile-icon:hover {
+    transform: scale(1.08);
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: #0c0a10; /* 深黑底色 */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(192, 162, 61, 0.15); /* 金色阴影 */
+    overflow: hidden;
+    min-width: 180px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #c0a23d55; /* 半透明金色边框 */
+    backdrop-filter: blur(8px); /* 毛玻璃效果 */
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 12px 16px;
+    color: #c0a23d; /* 主金色 */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+    border-bottom: 1px solid #1a1a1a; /* 分隔线 */
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 12px 16px;
+    color: #c0a23d; /* 主金色 */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    border-bottom: 1px solid #1a1a1a; /* 分隔线 */
+}
+
+.profile-dropdown a:last-child {
+    border-bottom: none;
+}
+
+/* 悬停效果 */
+.profile-dropdown a:hover {
+    background: #c0a23d15; /* 浅金底色 */
+    color: #f4e3b2; /* 亮金色 */
+    padding-left: 20px; /* 动态缩进 */
+}
+
+/* 当前选中状态 */
+.profile-dropdown a.active {
+    background: linear-gradient(90deg, #c0a23d20, transparent);
+    border-left: 3px solid #c0a23d;
+}
+
+.profile-header {
+    text-align: left;
+    padding: 12px 16px 8px;
+    background-color: transparent;
+}
+
+.profile-name {
+    font-weight: bold;
+    color: #f4e3b2;
+    font-size: 1rem;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.profile-role {
+    font-size: 0.85rem;
+    color: #bba350;
+    text-transform: lowercase;
+    opacity: 0.9;
+}
+
+/* 分隔线 */
+.profile-dropdown hr {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 5px 0 5px;
+}
+
 .available {
     background: var(--success);
     color: white;
