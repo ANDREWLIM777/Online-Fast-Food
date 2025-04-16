@@ -29,3 +29,16 @@ CREATE TABLE payment_methods (
     expiry VARCHAR(5),
     name_on_card VARCHAR(100)
 );
+
+-- Add this to your existing database schema
+CREATE TABLE user_payment_methods (
+    method_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    method_type VARCHAR(20) NOT NULL,
+    card_type VARCHAR(20),
+    card_number VARCHAR(255) NOT NULL, -- Should be encrypted in production
+    card_last_four VARCHAR(4) NOT NULL,
+    expiry VARCHAR(5) NOT NULL,
+    name_on_card VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
