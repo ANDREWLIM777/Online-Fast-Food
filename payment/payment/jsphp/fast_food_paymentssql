@@ -1,0 +1,35 @@
+CREATE DATABASE fast_food_payments;
+
+USE fast_food_payments;
+
+CREATE TABLE payments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id VARCHAR(50) NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    payment_method VARCHAR(100) NOT NULL,
+    payment_details TEXT,
+    status VARCHAR(20) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE payment_methods (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    method_type VARCHAR(20) NOT NULL,
+    card_type VARCHAR(20),
+    last_four VARCHAR(4),
+    expiry VARCHAR(10),
+    card_name VARCHAR(100),
+    bank_name VARCHAR(100),
+    wallet_type VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE refund_requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id VARCHAR(50) NOT NULL,
+    reason VARCHAR(255) NOT NULL,
+    details TEXT,
+    status VARCHAR(20) DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
