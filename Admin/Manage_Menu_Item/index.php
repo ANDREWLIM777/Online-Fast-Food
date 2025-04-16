@@ -282,7 +282,7 @@ window.onclick = function(event) {
         </div>
         <nav class="dropdown-menu">
             <a href="../Main Page/main_page.php">Home</a>
-            <a href="#about">About</a>
+            <a href="../Manage_Account/index.php">Admin</a>
             <a href="#services">Services</a>
             <a href="#contact">Contact</a>
         </nav>
@@ -406,14 +406,14 @@ window.onclick = function(event) {
         </div>
 
         <!-- æä½³åå·¥ -->
-        <div class="nav-item other-item" style="--active-color: #ff9f43;">
+        <div class="nav-item other-item" style="--active-color: #ff9f43;" data-link="../Manage_Account/index.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
-            <span class="nav-label">Best Staff</span>
+            <span class="nav-label">ALL Staff</span>
         </div>
 
 <!-- è®¢åç®¡çï¼Checklist å¾æ ï¼ -->

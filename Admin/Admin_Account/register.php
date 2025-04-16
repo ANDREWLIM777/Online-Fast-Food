@@ -481,7 +481,7 @@ function togglePassword() {
         </div>
         <nav class="dropdown-menu">
             <a href="../Main Page/main_page.php">Home</a>
-            <a href="#about">About</a>
+            <a href="../Manage_Account/index.php">Admin</a>
             <a href="#services">Services</a>
             <a href="#contact">Contact</a>
         </nav>
