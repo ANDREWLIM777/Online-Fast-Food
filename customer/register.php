@@ -11,6 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($fullname) || empty($email) || empty($password) || empty($phone)) {
         $showError = "All fields are required.";
+    } else
+    
+    if (!preg_match('/^[0-9]{11}$/', $phone)) {
+        $showError = "Phone number must contain only digits (11 characters).";
     } else {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -31,8 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } else {
                     $stmt->bind_param("ssss", $fullname, $email, $hashedPassword, $phone);
                     if ($stmt->execute()) {
-                      header("Location: register-success.php");
-
+                        header("Location: register-success.php");
                         exit();
                     } else {
                         $showError = "Something went wrong. Please try again.";
@@ -43,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +96,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <label for="phone">Phone Number</label>
-      <input type="text" id="phone" name="phone" placeholder="e.g. 012-3456 7890" required>
+      <input 
+  type="tel" 
+  id="phone" 
+  name="phone" 
+  placeholder="e.g. 0123456789" 
+  pattern="[0-9]{10,15}" 
+  inputmode="numeric" 
+  required
+>
+
 
       <button type="submit">🍟 Register Now</button>
     </form>
