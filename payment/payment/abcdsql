@@ -1,0 +1,44 @@
+-- Orders table
+CREATE TABLE orders (
+    order_id VARCHAR(20) PRIMARY KEY,
+    customer_name VARCHAR(100),
+    order_date DATETIME,
+    total_amount DECIMAL(10,2),
+    status VARCHAR(20)
+);
+
+-- Payments table
+CREATE TABLE payments (
+    payment_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id VARCHAR(20),
+    payment_date DATETIME,
+    amount DECIMAL(10,2),
+    payment_method VARCHAR(50),
+    card_last_four VARCHAR(4),
+    status VARCHAR(20),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+
+-- Payment methods table
+CREATE TABLE payment_methods (
+    method_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    method_type VARCHAR(20),
+    card_type VARCHAR(20),
+    card_last_four VARCHAR(4),
+    expiry VARCHAR(5),
+    name_on_card VARCHAR(100)
+);
+
+-- Add this to your existing database schema
+CREATE TABLE user_payment_methods (
+    method_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    method_type VARCHAR(20) NOT NULL,
+    card_type VARCHAR(20),
+    card_number VARCHAR(255) NOT NULL, -- Should be encrypted in production
+    card_last_four VARCHAR(4) NOT NULL,
+    expiry VARCHAR(5) NOT NULL,
+    name_on_card VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
