@@ -439,10 +439,10 @@ body {
               <p>Create and authorize new administrator accounts</p>
         </div>
 
-        <div class="card" onclick="location.href='staff.html'">
-            <i class="fas fa-star card-icon"></i>
-            <h3>Staff Performance</h3>
-            <p>Track employee productivity and ratings</p>
+        <div class="card" onclick="location.href='../Manage_Customer/index.php'">
+        <i class="fas fa-user-shield card-icon"></i>
+        <h3>Customer Account Control Panel</h3>
+        <p>Manage customer profile, security settings, and account details</p>
         </div>
 
         <div class="card" onclick="location.href='../Manage_Account/index.php'">
