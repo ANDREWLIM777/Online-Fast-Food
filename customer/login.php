@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($password, $hashedPassword)) {
             $_SESSION['customer_id'] = $id;
             $_SESSION['customer_name'] = $fullname;
-            header("Location: menu.php"); // 👈 redirect to menu or dashboard
+            header("Location: ../customer/menu/menu.php"); // 👈 redirect to menu or dashboard
             exit();
         } else {
             header("Location: login.php?error=wrong_password");
