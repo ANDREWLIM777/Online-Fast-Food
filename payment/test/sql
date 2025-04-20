@@ -1,0 +1,68 @@
+-- 1. 创建数据库（如果不存在）
+CREATE DATABASE IF NOT EXISTS payment_system;
+USE payment_system;
+
+-- 2. 支付方法表（存储用户的支付方式，如信用卡、钱包等）
+CREATE TABLE IF NOT EXISTS payment_methods (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(50), -- 可关联用户系统
+    type ENUM('credit_card', 'debit_card', 'bank_transfer', 'e_wallet') NOT NULL,
+    last_four VARCHAR(4) NOT NULL, -- 卡号/账号后四位
+    card_type VARCHAR(20), -- Visa/MasterCard等（如果是卡）
+    expiry VARCHAR(10), -- 过期日期（MM/YYYY）
+    name VARCHAR(100), -- 持卡人/账户名
+    is_default BOOLEAN DEFAULT FALSE, -- 是否默认支付方式
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- 3. 支付记录表（存储所有支付交易）
+CREATE TABLE IF NOT EXISTS payments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id VARCHAR(50) NOT NULL UNIQUE, -- 唯一订单号
+    user_id VARCHAR(50), -- 可关联用户
+    amount DECIMAL(10, 2) NOT NULL,
+    payment_method_id INT, -- 关联支付方式
+    status ENUM('pending', 'completed', 'failed', 'refunded') DEFAULT 'completed',
+    transaction_id VARCHAR(100), -- 第三方支付ID（如支付宝、微信交易号）
+    payment_date DATETIME NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (payment_method_id) REFERENCES payment_methods(id) ON DELETE SET NULL
+);
+
+-- 4. 退款请求表（存储退款申请）
+CREATE TABLE IF NOT EXISTS refund_requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id VARCHAR(50) NOT NULL, -- 关联支付记录
+    payment_id INT, -- 关联支付ID
+    reason VARCHAR(255) NOT NULL, -- 退款原因
+    details TEXT, -- 详细说明
+    status ENUM('pending', 'approved', 'rejected', 'processed') DEFAULT 'pending',
+    processed_at DATETIME, -- 处理时间
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (payment_id) REFERENCES payments(id) ON DELETE CASCADE
+);
+
+-- 5. 银行账户凭证表（如果需要存储银行登录信息）
+CREATE TABLE IF NOT EXISTS bank_credentials (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(50) NOT NULL, -- 关联用户
+    bank_name VARCHAR(50) NOT NULL, -- 银行名称
+    account_number VARCHAR(50) NOT NULL, -- 银行账号
+    username VARCHAR(100), -- 网银用户名（加密存储）
+    password VARCHAR(255), -- 网银密码（应加密存储）
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- 6. 电子钱包凭证表（如支付宝、微信支付等）
+CREATE TABLE IF NOT EXISTS wallet_credentials (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(50) NOT NULL, -- 关联用户
+    wallet_name ENUM('alipay', 'wechat_pay', 'paypal') NOT NULL,
+    phone VARCHAR(20), -- 绑定手机号
+    email VARCHAR(100), -- 绑定邮箱
+    encrypted_data TEXT, -- 加密存储的凭证信息
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
