@@ -1,72 +1,30 @@
 <?php
 include '../auth.php';
 include '../Admin_Account/db.php';
-
-/*  获取当前用户信息 */
-$user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM admin WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
-
-/* 处理表单提交更新 */
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
-    $age = $_POST['age'];
-    $phone = $_POST['phone'];
-
-    // 上传照片处理
-    if ($_FILES['photo']['name']) {
-        $photo_name = time() . '_' . basename($_FILES['photo']['name']);
-        $target = "../Admin_Account/upload/" . $photo_name;
-        move_uploaded_file($_FILES['photo']['tmp_name'], $target);
-
-        $update = "UPDATE admin SET age=?, phone=?, photo=? WHERE id=?";
-        $stmt = $conn->prepare($update);
-        $stmt->bind_param("issi", $age, $phone, $photo_name, $user_id);
-    } else {
-        $update = "UPDATE admin SET age=?, phone=? WHERE id=?";
-        $stmt = $conn->prepare($update);
-        $stmt->bind_param("isi", $age, $phone, $user_id);
-    }
-
-    if ($stmt->execute()) {
-        echo "<script>alert('Profile updated successfully'); window.location.href='main_page.php';</script>";
-        exit();
-    }
-}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brizo Melaka FAST-FOOD Admin</title>
-    
-    <!-- 公共样式 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-     :root {
-    --gold-dark: #c0a23d;
-    --gold-light: #d9c88e;
-    --bg-dark: #0c0a10;
-    --text-light: #eee;
-    --box-glow: rgba(255, 215, 0, 0.1);
-}
+  <meta charset="UTF-8">
+  <title>More - Brizo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C4AA6D;
+      --dark-bg: #0F0E15;
+      --card-bg: #1A191F;
+    }
 
-body {
-    margin: 0;
-    padding: 130px 0 70px;
-    font-family: 'Roboto', sans-serif;
-    background: var(--bg-dark);
-    color: var(--text-light);
-}
-
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap');
+    body {
+      background: var(--dark-bg);
+      font-family: 'Montserrat', sans-serif;
+      color: #F5F4F0;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
 
 /* 黄金比例艺术标题 */
 .header {
@@ -196,6 +154,126 @@ body {
 }
 
 
+.more-container {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 100px 2rem 0 2rem; /* 增加顶部 padding 来避开 fixed header */
+}
+
+    .more-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.8rem 2.5rem;
+      margin: 1.5rem 0;
+      background: var(--card-bg);
+      border: 1px solid rgba(196, 170, 109, 0.397);
+      border-radius: 12px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none !important;
+    }
+
+    .more-item::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg,
+          transparent,
+          rgba(163, 141, 91, 0.05),
+          transparent);
+      transform: rotate(45deg);
+      transition: 0.6s;
+    }
+
+    .more-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.3),
+                  0 0 0 1px rgba(196, 170, 109, 0.3);
+    }
+
+    .more-item:hover::before {
+      top: 50%;
+      left: 50%;
+    }
+
+    .more-item span {
+      font-size: 1.8rem;
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .more-item i {
+      color: var(--gold);
+      font-size: 1.8rem;
+      transition: transform 0.3s ease;
+    }
+
+    .more-item:hover i {
+      transform: translateX(4px);
+    }
+
+    .profile-container {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    z-index: 1001;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(145deg, #f5e8d0, #e6d8b3);
+    border: 2px solid #c8a951;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #725c1d;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: all 0.2s ease-in-out;
+}
+
+.profile-icon:hover {
+    transform: scale(1.08);
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    min-width: 180px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #eee;
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+.profile-dropdown a:hover {
+    background: #f8f8f8;
+}
+
+/*black version*/
+
 .profile-container {
     position: fixed;
     top: 25px;
@@ -304,183 +382,305 @@ body {
     margin: 5px 0 5px;
 }
 
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+      }
 
+      .more-item {
+        padding: 1.5rem;
+      }
 
-        /* 主要内容区域 */
-        .dashboard {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    padding: 30px;
-}
-
-.card {
-    background: rgba(32, 32, 32, 0.85);
-    border: 1px solid #c0a23d33;
-    border-radius: 20px;
-    padding: 36px;
-    box-shadow: 0 0 12px var(--box-glow);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    backdrop-filter: blur(6px);
-}
-
-.card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 18px #c0a23d88;
-}
-
-.card-icon {
-    font-size: 2.8em;
-    color: var(--gold-dark);
-    margin-bottom: 18px;
-}
-
-.card h3 {
-    margin: 0 0 10px;
-    font-size: 1.6em;
-    color: var(--gold-light);
-    font-family: 'Playfair Display', serif;
-}
-
-.card p {
-    font-size: 1em;
-    color: #bfbfbf;
-    line-height: 1.5;
-}
-
-   
-
-        .badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: red;
-            color: white;
-            padding: 2px 6px;
-            border-radius: 10px;
-            font-size: 0.6em;
-        }
-
-/* 响应式布局调整 */
-.dashboard {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
-/* 大屏幕适配 3x2 */
-@media (min-width: 769px) {
-    .dashboard {
-        grid-template-columns: repeat(3, 1fr);
+      .back-btn {
+        left: 1.2rem;
+        top: 1.5rem;
+        width: 42px;
+        height: 42px;
     }
-}
-
-/* 小屏幕适配 1 列 */
-@media (max-width: 768px) {
-    .dashboard {
-        grid-template-columns: 1fr;
+    .back-btn i {
+        font-size: 1.4rem;
     }
-}
-    </style>
+    }
+  </style>
 </head>
 <body>
-    <!-- 导入菜单图标 -->
-    <!--#include virtual="menu_icon.html" -->
 
     <div class="header">
-    <div class="profile-container">
-    <div class="profile-icon" onclick="toggleProfile()">
-        <i class="fas fa-user"></i>
-    </div>
-    <div class="profile-dropdown" id="profileDropdown">
-        <div class="profile-header">
-            <div class="profile-name"><?= strtoupper($_SESSION['user_name']); ?></div>
-            <div class="profile-role"><?= strtolower($_SESSION['user_role']); ?></div>
-        </div>
-        <hr>
-        <a href="../Admin_Account/profile.php"><i class="fas fa-user-edit"></i> Edit Your Profile</a>
-        <a href="../Admin_Account/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
-    </div>
-</div>
-        
         <div class="title-group">
             <div class="main-title">BRIZO MELAKA</div>
-            <div class="sub-title">Admin Page</div>
+            <div class="sub-title">More</div>
         </div>
+          <div class="profile-container">
+            <div class="profile-icon" onclick="toggleProfile()">
+           <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-dropdown" id="profileDropdown">
+          <div class="profile-header">
+        <div class="profile-name"><?= strtoupper($_SESSION['user_name']); ?></div>
+        <div class="profile-role"><?= strtolower($_SESSION['user_role']); ?></div>
+    </div>
+    <hr>
+    <a href="../Admin_Account/profile.php"><i class="fas fa-user-edit"></i> Edit Your Profile</a>
+    <a href="../Admin_Account/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+            </div>
     </div>
 
 
-
-    <!-- 主内容 -->
-    <main class="dashboard">
-        <div class="card" onclick="location.href='../Manage_Menu_Item/index.php'">
-            <i class="fas fa-hamburger card-icon"></i>
-            <h3>Manage Menu Items</h3>
-            <p>Add, edit or remove menu items and set pricing</p>
-        </div>
-
-        <div class="card" onclick="location.href='transactions.html'">
-            <i class="fas fa-receipt card-icon"></i>
-            <h3>Transaction History</h3>
-            <p>View and analyze daily sales reports</p>
-        </div>
-
-        <div class="card" onclick="location.href='orders.html'">
-            <i class="fas fa-clipboard-list card-icon"></i>
-            <h3>Order Management</h3>
-            <p>Real-time order tracking and processing</p>
-        </div>
-
-        <div class="card" onclick="location.href='../Admin_Account/register.php'">
-              <i class="fas fa-id-card card-icon"></i>
-              <h3>New Admin Registration</h3>
-              <p>Create and authorize new administrator accounts</p>
-        </div>
-
-        <div class="card" onclick="location.href='../Manage_Customer/index.php'">
-        <i class="fas fa-user-shield card-icon"></i>
-        <h3>Customer Account Control Panel</h3>
-        <p>Manage customer profile, security settings, and account details</p>
-        </div>
-
-        <div class="card" onclick="location.href='../Manage_Account/index.php'">
-            <i class="fas fa-users-cog card-icon"></i>
-            <h3>Admin Account Control Panel</h3>
-<p>Manage existing administrator profiles and access privileges</p>
-        </div>
-    </main>
+<main class="more-container">
+  <a href="Contact.php" class="more-item">
+    <span>Contact</span>
+    <i class="fas fa-angle-right"></i>
+  </a>
+</main>
 
 
-    <script>
-        
+<script>
 function toggleProfile() {
     const dropdown = document.getElementById("profileDropdown");
     dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
 }
 
+// 点击其他区域时关闭 dropdown
 window.onclick = function(event) {
+    const profileContainer = document.querySelector('.profile-container');
     const dropdown = document.getElementById("profileDropdown");
-    if (!event.target.closest('.profile-container')) {
+    
+    if (!profileContainer.contains(event.target)) {
         dropdown.style.display = "none";
     }
 };
+</script>
 
-        // 动态卡片交互
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mouseover', () => {
-                card.style.boxShadow = '0 8px 15px rgba(0,0,0,0.2)';
-            });
-            
-            card.addEventListener('mouseout', () => {
-                card.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-            });
-        });
-
-    </script>
 </body>
 </html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* åºé¨å¯¼èªå®¹å¨ */
+        .footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background:rgb(30, 26, 32);
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+        }
+/*#fffbed; */
+        /* å¯¼èªé¡¹ */
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        /* icon é¢è² */
+        .nav-item svg {
+            width: 32px;
+            height: 32px;
+            stroke:rgb(255, 220, 93);
+            transition: all 0.3s ease;
+        }
+
+        /* é»è®¤ææ¬é¢è² */
+        .nav-label {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 12px;
+            color:rgb(255, 220, 93);
+            transition: color 0.3s ease;
+        }
+/* #636e72;*/
+        /* 🖱️ Hover effect with color */
+.nav-item:hover svg {
+    stroke: var(--active-color);
+}
+
+.nav-item:hover .nav-label {
+    color: var(--active-color);
+}
+
+        /* éä¸­ç¶æ */
+        .nav-item.active svg {
+            stroke: var(--active-color);
+        }
+        .nav-item.active .nav-label {
+            color: var(--active-color);
+        }
+
+        /* æ¬åææ */
+        .nav-item:hover {
+            background:rgb(32, 32, 32);
+            transform: translateY(-4px);
+        }
+/* #fafaf8db; */
+/* Default Bz style */
+.bz-text {
+    font-size: 35px;
+    font-weight: bold;
+    fill: #ff6b6b;
+    transition: all 0.3s ease;
+}
+
+/* Active Bz (clicked) */
+.bz-item.active .bz-text {
+    font-size: 18px;
+    fill: var(--active-color);
+}
+
+/* 🔥 Hover effect: Brizo + shrink */
+.bz-item:hover .bz-text {
+    font-size: 18px;
+    fill: var(--active-color);
+}
+</style>
+
+</head>
+<body>
+    <!-- åºé¨å¯¼èªæ  -->
+    <nav class="footer-nav">
+        <!-- Bz èå -->
+        <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.php">
+            <svg viewBox="0 0 50 24">
+                <text x="5" y="18" class="bz-text">Bz</text>
+            </svg>
+            <span class="nav-label">Menu</span>
+        </div>
+
+        <!-- æä½³åå·¥ -->
+        <div class="nav-item other-item" style="--active-color: #ff9f43;" data-link="../Manage_Account/index.php">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <span class="nav-label">ALL Staff</span>
+        </div>
+
+<!-- è®¢åç®¡çï¼Checklist å¾æ ï¼ -->
+<div class="nav-item other-item" style="--active-color: #27ae60;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+        <path d="M10 7h6"></path>
+        <path d="M10 12h6"></path>
+        <path d="M10 17h6"></path>
+        <path d="M6 7l1 1 2-2"></path>
+        <path d="M6 12l1 1 2-2"></path>
+        <path d="M6 17l1 1 2-2"></path>
+    </svg>
+    <span class="nav-label">Manage Order</span>
+</div>
+
+<!-- 菜单管理方式 -->
+<div class="nav-item other-item" style="--active-color: #3498db;" data-link="../Manage_Menu_Item/index.php">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <rect x="3" y="3" width="7" height="7" rx="1" ry="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" ry="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" ry="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" ry="1" />
+    </svg>
+    <span class="nav-label">Menu Manage</span>
+</div>
+
+        <!-- æ´å¤éé¡¹ -->
+        <div class="nav-item other-item" style="--active-color: #8e44ad;" data-link="../More/more.php">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="1"></circle>
+                <circle cx="12" cy="5" r="1"></circle>
+                <circle cx="12" cy="19" r="1"></circle>
+            </svg>
+            <span class="nav-label">More</span>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navItems = document.querySelectorAll('.nav-item');
+            const bzItem = document.querySelector('.bz-item');
+            const bzText = bzItem?.querySelector('.bz-text');
+    
+            const ACTIVE_KEY = 'activeNav'; // localStorage key
+    
+            // 🔁 On load: restore active state
+            const savedLabel = localStorage.getItem(ACTIVE_KEY);
+            if (savedLabel) {
+                navItems.forEach(item => {
+                    const label = item.querySelector('.nav-label')?.textContent.trim();
+                    if (label === savedLabel) {
+                        item.classList.add('active');
+                        if (bzText) {
+                            bzText.textContent = (item === bzItem) ? 'Brizo' : 'Bz';
+                        }
+                    }
+                });
+            }
+    
+            function handleNavClick(event) {
+                const clickedItem = event.currentTarget;
+    
+                // Clear all active states
+                navItems.forEach(item => item.classList.remove('active'));
+    
+                // Activate clicked
+                clickedItem.classList.add('active');
+    
+                // Update Bz logic
+                if (bzText) {
+                    bzText.textContent = (clickedItem === bzItem) ? 'Brizo' : 'Bz';
+                }
+// 💾 Save active label to localStorage
+const label = clickedItem.querySelector('.nav-label')?.textContent.trim();
+if (label) {
+    localStorage.setItem(ACTIVE_KEY, label);
+}
+
+
+// 🚀 Redirect if data-link present
+const targetLink = clickedItem.getAttribute('data-link');
+if (targetLink) {
+    window.location.href = targetLink;
+}
+
+
+            }
+    
+
+
+            if (bzItem && bzText) {
+    bzItem.addEventListener('mouseenter', () => {
+        bzText.textContent = 'Brizo';
+    });
+
+    bzItem.addEventListener('mouseleave', () => {
+        // Only revert if not active
+        if (!bzItem.classList.contains('active')) {
+            bzText.textContent = 'Bz';
+        }
+    });
+}
+
+            // Attach handlers
+            navItems.forEach(item => {
+                item.addEventListener('click', handleNavClick);
+                item.addEventListener('touchstart', handleNavClick, { passive: true });
+            });
+        });
+    </script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -619,229 +819,3 @@ window.onclick = function(event) {
     </script>
 </body>
 </html>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <style>
-        /* åºé¨å¯¼èªå®¹å¨ */
-        .footer-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background:rgb(30, 26, 32);
-            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 1000;
-        }
-/*#fffbed; */
-        /* å¯¼èªé¡¹ */
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        /* icon é¢è² */
-        .nav-item svg {
-            width: 32px;
-            height: 32px;
-            stroke:rgb(255, 220, 93);
-            transition: all 0.3s ease;
-        }
-
-        /* é»è®¤ææ¬é¢è² */
-        .nav-label {
-            font-family: 'Segoe UI', sans-serif;
-            font-size: 12px;
-            color:rgb(255, 220, 93);
-            transition: color 0.3s ease;
-        }
-/* #636e72;*/
-        /* 🖱️ Hover effect with color */
-.nav-item:hover svg {
-    stroke: var(--active-color);
-}
-
-.nav-item:hover .nav-label {
-    color: var(--active-color);
-}
-
-        /* éä¸­ç¶æ */
-        .nav-item.active svg {
-            stroke: var(--active-color);
-        }
-        .nav-item.active .nav-label {
-            color: var(--active-color);
-        }
-
-        /* æ¬åææ */
-        .nav-item:hover {
-            background:rgb(32, 32, 32);
-            transform: translateY(-4px);
-        }
-/* #fafaf8db; */
-/* Default Bz style */
-.bz-text {
-    font-size: 35px;
-    font-weight: bold;
-    fill: #ff6b6b;
-    transition: all 0.3s ease;
-}
-
-/* Active Bz (clicked) */
-.bz-item.active .bz-text {
-    font-size: 18px;
-    fill: var(--active-color);
-}
-
-/* 🔥 Hover effect: Brizo + shrink */
-.bz-item:hover .bz-text {
-    font-size: 18px;
-    fill: var(--active-color);
-}
-</style>
-
-</head>
-<body>
-    <!-- åºé¨å¯¼èªæ  -->
-    <nav class="footer-nav">
-        <!-- Bz èå -->
-        <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.php">
-            <svg viewBox="0 0 50 24">
-                <text x="5" y="18" class="bz-text">Bz</text>
-            </svg>
-            <span class="nav-label">Menu</span>
-        </div>
-
-        <!-- æä½³åå·¥ -->
-        <div class="nav-item other-item" style="--active-color: #ff9f43;" data-link="../Manage_Account/index.php">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-            <span class="nav-label">ALL Staff</span>
-        </div>
-
-
-<!-- è®¢åç®¡çï¼Checklist å¾æ ï¼ -->
-<div class="nav-item other-item" style="--active-color: #27ae60;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <rect x="4" y="3" width="16" height="18" rx="2"></rect>
-        <path d="M10 7h6"></path>
-        <path d="M10 12h6"></path>
-        <path d="M10 17h6"></path>
-        <path d="M6 7l1 1 2-2"></path>
-        <path d="M6 12l1 1 2-2"></path>
-        <path d="M6 17l1 1 2-2"></path>
-    </svg>
-    <span class="nav-label">Manage Order</span>
-</div>
-
-<!-- 菜单管理方式 -->
-<div class="nav-item other-item" style="--active-color: #3498db;" data-link="../Manage_Menu_Item/index.php">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <rect x="3" y="3" width="7" height="7" rx="1" ry="1" />
-        <rect x="14" y="3" width="7" height="7" rx="1" ry="1" />
-        <rect x="14" y="14" width="7" height="7" rx="1" ry="1" />
-        <rect x="3" y="14" width="7" height="7" rx="1" ry="1" />
-    </svg>
-    <span class="nav-label">Menu Manage</span>
-</div>
-
-        <!-- æ´å¤éé¡¹ -->
-        <div class="nav-item other-item" style="--active-color: #8e44ad;" data-link="../More/more.php">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <circle cx="12" cy="12" r="1"></circle>
-                <circle cx="12" cy="5" r="1"></circle>
-                <circle cx="12" cy="19" r="1"></circle>
-            </svg>
-            <span class="nav-label">More</span>
-        </div>
-    </nav>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const navItems = document.querySelectorAll('.nav-item');
-            const bzItem = document.querySelector('.bz-item');
-            const bzText = bzItem?.querySelector('.bz-text');
-    
-            const ACTIVE_KEY = 'activeNav'; // localStorage key
-    
-            // 🔁 On load: restore active state
-            const savedLabel = localStorage.getItem(ACTIVE_KEY);
-            if (savedLabel) {
-                navItems.forEach(item => {
-                    const label = item.querySelector('.nav-label')?.textContent.trim();
-                    if (label === savedLabel) {
-                        item.classList.add('active');
-                        if (bzText) {
-                            bzText.textContent = (item === bzItem) ? 'Brizo' : 'Bz';
-                        }
-                    }
-                });
-            }
-    
-            function handleNavClick(event) {
-                const clickedItem = event.currentTarget;
-    
-                // Clear all active states
-                navItems.forEach(item => item.classList.remove('active'));
-    
-                // Activate clicked
-                clickedItem.classList.add('active');
-    
-                // Update Bz logic
-                if (bzText) {
-                    bzText.textContent = (clickedItem === bzItem) ? 'Brizo' : 'Bz';
-                }
-// 💾 Save active label to localStorage
-const label = clickedItem.querySelector('.nav-label')?.textContent.trim();
-if (label) {
-    localStorage.setItem(ACTIVE_KEY, label);
-}
-
-
-// 🚀 Redirect if data-link present
-const targetLink = clickedItem.getAttribute('data-link');
-if (targetLink) {
-    window.location.href = targetLink;
-}
-
-
-            }
-    
-
-
-            if (bzItem && bzText) {
-    bzItem.addEventListener('mouseenter', () => {
-        bzText.textContent = 'Brizo';
-    });
-
-    bzItem.addEventListener('mouseleave', () => {
-        // Only revert if not active
-        if (!bzItem.classList.contains('active')) {
-            bzText.textContent = 'Bz';
-        }
-    });
-}
-
-            // Attach handlers
-            navItems.forEach(item => {
-                item.addEventListener('click', handleNavClick);
-                item.addEventListener('touchstart', handleNavClick, { passive: true });
-            });
-        });
-    </script>
