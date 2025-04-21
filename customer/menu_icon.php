@@ -1,105 +1,111 @@
 <!-- Menu Icon -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <style>
-        .menu-container {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-        }
-
-        .menu-icon {
-            cursor: pointer;
-            width: 30px;
-            height: 24px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .menu-icon span {
-            position: absolute;
-            height: 3px;
-            width: 100%;
-            background: #333;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .menu-icon span:nth-child(1) { top: 0; }
-        .menu-icon span:nth-child(2) { top: 10px; }
-        .menu-icon span:nth-child(3) { top: 20px; }
-
-        .menu-icon.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .menu-icon.active span:nth-child(2) { opacity: 0; }
-
-        .menu-icon.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 40px;
-            left: 0;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            border-radius: 4px;
-            padding: 10px 0;
-        }
-
-        .dropdown-menu.active {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: #333;
-            white-space: nowrap;
-        }
-
-        .dropdown-menu a:hover {
-            background: #f5f5f5;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-</head>
-<body>
-    <div class="menu-container">
-        <div class="menu-icon" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <nav class="dropdown-menu">
-            <a href="../Main Page/main_page.php">Home</a>
-            <a href="../Manage_Account/index.php">Admin</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
-        </nav>
+<div class="menu-container">
+    <div class="menu-icon" onclick="toggleMenu()" title="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
+    <nav class="dropdown-menu">
+        <a href="../Main Page/main_page.php">Home</a>
+        <a href="../manage_account/profile.php">Profile</a>
+        <a href="#services">Services</a>
+        <a href="/Online-Fast-Food/customer/logout.php" onclick="return confirm('Are you sure you want to log out?')">Log Out</a>
+    </nav>
+</div>
 
-    <script>
-        function toggleMenu() {
-            const icon = document.querySelector('.menu-icon');
-            const menu = document.querySelector('.dropdown-menu');
-            
-            icon.classList.toggle('active');
-            menu.classList.toggle('active');
-        }
-    </script>
-</body>
-</html>
+<style>
+.menu-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.menu-icon {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #ff6b6b; /* Brizo red */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.menu-icon span {
+    position: absolute;
+    height: 3px;
+    width: 24px;
+    background: #fff;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.menu-icon span:nth-child(1) { top: 14px; }
+.menu-icon span:nth-child(2) { top: 22px; }
+.menu-icon span:nth-child(3) { top: 30px; }
+
+.menu-icon.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-icon.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-icon.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    padding: 10px 0;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu.active {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 13px 23px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(15px);
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<script>
+function toggleMenu() {
+    const icon = document.querySelector('.menu-icon');
+    const menu = document.querySelector('.dropdown-menu');
+    
+    icon.classList.toggle('active');
+    menu.classList.toggle('active');
+}
+</script>

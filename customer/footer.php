@@ -116,16 +116,15 @@
         <span class="nav-label">View Cart</span>
     </div>
 
-    <!-- Menu Manage -->
-    <div class="nav-item other-item" style="--active-color: #3498db;" data-link="../Manage_Menu_Item/index.php">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <rect x="3" y="3" width="7" height="7" rx="1" ry="1" />
-            <rect x="14" y="3" width="7" height="7" rx="1" ry="1" />
-            <rect x="14" y="14" width="7" height="7" rx="1" ry="1" />
-            <rect x="3" y="14" width="7" height="7" rx="1" ry="1" />
-        </svg>
-        <span class="nav-label">Menu Manage</span>
-    </div>
+ <!-- Profile -->
+<div class="nav-item other-item" style="--active-color: #3498db;" data-link="../manage_account/profile.php">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <circle cx="12" cy="7" r="4" />
+        <path d="M5.5 21a7.5 7.5 0 0 1 13 0" />
+    </svg>
+    <span class="nav-label">Profile</span>
+</div>
+
 
     <!-- More -->
     <div class="nav-item other-item" style="--active-color: #8e44ad;">
