@@ -54,6 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
   <div class="login-container">
+
+  <?php if (isset($_GET['logout']) && $_GET['logout'] == 1): ?>
+  <div class="alert-success">
+    👋 You’ve been logged out. See you again soon!
+  </div>
+<?php endif; ?>
+
     <!-- Brizo Logo Image -->
     <div class="logo">
       <img src="logo.png" alt="Brizo Fast Food Melaka Logo" width="160" />

@@ -43,15 +43,24 @@ while ($row = $result->fetch_assoc()) {
 </head>
 <body>
 
+<!-- 🔥 Hero Banner -->
+<div class="hero-slide">
+  <div>Welcome to Brizo Fast Food Melaka</div>
+</div>
+
 <!-- 🛒 Floating Cart Icon -->
 <a href="cart/cart.php" class="cart-floating-btn" id="cart-icon">
   🛒
   <span id="cart-count" class="cart-count"><?= $cartCount ?></span>
 </a>
 
-<!-- 🍔 Brizo Menu UI -->
-<div class="menu-container">
-  <h1>🍽️ Brizo Fast Food Melaka Menu</h1>
+<!-- 🍟 Menu & Filter UI -->
+<div class="menu-wrapper">
+  <div class="menu-container">
+    ...
+  </div>
+</div>
+
 
   <form method="GET" class="filter-form">
     <input type="text" name="search" placeholder="Search items..." value="<?= htmlspecialchars($search) ?>">
@@ -76,7 +85,7 @@ while ($row = $result->fetch_assoc()) {
           <?php foreach ($items as $item): ?>
             <div class="menu-card-square">
               <?php if (!empty($item['photo'])): ?>
-                <img src="pictures/<?= htmlspecialchars($item['photo']) ?>" 
+                <img src="../Admin/Manage_Menu_Item/uploads/<?= htmlspecialchars($item['photo']) ?>" 
                      alt="<?= htmlspecialchars($item['item_name']) ?>" 
                      class="menu-img-square product-img">
               <?php endif; ?>
@@ -104,7 +113,6 @@ while ($row = $result->fetch_assoc()) {
 
 <script src="menu.js"></script>
 
-<!-- ✅ Include bottom UI -->
 <?php include '../menu_icon.php'; ?>
 <?php include '../footer.php'; ?>
 

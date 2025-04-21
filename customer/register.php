@@ -61,6 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
   <div class="register-container">
+
+  <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 1): ?>
+  <div class="alert-success">
+    ✅ Your account has been successfully deleted. Feel free to register a new one anytime!
+  </div>
+<?php endif; ?>
+
     <!-- Brizo Logo Image -->
     <div class="logo">
       <img src="logo.png" alt="Brizo Fast Food Melaka Logo" width="160" />

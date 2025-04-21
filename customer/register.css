@@ -156,3 +156,16 @@ a:hover {
   font-weight: 500;
   box-shadow: 0 2px 8px rgba(255, 0, 0, 0.1);
 }
+.alert-success {
+  background-color: #e0ffe0;
+  color: #1a8917;
+  border: 1px solid #b2e5b2;
+  padding: 15px 20px;
+  margin: 20px auto;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: bold;
+  max-width: 600px;
+  font-family: 'Fredoka', sans-serif;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}

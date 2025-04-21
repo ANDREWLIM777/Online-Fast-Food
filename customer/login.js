@@ -10,3 +10,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
+    document.addEventListener("DOMContentLoaded", () => {
+    const alert = document.querySelector('.alert-success');
+    if (alert) {
+      setTimeout(() => {
+        alert.style.opacity = '0';
+        alert.style.transition = 'opacity 0.8s ease';
+      }, 10000); // hide after 10 seconds
+  
+      setTimeout(() => {
+        alert.remove();
+      }, 10000);
+    }
+  });
+  

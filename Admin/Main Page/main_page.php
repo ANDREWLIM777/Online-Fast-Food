@@ -604,7 +604,7 @@ window.onclick = function(event) {
             <a href="../Main Page/main_page.php">Home</a>
             <a href="../Manage_Account/index.php">Admin</a>
             <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
+            <a href="../More/Contact.php">Contact</a>
         </nav>
     </div>
 
@@ -762,7 +762,7 @@ window.onclick = function(event) {
 </div>
 
         <!-- æ´å¤éé¡¹ -->
-        <div class="nav-item other-item" style="--active-color: #8e44ad;">
+        <div class="nav-item other-item" style="--active-color: #8e44ad;" data-link="../More/more.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <circle cx="12" cy="12" r="1"></circle>
                 <circle cx="12" cy="5" r="1"></circle>

@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 15px rgba(192, 162, 61, 0.2);
     z-index: 100;
+    text-decoration: none !important;
         }
 
 .form-back-btn i {
