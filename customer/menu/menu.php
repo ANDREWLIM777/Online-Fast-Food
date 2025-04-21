@@ -85,7 +85,7 @@ while ($row = $result->fetch_assoc()) {
           <?php foreach ($items as $item): ?>
             <div class="menu-card-square">
               <?php if (!empty($item['photo'])): ?>
-                <img src="pictures/<?= htmlspecialchars($item['photo']) ?>" 
+                <img src="../Admin/Manage_Menu_Item/uploads/<?= htmlspecialchars($item['photo']) ?>" 
                      alt="<?= htmlspecialchars($item['item_name']) ?>" 
                      class="menu-img-square product-img">
               <?php endif; ?>
