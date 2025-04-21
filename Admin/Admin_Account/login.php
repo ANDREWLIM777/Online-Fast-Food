@@ -101,6 +101,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <button type="submit">Login</button>
     </form>
+    <div style="text-align: left; margin-top: 20px;">
+  <a href="forgot_password.php" style="color: #c0a23d; text-decoration: underline; font-size: 0.95rem;">Forgot password?</a>
+</div>
 </div>
 <script>
 function togglePassword() {
