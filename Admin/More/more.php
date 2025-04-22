@@ -449,6 +449,13 @@ include '../Admin_Account/db.php';
 </main>
 
 <main class="more-container">
+  <a href="notifications/index.php" class="more-item">
+    <span>Notifications</span>
+    <i class="fas fa-angle-right"></i>
+  </a>
+</main>
+
+<main class="more-container">
   <a href="Contact.php" class="more-item">
     <span>Contact</span>
     <i class="fas fa-angle-right"></i>
@@ -821,9 +828,9 @@ if (targetLink) {
         </div>
         <nav class="dropdown-menu">
             <a href="../Main Page/main_page.php">Home</a>
-            <a href="../Manage_Account/index.php">Admin</a>
             <a href="#services">Services</a>
             <a href="../More/Contact.php">Contact</a>
+            <a href="../MOre/notifications/index.php">Notifications</a>
         </nav>
     </div>
 
