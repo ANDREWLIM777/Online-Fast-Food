@@ -2,7 +2,22 @@
 require 'db_connect.php';
 session_start();
 
-$cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
+if (!isset($_SESSION['customer_id'])) {
+  header("Location: ../login.php");
+  exit();
+}
+
+$cartCount = 0;
+if (isset($_SESSION['customer_id'])) {
+    $customerId = $_SESSION['customer_id'];
+    $stmt = $conn->prepare("SELECT SUM(quantity) AS total_items FROM cart WHERE customer_id = ?");
+    $stmt->bind_param("i", $customerId);
+    $stmt->execute();
+    $stmt->bind_result($cartCount);
+    $stmt->fetch();
+    $stmt->close();
+}
+
 
 $search = trim($_GET['search'] ?? '');
 $category = trim($_GET['category'] ?? '');
@@ -32,6 +47,7 @@ $menuByCategory = [];
 while ($row = $result->fetch_assoc()) {
     $menuByCategory[$row['category']][] = $row;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -62,18 +78,20 @@ while ($row = $result->fetch_assoc()) {
 </div>
 
 
-  <form method="GET" class="filter-form">
-    <input type="text" name="search" placeholder="Search items..." value="<?= htmlspecialchars($search) ?>">
-    <select name="category">
-      <option value="">All Categories</option>
-      <option value="burger" <?= $category == 'burger' ? 'selected' : '' ?>>Burger</option>
-      <option value="chicken" <?= $category == 'chicken' ? 'selected' : '' ?>>Chicken</option>
-      <option value="drink" <?= $category == 'drink' ? 'selected' : '' ?>>Drink</option>
-      <option value="snacks" <?= $category == 'snacks' ? 'selected' : '' ?>>Snacks</option>
-      <option value="meal" <?= $category == 'meal' ? 'selected' : '' ?>>Meal</option>
-    </select>
-    <button type="submit">🔍 Search</button>
-  </form>
+<form method="GET" class="filter-form">
+  <input type="text" name="search" placeholder="Search items..." value="<?= htmlspecialchars($search) ?>">
+  
+  <select name="category" onchange="this.form.submit()">
+    <option value="">All Categories</option>
+    <option value="burger" <?= $category == 'burger' ? 'selected' : '' ?>>Burger</option>
+    <option value="chicken" <?= $category == 'chicken' ? 'selected' : '' ?>>Chicken</option>
+    <option value="drink" <?= $category == 'drink' ? 'selected' : '' ?>>Drink</option>
+    <option value="snacks" <?= $category == 'snacks' ? 'selected' : '' ?>>Snacks</option>
+    <option value="meal" <?= $category == 'meal' ? 'selected' : '' ?>>Meal</option>
+  </select>
+
+  <button type="submit">🔍 Search</button>
+</form>
 
   <?php if (empty($menuByCategory)): ?>
     <p>No menu items found.</p>
@@ -85,9 +103,11 @@ while ($row = $result->fetch_assoc()) {
           <?php foreach ($items as $item): ?>
             <div class="menu-card-square">
               <?php if (!empty($item['photo'])): ?>
-                <img src="pictures/<?= htmlspecialchars($item['photo']) ?>" 
-                     alt="<?= htmlspecialchars($item['item_name']) ?>" 
-                     class="menu-img-square product-img">
+                <img src="/online-fast-food/Admin/Manage_Menu_Item/<?= htmlspecialchars($item['photo']) ?>"
+     alt="<?= htmlspecialchars($item['item_name']) ?>"
+     class="menu-img-square product-img">
+
+
               <?php endif; ?>
 
               <div class="menu-info">
@@ -98,10 +118,12 @@ while ($row = $result->fetch_assoc()) {
                   <p class="promo-tag">🔥 <?= htmlspecialchars($item['promotion']) ?></p>
                 <?php endif; ?>
 
-                <form class="add-to-cart-form" action="cart/cart.php" method="POST">
-                  <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
-                  <button type="submit" class="add-to-cart-btn">🛒 Add to Cart</button>
-                </form>
+                <form class="add-to-cart-form" data-id="<?= $item['id'] ?>" action="cart/add_to_cart.php" method="POST">
+  <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
+  <button type="submit" class="add-to-cart-btn">🛒 Add to Cart</button>
+</form>
+
+
               </div>
             </div>
           <?php endforeach; ?>

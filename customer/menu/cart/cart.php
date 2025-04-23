@@ -1,91 +1,61 @@
 <?php
 session_start();
-require 'db_connect.php';
+require '../db_connect.php';
 
-// Retrieve cart data
-$cart = $_SESSION['cart'] ?? [];
+// Validate session
+$customerId = $_SESSION['customer_id'] ?? null;
+if (!$customerId) {
+    header("Location: /Online-Fast-Food/customer/login.php");
+    exit();
+}
+
+// 🔄 Handle item removal (before fetching cart)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['item_id'])) {
+    $itemId = (int) $_POST['item_id'];
+
+    $deleteStmt = $conn->prepare("DELETE FROM cart WHERE customer_id = ? AND item_id = ?");
+    $deleteStmt->bind_param("ii", $customerId, $itemId);
+    $deleteStmt->execute();
+
+    // Redirect to refresh the cart view
+    header("Location: cart.php");
+    exit();
+}
+
 $total = 0;
+
+// 📦 Fetch cart items
+$stmt = $conn->prepare("
+    SELECT c.item_id, c.quantity, m.item_name, m.price
+    FROM cart c
+    JOIN menu_items m ON c.item_id = m.id
+    WHERE c.customer_id = ?
+");
+$stmt->bind_param("i", $customerId);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$cartItems = [];
+while ($row = $result->fetch_assoc()) {
+    $cartItems[] = $row;
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>🛒 Cart - Brizo Fast Food Melaka</title>
-  <link rel="stylesheet" href="menu.css">
-  <style>
-    .cart-wrapper {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #d63f3f;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
-
-    th, td {
-      padding: 12px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f9f9f9;
-    }
-
-    .total-row td {
-      font-weight: bold;
-      font-size: 1.1em;
-      text-align: right;
-    }
-
-    .remove-btn {
-      background-color: #e74c3c;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .remove-btn:hover {
-      background-color: #c0392b;
-    }
-
-    .back-menu {
-      display: inline-block;
-      padding: 10px 16px;
-      background-color: #1a8917;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-    }
-
-    .back-menu:hover {
-      background-color: #166f14;
-    }
-  </style>
+  <link rel="stylesheet" href="cart.css">
 </head>
 <body>
 
 <div class="cart-wrapper">
   <h1>Your Cart</h1>
 
-  <?php if (empty($cart)): ?>
+  <?php if (empty($cartItems)): ?>
     <p>Your cart is empty.</p>
-    <a href="menu.php" class="back-menu">⬅️ Back to Menu</a>
+    <a href="../menu.php" class="back-menu">⬅️ Back to Menu</a>
   <?php else: ?>
     <table>
       <thead>
@@ -98,18 +68,18 @@ $total = 0;
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($cart as $item): 
-          $subtotal = $item['qty'] * $item['price'];
+        <?php foreach ($cartItems as $item): 
+          $subtotal = $item['quantity'] * $item['price'];
           $total += $subtotal;
         ?>
         <tr>
-          <td><?= htmlspecialchars($item['name']) ?></td>
-          <td><?= $item['qty'] ?></td>
+          <td><?= htmlspecialchars($item['item_name']) ?></td>
+          <td><?= $item['quantity'] ?></td>
           <td><?= number_format($item['price'], 2) ?></td>
           <td><?= number_format($subtotal, 2) ?></td>
           <td>
-            <form method="POST" action="remove_from_cart.php">
-              <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
+            <form method="POST" action="cart.php">
+              <input type="hidden" name="item_id" value="<?= $item['item_id'] ?>">
               <button type="submit" class="remove-btn">Remove</button>
             </form>
           </td>
@@ -122,7 +92,7 @@ $total = 0;
       </tbody>
     </table>
 
-    <a href="menu.php" class="back-menu">⬅️ Continue Shopping</a>
+    <a href="../menu.php" class="back-menu">⬅️ Continue Shopping</a>
   <?php endif; ?>
 </div>
 

@@ -16,8 +16,8 @@
 <style>
 .menu-container {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 1px;
+    left: 28px;
     z-index: 1000;
 }
 
@@ -63,7 +63,7 @@
 .dropdown-menu {
     display: none;
     position: absolute;
-    top: 60px;
+    top: 69px;
     left: 0;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.3);

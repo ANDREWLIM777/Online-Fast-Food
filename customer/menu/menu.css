@@ -313,8 +313,8 @@ body {
 
 .cart-floating-btn {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 60px;
+  right: 28px;
   background-color: #ff4757;
   color: white;
   font-size: 24px;
@@ -325,7 +325,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
+  z-index: 1000;
   transition: background-color 0.2s ease;
 }
 
@@ -393,4 +393,25 @@ body {
     81%,96% {
       background-image: url('../menu/pictures/burger-bg4.png');
     }
+}
+
+.toast-msg {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #00b894;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+  z-index: 2000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.toast-msg.show {
+  opacity: 1;
+  transform: translateY(0);
 }

@@ -107,7 +107,7 @@
     </div>
 
     <!-- View Cart -->
-    <div class="nav-item other-item" style="--active-color: #27ae60;" data-link="../menu/menu.php/cart/cart.php">
+    <div class="nav-item other-item" style="--active-color: #27ae60;" data-link="../menu/cart/cart.php">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M6 6h15l-1.5 9h-13z"></path>
             <circle cx="9" cy="20" r="1.5"></circle>
