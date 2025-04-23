@@ -72,7 +72,7 @@ try {
           <td class="actions">
             <a href="view.php?id=<?= $row['id'] ?>" class="btn view"><i class="fas fa-eye"></i></a>
             <a href="edit.php?id=<?= $row['id'] ?>" class="btn edit"><i class="fas fa-edit"></i></a>
-            <a href="delete.php?id=<?= $row['id'] ?>" class="btn delete" onclick="return confirm('Are you sure to delete this customer?')">
+            <a href="delete.php?id=<?= $row['id'] ?>" class="btn delete">
               <i class="fas fa-trash"></i>
             </a>
           </td>
@@ -91,6 +91,49 @@ try {
 <head>
     <meta charset="UTF-8">
     <style>
+
+            /* 背景发光环 */
+body::after {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
+  animation: auraPulse 8s infinite;
+  pointer-events: none;
+  z-index: -1; /* ⬅ 放底层 */
+}
+
+/* 星尘粒子 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(244, 228, 178, 0.15) 1px, transparent 2px),
+    radial-gradient(circle at 80% 70%, rgba(244, 228, 178, 0.15) 1px, transparent 2px);
+  background-size: 60px 60px;
+  animation: stardust 20s linear infinite;
+  pointer-events: none;
+  z-index: -2; /* ⬅ 更底层 */
+}
+
+@keyframes auraPulse {
+  0% { transform: scale(0.8); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 0.08; }
+  100% { transform: scale(0.8); opacity: 0.3; }
+}
+
+@keyframes stardust {
+  0% { background-position: 0 0, 100px 100px; }
+  100% { background-position: 100px 100px, 0 0; }
+}
+
         /* åºé¨å¯¼èªå®¹å¨ */
         .footer-nav {
             position: fixed;
@@ -201,7 +244,7 @@ try {
         </div>
 
 <!-- è®¢åç®¡çï¼Checklist å¾æ ï¼ -->
-<div class="nav-item other-item" style="--active-color: #27ae60;">
+<div class="nav-item other-item" style="--active-color: #27ae60;" data-link="../Order_Management/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="4" y="3" width="16" height="18" rx="2"></rect>
         <path d="M10 7h6"></path>
@@ -430,9 +473,9 @@ if (targetLink) {
         </div>
         <nav class="dropdown-menu">
             <a href="../Main Page/main_page.php">Home</a>
-            <a href="../Manage_Account/index.php">Admin</a>
-            <a href="#services">Services</a>
+            <a href="../Order_Management/index.php">Services</a>
             <a href="../More/Contact.php">Contact</a>
+            <a href="../MOre/notifications/index.php">Notifications</a>
         </nav>
     </div>
 

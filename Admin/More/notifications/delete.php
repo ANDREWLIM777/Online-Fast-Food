@@ -1,53 +1,68 @@
 <?php
 require 'db_conn.php';
-include '../auth_acc.php';
+include '../../auth_notifications.php';
 check_permission('superadmin');
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 
 $id = $_GET['id'] ?? null;
+
 if (!$id || !is_numeric($id)) {
     header("Location: index.php");
     exit();
 }
 
-$stmt = $conn->prepare("SELECT name, email FROM admin WHERE id = ?");
-$stmt->bind_param("i", $id);
-$stmt->execute();
-$result = $stmt->get_result();
-$admin = $result->fetch_assoc();
+$stmt = $pdo->prepare("SELECT * FROM notifications WHERE id = ?");
+$stmt->execute([$id]);
+$notification = $stmt->fetch();
 
-if (!$admin) {
-    echo "Admin not found.";
+if (!$notification) {
+    echo "Notification not found.";
     exit();
 }
 
+// 执行删除操作
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $stmt = $conn->prepare("DELETE FROM admin WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    header("Location: index.php?msg=deleted");
+    $delete = $pdo->prepare("DELETE FROM notifications WHERE id = ?");
+    $delete->execute([$id]);
+    header("Location: index.php");
     exit();
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Delete Admin</title>
+    <title>Delete Notification</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body { background: #0f0f0f; color: #eee; font-family: Arial, sans-serif; padding: 2rem; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f0f0f;
+            color: #eee;
+            padding: 2rem;
+        }
+
         .container {
             background: #1c1c1c;
             padding: 2rem;
             border-radius: 12px;
             max-width: 600px;
             margin: auto;
+            box-shadow: 0 0 12px rgba(255, 0, 0, 0.2);
         }
-        h2 { text-align: center; color: #e57373; }
-        p { text-align: center; }
+
+        h2 {
+            color: #e57373;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+            color: #ccc;
+        }
 
         .btn-group {
             display: flex;
@@ -61,15 +76,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-radius: 8px;
             font-weight: bold;
             text-decoration: none;
+            text-align: center;
             cursor: pointer;
             border: none;
         }
 
-        .btn-cancel { background: #444; color: #eee; }
-        .btn-cancel:hover { background: #666; }
+        .btn-cancel {
+            background: #444;
+            color: #eee;
+        }
 
-        .btn-delete { background: #ff4d4d; color: white; }
-        .btn-delete:hover { background: #ff1a1a; }
+        .btn-cancel:hover {
+            background: #666;
+        }
+
+        .btn-delete {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #ff1a1a;
+        }
 
         .back-btn {
             display: inline-block;
@@ -90,13 +118,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-<a class="back-btn" href="index.php"><i class="fas fa-arrow-left"></i> Back to Admins</a>
+<a class="back-btn" href="index.php"><i class="fas fa-arrow-left"></i> Back to Notifications</a>
 
 <div class="container">
-    <h2>🗑️ Confirm Delete</h2>
-    <p>Are you sure you want to delete<br>
-        <strong><?= htmlspecialchars($admin['name']) ?> (<?= htmlspecialchars($admin['email']) ?>)</strong>?
-    </p>
+    <h2>⚠️ Confirm Deletion</h2>
+    <p>Are you sure you want to delete this notification?</p>
+    <p><strong><?= htmlspecialchars($notification['title']) ?></strong></p>
 
     <form method="POST">
         <div class="btn-group">

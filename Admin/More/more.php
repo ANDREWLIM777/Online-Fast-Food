@@ -449,6 +449,13 @@ include '../Admin_Account/db.php';
 </main>
 
 <main class="more-container">
+  <a href="notifications/index.php" class="more-item">
+    <span>Notifications</span>
+    <i class="fas fa-angle-right"></i>
+  </a>
+</main>
+
+<main class="more-container">
   <a href="Contact.php" class="more-item">
     <span>Contact</span>
     <i class="fas fa-angle-right"></i>
@@ -592,7 +599,7 @@ window.onclick = function(event) {
         </div>
 
 <!-- è®¢åç®¡çï¼Checklist å¾æ ï¼ -->
-<div class="nav-item other-item" style="--active-color: #27ae60;">
+<div class="nav-item other-item" style="--active-color: #27ae60;" data-link="../Order_Management/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="4" y="3" width="16" height="18" rx="2"></rect>
         <path d="M10 7h6"></path>
@@ -821,9 +828,9 @@ if (targetLink) {
         </div>
         <nav class="dropdown-menu">
             <a href="../Main Page/main_page.php">Home</a>
-            <a href="../Manage_Account/index.php">Admin</a>
-            <a href="#services">Services</a>
+            <a href="../Order_Management/index.php">Services</a>
             <a href="../More/Contact.php">Contact</a>
+            <a href="../MOre/notifications/index.php">Notifications</a>
         </nav>
     </div>
 
