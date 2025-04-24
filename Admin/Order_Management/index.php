@@ -308,7 +308,16 @@ body::before {
 
 <script>
 
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash;
+  if (hash === "#refund" || hash === "#approve") {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-page').forEach(page => page.classList.remove('active'));
 
+    document.querySelector(`[onclick*="${hash.replace('#','')}"]`)?.classList.add('active');
+    document.getElementById(hash.replace('#', '')).classList.add('active');
+  }
+});
 
 function showTab(e, id) {
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));

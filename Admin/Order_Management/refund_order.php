@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['note'])
         $insert->execute([$info['order_code'], $info['total'], $note]);
     }
 
-    header("Location: index.php");
-    exit();
+    header("Location: index.php#approve");
+exit();
 }
 ?>

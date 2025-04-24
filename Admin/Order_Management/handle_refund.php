@@ -30,6 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['action'
         $pdo->prepare("UPDATE orders SET status = 'completed' WHERE order_code = ?")->execute([$orderCode]);
     }
 
-    header("Location: index.php");
-    exit();
+    header("Location: index.php#refund");
+exit();
 }
