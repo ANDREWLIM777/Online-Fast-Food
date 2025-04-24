@@ -7,9 +7,10 @@ error_reporting(E_ALL);
 <?php
 // Database configuration
 $servername = "localhost";
-$username = "fastfood_user";  // Or "root" if you didn't create a user
-$password = "secure_password"; // Or "" for root with no password
-$dbname = "brizo";
+$username = "brizo_user";  // Changed to brizo_user (you may need to create this user)
+$password = "secure_password"; // Use your actual password
+$dbname = "brizo";  // Changed to brizo database
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
