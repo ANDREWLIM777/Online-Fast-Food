@@ -156,7 +156,13 @@ include '../Admin_Account/db.php';
 
 .more-container {
   max-width: 1200px;
-  margin: 4rem auto;
+  margin: 2rem auto;
+  padding: 0 2rem; /* 增加顶部 padding 来避开 fixed header */
+}
+
+.more-container-top {
+  max-width: 1200px;
+  margin: 2rem auto;
   padding: 100px 2rem 0 2rem; /* 增加顶部 padding 来避开 fixed header */
 }
 
@@ -428,6 +434,26 @@ include '../Admin_Account/db.php';
             </div>
     </div>
 
+    <main class="more-container-top">
+  <a href="my_acc.php" class="more-item">
+    <span>My Account</span>
+    <i class="fas fa-angle-right"></i>
+  </a>
+</main>
+
+<main class="more-container">
+  <a href="change_pass.php" class="more-item">
+    <span>Password & Security</span>
+    <i class="fas fa-angle-right"></i>
+  </a>
+</main>
+
+<main class="more-container">
+  <a href="notifications/index.php" class="more-item">
+    <span>Notifications</span>
+    <i class="fas fa-angle-right"></i>
+  </a>
+</main>
 
 <main class="more-container">
   <a href="Contact.php" class="more-item">
@@ -802,9 +828,9 @@ if (targetLink) {
         </div>
         <nav class="dropdown-menu">
             <a href="../Main Page/main_page.php">Home</a>
-            <a href="../Manage_Account/index.php">Admin</a>
             <a href="#services">Services</a>
             <a href="../More/Contact.php">Contact</a>
+            <a href="../MOre/notifications/index.php">Notifications</a>
         </nav>
     </div>
 

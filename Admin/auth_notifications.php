@@ -16,7 +16,6 @@ function check_permission($role_required) {
         <head>
             <meta charset="UTF-8">
             <title>Access Denied</title>
- 
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
             <style>
                 body {
@@ -81,7 +80,7 @@ function check_permission($role_required) {
         </head>
         <body>
             <div class="modal-box">
-                <button class="close-btn" onclick="window.location.href=\'../Manage_Customer/index.php\'">
+                <button class="close-btn" onclick="window.location.href=\'../More/notifications/index.php\'">
                     <i class="fas fa-arrow-left"></i> Back
                 </button>
                 <h2>Access Denied</h2>
@@ -89,7 +88,7 @@ function check_permission($role_required) {
             </div>
             <script>
                 setTimeout(function() {
-                    window.location.href = "../Manage_Customer/index.php";
+                    window.location.href = "../More/notifications/index.php";
                 }, 2500);
             </script>
         </body>
@@ -99,5 +98,4 @@ function check_permission($role_required) {
 }
 
 ?>
-
 

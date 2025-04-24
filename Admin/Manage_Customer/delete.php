@@ -1,6 +1,6 @@
 <?php
 require 'db_conn.php';
-include '../auth_acc.php';
+include '../auth_cus.php';
 check_permission('superadmin');
 
 if (session_status() === PHP_SESSION_NONE) session_start();
@@ -11,19 +11,21 @@ if (!$id || !is_numeric($id)) {
     exit();
 }
 
-$stmt = $conn->prepare("SELECT name, email FROM admin WHERE id = ?");
+// 获取客户名或邮箱以确认展示
+$stmt = $conn->prepare("SELECT fullname, email FROM customers WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
-$admin = $result->fetch_assoc();
+$customer = $result->fetch_assoc();
 
-if (!$admin) {
-    echo "Admin not found.";
+if (!$customer) {
+    echo "Customer not found.";
     exit();
 }
 
+// 删除操作
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $stmt = $conn->prepare("DELETE FROM admin WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM customers WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     header("Location: index.php?msg=deleted");
@@ -35,10 +37,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Delete Admin</title>
+    <title>Delete Customer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body { background: #0f0f0f; color: #eee; font-family: Arial, sans-serif; padding: 2rem; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f0f0f;
+            color: #eee;
+            padding: 2rem;
+        }
+
         .container {
             background: #1c1c1c;
             padding: 2rem;
@@ -46,8 +54,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             max-width: 600px;
             margin: auto;
         }
-        h2 { text-align: center; color: #e57373; }
-        p { text-align: center; }
+
+        h2 {
+            color: #e57373;
+            text-align: center;
+        }
 
         .btn-group {
             display: flex;
@@ -61,15 +72,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-radius: 8px;
             font-weight: bold;
             text-decoration: none;
+            text-align: center;
             cursor: pointer;
             border: none;
         }
 
-        .btn-cancel { background: #444; color: #eee; }
-        .btn-cancel:hover { background: #666; }
+        .btn-cancel {
+            background: #444;
+            color: #eee;
+        }
 
-        .btn-delete { background: #ff4d4d; color: white; }
-        .btn-delete:hover { background: #ff1a1a; }
+        .btn-cancel:hover {
+            background: #666;
+        }
+
+        .btn-delete {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #ff1a1a;
+        }
 
         .back-btn {
             display: inline-block;
@@ -90,12 +114,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-<a class="back-btn" href="index.php"><i class="fas fa-arrow-left"></i> Back to Admins</a>
+<a class="back-btn" href="index.php"><i class="fas fa-arrow-left"></i> Back to Customers</a>
 
 <div class="container">
     <h2>🗑️ Confirm Delete</h2>
-    <p>Are you sure you want to delete<br>
-        <strong><?= htmlspecialchars($admin['name']) ?> (<?= htmlspecialchars($admin['email']) ?>)</strong>?
+    <p style="text-align: center;">
+        Are you sure you want to delete<br>
+        <strong><?= htmlspecialchars($customer['fullname']) ?> (<?= htmlspecialchars($customer['email']) ?>)</strong>?
     </p>
 
     <form method="POST">

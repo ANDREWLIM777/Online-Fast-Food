@@ -103,11 +103,9 @@ while ($row = $result->fetch_assoc()) {
           <?php foreach ($items as $item): ?>
             <div class="menu-card-square">
               <?php if (!empty($item['photo'])): ?>
-                <img src="/online-fast-food/Admin/Manage_Menu_Item/<?= htmlspecialchars($item['photo']) ?>"
-     alt="<?= htmlspecialchars($item['item_name']) ?>"
-     class="menu-img-square product-img">
-
-
+                <img src="pictures/<?= htmlspecialchars($item['photo']) ?>" 
+                     alt="<?= htmlspecialchars($item['item_name']) ?>" 
+                     class="menu-img-square product-img">
               <?php endif; ?>
 
               <div class="menu-info">

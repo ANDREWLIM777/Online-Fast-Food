@@ -199,8 +199,8 @@ body::before {
 
 <div class="header">
   <div class="back-container">
-    <a href="../Main Page/main_page.php" class="back-btn">
-      <i class="fas fa-arrow-left"></i><span> Back to Dashboard</span>
+    <a href="more.php" class="back-btn">
+      <i class="fas fa-arrow-left"></i><span> Back to More Page</span>
     </a>
   </div>
   <h2 class="glow-title">Brizo Senior Executive</h2>

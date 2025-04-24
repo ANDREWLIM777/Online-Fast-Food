@@ -21,10 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ../Main Page/main_page.php");
             exit();
         } else {
-            echo "<script>alert('Wrong password.');</script>";
+            $_SESSION['login_error'] = "Wrong password.";
+            header("Location: login.php");
+            exit();
         }
     } else {
-        echo "<script>alert('Account not found.');</script>";
+        $_SESSION['login_error'] = "Account not found.";
+        header("Location: login.php");
+        exit();
     }
 }
 ?>
@@ -76,6 +80,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 20px;
             color: #333; /* 确保文字可读性 */
         }
+
+        .top-error-box {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff4d4d;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 0 0 12px 12px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 1s ease-out;
+    max-width: 600px;
+    width: 90%;
+}
+
+.top-error-box.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+
     </style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -85,6 +116,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<?php session_start(); ?>
+<?php if (isset($_SESSION['login_error'])): ?>
+    <div class="top-error-box" id="errorBox"><?= htmlspecialchars($_SESSION['login_error']) ?></div>
+    <?php unset($_SESSION['login_error']); ?>
+<?php endif; ?>
+
+
 <div class="container">
     <h2>Login</h2>
     <form method="POST">
@@ -100,7 +139,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
         <button type="submit">Login</button>
+
     </form>
+    <div style="text-align: left; margin-top: 20px;">
+  <a href="forgot_password.php" style="color: #c0a23d; text-decoration: underline; font-size: 0.95rem;">Forgot password?</a>
+</div>
 </div>
 <script>
 function togglePassword() {
@@ -117,6 +160,20 @@ function togglePassword() {
         eyeIcon.classList.add("fa-eye-slash");
     }
 }
+
+
+window.onload = function () {
+    const errorBox = document.getElementById('errorBox');
+    if (errorBox) {
+        setTimeout(() => {
+            errorBox.classList.add('fade-out');
+        }, 5000);
+    }
+};
+
+
+
+
 </script>
 
 </body>
