@@ -70,3 +70,50 @@ body {
     background-color: #166f14;
   }
   
+  .qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .qty-controls button {
+    padding: 4px 10px;
+    background: #d63f3f;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .qty-controls button:hover {
+    background: #b53030;
+  }
+  
+  .qty-number {
+    min-width: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .update-feedback {
+    position: fixed;
+    top: 80px;
+    right: 40px;
+    background: #2ecc71;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+    z-index: 9999;
+  }
+  
+  .update-feedback.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
