@@ -1,0 +1,119 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fefefe;
+  }
+  
+  .cart-wrapper {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #d63f3f;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f9f9f9;
+  }
+  
+  .total-row td {
+    font-weight: bold;
+    font-size: 1.1em;
+    text-align: right;
+  }
+  
+  .remove-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .remove-btn:hover {
+    background-color: #c0392b;
+  }
+  
+  .back-menu {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #1a8917;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-menu:hover {
+    background-color: #166f14;
+  }
+  
+  .qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .qty-controls button {
+    padding: 4px 10px;
+    background: #d63f3f;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .qty-controls button:hover {
+    background: #b53030;
+  }
+  
+  .qty-number {
+    min-width: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .update-feedback {
+    position: fixed;
+    top: 80px;
+    right: 40px;
+    background: #2ecc71;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+    z-index: 9999;
+  }
+  
+  .update-feedback.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
