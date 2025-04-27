@@ -1,0 +1,39 @@
+@media print {
+    body {
+      background: #fff !important;
+      color: #000 !important;
+      margin: 0;
+      padding: 2rem;
+      font-size: 14px;
+    }
+  
+    .btn,
+    .header a {
+      display: none !important;
+    }
+  
+    .header {
+      display: none !important;
+    }
+  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+  
+    table th,
+    table td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+  
+    h2, .info, .reason-box {
+      page-break-inside: avoid;
+    }
+  
+    @page {
+      margin: 2cm;
+    }
+  }
+  
