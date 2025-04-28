@@ -8,6 +8,7 @@ if (!$customerId) {
     exit();
 }
 
+// Handle cart item removal
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['item_id'])) {
     $itemId = (int) $_POST['item_id'];
     $stmt = $conn->prepare("DELETE FROM cart WHERE customer_id = ? AND item_id = ?");
@@ -17,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['item_id'])) {
     exit();
 }
 
+// Fetch cart items
 $total = 0;
 $stmt = $conn->prepare("
     SELECT c.item_id, c.quantity, m.item_name, m.price
@@ -31,154 +33,222 @@ $result = $stmt->get_result();
 $cartItems = [];
 while ($row = $result->fetch_assoc()) {
     $cartItems[] = $row;
+    $total += $row['quantity'] * $row['price'];
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>🛒 Cart - Brizo Fast Food Melaka</title>
-  <link rel="stylesheet" href="cart.css">
-  <link rel="stylesheet" href="remove_from_cart.css">
-  <style>
-    .update-feedback {
-      position: fixed;
-      top: 80px;
-      right: 40px;
-      background: #2ecc71;
-      color: #fff;
-      padding: 12px 18px;
-      border-radius: 8px;
-      font-weight: bold;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.4s ease;
-      z-index: 9999;
-    }
-    .update-feedback.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>🛒 Cart - Brizo Fast Food Melaka</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .cart-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f8f8f8;
+        }
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .qty-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .remove-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .back-menu, .proceed-payment {
+            display: inline-block;
+            margin: 20px 10px 20px 0;
+            color: #3498db;
+            text-decoration: none;
+        }
+        .total-row td {
+            font-weight: bold;
+        }
+        .update-feedback {
+            position: fixed;
+            top: 80px;
+            right: 40px;
+            background: #2ecc71;
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s ease;
+            z-index: 9999;
+        }
+        .update-feedback.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .toast-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2ecc71;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .toast-message.show {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
+    <div class="cart-wrapper">
+        <div id="update-feedback" class="update-feedback">✅ Cart Updated!</div>
+        <h1>Your Cart</h1>
 
-<div class="cart-wrapper">
-  <div id="update-feedback" class="update-feedback">✅ Cart Updated!</div>
-  <h1>Your Cart</h1>
+        <?php if (empty($cartItems)): ?>
+            <p>Your cart is empty.</p>
+            <a href="../menu.php" class="back-menu">⬅️ Back to Menu</a>
+        <?php else: ?>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price (RM)</th>
+                        <th>Subtotal (RM)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($cartItems as $item):
+                        $subtotal = $item['quantity'] * $item['price'];
+                    ?>
+                    <tr data-id="<?= $item['item_id'] ?>">
+                        <td><?= htmlspecialchars($item['item_name']) ?></td>
+                        <td>
+                            <div class="qty-controls">
+                                <button class="qty-btn" data-change="-1">-</button>
+                                <span class="qty-number"><?= $item['quantity'] ?></span>
+                                <button class="qty-btn" data-change="1">+</button>
+                            </div>
+                        </td>
+                        <td class="price" data-price="<?= $item['price'] ?>"><?= number_format($item['price'], 2) ?></td>
+                        <td class="subtotal"><?= number_format($subtotal, 2) ?></td>
+                        <td>
+                            <form method="POST" action="cart.php">
+                                <input type="hidden" name="item_id" value="<?= $item['item_id'] ?>">
+                                <button type="submit" class="remove-btn">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                    <tr class="total-row">
+                        <td colspan="3">Total:</td>
+                        <td colspan="2" id="total-amount">RM <?= number_format($total, 2) ?></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="../menu.php" class="back-menu">⬅️ Continue Shopping</a>
+            <a href="payment.php" class="proceed-payment">Proceed to Payment ➡️</a>
+        <?php endif; ?>
+    </div>
 
-  <?php if (empty($cartItems)): ?>
-    <p>Your cart is empty.</p>
-    <a href="../menu.php" class="back-menu">⬅️ Back to Menu</a>
-  <?php else: ?>
-    <table>
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Qty</th>
-          <th>Price (RM)</th>
-          <th>Subtotal (RM)</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($cartItems as $item):
-          $subtotal = $item['quantity'] * $item['price'];
-          $total += $subtotal;
-        ?>
-        <tr data-id="<?= $item['item_id'] ?>">
-          <td><?= htmlspecialchars($item['item_name']) ?></td>
-          <td>
-            <div class="qty-controls">
-              <button class="qty-btn" data-change="-1">-</button>
-              <span class="qty-number"><?= $item['quantity'] ?></span>
-              <button class="qty-btn" data-change="1">+</button>
-            </div>
-          </td>
-          <td class="price" data-price="<?= $item['price'] ?>"><?= number_format($item['price'], 2) ?></td>
-          <td class="subtotal"><?= number_format($subtotal, 2) ?></td>
-          <td>
-            <form method="POST" action="cart.php">
-              <input type="hidden" name="item_id" value="<?= $item['item_id'] ?>">
-              <button type="submit" class="remove-btn">Remove</button>
-            </form>
-          </td>
-        </tr>
-        <?php endforeach; ?>
-        <tr class="total-row">
-          <td colspan="3">Total:</td>
-          <td colspan="2" id="total-amount">RM <?= number_format($total, 2) ?></td>
-        </tr>
-      </tbody>
-    </table>
+    <?php if (isset($_GET['removed']) && $_GET['removed'] == 1): ?>
+        <div class="toast-message" id="toast">Item successfully removed!</div>
+    <?php endif; ?>
 
-    <a href="../menu.php" class="back-menu">⬅️ Continue Shopping</a>
-  <?php endif; ?>
-</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toast = document.getElementById('toast');
+            if (toast) {
+                toast.classList.add('show');
+                setTimeout(() => toast.remove(), 4000);
+            }
 
-<?php if (isset($_GET['removed']) && $_GET['removed'] == 1): ?>
-  <div class="toast-message" id="toast">Item successfully removed!</div>
-<?php endif; ?>
+            const showFeedback = (msg = "✅ Cart Updated!") => {
+                const el = document.getElementById("update-feedback");
+                el.textContent = msg;
+                el.classList.add("show");
+                setTimeout(() => el.classList.remove("show"), 2000);
+            };
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const toast = document.getElementById('toast');
-  if (toast) {
-    toast.classList.add('show');
-    setTimeout(() => toast.remove(), 4000);
-  }
+            document.querySelectorAll('.qty-btn').forEach(btn => {
+                btn.addEventListener('click', async function () {
+                    const row = this.closest('tr');
+                    const itemId = row.dataset.id;
+                    const change = parseInt(this.dataset.change);
+                    const qtyElem = row.querySelector('.qty-number');
+                    const price = parseFloat(row.querySelector('.price').dataset.price);
+                    let currentQty = parseInt(qtyElem.textContent);
 
-  const showFeedback = (msg = "✅ Cart Updated!") => {
-    const el = document.getElementById("update-feedback");
-    el.textContent = msg;
-    el.classList.add("show");
-    setTimeout(() => el.classList.remove("show"), 2000);
-  };
+                    const newQty = currentQty + change;
+                    if (newQty < 1) return;
 
-  document.querySelectorAll('.qty-btn').forEach(btn => {
-    btn.addEventListener('click', async function () {
-      const row = this.closest('tr');
-      const itemId = row.dataset.id;
-      const change = parseInt(this.dataset.change);
-      const qtyElem = row.querySelector('.qty-number');
-      const price = parseFloat(row.querySelector('.price').dataset.price);
-      let currentQty = parseInt(qtyElem.textContent);
+                    const formData = new URLSearchParams();
+                    formData.append('item_id', itemId);
+                    formData.append('quantity', newQty);
 
-      const newQty = currentQty + change;
-      if (newQty < 1) return;
+                    const res = await fetch('update_cart.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: formData.toString()
+                    });
 
-      const formData = new URLSearchParams();
-      formData.append('item_id', itemId);
-      formData.append('quantity', newQty);
+                    const data = await res.json();
+                    if (data.status === 'success') {
+                        qtyElem.textContent = newQty;
+                        const newSubtotal = (price * newQty).toFixed(2);
+                        row.querySelector('.subtotal').textContent = newSubtotal;
 
-      const res = await fetch('update_cart.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formData.toString()
-      });
+                        let total = 0;
+                        document.querySelectorAll('.subtotal').forEach(td => {
+                            total += parseFloat(td.textContent);
+                        });
+                        document.getElementById('total-amount').textContent = 'RM ' + total.toFixed(2);
 
-      const data = await res.json();
-      if (data.status === 'success') {
-        qtyElem.textContent = newQty;
-        const newSubtotal = (price * newQty).toFixed(2);
-        row.querySelector('.subtotal').textContent = newSubtotal;
-
-        let total = 0;
-        document.querySelectorAll('.subtotal').forEach(td => {
-          total += parseFloat(td.textContent);
+                        showFeedback();
+                    } else {
+                        alert(data.message || 'Failed to update cart.');
+                    }
+                });
+            });
         });
-        document.getElementById('total-amount').textContent = 'RM ' + total.toFixed(2);
-
-        showFeedback(); // ✅ Show animated success
-      } else {
-        alert(data.message || 'Failed to update cart.');
-      }
-    });
-  });
-});
-</script>
-
+    </script>
 </body>
 </html>
