@@ -83,10 +83,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         }
         $itemsJson = json_encode($itemsArray);
 
-        // Save to orders table
+        // Save to orders table with status 'pending'
         $stmt = $conn->prepare("
             INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
-            VALUES (?, ?, ?, ?, 'completed', NOW())
+            VALUES (?, ?, ?, ?, 'pending', NOW())
         ");
         $stmt->bind_param("sisd", $orderId, $customerId, $itemsJson, $total);
         if (!$stmt->execute()) {
