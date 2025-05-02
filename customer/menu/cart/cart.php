@@ -2,7 +2,7 @@
 session_start();
 require '../db_connect.php';
 
-//  Block guests from viewing cart
+// Block guests from viewing cart
 if (!empty($_SESSION['is_guest'])) {
     $_SESSION['guest_notice'] = "Guests cannot view the cart. Please log in to continue.";
     header("Location: ../menu.php");
@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['item_id'])) {
     exit();
 }
 
+// Fetch cart items
 $total = 0;
 $stmt = $conn->prepare("
     SELECT c.item_id, c.quantity, m.item_name, m.price
@@ -39,6 +40,7 @@ $result = $stmt->get_result();
 $cartItems = [];
 while ($row = $result->fetch_assoc()) {
     $cartItems[] = $row;
+    $total += $row['quantity'] * $row['price'];
 }
 ?>
 
@@ -51,8 +53,8 @@ while ($row = $result->fetch_assoc()) {
   <link rel="stylesheet" href="remove_from_cart.css">
 </head>
 <body>
-
 <div class="cart-wrapper">
+  <div id="update-feedback" class="update-feedback">✅ Cart Updated!</div>
   <h1>Your Cart</h1>
 
   <?php if (empty($cartItems)): ?>
@@ -70,10 +72,7 @@ while ($row = $result->fetch_assoc()) {
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($cartItems as $item): 
-          $subtotal = $item['quantity'] * $item['price'];
-          $total += $subtotal;
-        ?>
+        <?php foreach ($cartItems as $item): ?>
         <tr data-id="<?= $item['item_id'] ?>">
           <td><?= htmlspecialchars($item['item_name']) ?></td>
           <td>
@@ -84,7 +83,7 @@ while ($row = $result->fetch_assoc()) {
             </div>
           </td>
           <td class="price" data-price="<?= $item['price'] ?>"><?= number_format($item['price'], 2) ?></td>
-          <td class="subtotal"><?= number_format($subtotal, 2) ?></td>
+          <td class="subtotal"><?= number_format($item['quantity'] * $item['price'], 2) ?></td>
           <td>
             <form method="POST" action="cart.php">
               <input type="hidden" name="item_id" value="<?= $item['item_id'] ?>">
@@ -101,6 +100,7 @@ while ($row = $result->fetch_assoc()) {
     </table>
 
     <a href="../menu.php" class="back-menu">⬅️ Continue Shopping</a>
+    <a href="payment.php" class="proceed-payment">Proceed to Payment ➡️</a>
   <?php endif; ?>
 </div>
 
@@ -115,6 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
     toast.classList.add('show');
     setTimeout(() => toast.remove(), 4000);
   }
+
+  const showFeedback = (msg = "✅ Cart Updated!") => {
+    const el = document.getElementById("update-feedback");
+    el.textContent = msg;
+    el.classList.add("show");
+    setTimeout(() => el.classList.remove("show"), 2000);
+  };
 
   document.querySelectorAll('.qty-btn').forEach(btn => {
     btn.addEventListener('click', async function () {
@@ -141,14 +148,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       if (data.status === 'success') {
         qtyElem.textContent = newQty;
-        const newSubtotal = (price * newQty).toFixed(2);
-        row.querySelector('.subtotal').textContent = newSubtotal;
+        row.querySelector('.subtotal').textContent = (price * newQty).toFixed(2);
 
         let total = 0;
         document.querySelectorAll('.subtotal').forEach(td => {
           total += parseFloat(td.textContent);
         });
         document.getElementById('total-amount').textContent = 'RM ' + total.toFixed(2);
+        showFeedback();
       } else {
         alert(data.message || 'Failed to update cart.');
       }
@@ -156,6 +163,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
-
 </body>
 </html>

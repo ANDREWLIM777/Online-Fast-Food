@@ -293,7 +293,7 @@ body::before {
     <!-- åºé¨å¯¼èªæ  -->
     <nav class="footer-nav">
         <!-- Bz èå -->
-        <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.php">
+        <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../../Main Page/main_page.php">
             <svg viewBox="0 0 50 24">
                 <text x="5" y="18" class="bz-text">Bz</text>
             </svg>
@@ -301,7 +301,7 @@ body::before {
         </div>
 
         <!-- æä½³åå·¥ -->
-        <div class="nav-item other-item" style="--active-color: #ff9f43;" data-link="../Manage_Account/index.php">
+        <div class="nav-item other-item" style="--active-color: #ff9f43;" data-link="../../Manage_Account/index.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
@@ -312,7 +312,7 @@ body::before {
         </div>
 
 <!-- è®¢åç®¡çï¼Checklist å¾æ ï¼ -->
-<div class="nav-item other-item" style="--active-color: #27ae60;" data-link="../Order_Management/index.php">
+<div class="nav-item other-item" style="--active-color: #27ae60;" data-link="../../Order_Management/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="4" y="3" width="16" height="18" rx="2"></rect>
         <path d="M10 7h6"></path>
@@ -326,7 +326,7 @@ body::before {
 </div>
 
 <!-- 菜单管理方式 -->
-<div class="nav-item other-item" style="--active-color: #3498db;" data-link="../Manage_Menu_Item/index.php">
+<div class="nav-item other-item" style="--active-color: #3498db;" data-link="../../Manage_Menu_Item/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="3" y="3" width="7" height="7" rx="1" ry="1" />
         <rect x="14" y="3" width="7" height="7" rx="1" ry="1" />
@@ -337,7 +337,7 @@ body::before {
 </div>
 
         <!-- æ´å¤éé¡¹ -->
-        <div class="nav-item other-item" style="--active-color: #8e44ad;" data-link="../More/more.php">
+        <div class="nav-item other-item" style="--active-color: #8e44ad;" data-link="../../More/more.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <circle cx="12" cy="12" r="1"></circle>
                 <circle cx="12" cy="5" r="1"></circle>

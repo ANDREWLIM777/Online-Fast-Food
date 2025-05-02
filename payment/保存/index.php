@@ -1,21 +1,27 @@
+<?php
+require_once 'config.php';
+
+// Fetch data from database
+$payment_history = getPaymentHistory($conn);
+$payment_methods = getPaymentMethods($conn);
+$refund_requests = getRefundRequests($conn);
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brizo Fast Food - Payment System</title>
+  <title>Fast Food Payment Module</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="payment.css">
 </head>
 <body>
   <div class="container">
     <header>
-      <!-- Brand Logo - Using your image.png -->
-      <div class="brand-logo">
-        <img src="image.png" alt="Brizo Fast Food" style="height: 60px;">
-      </div>
-      <h1><i class="fas fa-hamburger"></i> Payment System</h1>
+      <h1><i class="fas fa-hamburger"></i> Fast Food Payment System</h1>
       <p>Secure and convenient payment solutions for your orders</p>
     </header>
 
@@ -207,7 +213,25 @@
       <div class="card">
         <h2><i class="fas fa-history"></i> Payment History</h2>
         <div id="history-list">
-          <!-- Payment history will be dynamically inserted here -->
+          <?php if (empty($payment_history)): ?>
+            <p style="text-align: center; padding: 20px; color: var(--gray);">No payment history found.</p>
+          <?php else: ?>
+            <?php foreach ($payment_history as $payment): ?>
+              <div class="history-item">
+                <div>
+                  <div style="font-weight: bold;">Order <?php echo htmlspecialchars($payment['order_id']); ?></div>
+                  <div style="font-size: 0.9rem; color: var(--gray);"><?php echo date('d-M-Y H:i', strtotime($payment['date'])); ?></div>
+                  <div style="font-size: 0.9rem; color: var(--gray);"><?php echo htmlspecialchars($payment['method']); ?></div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-weight: bold;">RM<?php echo number_format($payment['amount'], 2); ?></div>
+                  <div class="status status-<?php echo htmlspecialchars($payment['status']); ?>">
+                    <?php echo ucfirst(htmlspecialchars($payment['status'])); ?>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php endif; ?>
         </div>
         
         <button class="btn btn-outline" style="margin-top: 20px;" onclick="exportHistory()">
@@ -228,7 +252,13 @@
           <label for="refund-order">Order ID</label>
           <select id="refund-order">
             <option value="">-- Select Order --</option>
-            <!-- Options will be dynamically inserted -->
+            <?php foreach ($payment_history as $payment): ?>
+              <?php if ($payment['status'] === 'completed'): ?>
+                <option value="<?php echo htmlspecialchars($payment['order_id']); ?>">
+                  <?php echo htmlspecialchars($payment['order_id']); ?> (RM<?php echo number_format($payment['amount'], 2); ?> - <?php echo date('d-M-Y', strtotime($payment['date'])); ?>)
+                </option>
+              <?php endif; ?>
+            <?php endforeach; ?>
           </select>
           <div class="error-message" id="refund-order-error"></div>
         </div>
@@ -264,7 +294,27 @@
         <div id="methods-alert" class="hidden"></div>
         
         <div id="saved-methods">
-          <!-- Saved payment methods will be dynamically inserted here -->
+          <?php if (empty($payment_methods)): ?>
+            <p style="text-align: center; padding: 20px; color: var(--gray);">No saved payment methods found.</p>
+          <?php else: ?>
+            <?php foreach ($payment_methods as $method): ?>
+              <div style="background: linear-gradient(to right, rgba(0,0,0,0.02), white); padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div style="font-weight: bold;">
+                      <img src="https://logo.clearbit.com/<?php echo strtolower(htmlspecialchars($method['card_type'])); ?>.com?size=24" class="card-logo" onerror="this.style.display='none'">
+                      <?php echo htmlspecialchars($method['card_type']); ?> •••• <?php echo htmlspecialchars($method['last_four']); ?>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">Expires <?php echo htmlspecialchars($method['expiry']); ?></div>
+                    <div style="font-size: 0.9rem; color: var(--gray);"><?php echo htmlspecialchars($method['name']); ?></div>
+                  </div>
+                  <button class="btn btn-danger" onclick="removePaymentMethod(<?php echo $method['id']; ?>)">
+                    <i class="fas fa-trash-alt"></i> Remove
+                  </button>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php endif; ?>
         </div>
         
         <h3><i class="fas fa-plus-circle"></i> Add New Payment Method</h3>
@@ -305,8 +355,5 @@
   </div>
 
   <script src="script.js"></script>
-  <script src="payment-tabs.js"></script>
-  <script src="payment-processing.js"></script>
-  <script src="payment-methods.js"></script>
 </body>
 </html>

@@ -421,7 +421,7 @@ body {
             <p>Add, edit or remove menu items and set pricing</p>
         </div>
 
-        <div class="card" onclick="location.href='transactions.html'">
+        <div class="card" onclick="location.href='../Transaction_History/index.php'">
             <i class="fas fa-receipt card-icon"></i>
             <h3>Transaction History</h3>
             <p>View and analyze daily sales reports</p>
