@@ -2,20 +2,23 @@
 
 <!-- 🦶 Footer Navigation -->
 <nav class="footer-nav">
-  <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../menu/menu.php">
-    <svg viewBox="0 0 50 24"><text x="5" y="18" class="bz-text">Bz</text></svg>
-    <span class="nav-label">Menu</span>
-  </div>
 
-  <div class="nav-item" style="--active-color: #2ecc71;" data-link="../about_us.php">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-       stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="10"></circle>
-    <line x1="12" y1="16" x2="12" y2="12"></line>
-    <circle cx="12" cy="8" r="1.5"></circle>
-  </svg>
+  <div class="nav-item" style="--active-color: #2ecc71;" data-link="../brizo/about_brizo.php">
+  <svg viewBox="0 0 50 24"><text x="5" y="18" class="bz-text">Bz</text></svg>
   <span class="nav-label">About Us</span>
 </div>
+
+<div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../menu/menu.php">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round">
+    <!-- Bun Top -->
+    <path d="M3 9a9 4 0 0 1 18 0H3z" />
+    <!-- Lettuce / Fill -->
+    <path d="M3 12h18" />
+    <!-- Bun Bottom -->
+    <path d="M5 15h14a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z" />
+  </svg>    <span class="nav-label">Menu</span>
+  </div>
 
   <div class="nav-item" style="--active-color: #27ae60;" data-link="../menu/cart/cart.php">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
