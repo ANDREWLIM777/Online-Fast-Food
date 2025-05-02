@@ -449,6 +449,13 @@ include '../Admin_Account/db.php';
 </main>
 
 <main class="more-container">
+  <a href="../Report/analysis_report.php" class="more-item">
+    <span>Report</span>
+    <i class="fas fa-angle-right"></i>
+  </a>
+</main>
+
+<main class="more-container">
   <a href="notifications/index.php" class="more-item">
     <span>Notifications</span>
     <i class="fas fa-angle-right"></i>
