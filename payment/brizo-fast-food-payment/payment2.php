@@ -1,10 +1,10 @@
 <?php
 session_start();
-require '../db_connect.php';
+require '../../db_connect.php';
 
 // Check if the user is logged in
 if (!isset($_SESSION['customer_id'])) {
-    header("Location: ../../login.php");
+    header("Location: /Online-Fast-Food/customer/login.php");
     exit();
 }
 
@@ -83,7 +83,7 @@ $stmt->close();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])) {
     header('Content-Type: application/json');
 
-    // Validate CSRF token (Fixed syntax error here)
+    // Validate CSRF token
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         $logMessage("CSRF validation failed for add_payment_method");
         echo json_encode(['status' => 'error', 'message' => 'CSRF token validation failed']);
@@ -248,10 +248,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])
 
 // Handle payment processing
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
-    $logFile = 'payment_errors.log';
-    $logMessage = function($message) use ($logFile) {
-        file_put_contents($logFile, date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, FILE_APPEND);
-    };
     header('Content-Type: application/json');
 
     try {
@@ -631,7 +627,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         <div class="cart-items">
             <h3>Cart Items</h3>
             <?php if (empty($cartItems)): ?>
-                <p>Your cart is empty. <a href="cart.php">Add items to your cart</a>.</p>
+                <p>Your cart is empty. <a href="/Online-Fast-Food/customer/menu/cart/cart.php">Add items to your cart</a>.</p>
             <?php else: ?>
                 <ul>
                     <?php foreach ($cartItems as $item): ?>
@@ -648,7 +644,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         </div>
 
         <!-- Delivery Options -->
-        <form id="paymentForm" action="payment.php" method="POST">
+        <form id="paymentForm" action="/Online-Fast-Food/payment/brizo-fast-food-payment/payment.php" method="POST">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
             <div class="delivery-options">
                 <h3>Delivery Options</h3>
@@ -942,7 +938,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
                 formData.append('phone_number', phoneNumber);
             }
 
-            fetch('payment.php', {
+            fetch('/Online-Fast-Food/payment/brizo-fast-food-payment/payment.php', {
                 method: 'POST',
                 body: formData
             })
@@ -997,14 +993,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             }
             console.log('Sending make_payment request:', formDataEntries);
 
-            fetch('payment.php', {
+            fetch('/Online-Fast-Food/payment/brizo-fast-food-payment/payment.php', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    window.location.href = 'confirmation.php';
+                    window.location.href = '/Online-Fast-Food/payment/brizo-fast-food-payment/confirmation.php';
                 } else {
                     showMessage('error', data.message);
                 }
@@ -1025,4 +1021,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         }
     </script>
 </body>
-</html> 
+</html>

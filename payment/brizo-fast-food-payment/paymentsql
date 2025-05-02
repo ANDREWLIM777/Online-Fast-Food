@@ -1,0 +1,56 @@
+CREATE TABLE IF NOT EXISTS refund_requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    order_id VARCHAR(50) NOT NULL,
+    reason ENUM('wrong-item', 'poor-quality', 'late-delivery', 'other') NOT NULL,
+    details TEXT NOT NULL,
+    status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES payment_history(order_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Payment History Table
+CREATE TABLE IF NOT EXISTS payment_history (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id VARCHAR(50) NOT NULL,
+    date DATETIME NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    status ENUM('pending', 'completed', 'refunded') DEFAULT 'pending',
+    method ENUM('card', 'online_banking', 'digital_wallet') NOT NULL,
+    payment_details VARCHAR(50) DEFAULT NULL,
+    payment_method_id INT DEFAULT NULL,
+    customer_id INT NOT NULL,
+    delivery_method ENUM('pickup', 'delivery') NOT NULL,
+    delivery_address TEXT DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE,
+    FOREIGN KEY (payment_method_id) REFERENCES payment_methods(id) ON DELETE SET NULL,
+    INDEX idx_order_id (order_id),
+    INDEX idx_customer_id (customer_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Payment Methods Table (unchanged from finalized version)
+CREATE TABLE IF NOT EXISTS payment_methods (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    method_type ENUM('card', 'online_banking', 'digital_wallet') NOT NULL,
+    card_type ENUM('visa', 'mastercard', 'jcb', 'amex', 'mydebit', 'unionpay') NULL,
+    bank_name ENUM(
+        'maybank2u', 'cimbclicks', 'rhb', 'publicbank', 'hongleong',
+        'ambank', 'mybsn', 'bankrakyat', 'uob', 'affinbank', 'bankislam',
+        'hsbc', 'banknegaramalaysia', 'alliancebank', 'ocbc', 'bankmuamalat',
+        'standardchartered', 'citibank', 'alrajhi', 'bankrakyatbaloyete'
+    ) NULL,
+    wallet_type ENUM('shopeepay', 'tng', 'grabpay', 'boost', 'googlepay') NULL,
+    card_last_four VARCHAR(4) NULL,
+    expiry_date VARCHAR(5) NULL,
+    phone_number VARCHAR(15) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE,
+    INDEX idx_customer_id (customer_id),
+    INDEX idx_method_type (method_type)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE orders MODIFY COLUMN items TEXT NULL;
