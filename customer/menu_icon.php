@@ -6,9 +6,9 @@
         <span></span>
     </div>
     <nav class="dropdown-menu">
-        <a href="../Main Page/main_page.php">Home</a>
+        <a href="/Online-Fast-Food/customer/menu/menu.php">Home</a>
         <a href="../manage_account/profile.php">Profile</a>
-        <a href="#services">Services</a>
+        <a href="/Online-Fast-Food/customer/payment_history/payment_history.php">Payment History</a>
         <a href="/Online-Fast-Food/customer/logout.php" onclick="return confirm('Are you sure you want to log out?')">Log Out</a>
     </nav>
 </div>

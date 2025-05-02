@@ -2,8 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const forms = document.querySelectorAll('.add-to-cart-form');
 
   forms.forEach(form => {
-    form.addEventListener('submit', async function(e) {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
+
+      // 🛡️ Block guests before animation or fetch
+      if (window.isGuest) {
+        showToast('⚠️ Guests cannot add to cart. Please login first.');
+        return;
+      }
 
       const card = this.closest('.menu-card-square');
       const img = card.querySelector('.product-img');
@@ -11,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const cartCount = document.getElementById('cart-count');
       const itemId = this.dataset.id;
 
-      // Clone the product image for animation
       const imgClone = img.cloneNode(true);
       const rect = img.getBoundingClientRect();
       imgClone.style.position = 'fixed';
@@ -33,31 +38,29 @@ document.addEventListener("DOMContentLoaded", () => {
         imgClone.style.transform = 'scale(0.5)';
       }, 20);
 
-      // Remove clone after animation
       setTimeout(() => imgClone.remove(), 900);
 
-      // Fetch to add_to_cart.php
+      // 🛒 Add to cart AJAX
       try {
-        const response = await fetch('cart/add_to_cart.php', {
+        const res = await fetch('cart/add_to_cart.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: `item_id=${itemId}`
         });
 
-        const result = await response.json();
-        if (result.status === 'success') {
-          cartCount.innerText = result.cartCount;
+        const data = await res.json();
+        if (data.status === 'success') {
+          cartCount.innerText = data.cartCount;
           showToast('🛒 Item added to cart!');
         } else {
-          showToast(result.message || '❌ Failed to add item.');
+          showToast(data.message || '❌ Failed to add item.');
         }
-      } catch (err) {
+      } catch {
         showToast('⚠️ Network error.');
       }
     });
   });
 
-  // Optional toast animation
   function showToast(msg) {
     let toast = document.createElement('div');
     toast.className = 'toast-msg';

@@ -2,13 +2,9 @@
 require 'db_connect.php';
 session_start();
 
-if (!isset($_SESSION['customer_id'])) {
-  header("Location: ../login.php");
-  exit();
-}
-
+// 🛒 Get cart count (only for logged-in customers, not guest)
 $cartCount = 0;
-if (isset($_SESSION['customer_id'])) {
+if (isset($_SESSION['customer_id']) && empty($_SESSION['is_guest'])) {
     $customerId = $_SESSION['customer_id'];
     $stmt = $conn->prepare("SELECT SUM(quantity) AS total_items FROM cart WHERE customer_id = ?");
     $stmt->bind_param("i", $customerId);
@@ -17,7 +13,6 @@ if (isset($_SESSION['customer_id'])) {
     $stmt->fetch();
     $stmt->close();
 }
-
 
 $search = trim($_GET['search'] ?? '');
 $category = trim($_GET['category'] ?? '');
@@ -47,7 +42,6 @@ $menuByCategory = [];
 while ($row = $result->fetch_assoc()) {
     $menuByCategory[$row['category']][] = $row;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -67,17 +61,10 @@ while ($row = $result->fetch_assoc()) {
 <!-- 🛒 Floating Cart Icon -->
 <a href="cart/cart.php" class="cart-floating-btn" id="cart-icon">
   🛒
-  <span id="cart-count" class="cart-count"><?= $cartCount ?></span>
+  <span id="cart-count" class="cart-count"><?= (int)$cartCount ?></span>
 </a>
 
-<!-- 🍟 Menu & Filter UI -->
-<div class="menu-wrapper">
-  <div class="menu-container">
-    ...
-  </div>
-</div>
-
-
+<!-- 🔍 Filter Form -->
 <form method="GET" class="filter-form">
   <input type="text" name="search" placeholder="Search items..." value="<?= htmlspecialchars($search) ?>">
   
@@ -90,51 +77,61 @@ while ($row = $result->fetch_assoc()) {
     <option value="meal" <?= $category == 'meal' ? 'selected' : '' ?>>Meal</option>
   </select>
 
-  <button type="submit">🔍 Search</button>
+  <button type="submit">Search</button>
 </form>
 
-  <?php if (empty($menuByCategory)): ?>
-    <p>No menu items found.</p>
-  <?php else: ?>
-    <?php foreach ($menuByCategory as $category => $items): ?>
-      <section class="menu-category">
-        <h2><?= ucfirst($category) ?></h2>
-        <div class="menu-grid-square">
-          <?php foreach ($items as $item): ?>
-            <div class="menu-card-square">
-              <?php if (!empty($item['photo'])): ?>
-                <img src="/ONLINE-FAST-FOOD/Admin/Manage_Menu_Item/<?= htmlspecialchars($item['photo']) ?>" 
-                     alt="<?= htmlspecialchars($item['item_name']) ?>" 
-                     class="menu-img-square product-img">
+<?php if (!empty($_SESSION['guest_notice'])): ?>
+  <div class="guest-toast"><?= htmlspecialchars($_SESSION['guest_notice']) ?></div>
+  <?php unset($_SESSION['guest_notice']); ?>
+<?php endif; ?>
+
+<!-- 🍔 Menu Items -->
+<?php if (empty($menuByCategory)): ?>
+  <p>No menu items found.</p>
+<?php else: ?>
+  <?php foreach ($menuByCategory as $category => $items): ?>
+    <section class="menu-category">
+      <h2><?= ucfirst($category) ?></h2>
+      <div class="menu-grid-square">
+        <?php foreach ($items as $item): ?>
+          <div class="menu-card-square">
+            <?php if (!empty($item['photo'])): ?>
+              <img src="/ONLINE-FAST-FOOD/Admin/Manage_Menu_Item/<?= htmlspecialchars($item['photo']) ?>" 
+                   alt="<?= htmlspecialchars($item['item_name']) ?>" 
+                   class="menu-img-square product-img">
+            <?php endif; ?>
+
+            <div class="menu-info">
+              <h3><?= htmlspecialchars($item['item_name']) ?></h3>
+              <p class="price">RM <?= number_format($item['price'], 2) ?></p>
+
+              <?php if (!empty($item['promotion'])): ?>
+                <p class="promo-tag">🔥 <?= htmlspecialchars($item['promotion']) ?></p>
               <?php endif; ?>
 
-              <div class="menu-info">
-                <h3><?= htmlspecialchars($item['item_name']) ?></h3>
-                <p class="price">RM <?= number_format($item['price'], 2) ?></p>
+              <?php if (!empty($_SESSION['is_guest'])): ?>
+                <!-- 👤 Guest still needs a form to detect blocking -->
+                <form class="add-to-cart-form guest-block" data-id="<?= $item['id'] ?>">
+                  <button type="submit" class="add-to-cart-btn">🛒 Add to Cart (Guest)</button>
+                </form>
+              <?php else: ?>
+                <!-- 🛒 Normal Customer Form -->
+                <form class="add-to-cart-form" data-id="<?= $item['id'] ?>">
+                  <button type="submit" class="add-to-cart-btn">🛒 Add to Cart</button>
+                  
+                </form>
+              <?php endif; ?>
 
-                <?php if (!empty($item['promotion'])): ?>
-                  <p class="promo-tag">🔥 <?= htmlspecialchars($item['promotion']) ?></p>
-                <?php endif; ?>
-
-                <form class="add-to-cart-form" data-id="<?= $item['id'] ?>" action="cart/add_to_cart.php" method="POST">
-  <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
-  <button type="submit" class="add-to-cart-btn">🛒 Add to Cart</button>
-</form>
-
-
-              </div>
             </div>
-          <?php endforeach; ?>
-        </div>
-      </section>
-    <?php endforeach; ?>
-  <?php endif; ?>
-</div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </section>
+  <?php endforeach; ?>
+<?php endif; ?>
 
+<!--  JS and Footer -->
 <script src="menu.js"></script>
-
 <?php include '../menu_icon.php'; ?>
 <?php include '../footer.php'; ?>
-
-</body>
-</html>
+<?php include '../footer2.php'; ?>

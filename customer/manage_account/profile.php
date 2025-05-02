@@ -2,6 +2,12 @@
 require '../db_connect.php';
 session_start();
 
+if (!empty($_SESSION['is_guest'])) {
+    $_SESSION['guest_notice'] = "Guests cannot access to the profile. Please log in.";
+    header("Location: ../menu/menu.php");
+    exit();
+}
+
 $customerId = $_SESSION['customer_id'] ?? null;
 
 if (!$customerId) {
@@ -49,7 +55,7 @@ $customer = $result->fetch_assoc();
       <p><span>City:</span> <?= htmlspecialchars($customer['city']) ?: '-' ?></p>
       <p><span>Postal Code:</span> <?= htmlspecialchars($customer['postal_code']) ?: '-' ?></p>
       <a href="edit_profile.php" class="edit-profile-link">Edit Profile</a>
-      <a href="javascript:history.back()" class="back-btn">Back</a>
+      <a href="/Online-Fast-Food/customer/menu/menu.php" class="back-btn">Back</a>
 
     </div>
   </div>

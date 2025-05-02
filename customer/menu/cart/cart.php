@@ -2,12 +2,20 @@
 session_start();
 require '../db_connect.php';
 
+//  Block guests from viewing cart
+if (!empty($_SESSION['is_guest'])) {
+    $_SESSION['guest_notice'] = "Guests cannot view the cart. Please log in to continue.";
+    header("Location: ../menu.php");
+    exit();
+}
+
 $customerId = $_SESSION['customer_id'] ?? null;
 if (!$customerId) {
     header("Location: /Online-Fast-Food/customer/login.php");
     exit();
 }
 
+// 🔄 Remove item
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['item_id'])) {
     $itemId = (int) $_POST['item_id'];
     $stmt = $conn->prepare("DELETE FROM cart WHERE customer_id = ? AND item_id = ?");
@@ -41,32 +49,10 @@ while ($row = $result->fetch_assoc()) {
   <title>🛒 Cart - Brizo Fast Food Melaka</title>
   <link rel="stylesheet" href="cart.css">
   <link rel="stylesheet" href="remove_from_cart.css">
-  <style>
-    .update-feedback {
-      position: fixed;
-      top: 80px;
-      right: 40px;
-      background: #2ecc71;
-      color: #fff;
-      padding: 12px 18px;
-      border-radius: 8px;
-      font-weight: bold;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.4s ease;
-      z-index: 9999;
-    }
-    .update-feedback.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
 </head>
 <body>
 
 <div class="cart-wrapper">
-  <div id="update-feedback" class="update-feedback">✅ Cart Updated!</div>
   <h1>Your Cart</h1>
 
   <?php if (empty($cartItems)): ?>
@@ -84,7 +70,7 @@ while ($row = $result->fetch_assoc()) {
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($cartItems as $item):
+        <?php foreach ($cartItems as $item): 
           $subtotal = $item['quantity'] * $item['price'];
           $total += $subtotal;
         ?>
@@ -130,13 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => toast.remove(), 4000);
   }
 
-  const showFeedback = (msg = "✅ Cart Updated!") => {
-    const el = document.getElementById("update-feedback");
-    el.textContent = msg;
-    el.classList.add("show");
-    setTimeout(() => el.classList.remove("show"), 2000);
-  };
-
   document.querySelectorAll('.qty-btn').forEach(btn => {
     btn.addEventListener('click', async function () {
       const row = this.closest('tr');
@@ -170,8 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
           total += parseFloat(td.textContent);
         });
         document.getElementById('total-amount').textContent = 'RM ' + total.toFixed(2);
-
-        showFeedback(); // ✅ Show animated success
       } else {
         alert(data.message || 'Failed to update cart.');
       }
