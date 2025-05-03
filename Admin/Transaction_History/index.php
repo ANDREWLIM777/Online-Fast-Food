@@ -3,14 +3,24 @@ require 'db_conn.php';
 session_start();
 
 function getYears($pdo) {
-    $stmt = $pdo->query("SELECT DISTINCT YEAR(created_at) as year FROM orders ORDER BY year DESC");
+    $stmt = $pdo->query("
+        SELECT DISTINCT YEAR(created_at) as year 
+        FROM (
+            SELECT created_at FROM orders
+            UNION ALL
+            SELECT created_at FROM refund_requests
+        ) AS combined 
+        ORDER BY year DESC
+    ");
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
 }
 
 $years = getYears($pdo);
 $selectedDate = $_GET['date'] ?? null;
+$refundRequests = $pdo->query("SELECT * FROM refund_requests WHERE status = 'approved' ORDER BY created_at DESC LIMIT 20")->fetchAll();
 
-// 查询 orders
+
+// 查询已完成订单
 if ($selectedDate) {
     $stmt = $pdo->prepare("SELECT o.*, c.fullname FROM orders o 
                            JOIN customers c ON o.customer_id = c.id 
@@ -26,26 +36,33 @@ if ($selectedDate) {
 }
 $orders = $stmt->fetchAll();
 
-// 查询 refund_requests
+// 查询已审核通过的退款请求（refund_requests.status = 'approved'）
 if ($selectedDate) {
-    $stmt = $pdo->prepare("SELECT r.id AS refund_id, o.order_id, o.total, r.date AS refund_date, r.status AS refund_status, r.reason, c.fullname 
-                           FROM refund_requests r
-                           JOIN orders o ON r.order_id = o.order_id
-                           JOIN customers c ON o.customer_id = c.id
-                           WHERE DATE(r.date) = ?
-                           ORDER BY r.date DESC");
+    $stmt = $pdo->prepare("
+        SELECT r.id AS refund_id,r.customer_id, r.order_id, r.created_at AS refund_date, r.status AS refund_status, 
+               r.reason, r.details, r.evidence_path, r.admin_notes, c.fullname 
+        FROM refund_requests r
+        LEFT JOIN orders o ON r.order_id = o.order_id
+        LEFT JOIN customers c ON r.customer_id = c.id
+        WHERE DATE(r.created_at) = ? AND r.status = 'approved'
+        ORDER BY r.created_at DESC
+    ");
     $stmt->execute([$selectedDate]);
 } else {
-    $stmt = $pdo->prepare("SELECT r.id AS refund_id, o.order_id, o.total, r.date AS refund_date, r.status AS refund_status, r.reason, c.fullname 
-                           FROM refund_requests r
-                           JOIN orders o ON r.order_id = o.order_id
-                           JOIN customers c ON o.customer_id = c.id
-                           ORDER BY r.date DESC LIMIT 20");
-    $stmt->execute();
+    $stmt = $pdo->query("
+        SELECT r.id AS refund_id, r.customer_id, r.order_id, r.created_at AS refund_date, r.status AS refund_status, 
+               r.reason, r.details, r.evidence_path, r.admin_notes, c.fullname 
+        FROM refund_requests r
+        LEFT JOIN orders o ON r.order_id = o.order_id
+        LEFT JOIN customers c ON r.customer_id = c.id
+        WHERE r.status = 'approved'
+        ORDER BY r.created_at DESC LIMIT 20
+    ");
 }
 $refundRequests = $stmt->fetchAll();
 
-// 查询 orders refunded
+
+// 查询订单中 status = refunded 的记录
 if ($selectedDate) {
     $stmt = $pdo->prepare("SELECT o.id AS order_id, o.order_id, o.total, o.created_at AS refund_date, o.status AS refund_status, NULL AS reason, c.fullname 
                            FROM orders o
@@ -63,10 +80,9 @@ if ($selectedDate) {
 }
 $refundOrders = $stmt->fetchAll();
 
-// 合并 refund_requests + refunded orders
-$refunds = array_merge($refundRequests, $refundOrders);
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -224,11 +240,15 @@ body::before {
     <i class="fas fa-house"></i> Back To Main Page
   </a>
     <h1>📄 Transaction History</h1>
-    <div style="width: 230px;"></div>
+    <div style="width: 0px;"></div>
+    <div style="text-align: center; margin-bottom: 1rem;">
+    <span style="color: #4CAF50">Approved Refunds: <?= count($refundRequests) ?></span> | 
+    <span style="color: #FF5722">Refunded Orders: <?= count($refundOrders) ?></span>
+</div>
 </div>
 
 <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('orders')">Order History</button>
+    <button class="tab-btn" onclick="switchTab('orders')">Order History</button>
     <button class="tab-btn" onclick="switchTab('refunds')">Refund History</button>
 </div>
 
@@ -264,25 +284,84 @@ body::before {
 </div>
 
 <div id="refunds" class="tab-content" style="display:none">
-<?php foreach ($refunds as $r): ?>
-    <div class="transaction-card">
-        <h3><?= htmlspecialchars($r['order_id']) ?> | Status: <?= htmlspecialchars($r['refund_status']) ?></h3>
-        <div class="transaction-meta"><?= htmlspecialchars($r['fullname']) ?> | <?= date('Y-m-d H:i', strtotime($r['refund_date'])) ?></div>
-        <?php if (!empty($r['reason'])): ?>
-            <p><strong>Reason:</strong> <?= htmlspecialchars($r['reason']) ?></p>
+<?php foreach ($refundRequests as $r): ?>
+    <div class="transaction-card" style="border-left-color: #4CAF50;">
+        <h3><?= htmlspecialchars($r['order_id']) ?> | 
+            Status: <span style="color: #4CAF50">APPROVED</span>
+        </h3>
+        <div class="transaction-meta">
+            <?= htmlspecialchars($r['fullname'] ?? 'Unknown') ?> | 
+            <?= date('Y-m-d H:i', strtotime($r['refund_date'])) ?>
+        </div>
+        <p><strong>Reason:</strong> <?= htmlspecialchars($r['reason']) ?></p>
+        <?php if (!empty($r['details'])): ?>
+            <p><strong>Details:</strong> <?= nl2br(htmlspecialchars($r['details'])) ?></p>
         <?php endif; ?>
-        <a href="view_refund.php?id=<?= $r['refund_id'] ?? $r['order_id'] ?>" class="view-btn"><i class="fas fa-eye"></i> View</a>
+        <?php if (!empty($r['evidence_path'])): ?>
+            <p><strong>Evidence:</strong><br>
+            <img src="<?= htmlspecialchars($r['evidence_path']) ?>" style="max-width: 300px;">
+            </p>
+        <?php endif; ?>
+        <a href="view_refund.php?id=<?= $r['refund_id'] ?>" class="view-btn">
+            <i class="fas fa-eye"></i> View
+        </a>
     </div>
 <?php endforeach; ?>
+
+
+
+    <?php foreach ($refundOrders as $o): ?>
+        <div class="transaction-card" style="border-left-color: #FF5722;">
+            <h3><?= htmlspecialchars($o['order_id']) ?> | 
+                Status: <span style="color: #FF5722">REFUNDED</span>
+            </h3>
+            <div class="transaction-meta">
+                <?= htmlspecialchars($o['fullname']) ?> | 
+                <?= date('Y-m-d H:i', strtotime($o['refund_date'])) ?>
+            </div>
+            <a href="view_refund.php?id=<?= $o['order_id'] ?>" class="view-btn">
+                <i class="fas fa-eye"></i> View
+            </a>
+        </div>
+    <?php endforeach; ?>
 </div>
 
+
 <script>
+// 修改后的 switchTab 函数
 function switchTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(content => content.style.display = 'none');
-  document.getElementById(tab).style.display = 'block';
-  document.querySelector(`.tab-btn[onclick*="${tab}"]`).classList.add('active');
+  // 使用平滑滚动到顶部
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
+  // 使用 URL 参数代替 hash
+  const url = new URL(window.location);
+  url.searchParams.set('tab', tab);
+  window.history.replaceState(null, '', url);
+
+  // 原有切换逻辑保持不变
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.onclick.toString().includes(tab));
+  });
+  
+  document.querySelectorAll('.tab-content').forEach(content => {
+    content.style.display = content.id === tab ? 'block' : 'none';
+  });
 }
+
+// 修改页面加载逻辑
+window.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const targetTab = urlParams.get('tab') || 'orders';
+  
+  // 延迟执行确保 DOM 加载完成
+  setTimeout(() => {
+    switchTab(targetTab);
+    window.scrollTo(0, 0); // 强制回顶
+  }, 50);
+});
 
 function filterByDate() {
   const year = document.getElementById('yearFilter').value;

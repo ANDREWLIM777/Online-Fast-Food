@@ -250,7 +250,7 @@ body::before {
 <!-- Refund Request -->
 <div id="refund" class="tab-page">
   <?php
-  $refunds = $pdo->query("SELECT * FROM refund_requests WHERE status = 'pending' ORDER BY date DESC")->fetchAll();
+  $refunds = $pdo->query("SELECT * FROM refund_requests WHERE status = 'pending' ORDER BY created_at DESC")->fetchAll();
   foreach ($refunds as $r):
   ?>
   <div class="refund-card">
