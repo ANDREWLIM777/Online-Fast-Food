@@ -433,11 +433,11 @@ body {
             <p>Real-time order tracking and processing</p>
         </div>
 
-        <div class="card" onclick="location.href='../Admin_Account/register.php'">
-              <i class="fas fa-id-card card-icon"></i>
-              <h3>New Admin Registration</h3>
-              <p>Create and authorize new administrator accounts</p>
-        </div>
+        <div class="card" onclick="location.href='../Report/analysis_report.php'">
+        <i class="fas fa-scale-balanced card-icon"></i>
+    <h3>Financial Performance Report</h3>
+    <p>Comprehensive analysis of operational income, expenses, and net profit trends</p>
+    </div>
 
         <div class="card" onclick="location.href='../Manage_Customer/index.php'">
         <i class="fas fa-user-shield card-icon"></i>

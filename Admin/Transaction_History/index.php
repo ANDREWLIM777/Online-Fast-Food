@@ -39,8 +39,9 @@ $orders = $stmt->fetchAll();
 // 查询已审核通过的退款请求（refund_requests.status = 'approved'）
 if ($selectedDate) {
     $stmt = $pdo->prepare("
-        SELECT r.id AS refund_id,r.customer_id, r.order_id, r.created_at AS refund_date, r.status AS refund_status, 
-               r.reason, r.details, r.evidence_path, r.admin_notes, c.fullname 
+        SELECT r.id AS refund_id, r.customer_id, r.order_id, r.created_at AS refund_date, 
+        r.status AS refund_status, r.reason, r.details, r.evidence_path, r.admin_notes, 
+        c.fullname, r.total
         FROM refund_requests r
         LEFT JOIN orders o ON r.order_id = o.order_id
         LEFT JOIN customers c ON r.customer_id = c.id
@@ -50,8 +51,9 @@ if ($selectedDate) {
     $stmt->execute([$selectedDate]);
 } else {
     $stmt = $pdo->query("
-        SELECT r.id AS refund_id, r.customer_id, r.order_id, r.created_at AS refund_date, r.status AS refund_status, 
-               r.reason, r.details, r.evidence_path, r.admin_notes, c.fullname 
+        SELECT r.id AS refund_id, r.customer_id, r.order_id, r.created_at AS refund_date, 
+        r.status AS refund_status, r.reason, r.details, r.evidence_path, r.admin_notes, 
+        c.fullname, r.total
         FROM refund_requests r
         LEFT JOIN orders o ON r.order_id = o.order_id
         LEFT JOIN customers c ON r.customer_id = c.id
@@ -287,6 +289,7 @@ body::before {
 <?php foreach ($refundRequests as $r): ?>
     <div class="transaction-card" style="border-left-color: #4CAF50;">
         <h3><?= htmlspecialchars($r['order_id']) ?> | 
+        RM <?= number_format($r['total'] ?? 0, 2) ?> |
             Status: <span style="color: #4CAF50">APPROVED</span>
         </h3>
         <div class="transaction-meta">
@@ -313,6 +316,7 @@ body::before {
     <?php foreach ($refundOrders as $o): ?>
         <div class="transaction-card" style="border-left-color: #FF5722;">
             <h3><?= htmlspecialchars($o['order_id']) ?> | 
+            RM <?= number_format($o['total'] ?? 0, 2) ?> |
                 Status: <span style="color: #FF5722">REFUNDED</span>
             </h3>
             <div class="transaction-meta">
