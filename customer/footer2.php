@@ -1,13 +1,13 @@
 <footer class="site-footer">
   <div class="footer-columns">
-  <link rel="stylesheet" href="../footer2.css">
+  <link rel="stylesheet" href="/Online-Fast-Food/customer/footer2.css">
 
     <div class="footer-col">
       <h4>Company</h4>
       <ul>
         <li><a href="../brizo/about_brizo.php">About Brizo</a></li>
         <li><a href="#">Our Story</a></li>
-        <li><a href="/Online-Fast-Food/customer/notification/notification.php">Notifications</a></li>
+        <li><a href="/Online-Fast-Food/customer/customer_notification/customer_notification.php">Notifications</a></li>
         <li><a href="#">Careers</a></li>
       </ul>
     </div>
@@ -16,7 +16,7 @@
       <h4>Support</h4>
       <ul>
         <li><a href="#">Help Center</a></li>
-        <li><a href="#">Track My Order</a></li>
+        <li><a href="../orders/orders.php">My Orders</a></li>
         <li><a href="#">Feedback</a></li>
         <li><a href="#">FAQs</a></li>
       </ul>
@@ -26,7 +26,7 @@
       <h4>Services</h4>
       <ul>
         <li><a href="#">Catering</a></li>
-        <li><a href="#">Gift Cards</a></li>
+        <li><a href="/Online-Fast-Food/customer/notification/notification.php">News</a></li>
         <li><a href="#">Party Packages</a></li>
         <li><a href="#">e-Invoice</a></li>
       </ul>

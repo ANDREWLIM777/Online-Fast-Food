@@ -53,9 +53,19 @@ while ($row = $result->fetch_assoc()) {
   <link rel="stylesheet" href="remove_from_cart.css">
 </head>
 <body>
+
 <div class="cart-wrapper">
-  <div id="update-feedback" class="update-feedback">✅ Cart Updated!</div>
-  <h1>Your Cart</h1>
+<div class="ultra-toast" id="ultra-toast">
+  <div class="checkmark-animation">
+    <svg viewBox="0 0 52 52">
+      <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+      <path class="checkmark-check" fill="none" d="M14 27l8 8 16-16"/>
+    </svg>
+  </div>
+  <div class="toast-text">✅ Cart Updated!</div>
+</div>
+
+<h1>Your Cart</h1>
 
   <?php if (empty($cartItems)): ?>
     <p>Your cart is empty.</p>
@@ -100,28 +110,49 @@ while ($row = $result->fetch_assoc()) {
     </table>
 
     <a href="../menu.php" class="back-menu">⬅️ Continue Shopping</a>
-    <a href="payment.php" class="proceed-payment">Proceed to Payment ➡️</a>
+
+    <a href="../cart/payment.php" class="back-menu">Proceed to Payment ➡️</a>
   <?php endif; ?>
 </div>
 
 <?php if (isset($_GET['removed']) && $_GET['removed'] == 1): ?>
-  <div class="toast-message" id="toast">Item successfully removed!</div>
+  <div class="ultra-toast show">
+    <div class="checkmark-animation">
+      <svg viewBox="0 0 52 52">
+        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" />
+        <path class="checkmark-check" fill="none" d="M14 27l8 8 16-16" />
+      </svg>
+    </div>
+    <div class="toast-text">🗑️ Item successfully removed!</div>
+  </div>
 <?php endif; ?>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const toast = document.querySelector('.ultra-toast.show');
+  if (toast) {
+    setTimeout(() => toast.classList.remove('show'), 2500);
+    setTimeout(() => toast.remove(), 3000);
+  }
+});
+</script>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const toast = document.getElementById('toast');
   if (toast) {
     toast.classList.add('show');
-    setTimeout(() => toast.remove(), 4000);
+    setTimeout(() => toast.remove(), 3000);
   }
 
   const showFeedback = (msg = "✅ Cart Updated!") => {
-    const el = document.getElementById("update-feedback");
-    el.textContent = msg;
-    el.classList.add("show");
-    setTimeout(() => el.classList.remove("show"), 2000);
+    const toast = document.getElementById("ultra-toast");
+    toast.querySelector(".toast-text").textContent = msg;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2500);
   };
+  
 
   document.querySelectorAll('.qty-btn').forEach(btn => {
     btn.addEventListener('click', async function () {
@@ -163,5 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+<script src="cart.js"></script>
+<?php include '../../menu_icon.php'; ?>
+<?php include '../../footer.php'; ?>
+<?php include '../../footer2.php'; ?>
 </body>
 </html>

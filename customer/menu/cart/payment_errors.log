@@ -18,3 +18,112 @@
 2025-05-02 03:06:23 - Item: Crispy Whole Chicken Set, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png
 2025-05-02 03:06:23 - Cart items: [{"item_id":3,"quantity":10,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":4,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":9,"quantity":3,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png","category":"drink"},{"item_id":12,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"},{"item_id":13,"quantity":1,"price":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png","category":"meal"}]
 2025-05-02 03:06:23 - Calculated total: 249
+2025-05-02 03:10:34 - Customer ID: 45
+2025-05-02 03:10:34 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-02 03:10:34 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-02 03:10:34 - Item: Iced Lemon Tea, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-05-02 03:10:34 - Item: Mac and Cheese Wedge Bites, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-05-02 03:10:34 - Cart items: [{"item_id":3,"quantity":10,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":5,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":9,"quantity":3,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png","category":"drink"},{"item_id":12,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"}]
+2025-05-02 03:10:34 - Calculated total: 198.5
+2025-05-02 03:18:04 - Customer ID: 45
+2025-05-02 03:18:04 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-02 03:18:04 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-02 03:18:04 - Item: Iced Lemon Tea, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-05-02 03:18:04 - Item: Mac and Cheese Wedge Bites, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-05-02 03:18:04 - Cart items: [{"item_id":3,"quantity":10,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":5,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":9,"quantity":3,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png","category":"drink"},{"item_id":12,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"}]
+2025-05-02 03:18:04 - Calculated total: 198.5
+2025-05-02 03:18:33 - Customer ID: 45
+2025-05-02 03:18:33 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-02 03:18:33 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-02 03:18:33 - Item: Iced Lemon Tea, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-05-02 03:18:33 - Item: Mac and Cheese Wedge Bites, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-05-02 03:18:33 - Cart items: [{"item_id":3,"quantity":10,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":5,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":9,"quantity":3,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png","category":"drink"},{"item_id":12,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"}]
+2025-05-02 03:18:33 - Calculated total: 198.5
+2025-05-02 03:27:39 - Customer ID: 45
+2025-05-02 03:27:39 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-02 03:27:39 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-02 03:27:39 - Item: Iced Lemon Tea, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-05-02 03:27:39 - Item: Mac and Cheese Wedge Bites, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-05-02 03:27:39 - Cart items: [{"item_id":3,"quantity":10,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":5,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":9,"quantity":3,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png","category":"drink"},{"item_id":12,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"}]
+2025-05-02 03:27:39 - Calculated total: 198.5
+2025-05-02 03:27:46 - Customer ID: 45
+2025-05-02 03:27:46 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-02 03:27:46 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-02 03:27:46 - Item: Iced Lemon Tea, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-05-02 03:27:46 - Item: Mac and Cheese Wedge Bites, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-05-02 03:27:46 - Cart items: [{"item_id":3,"quantity":10,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":5,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":9,"quantity":4,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png","category":"drink"},{"item_id":12,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"}]
+2025-05-02 03:27:46 - Calculated total: 201.5
+2025-05-02 03:27:55 - Customer ID: 45
+2025-05-02 03:27:55 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-02 03:27:55 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-02 03:27:55 - Item: Iced Lemon Tea, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-05-02 03:27:55 - Item: Mac and Cheese Wedge Bites, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-05-02 03:27:55 - Cart items: [{"item_id":3,"quantity":10,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":5,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":9,"quantity":4,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png","category":"drink"},{"item_id":12,"quantity":3,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"}]
+2025-05-02 03:27:55 - Calculated total: 207.5
+2025-05-02 03:28:01 - Customer ID: 45
+2025-05-02 03:28:01 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-02 03:28:01 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-02 03:28:01 - Item: Iced Lemon Tea, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-05-02 03:28:01 - Item: Mac and Cheese Wedge Bites, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-05-02 03:28:01 - Cart items: [{"item_id":3,"quantity":10,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":5,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":9,"quantity":4,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png","category":"drink"},{"item_id":12,"quantity":3,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"}]
+2025-05-02 03:28:01 - Calculated total: 207.5
+2025-05-02 03:41:32 - Customer ID: 45
+2025-05-02 03:41:32 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-02 03:41:32 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-02 03:41:32 - Item: Iced Lemon Tea, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-05-02 03:41:32 - Item: Mac and Cheese Wedge Bites, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-05-02 03:41:32 - Cart items: [{"item_id":3,"quantity":10,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":5,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":9,"quantity":4,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png","category":"drink"},{"item_id":12,"quantity":3,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"}]
+2025-05-02 03:41:32 - Calculated total: 207.5
+2025-05-02 03:45:09 - Customer ID: 45
+2025-05-02 03:45:09 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-02 03:45:09 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-02 03:45:09 - Item: Iced Lemon Tea, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-05-02 03:45:09 - Item: Mac and Cheese Wedge Bites, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-05-02 03:45:09 - Cart items: [{"item_id":3,"quantity":10,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":5,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":9,"quantity":4,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png","category":"drink"},{"item_id":12,"quantity":3,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"}]
+2025-05-02 03:45:09 - Calculated total: 207.5
+2025-05-02 03:45:09 - Attempting to add payment method: method_type=online_banking
+2025-05-02 03:45:09 - Payment method added successfully: ID 1
+2025-05-02 03:45:15 - Customer ID: 45
+2025-05-02 03:45:15 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-02 03:45:15 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-02 03:45:15 - Item: Iced Lemon Tea, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-05-02 03:45:15 - Item: Mac and Cheese Wedge Bites, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-05-02 03:45:15 - Cart items: [{"item_id":3,"quantity":10,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":5,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":9,"quantity":4,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png","category":"drink"},{"item_id":12,"quantity":3,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"}]
+2025-05-02 03:45:15 - Calculated total: 207.5
+2025-05-02 03:45:15 - Received make_payment request: {"csrf_token":"5a7085021049baf60bf64654179c2f564e19cf831a779b2cc8465cd3abd66fe9","delivery_method":"pickup","delivery_address":"","payment_method_id":"1","method":"online_banking","amount":"207.5","make_payment":"1"}
+2025-05-02 03:45:15 - Received amount: 207.5, Expected total: 207.5
+2025-05-02 03:45:15 - Delivery method: pickup, Delivery address: N/A
+2025-05-02 03:45:15 - Payment method: online_banking, Payment method ID: 1
+2025-05-02 03:45:15 - Generated order_id: ORD-681423ABAC238
+2025-05-02 03:45:15 - Current database: brizo
+2025-05-02 03:45:15 - Table 'orders' exists: Yes
+2025-05-02 03:45:15 - Columns in 'orders' table: ["id","order_code","customer_id","items","total","status","created_at"]
+2025-05-02 03:45:15 - Executing SQL for orders insert: 
+            INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
+            VALUES (?, ?, ?, ?, 'pending', NOW())
+        
+2025-05-02 03:45:15 - Exception in make_payment: Unknown column 'order_id' in 'field list'
+2025-05-02 14:11:59 - Customer ID: 45
+2025-05-02 14:11:59 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-02 14:11:59 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-02 14:11:59 - Item: Iced Lemon Tea, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-05-02 14:11:59 - Item: Mac and Cheese Wedge Bites, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-05-02 14:11:59 - Item: Sprite (Soft Drink), Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74ac2d2f20.jpg
+2025-05-02 14:11:59 - Item: Crispy Whole Chicken Set, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png
+2025-05-02 14:11:59 - Item: Crispy French Fries, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87c9a83952.png
+2025-05-02 14:11:59 - Cart items: [{"item_id":3,"quantity":11,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":25,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":9,"quantity":13,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png","category":"drink"},{"item_id":12,"quantity":25,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"},{"item_id":8,"quantity":27,"price":"2.50","item_name":"Sprite (Soft Drink)","photo":"uploads\/67f74ac2d2f20.jpg","category":"drink"},{"item_id":13,"quantity":8,"price":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png","category":"meal"},{"item_id":11,"quantity":69,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png","category":"snacks"}]
+2025-05-02 14:11:59 - Calculated total: 1407
+2025-05-02 18:19:14 - Customer ID: 45
+2025-05-02 18:19:14 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-02 18:19:14 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-02 18:19:14 - Item: Iced Lemon Tea, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-05-02 18:19:14 - Item: Mac and Cheese Wedge Bites, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-05-02 18:19:14 - Item: Crispy French Fries, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87c9a83952.png
+2025-05-02 18:19:14 - Cart items: [{"item_id":3,"quantity":14,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":25,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":9,"quantity":51,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png","category":"drink"},{"item_id":12,"quantity":33,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"},{"item_id":11,"quantity":77,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png","category":"snacks"}]
+2025-05-02 18:19:14 - Calculated total: 1119.5
+2025-05-02 18:28:11 - Customer ID: 45
+2025-05-02 18:28:11 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-02 18:28:11 - Item: Mac and Cheese Wedge Bites, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-05-02 18:28:11 - Item: Crispy French Fries, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87c9a83952.png
+2025-05-02 18:28:11 - Cart items: [{"item_id":5,"quantity":25,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":12,"quantity":33,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png","category":"snacks"},{"item_id":11,"quantity":77,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png","category":"snacks"}]
+2025-05-02 18:28:11 - Calculated total: 770.5

@@ -94,19 +94,40 @@ h1 {
   color: #999;
 }
 
-.back-btn {
+.back-menu {
   display: inline-block;
-  margin-top: 20px;
-  background: #ffa200;
+  margin-top: 34px; 
+  padding: 12px 22px;
+  background: linear-gradient(145deg, #28a745, #218838);
   color: white;
-  padding: 12px 20px;
-  border-radius: 30px;
+  font-weight: 600;
+  border-radius: 12px;
   text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: background 0.3s ease;
+  font-size: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.back-btn:hover {
-  background: #ff8200;
+.back-menu::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: skewX(-20deg);
+  transition: 0.5s;
+}
+
+.back-menu:hover {
+  background: linear-gradient(145deg, #218838, #1e7e34);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+.back-menu:hover::before {
+  left: 120%;
 }

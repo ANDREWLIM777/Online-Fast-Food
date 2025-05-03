@@ -1,0 +1,38 @@
+.notification-bell {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    color: #444;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .notification-bell:hover {
+    color: #d62828;
+  }
+  
+  .bell-icon {
+    width: 28px;
+    height: 28px;
+    stroke-width: 1.8;
+  }
+  
+  .notif-count {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #d62828;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  

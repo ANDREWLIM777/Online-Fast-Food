@@ -2,78 +2,56 @@
 session_start();
 require '../db_connect.php';
 
-// 🛡️ Optional guest restriction
-if (isset($_SESSION['is_guest']) && $_SESSION['is_guest']) {
-    header("Location: ../menu/menu.php?error=guest_cannot_view_notifications");
-    exit;
-}
+// (Optional) Block guests or non-admins if needed
+// if (!isset($_SESSION['admin_id'])) { header("Location: login.php"); exit(); }
 
-// 📥 Fetch notifications with original and repost info
-$notifications = [];
-$stmt = $conn->prepare("
-    SELECT 
-        n.title, 
-        n.message, 
-        n.created_at, 
-        n.is_pinned, 
-        a1.fullname AS created_by_name,
-        n.reposted_at, 
-        a2.fullname AS reposted_by_name
-    FROM notifications n
-    JOIN admin a1 ON n.created_by = a1.id
-    LEFT JOIN admin a2 ON n.reposted_by = a2.id
-    ORDER BY n.is_pinned DESC, n.created_at DESC
-");
+$query = "
+  SELECT n.*, a1.name AS created_by_name, a2.name AS reposted_by_name
+  FROM notifications n
+  JOIN admin a1 ON n.created_by = a1.id
+  LEFT JOIN admin a2 ON n.reposted_by = a2.id
+  ORDER BY n.is_pinned DESC, n.created_at DESC
+";
 
-if ($stmt && $stmt->execute()) {
-    $result = $stmt->get_result();
-    while ($row = $result->fetch_assoc()) {
-        $notifications[] = $row;
-    }
-    $stmt->close();
-} else {
-    die("❌ Failed to fetch notifications.");
-}
+$result = $conn->query($query);
+$notifications = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>🛎️ Notifications - Brizo Fast Food</title>
+  <title>📣 Notifications - Brizo Fast Food Melaka</title>
   <link rel="stylesheet" href="notification.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  <div class="notification-container">
+    <h1>📣 Announcements & Notifications</h1>
 
-<div class="notification-container">
-  <h1>🛎️ Latest Notifications</h1>
+    <?php if (empty($notifications)): ?>
+      <p>No notifications to show.</p>
+    <?php else: ?>
+      <ul class="notification-list">
+        <?php foreach ($notifications as $n): ?>
+          <li class="notification <?= $n['is_pinned'] ? 'pinned' : '' ?>">
+            <h2><?= htmlspecialchars($n['title']) ?></h2>
+            <p><?= nl2br(htmlspecialchars($n['message'])) ?></p>
+            <div class="meta">
+              <span>🕒 <?= date("d M Y, h:i A", strtotime($n['created_at'])) ?></span>
+              <span>👤 Posted by: <?= htmlspecialchars($n['created_by_name']) ?></span>
+              <?php if ($n['reposted_by_name']): ?>
+                <span>🔁 Reposted by <?= htmlspecialchars($n['reposted_by_name']) ?> at <?= date("d M Y, h:i A", strtotime($n['reposted_at'])) ?></span>
+              <?php endif; ?>
+              <?php if ($n['is_pinned']): ?>
+                <span class="badge">📌 Pinned</span>
+              <?php endif; ?>
+            </div>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    <?php endif; ?>
 
-  <?php if (empty($notifications)): ?>
-    <p class="no-notice">No announcements at the moment.</p>
-  <?php else: ?>
-    <?php foreach ($notifications as $note): ?>
-      <div class="notice <?= $note['is_pinned'] ? 'pinned' : '' ?>">
-        <?php if ($note['is_pinned']): ?>
-          <span class="pin-tag">📌 Pinned</span>
-        <?php endif; ?>
-        
-        <h2><?= htmlspecialchars($note['title']) ?></h2>
-        <p class="msg"><?= nl2br(htmlspecialchars($note['message'])) ?></p>
-
-        <div class="meta">
-          Posted by <strong><?= htmlspecialchars($note['created_by_name']) ?></strong>
-          on <?= date('d M Y, H:i', strtotime($note['created_at'])) ?>
-          <?php if (!empty($note['reposted_by_name'])): ?>
-            <br><small>♻️ Reposted by <?= htmlspecialchars($note['reposted_by_name']) ?> 
-            on <?= date('d M Y, H:i', strtotime($note['reposted_at'])) ?></small>
-          <?php endif; ?>
-        </div>
-      </div>
-    <?php endforeach; ?>
-  <?php endif; ?>
-
-  <a href="../menu/menu.php" class="back-btn">⬅️ Back to Menu</a>
-</div>
-
+    <a href="/Online-Fast-Food/customer/menu/menu.php" class="back-menu">⬅️ Back</a>
+  </div>
+  
 </body>
 </html>

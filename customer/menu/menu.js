@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await res.json();
         if (data.status === 'success') {
           cartCount.innerText = data.cartCount;
-          showToast('🛒 Item added to cart!');
+          showUltraToast('🛒 Item added to cart!');
         } else {
           showToast(data.message || '❌ Failed to add item.');
         }
@@ -61,13 +61,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  function showToast(msg) {
-    let toast = document.createElement('div');
-    toast.className = 'toast-msg';
-    toast.innerText = msg;
+  function showUltraToast(message = 'Item added to cart!') {
+    const toast = document.createElement('div');
+    toast.className = 'ultra-toast';
+  
+    toast.innerHTML = `
+      <div class="checkmark-animation">
+        <svg viewBox="0 0 52 52">
+          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+          <path class="checkmark-check" fill="none" d="M14 27l8 8 16-16"/>
+        </svg>
+      </div>
+      <div class="toast-text">${message}</div>
+    `;
+  
     document.body.appendChild(toast);
-    setTimeout(() => toast.classList.add('show'), 10);
-    setTimeout(() => toast.classList.remove('show'), 4000);
-    setTimeout(() => toast.remove(), 4500);
+  
+    setTimeout(() => toast.classList.add('show'), 50);
+    setTimeout(() => toast.classList.remove('show'), 2500);
+    setTimeout(() => toast.remove(), 3000);
   }
+  
+  
 });
