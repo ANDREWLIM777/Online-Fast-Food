@@ -123,6 +123,7 @@ body::before {
         display: flex;
   flex-direction: column;
   gap: 30px;
+  padding-bottom: 50px;
   max-width: 700px;
   margin: auto;
     }

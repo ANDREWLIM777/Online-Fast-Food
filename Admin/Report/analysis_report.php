@@ -229,9 +229,9 @@ body::before {
 
         // Calculate refunds from refund requests
         $refunds = 0;
-        $stmt = $pdo->prepare("SELECT SUM(rr.total) FROM refund_requests rr
-                      WHERE rr.status = 'completed'
-                      AND DATE_FORMAT(rr.created_at, '%Y-%m') = ?");
+        $stmt = $pdo->prepare("SELECT SUM(r.total) FROM refund_requests r
+                      WHERE r.status = 'approved'
+                      AND DATE_FORMAT(r.created_at, '%Y-%m') = ?");
         $stmt->execute([$selected_month]);
         $refunds = $stmt->fetchColumn();
 
@@ -268,21 +268,21 @@ body::before {
 
         <!-- Detailed Report Table -->
         <h3>Detailed Financial Report for <?= $selected_month ?></h3>
-        <table>
-            <tr><th>Income</th><td><?= number_format($income, 2) ?></td></tr>
-            <tr><th>Refunds</th><td><?= number_format($refunds, 2) ?></td></tr>
-            <?php if($expenses): ?>
-                <tr><th>Electricity</th><td><?= $expenses['electricity'] ?></td></tr>
-                <tr><th>Water</th><td><?= $expenses['water'] ?></td></tr>
-                <tr><th>Salaries</th><td><?= $expenses['salaries'] ?></td></tr>
-                <tr><th>Rent</th><td><?= $expenses['rent'] ?></td></tr>
-                <tr><th>Cost</th><td><?= $expenses['cost'] ?></td></tr>
-                <tr><th>Tax</th><td><?= $expenses['tax'] ?></td></tr>
-                <tr><th>Other</th><td><?= $expenses['other'] ?></td></tr>
-                <tr><th>Total Expenses</th><td><?= $total_expenses ?></td></tr>
-                <tr><th>Net Profit</th><td><?= $net_profit ?></td></tr>
-            <?php endif; ?>
-        </table>
+<table>
+    <tr><th>Income</th><td>RM <?= number_format($income, 2) ?></td></tr>
+    <tr><th>Refunds</th><td>RM <?= number_format($refunds, 2) ?></td></tr>
+    <?php if($expenses): ?>
+    <tr><th>Electricity</th><td>RM <?= number_format($expenses['electricity'], 2) ?></td></tr>
+    <tr><th>Water</th><td>RM <?= number_format($expenses['water'], 2) ?></td></tr>
+    <tr><th>Salaries</th><td>RM <?= number_format($expenses['salaries'], 2) ?></td></tr>
+    <tr><th>Rent</th><td>RM <?= number_format($expenses['rent'], 2) ?></td></tr>
+    <tr><th>Cost</th><td>RM <?= number_format($expenses['cost'], 2) ?></td></tr>
+    <tr><th>Tax</th><td>RM <?= number_format($expenses['tax'], 2) ?></td></tr>
+    <tr><th>Other</th><td>RM <?= number_format($expenses['other'], 2) ?></td></tr>
+    <tr><th>Total Expenses</th><td>RM <?= number_format($total_expenses, 2) ?></td></tr>
+    <tr><th>Net Profit</th><td>RM <?= number_format($net_profit, 2) ?></td></tr>
+    <?php endif; ?>
+</table>
 
         <script>
             // Expense Distribution Pie Chart

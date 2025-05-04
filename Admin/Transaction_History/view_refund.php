@@ -29,10 +29,11 @@ if (!$id || !$refund) {
         $orderId = $_GET['id'] ?? null;
     }
     // 查 orders 表中的 refunded 状态
-    $stmt = $pdo->prepare("SELECT o.id AS real_order_id, o.order_id, o.created_at AS order_date, o.total, o.status, c.fullname, c.email， 
-                           FROM orders o
-                           JOIN customers c ON o.customer_id = c.id
-                           WHERE o.order_id = ? AND o.status = 'refunded'");
+    $stmt = $pdo->prepare("
+    SELECT o.id AS real_order_id, o.order_id, o.created_at AS order_date, o.total, o.status, c.fullname, c.email
+    FROM orders o
+    LEFT JOIN customers c ON o.customer_id = c.id
+    WHERE o.order_id = ? AND o.status = 'refunded'");
     $stmt->execute([$orderId]);
     $refund = $stmt->fetch();
 

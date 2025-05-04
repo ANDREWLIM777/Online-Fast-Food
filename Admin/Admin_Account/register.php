@@ -206,7 +206,7 @@ body::before {
 <div class="header">
 
     <div class="form-container">
-    <a href="../Main Page/main_page.php" class="form-back-btn">
+    <a href="../More/more.php" class="form-back-btn">
         <i class="fas fa-chevron-left"></i>
     </a>
     

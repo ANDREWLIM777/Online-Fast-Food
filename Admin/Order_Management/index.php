@@ -19,6 +19,7 @@ session_start();
       color: #eee;
       margin: 0;
       padding: 2rem;
+      padding-bottom: 50px;
     }
 
                 /* 背景发光环 */
@@ -222,7 +223,7 @@ body::before {
     $items = json_decode($order['items'], true);
   ?>
   <div class="order-card">
-    <h3>🧾 Order: <?= htmlspecialchars($order['order_code']) ?></h3>
+    <h3>🧾 Order: <?= htmlspecialchars($order['order_id']) ?></h3>
     <ul>
       <?php foreach ($items as $i): 
         $item = $pdo->prepare("SELECT item_name FROM menu_items WHERE id = ?");

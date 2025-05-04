@@ -97,6 +97,7 @@ $refundOrders = $stmt->fetchAll();
       background: #121212;
       color: #eee;
       padding: 2rem;
+      padding-bottom: 60px;
     }
 
                     /* 背景发光环 */
@@ -323,8 +324,6 @@ body::before {
                 <?= htmlspecialchars($o['fullname']) ?> | 
                 <?= date('Y-m-d H:i', strtotime($o['refund_date'])) ?>
             </div>
-            <a href="view_refund.php?id=<?= $o['order_id'] ?>" class="view-btn">
-                <i class="fas fa-eye"></i> View
             </a>
         </div>
     <?php endforeach; ?>
