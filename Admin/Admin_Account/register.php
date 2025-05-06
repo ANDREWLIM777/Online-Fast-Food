@@ -1,8 +1,9 @@
 <?php
-/* 注册处理逻辑 */
 include 'db.php';
 include '../auth.php';
 check_permission('superadmin');
+
+$error = '';  // 用于提示错误信息
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
@@ -12,34 +13,168 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone'];
     $role = $_POST['role'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password_raw = $_POST['password'];
 
-    // 验证 @brizo.com 邮箱
-    if (!str_ends_with($email, '@brizo.com')) {
-        echo "<script>alert('Only @brizo.com email allowed'); window.history.back();</script>";
-        exit();
-    }
-
-    // 处理照片上传
-    $photo = "default.jpg";
-    if (!empty($_FILES['photo']['name'])) {
-        $photo = time() . '_' . basename($_FILES["photo"]["name"]);
-        $target_file = "upload/" . $photo;
-        move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file);
-    }
-
-    // 插入数据库
-    $stmt = $conn->prepare("INSERT INTO admin (name, gender, age, position, phone, role, email, password, photo) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssissssss", $name, $gender, $age, $position, $phone, $role, $email, $password, $photo);
-
-    if ($stmt->execute()) {
-        echo "<script>alert('Registration Successful'); window.location.href='../Main Page/main_page.php';</script>";
+    if (strlen($password_raw) < 6) {
+        $error = "Password must be at least 6 characters.";
+    } elseif (!str_ends_with($email, '@brizo.com')) {
+        $error = "Only @brizo.com email allowed.";
+    } elseif (!preg_match('/^\d{7,13}$/', $phone)) {
+        $error = "Phone number must be between 7 and 13 digits.";
     } else {
-        echo "<script>alert('Registration Failed: " . $conn->error . "');</script>";
-    }
+        $password = password_hash($password_raw, PASSWORD_DEFAULT);
+        $check_email_stmt = $conn->prepare("SELECT id FROM admin WHERE email = ?");
+        $check_email_stmt->bind_param("s", $email);
+        $check_email_stmt->execute();
+        $check_email_stmt->store_result();
+        
+        if ($check_email_stmt->num_rows > 0) {
+            $error = "This email is already registered.";
+        } else {
+            // 继续执行原本的 INSERT
+            $password = password_hash($password_raw, PASSWORD_DEFAULT);
+        
+            $photo = "default.jpg";
+            if (!empty($_FILES['photo']['name'])) {
+                $photo = time() . '_' . basename($_FILES["photo"]["name"]);
+                $target_file = "upload/" . $photo;
+                move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file);
+            }
+        
+            $stmt = $conn->prepare("INSERT INTO admin (name, gender, age, position, phone, role, email, password, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssissssss", $name, $gender, $age, $position, $phone, $role, $email, $password, $photo);
+        
+            if ($stmt->execute()) {
+    echo '
+                <div class="notification-box success" id="successBox">
+                <div class="notification-content">
+                    <div class="notification-progress"></div>
+                    <i class="fas fa-check-circle"></i>
+                    <div class="notification-text">
+                        <h3>Registration Successful</h3>
+                        <p>Redirecting to dashboard...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <style>
+            /* 通知框基础样式 */
+            .notification-box {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                width: 350px;
+                background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+                border-radius: 12px;
+                padding: 1px;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+                z-index: 1000;
+                overflow: hidden;
+                transform: translateX(120%);
+                animation: slideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            }
+            
+            /* 成功状态样式 */
+            .notification-box.success {
+                border: 1px solid #c0a23d55;
+            }
+            
+            .notification-box.success .notification-progress {
+                background: linear-gradient(90deg, #c0a23d, #e8d48b);
+            }
+            
+            /* 内容布局 */
+            .notification-content {
+                position: relative;
+                padding: 20px;
+                background: #141414;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            /* 图标样式 */
+            .fa-check-circle {
+                color: #c0a23d;
+                font-size: 2.2rem;
+                min-width: 40px;
+                filter: drop-shadow(0 0 8px #c0a23d33);
+            }
+            
+            /* 文字样式 */
+            .notification-text h3 {
+                color: #e8d48b;
+                margin: 0;
+                font-size: 1.3rem;
+                font-family: \'Roboto\', sans-serif;
+                letter-spacing: 0.03em;
+            }
+            
+            .notification-text p {
+                color: #999;
+                margin: 5px 0 0;
+                font-size: 0.95rem;
+            }
+            
+            /* 进度条动画 */
+            .notification-progress {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 3px;
+                width: 100%;
+                animation: progress 2s linear forwards;
+            }
+            
+            @keyframes slideIn {
+                0% { transform: translateX(120%); }
+                100% { transform: translateX(0); }
+            }
+            
+            @keyframes progress {
+                0% { width: 100%; }
+                100% { width: 0; }
+            }
+            
+            /* 移动端适配 */
+            @media (max-width: 480px) {
+                .notification-box {
+                    width: calc(100% - 40px);
+                    right: 20px;
+                    left: 20px;
+                }
+            }
+            </style>
+            
+           <script>
+    setTimeout(() => {
+        const box = document.getElementById("successBox");
+        box.style.animation = "slideOut 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards";
+        setTimeout(() => {
+            window.location.href = "../Main Page/main_page.php";
+        }, 500);
+    }, 2500);
+    
+    const style = document.createElement("style");
+    style.textContent = `
+        @keyframes slideOut {
+            0% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(120%); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+    </script>
+             ';
+    exit();
+} else {
+    $error = "Registration Failed: " . $conn->error;
+}
+}   
+}
 }
 ?>
+
 
  
 
@@ -101,6 +236,32 @@ body::before {
     0% { background-position: 0 0, 100px 100px; }
     100% { background-position: 100px 100px, 0 0; }
 }
+
+.top-error-box {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff4d4d;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 0 0 12px 12px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 1s ease-out;
+    max-width: 600px;
+    width: 90%;
+}
+
+.top-error-box.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
         .form-back-btn {
     position: absolute;
     left: 15px;
@@ -203,14 +364,29 @@ body::before {
     </style>
 </head>
 <body>
+
+<?php if (!empty($error)): ?>
+    <div class="top-error-box" id="errorBox">
+        <?= htmlspecialchars($error) ?>
+    </div>
+    <script>
+        setTimeout(() => {
+            const box = document.getElementById('errorBox');
+            box.classList.add('fade-out');
+        }, 4000);
+    </script>
+<?php endif; ?>
+
 <div class="header">
 
     <div class="form-container">
-    <a href="../Main Page/main_page.php" class="form-back-btn">
+    <a href="../More/more.php" class="form-back-btn">
         <i class="fas fa-chevron-left"></i>
     </a>
     
         <h2>Register New Administration</h2>
+
+
         <form method="POST" enctype="multipart/form-data">
             <label>Upload Photo</label>
             <input type="file" name="photo" accept="image/*">
@@ -232,7 +408,7 @@ body::before {
             <input type="text" name="position" required>
 
             <label>Phone</label>
-            <input type="text" name="phone" required>
+            <input type="text" name="phone" pattern="^\d{7,13}$" required title="Phone must be 7 to 13 digits (numbers only)">
 
             <label>Role</label>
             <select name="role" required>
@@ -243,18 +419,39 @@ body::before {
             <label>Email (@brizo.com)</label>
             <input type="email" name="email" required>
 
-            <label>Password</label>
+            <label>Password <div id="strengthMessage" style="color: #c8b071;"></div></label>
 <div style="position: relative;">
-    <input type="password" name="password" id="passwordField" required style="padding-right: 10px;">
+<input type="password" name="password" id="passwordField" minlength="6" required style="padding-right: 10px;">
     <span onclick="togglePassword()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #c0a23d;">
         <i id="eyeIcon" class="fas fa-eye-slash"></i>
     </span>
 </div>
 
+
             <button type="submit">Register</button>
         </form>
     </div>
     <script>
+
+document.getElementById("passwordField").addEventListener("input", function () {
+    const val = this.value;
+    const strength = document.getElementById("strengthMessage");
+
+    let strengthText = "Weak";
+    let strengthColor = "red";
+
+    if (val.length >= 6 && /[A-Z]/.test(val) && /[0-9]/.test(val) && /[a-z]/.test(val)) {
+        strengthText = "Strong";
+        strengthColor = "green";
+    } else if (val.length >= 6 && /[0-9]/.test(val)) {
+        strengthText = "Medium";
+        strengthColor = "orange";
+    }
+
+    strength.innerText = "Strength: " + strengthText;
+    strength.style.color = strengthColor;
+});
+
 function togglePassword() {
     const passwordInput = document.getElementById("passwordField");
     const eyeIcon = document.getElementById("eyeIcon");

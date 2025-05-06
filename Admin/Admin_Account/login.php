@@ -188,6 +188,40 @@ window.onload = function () {
 
 <style>
 
+.menu-btn {
+                position: absolute;
+                left: 2rem;
+                top: 50%;
+                transform: translateY(-50%);
+                background: linear-gradient(135deg, #c0a23d, #e8d48b);
+                color: #000;
+                padding: 12px 25px;
+                border-radius: 30px;
+                text-decoration: none;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 600;
+                font-size: 1.05rem;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 4px 15px rgba(192, 162, 61, 0.3);
+                border: 1px solid #e8d48b;
+            }
+
+            .menu-btn:hover {
+                transform: translateY(-50%) scale(1.05);
+                box-shadow: 0 6px 25px rgba(192, 162, 61, 0.4);
+            }
+
+            .menu-btn:active {
+                transform: translateY(-50%) scale(0.95);
+            }
+
+            .menu-btn i {
+                font-size: 1.2rem;
+            }
+
 /* 黄金比例艺术标题 */
 .header {
     left: 0;
@@ -321,6 +355,12 @@ window.onload = function () {
     <body>
 
         <div class="header">
+
+        <a href="/Online-Fast-Food/customer/menu/menu.php" class="menu-btn">
+                <i class="fas fa-utensils"></i>
+                Back to Customer Page
+</a>
+
                 <div class="title-group">
                     <div class="main-title">BRIZO MELAKA</div>
                     <div class="sub-title">Administration Login Page</div>

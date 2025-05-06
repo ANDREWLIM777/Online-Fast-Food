@@ -19,6 +19,7 @@ session_start();
       color: #eee;
       margin: 0;
       padding: 2rem;
+      padding-bottom: 50px;
     }
 
                 /* 背景发光环 */
@@ -142,6 +143,7 @@ body::before {
       background: linear-gradient(to right, #c0a23d, #e8d48b);
       color: #000;
       font-weight: bold;
+      position: fixed;
       padding: 10px 20px;
       border-radius: 10px;
       text-decoration: none;
@@ -206,7 +208,7 @@ body::before {
     <i class="fas fa-house"></i> Back To Main Page
   </a>
   <h1 style="flex: 1; text-align: center; color: #c0a23d; font-size: 2.5rem;">📦 Order Management</h1>
-  <div style="width: 230px;"></div> 
+  <div style="width: 50px;"></div> 
 </div>
 
 <div class="tabs">
@@ -222,7 +224,7 @@ body::before {
     $items = json_decode($order['items'], true);
   ?>
   <div class="order-card">
-    <h3>🧾 Order: <?= htmlspecialchars($order['order_code']) ?></h3>
+    <h3>🧾 Order: <?= htmlspecialchars($order['order_id']) ?></h3>
     <ul>
       <?php foreach ($items as $i): 
         $item = $pdo->prepare("SELECT item_name FROM menu_items WHERE id = ?");

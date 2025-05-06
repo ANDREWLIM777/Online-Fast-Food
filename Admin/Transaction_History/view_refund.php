@@ -9,26 +9,31 @@ if ($id) {
     // 优先查 refund_requests（LEFT JOIN 避免 JOIN 失败）
     $stmt = $pdo->prepare("
     SELECT r.*, r.created_at AS date, r.customer_id, o.order_id AS real_order_id, o.created_at AS order_date, o.total, o.status AS order_status,
-           c.fullname, c.email
+           c.fullname, c.email, r.total
     FROM refund_requests r
     LEFT JOIN orders o ON r.order_id = o.order_id
     LEFT JOIN customers c ON r.customer_id = c.id
     WHERE r.id = ?
 ");
 
-    $stmt->execute([$id]);
-    $refund = $stmt->fetch();
+$stmt->execute([$id]);
+$refund = $stmt->fetch();
+if (!$refund) die('Refund not found.');
+
+$items = json_decode($refund['items'], true);
 }
+
 
 if (!$id || !$refund) {
     if (!$orderId) {
         $orderId = $_GET['id'] ?? null;
     }
     // 查 orders 表中的 refunded 状态
-    $stmt = $pdo->prepare("SELECT o.id AS real_order_id, o.order_id, o.created_at AS order_date, o.total, o.status, c.fullname, c.email
-                           FROM orders o
-                           JOIN customers c ON o.customer_id = c.id
-                           WHERE o.order_id = ? AND o.status = 'refunded'");
+    $stmt = $pdo->prepare("
+    SELECT o.id AS real_order_id, o.order_id, o.created_at AS order_date, o.total, o.status, c.fullname, c.email
+    FROM orders o
+    LEFT JOIN customers c ON o.customer_id = c.id
+    WHERE o.order_id = ? AND o.status = 'refunded'");
     $stmt->execute([$orderId]);
     $refund = $stmt->fetch();
 
@@ -72,6 +77,12 @@ if (!$id || !$refund) {
       margin-top: 1rem;
     }
     img { margin-top: 10px; max-width: 300px; border-radius: 6px; }
+
+    .info { margin-bottom: 2rem; }
+    .info p { margin: 0.4rem 0; }
+    table { width: 100%; border-collapse: collapse; }
+    table th, table td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    table th { background: #eee; }
   </style>
 </head>
 <body>
@@ -89,6 +100,40 @@ if (!$id || !$refund) {
     <p><strong>Order Total:</strong> RM <?= number_format($refund['total'], 2) ?></p>
     <p><strong>Refund Status:</strong> <?= htmlspecialchars($refund['status']) ?></p>
   </div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Unit Price</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($items as $i):
+      $stmt = $pdo->prepare("SELECT item_name, price FROM menu_items WHERE id = ?");
+      $stmt->execute([$i['item_id']]);
+      $menuItem = $stmt->fetch();
+      $item_name = $menuItem['item_name'] ?? 'Unknown Item';
+      $unit_price = $i['price'] ?? ($menuItem['price'] ?? 0);
+      $itemTotal = $i['quantity'] * $unit_price;
+    ?>
+      <tr>
+        <td><?= htmlspecialchars($item_name) ?></td>
+        <td>RM <?= number_format($unit_price, 2) ?></td>
+        <td><?= $i['quantity'] ?></td>
+        <td>RM <?= number_format($itemTotal, 2) ?></td>
+      </tr>
+    <?php endforeach; ?>
+    <tr style="font-weight:bold; background:#f0f0f0">
+      <td colspan="3" style="text-align:right">Grand Total:</td>
+      <td>RM <?= number_format($refund['total'], 2) ?></td>
+    </tr>
+  </tbody>
+</table>
+
+
 
   <div class="reason-box">
     <p><strong>Reason:</strong> <?= htmlspecialchars($refund['reason']) ?></p>

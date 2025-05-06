@@ -100,103 +100,64 @@ try {
 
 // Handle refund request submission
 $errors = [];
-$success = false;
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_refund'])) {
+$success = false; // Use a boolean to track success
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - POST request received' . PHP_EOL, FILE_APPEND);
-    if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'] ?? '')) {
-        $errors[] = 'Invalid CSRF token';
-        file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Invalid CSRF token' . PHP_EOL, FILE_APPEND);
-    } else {
-        file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - CSRF token validated' . PHP_EOL, FILE_APPEND);
-        $reason = $_POST['reason'] ?? '';
-        $details = trim($_POST['details'] ?? '');
+    if (isset($_POST['submit_refund'])) {
+        file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Submit refund button clicked' . PHP_EOL, FILE_APPEND);
+        if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'] ?? '')) {
+            $errors[] = 'Invalid CSRF token';
+            file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Invalid CSRF token' . PHP_EOL, FILE_APPEND);
+        } else {
+            file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - CSRF token validated' . PHP_EOL, FILE_APPEND);
+            $reason = $_POST['reason'] ?? '';
+            $details = trim($_POST['details'] ?? '');
 
-        // Validate inputs
-        if (!in_array($reason, ['wrong-item', 'poor-quality', 'late-delivery', 'other'])) {
-            $errors[] = 'Invalid refund reason';
-            file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Validation failed: Invalid refund reason' . PHP_EOL, FILE_APPEND);
-        }
-        if (empty($details) || strlen($details) < 10) {
-            $errors[] = 'Please provide detailed information (at least 10 characters)';
-            file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Validation failed: Details too short' . PHP_EOL, FILE_APPEND);
-        }
-        if (strlen($details) > 1000) {
-            $errors[] = 'Details cannot exceed 1000 characters';
-            file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Validation failed: Details too long' . PHP_EOL, FILE_APPEND);
-        }
+            // Log the submitted data
+            file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Submitted data: reason=' . $reason . ', details=' . $details . PHP_EOL, FILE_APPEND);
 
-        // Prepare items and total for refund request
-        $itemsArray = [];
-        $total = $order['amount']; // Default to full order amount
-        // Uncomment the following block for partial refund support
-        /*
-        if (isset($_POST['items']) && is_array($_POST['items'])) {
-            $total = 0;
-            foreach ($_POST['items'] as $index => $itemData) {
-                if (!empty($itemData['selected'])) {
-                    $quantity = (int)$itemData['quantity'];
-                    $index = (int)$index;
-                    if ($index >= 0 && $index < count($items) && $quantity > 0 && $quantity <= $items[$index]['quantity']) {
-                        $price = (float)$items[$index]['price'];
-                        $itemsArray[] = [
-                            'item_id' => (int)$items[$index]['item_id'],
-                            'quantity' => $quantity,
-                            'price' => $price,
-                            'item_name' => $items[$index]['item_name'],
-                            'photo' => $items[$index]['photo']
-                        ];
-                        $total += $quantity * $price;
+            // Validate inputs
+            if (!in_array($reason, ['wrong-item', 'poor-quality', 'late-delivery', 'other'])) {
+                $errors[] = 'Invalid refund reason';
+                file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Validation failed: Invalid refund reason' . PHP_EOL, FILE_APPEND);
+            }
+            if (empty($details) || strlen($details) < 10) {
+                $errors[] = 'Please provide detailed information (at least 10 characters)';
+                file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Validation failed: Details too short' . PHP_EOL, FILE_APPEND);
+            }
+            if (strlen($details) > 1000) {
+                $errors[] = 'Details cannot exceed 1000 characters';
+                file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Validation failed: Details too long' . PHP_EOL, FILE_APPEND);
+            }
+
+            if (empty($errors)) {
+                file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Validation passed, attempting to insert' . PHP_EOL, FILE_APPEND);
+                try {
+                    $stmt = $conn->prepare("
+                        INSERT INTO refund_requests (customer_id, order_id, reason, details, status, created_at)
+                        VALUES (?, ?, ?, ?, 'pending', NOW())
+                    ");
+                    if (!$stmt) {
+                        throw new Exception('Prepare failed: ' . $conn->error);
+                    }
+                    $stmt->bind_param("isss", $customerId, $orderId, $reason, $details);
+                    if (!$stmt->execute()) {
+                        throw new Exception('Execute failed: ' . $stmt->error);
+                    }
+                    $success = true; // Set success to true only after successful insertion
+                    file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Refund request submitted for order_id: ' . $orderId . PHP_EOL, FILE_APPEND);
+                    $stmt->close();
+                } catch (Exception $e) {
+                    $errors[] = 'Database error: ' . htmlspecialchars($e->getMessage());
+                    file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Database error: ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
+                    if (isset($stmt)) {
+                        $stmt->close();
                     }
                 }
             }
-            if (empty($itemsArray)) {
-                $errors[] = 'Please select at least one item for refund';
-                file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Validation failed: No items selected for refund' . PHP_EOL, FILE_APPEND);
-            }
-        } else {
-            $errors[] = 'No items selected for refund';
-            file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Validation failed: Items not provided' . PHP_EOL, FILE_APPEND);
         }
-        */
-        // For full refund (default), include all items
-        if (empty($itemsArray)) {
-            foreach ($items as $item) {
-                $itemsArray[] = [
-                    'item_id' => $item['item_id'],
-                    'quantity' => $item['quantity'],
-                    'price' => $item['price'],
-                    'item_name' => $item['item_name'],
-                    'photo' => $item['photo']
-                ];
-            }
-        }
-        $itemsJson = json_encode($itemsArray);
-
-        if (empty($errors)) {
-            file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Validation passed, attempting to insert' . PHP_EOL, FILE_APPEND);
-            try {
-                $stmt = $conn->prepare("
-                    INSERT INTO refund_requests (customer_id, order_id, reason, details, status, created_at, total, items)
-                    VALUES (?, ?, ?, ?, 'pending', NOW(), ?, ?)
-                ");
-                if (!$stmt) {
-                    throw new Exception('Prepare failed: ' . $conn->error);
-                }
-                $stmt->bind_param("isssds", $customerId, $orderId, $reason, $details, $total, $itemsJson);
-                if (!$stmt->execute()) {
-                    throw new Exception('Execute failed: ' . $stmt->error);
-                }
-                $success = true;
-                file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Refund request submitted for order_id: ' . $orderId . ' with total: ' . $total . ' and items: ' . $itemsJson . PHP_EOL, FILE_APPEND);
-                $stmt->close();
-            } catch (Exception $e) {
-                $errors[] = 'Database error: ' . htmlspecialchars($e->getMessage());
-                file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Database error: ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
-                if (isset($stmt)) {
-                    $stmt->close();
-                }
-            }
-        }
+    } else {
+        file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Submit refund button not clicked' . PHP_EOL, FILE_APPEND);
     }
 }
 
@@ -236,14 +197,14 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
             margin-bottom: 5px;
             font-weight: bold;
         }
-        select, textarea, input[type="number"], input[type="checkbox"] {
+        select, textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 16px;
         }
-        select:focus, textarea:focus, input:focus {
+        select:focus, textarea:focus {
             outline: none;
             border-color: #3498db;
         }
@@ -274,7 +235,7 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
             background: #3498db;
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 12px 24 medullary;
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
@@ -322,18 +283,12 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
         .order-details p {
             margin: 5px 0;
         }
-        input[type="number"] {
-            width: 80px;
-        }
         @media (max-width: 600px) {
             .container {
                 padding: 15px;
             }
             button {
                 width: 100%;
-            }
-            input[type="number"] {
-                width: 60px;
             }
         }
     </style>
@@ -399,45 +354,6 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
         <h3>Refund Request Form</h3>
         <form method="POST" id="refund-form">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
-            <!-- Uncomment the following block for partial refund support -->
-            <!--
-            <div class="form-group">
-                <h4>Select Items for Refund</h4>
-                <?php if (empty($items)): ?>
-                    <p>No items available for refund.</p>
-                <?php else: ?>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Select</th>
-                                <th>Item Name</th>
-                                <th>Quantity</th>
-                                <th>Price (RM)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($items as $index => $item): ?>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="items[<?= $index ?>][selected]" value="1" onchange="updateTotal()">
-                                        <input type="hidden" name="items[<?= $index ?>][item_id]" value="<?= $item['item_id'] ?>">
-                                        <input type="hidden" name="items[<?= $index ?>][item_name]" value="<?= htmlspecialchars($item['item_name']) ?>">
-                                        <input type="hidden" name="items[<?= $index ?>][price]" value="<?= $item['price'] ?>">
-                                        <input type="hidden" name="items[<?= $index ?>][photo]" value="<?= htmlspecialchars($item['photo']) ?>">
-                                    </td>
-                                    <td><?= htmlspecialchars($item['item_name']) ?></td>
-                                    <td>
-                                        <input type="number" name="items[<?= $index ?>][quantity]" min="1" max="<?= $item['quantity'] ?>" value="<?= $item['quantity'] ?>" onchange="updateTotal()">
-                                    </td>
-                                    <td><?= number_format($item['price'], 2) ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                    <p><strong>Total Refund Amount: RM <span id="refund-total">0.00</span></strong></p>
-                <?php endif; ?>
-            </div>
-            -->
             <div class="form-group">
                 <label for="reason">Reason for Refund</label>
                 <select id="reason" name="reason" required>
@@ -463,8 +379,10 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
             const form = document.getElementById('refund-form');
             const reasonSelect = document.getElementById('reason');
             const detailsInput = document.getElementById('details');
-            const submitButton = document.getElementById('submit-refund-btn');
+            const submitButton = document.getElementBy desert island;
 
+            // 临时注释掉验证逻辑以测试提交
+            /*
             form.addEventListener('submit', (e) => {
                 let hasError = false;
 
@@ -486,28 +404,6 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
                     hideError('details-error');
                 }
 
-                // Uncomment for partial refund validation
-                /*
-                let itemsSelected = false;
-                const itemCheckboxes = document.querySelectorAll('input[name*="items"][type="checkbox"]');
-                itemCheckboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        itemsSelected = true;
-                        const quantityInput = checkbox.closest('tr').querySelector('input[type="number"]');
-                        const max = parseInt(quantityInput.max);
-                        const value = parseInt(quantityInput.value);
-                        if (value < 1 || value > max) {
-                            showError('details-error', 'Invalid quantity for ' + checkbox.closest('tr').querySelector('td:nth-child(2)').textContent);
-                            hasError = true;
-                        }
-                    }
-                });
-                if (!itemsSelected) {
-                    showError('details-error', 'Please select at least one item for refund');
-                    hasError = true;
-                }
-                */
-
                 if (hasError) {
                     e.preventDefault();
                     submitButton.disabled = false;
@@ -515,24 +411,6 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
                     submitButton.disabled = true;
                 }
             });
-
-            // Uncomment for partial refund total calculation
-            /*
-            function updateTotal() {
-                let total = 0;
-                const itemCheckboxes = document.querySelectorAll('input[name*="items"][type="checkbox"]');
-                itemCheckboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        const row = checkbox.closest('tr');
-                        const quantity = parseInt(row.querySelector('input[type="number"]').value);
-                        const price = parseFloat(row.querySelector('td:nth-child(4)').textContent);
-                        if (quantity > 0) {
-                            total += quantity * price;
-                        }
-                    }
-                });
-                document.getElementById('refund-total').textContent = total.toFixed(2);
-            }
             */
 
             function showError(id, message) {

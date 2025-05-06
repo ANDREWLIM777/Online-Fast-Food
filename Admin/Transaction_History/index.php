@@ -39,8 +39,9 @@ $orders = $stmt->fetchAll();
 // 查询已审核通过的退款请求（refund_requests.status = 'approved'）
 if ($selectedDate) {
     $stmt = $pdo->prepare("
-        SELECT r.id AS refund_id,r.customer_id, r.order_id, r.created_at AS refund_date, r.status AS refund_status, 
-               r.reason, r.details, r.evidence_path, r.admin_notes, c.fullname 
+        SELECT r.id AS refund_id, r.customer_id, r.order_id, r.created_at AS refund_date, 
+        r.status AS refund_status, r.reason, r.details, r.evidence_path, r.admin_notes, 
+        c.fullname, r.total
         FROM refund_requests r
         LEFT JOIN orders o ON r.order_id = o.order_id
         LEFT JOIN customers c ON r.customer_id = c.id
@@ -50,8 +51,9 @@ if ($selectedDate) {
     $stmt->execute([$selectedDate]);
 } else {
     $stmt = $pdo->query("
-        SELECT r.id AS refund_id, r.customer_id, r.order_id, r.created_at AS refund_date, r.status AS refund_status, 
-               r.reason, r.details, r.evidence_path, r.admin_notes, c.fullname 
+        SELECT r.id AS refund_id, r.customer_id, r.order_id, r.created_at AS refund_date, 
+        r.status AS refund_status, r.reason, r.details, r.evidence_path, r.admin_notes, 
+        c.fullname, r.total
         FROM refund_requests r
         LEFT JOIN orders o ON r.order_id = o.order_id
         LEFT JOIN customers c ON r.customer_id = c.id
@@ -95,6 +97,7 @@ $refundOrders = $stmt->fetchAll();
       background: #121212;
       color: #eee;
       padding: 2rem;
+      padding-bottom: 60px;
     }
 
                     /* 背景发光环 */
@@ -147,6 +150,7 @@ body::before {
     }
     .back-btn {
       display: inline-block;
+      position: fixed;
       background: linear-gradient(to right, #c0a23d, #e8d48b);
       color: #000;
       font-weight: bold;
@@ -163,8 +167,8 @@ body::before {
     }
 
     h1 {
-      flex: 1;
-      text-align: center;
+      flex: 2;
+      text-align: right;
       color: #c0a23d;
       font-size: 2.3rem;
     }
@@ -240,7 +244,7 @@ body::before {
     <i class="fas fa-house"></i> Back To Main Page
   </a>
     <h1>📄 Transaction History</h1>
-    <div style="width: 0px;"></div>
+    <div style="width: 230px;"></div>
     <div style="text-align: center; margin-bottom: 1rem;">
     <span style="color: #4CAF50">Approved Refunds: <?= count($refundRequests) ?></span> | 
     <span style="color: #FF5722">Refunded Orders: <?= count($refundOrders) ?></span>
@@ -287,6 +291,7 @@ body::before {
 <?php foreach ($refundRequests as $r): ?>
     <div class="transaction-card" style="border-left-color: #4CAF50;">
         <h3><?= htmlspecialchars($r['order_id']) ?> | 
+        RM <?= number_format($r['total'] ?? 0, 2) ?> |
             Status: <span style="color: #4CAF50">APPROVED</span>
         </h3>
         <div class="transaction-meta">
@@ -313,14 +318,13 @@ body::before {
     <?php foreach ($refundOrders as $o): ?>
         <div class="transaction-card" style="border-left-color: #FF5722;">
             <h3><?= htmlspecialchars($o['order_id']) ?> | 
+            RM <?= number_format($o['total'] ?? 0, 2) ?> |
                 Status: <span style="color: #FF5722">REFUNDED</span>
             </h3>
             <div class="transaction-meta">
                 <?= htmlspecialchars($o['fullname']) ?> | 
                 <?= date('Y-m-d H:i', strtotime($o['refund_date'])) ?>
             </div>
-            <a href="view_refund.php?id=<?= $o['order_id'] ?>" class="view-btn">
-                <i class="fas fa-eye"></i> View
             </a>
         </div>
     <?php endforeach; ?>

@@ -37,6 +37,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <style>
 
+/* 背景发光环 */
+body::after {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
+  animation: auraPulse 8s infinite;
+  pointer-events: none;
+  z-index: -1; /* ⬅ 放底层 */
+}
+
+/* 星尘粒子 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(244, 228, 178, 0.15) 1px, transparent 2px),
+    radial-gradient(circle at 80% 70%, rgba(244, 228, 178, 0.15) 1px, transparent 2px);
+  background-size: 60px 60px;
+  animation: stardust 20s linear infinite;
+  pointer-events: none;
+  z-index: -2; /* ⬅ 更底层 */
+}
+
+@keyframes auraPulse {
+  0% { transform: scale(0.8); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 0.08; }
+  100% { transform: scale(0.8); opacity: 0.3; }
+}
+
+@keyframes stardust {
+  0% { background-position: 0 0, 100px 100px; }
+  100% { background-position: 100px 100px, 0 0; }
+}
+
 .form-back-btn {
     position: absolute;
     left: 15px;

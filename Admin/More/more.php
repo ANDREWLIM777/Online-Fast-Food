@@ -166,6 +166,12 @@ include '../Admin_Account/db.php';
   padding: 100px 2rem 0 2rem; /* 增加顶部 padding 来避开 fixed header */
 }
 
+.more-container-down {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem 40px; /* 增加顶部 padding 来避开 fixed header */
+}
+
     .more-item {
       display: flex;
       justify-content: space-between;
@@ -449,8 +455,8 @@ include '../Admin_Account/db.php';
 </main>
 
 <main class="more-container">
-  <a href="../Report/analysis_report.php" class="more-item">
-    <span>Report</span>
+  <a href="../Admin_Account/register.php" class="more-item">
+    <span>New Admin Registration</span>
     <i class="fas fa-angle-right"></i>
   </a>
 </main>
@@ -462,7 +468,7 @@ include '../Admin_Account/db.php';
   </a>
 </main>
 
-<main class="more-container">
+<main class="more-container-down">
   <a href="Contact.php" class="more-item">
     <span>Contact</span>
     <i class="fas fa-angle-right"></i>
