@@ -197,6 +197,5 @@ document.addEventListener('DOMContentLoaded', () => {
 <script src="cart.js"></script>
 <?php include '../../menu_icon.php'; ?>
 <?php include '../../footer.php'; ?>
-<?php include '../../footer2.php'; ?>
 </body>
 </html>

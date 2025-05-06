@@ -186,4 +186,3 @@ while ($order = $ordersResult->fetch_assoc()) {
 
 <?php include '../menu_icon.php'; ?>
 <?php include '../footer.php'; ?>
-<?php include '../footer2.php'; ?>

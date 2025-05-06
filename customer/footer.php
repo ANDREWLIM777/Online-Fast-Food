@@ -3,9 +3,9 @@
 <!-- 🦶 Footer Navigation -->
 <nav class="footer-nav">
 
-  <div class="nav-item" style="--active-color:rgb(4, 4, 4);" data-link="/Online-Fast-Food/customer/brizo/about_brizo.php">
+  <div class="nav-item" style="--active-color:rgb(4, 4, 4);" data-link="/Online-Fast-Food/customer/home/home.php">
   <svg viewBox="0 0 50 24"><text x="5" y="18" class="bz-text">Bz</text></svg>
-  <span class="nav-label">About Us</span>
+  <span class="nav-label">Home</span>
 </div>
 
 <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="/Online-Fast-Food/customer/menu/menu.php">
@@ -65,7 +65,7 @@
     <button id="closeSidebar">&times;</button>
   </div>
   <ul class="more-links">
-    <li><a href="#"></a></li>
+    <li><a href="/Online-Fast-Food/customer/home/home.php">Home</a></li>
     <li><a href="#"></a></li>
     <li><a href="/Online-Fast-Food/customer/payment_history/payment_history.php">Payment History</a></li>
     <li><a href="/Online-Fast-Food/customer/notification/notification.php">News</a></li>
@@ -221,6 +221,12 @@
       width: 100%;
     }
   }
+
+  body {
+  padding-bottom: 90px;
+  box-sizing: border-box;
+}
+
 </style>
 
 <script>
