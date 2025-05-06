@@ -8,16 +8,20 @@
   }
   
   body {
-    background: linear-gradient(to right, #ffe259, #ffa751);
+    font-family: 'Segoe UI', sans-serif;
+    background: #fffbed;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding: 2rem;
+    margin: 0;
+    color: #2c2c2c;
+    line-height: 1.6;
   }
   
   .profile-container {
-    background: #fffaf3;
+    background: #ffeacd;
     max-width: 720px;
     width: 100%;
     padding: 2rem;

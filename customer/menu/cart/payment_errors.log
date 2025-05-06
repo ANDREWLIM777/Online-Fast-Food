@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2025-05-02 02:43:53 - Customer ID: 1
 2025-05-02 02:43:53 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
 2025-05-02 02:43:53 - Cart items: [{"item_id":2,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
@@ -61,3 +62,5 @@
 2025-05-06 09:58:06 - Customer ID: 1
 2025-05-06 09:58:06 - Cart items: []
 2025-05-06 09:58:06 - Calculated total: 0
+=======
+>>>>>>> aae1df732e892016ed84ee069cbd5a93088304ea

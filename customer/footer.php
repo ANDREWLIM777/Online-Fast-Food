@@ -3,24 +3,34 @@
 <!-- 🦶 Footer Navigation -->
 <nav class="footer-nav">
 
-  <div class="nav-item" style="--active-color: #2ecc71;" data-link="../brizo/about_brizo.php">
+  <div class="nav-item" style="--active-color:rgb(4, 4, 4);" data-link="/Online-Fast-Food/customer/home/home.php">
   <svg viewBox="0 0 50 24"><text x="5" y="18" class="bz-text">Bz</text></svg>
-  <span class="nav-label">About Us</span>
+  <span class="nav-label">Home</span>
 </div>
 
-<div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../menu/menu.php">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-       stroke-linecap="round" stroke-linejoin="round">
-    <!-- Bun Top -->
-    <path d="M3 9a9 4 0 0 1 18 0H3z" />
-    <!-- Lettuce / Fill -->
-    <path d="M3 12h18" />
-    <!-- Bun Bottom -->
-    <path d="M5 15h14a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z" />
-  </svg>    <span class="nav-label">Menu</span>
+<div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="/Online-Fast-Food/customer/menu/menu.php">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Top Bun (soft arc with sesame seeds) -->
+    <path d="M3 9c0-4 18-4 18 0" />
+    <circle cx="8" cy="7.5" r="0.4" />
+    <circle cx="12" cy="7" r="0.4" />
+    <circle cx="16" cy="7.5" r="0.4" />
+    
+    <!-- Lettuce Wave -->
+    <path d="M4 11c1 0 1-1 2-1s1 1 2 1 1-1 2-1 1 1 2 1 1-1 2-1 1 1 2 1 1-1 2-1 1 1 2 1" />
+    
+<!-- Patty: double-line for thickness and realism -->
+<path d="M4 13h16" stroke-width="2.2" stroke-linecap="round" />
+<path d="M4 14.2h16" stroke-width="1.5" stroke-linecap="round" opacity="0.85" />
+
+<!-- Bottom Bun (matching top bun) -->
+<path d="M3 16a9 4 0 0 0 18 0H3z" />
+
+  </svg>
+     <span class="nav-label">Menu</span>
   </div>
 
-  <div class="nav-item" style="--active-color: #27ae60;" data-link="../menu/cart/cart.php">
+  <div class="nav-item" style="--active-color: #27ae60;" data-link="/Online-Fast-Food/customer/menu/cart/cart.php">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
 <circle cx="9" cy="21" r="1.5"/>
 <circle cx="20" cy="21" r="1.5"/>
@@ -28,7 +38,7 @@
 </svg>    <span class="nav-label">Cart</span>
   </div>
 
-  <div class="nav-item" style="--active-color: #3498db;" data-link="../Manage_Account/profile.php">
+  <div class="nav-item" style="--active-color: #3498db;" data-link="/Online-Fast-Food/customer/Manage_Account/profile.php">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
@@ -55,11 +65,11 @@
     <button id="closeSidebar">&times;</button>
   </div>
   <ul class="more-links">
-    <li><a href="#"></a></li>
+    <li><a href="/Online-Fast-Food/customer/home/home.php">Home</a></li>
     <li><a href="#"></a></li>
     <li><a href="/Online-Fast-Food/customer/payment_history/payment_history.php">Payment History</a></li>
-    <li><a href="/Online-Fast-Food/customer/notification/notification.php">Notifications</a></li>
-    <li><a href="#"></a></li>
+    <li><a href="/Online-Fast-Food/customer/notification/notification.php">News</a></li>
+    <li><a href="/Online-Fast-Food/customer/customer_notification/customer_notification.php">Notification</a></li>
     <li><a href="/Online-Fast-Food/customer/brizo/about_brizo.php">About Us</a></li>
     <li><a href="/Online-Fast-Food/Admin/Admin_Account/login.php">Login as Admin</a></li>
   </ul>
@@ -72,7 +82,7 @@
     left: 0;
     right: 0;
     height: 70px;
-    background: #fffbed;
+    background:rgb(255, 248, 221);
     box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
     display: flex;
     justify-content: space-around;
@@ -211,6 +221,12 @@
       width: 100%;
     }
   }
+
+  body {
+  padding-bottom: 90px;
+  box-sizing: border-box;
+}
+
 </style>
 
 <script>

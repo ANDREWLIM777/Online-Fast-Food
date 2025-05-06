@@ -143,6 +143,7 @@ body::before {
       background: linear-gradient(to right, #c0a23d, #e8d48b);
       color: #000;
       font-weight: bold;
+      position: fixed;
       padding: 10px 20px;
       border-radius: 10px;
       text-decoration: none;
@@ -207,7 +208,7 @@ body::before {
     <i class="fas fa-house"></i> Back To Main Page
   </a>
   <h1 style="flex: 1; text-align: center; color: #c0a23d; font-size: 2.5rem;">📦 Order Management</h1>
-  <div style="width: 230px;"></div> 
+  <div style="width: 50px;"></div> 
 </div>
 
 <div class="tabs">

@@ -2,11 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap');
 
 body {
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fffbed;
   margin: 0;
-  padding: 0;
-  background: #fdfdfd;
-  color: #333;
+  padding: 2rem;
+  color: #2c2c2c;
+  line-height: 1.6;
+}
+
+.about-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .menu-container {
@@ -395,26 +406,80 @@ body {
     }
 }
 
-.toast-msg {
+
+/* Ultra Toast Styles */
+.ultra-toast {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: #00b894;
-  color: white;
-  padding: 14px 24px;
-  border-radius: 10px;
-  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: #ffffffb0;
+  padding: 30px 40px;
+  border-radius: 18px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  text-align: center;
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s ease;
-  z-index: 2000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: all 0.4s ease;
+  z-index: 9999;
 }
 
-.toast-msg.show {
+.ultra-toast.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(-50%, -50%) scale(1);
 }
+
+.ultra-toast .checkmark-animation {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  animation: popBounce 0.5s ease forwards;
+}
+
+.checkmark-circle {
+  stroke: #00b894;
+  stroke-width: 4;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: strokeCircle 0.6s ease-out forwards;
+}
+
+.checkmark-check {
+  stroke: #00b894;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: strokeCheck 0.4s ease-out 0.6s forwards;
+}
+
+.toast-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3436;
+  opacity: 0;
+  animation: fadeText 0.5s ease 1s forwards;
+}
+
+/* Animations */
+@keyframes popBounce {
+  0%   { transform: scale(0.5); }
+  80%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes strokeCircle {
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes strokeCheck {
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes fadeText {
+  to { opacity: 1; }
+}
+
+
 
 .guest-toast {
   position: fixed;
@@ -439,14 +504,6 @@ body {
 
 @keyframes fadeOut {
   to { opacity: 0; transform: translateY(-30px); }
-}
-
-.site-footer {
-  background: #333;
-  color: #eee;
-  padding: 40px 20px 20px;
-  font-size: 0.95rem;
-  line-height: 1.6;
 }
 
 .footer-columns {
@@ -490,4 +547,45 @@ body {
   padding-top: 15px;
   font-size: 0.9rem;
   color: #aaa;
+}
+
+.notification-bell {
+  position: fixed;
+  top: 65px;
+  right: 169px;
+  background-color: #ff4757;
+  color: white;
+  font-size: 24px;
+  padding: 10px 15px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: background-color 0.2s ease;
+}
+
+.notification-bell:hover {
+  background-color: #e84118;
+}
+
+.bell-icon {
+  width: 30px;
+  height: 30px;
+  stroke-width: 1.8;
+}
+
+.notif-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #d62828;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 12px;
+  padding: 2px 6px;
+  font-weight: bold;
+  animation: pulse 1.5s infinite;
 }

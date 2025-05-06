@@ -4,11 +4,23 @@
   <meta charset="UTF-8">
   <title>About Brizo Fast Food</title>
   <link rel="stylesheet" href="about_brizo.css"> <!-- Optional: link your custom CSS -->
- 
+  <link rel="stylesheet" href="../menu/order_now_button/order_now.css">
+
 </head>
 <body>
 
+<div class="top-right-button">
+  <a href="../menu/menu.php" class="button-cool-effect">🍔 Order Now</a>
+</div>
+
+
 <div class="about-wrapper">
+
+<div class="about-wrapper">
+  <div class="logo-container">
+    <img src="/Online-Fast-Food/customer/menu/pictures/burger-bg1.png" alt="Brizo Fast Food Logo" class="brizo-logo">
+  </div>
+
   <h1>About Brizo Fast Food Melaka</h1>
 
   <p>The Brizo story began with the humble opening of our very first restaurant in the heart of Melaka in 2024. With passion for flavor and local culture, we’ve quickly grown into a beloved name known for delivering bold taste, affordable prices, and warm service to everyone who walks through our doors.</p>
@@ -23,4 +35,6 @@
 </body>
 </html>
 
+<?php include '../menu_icon.php'; ?>
+<?php include '../footer.php'; ?>
 <?php include '../footer2.php'; ?>

@@ -29,7 +29,7 @@ $customer = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -37,8 +37,8 @@ $customer = $result->fetch_assoc();
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="profile.css">
 </head>
-<body>
-  <div class="profile-container">
+
+<div class="profile-container">
     <div class="profile-header">
       <img src="uploads/<?= htmlspecialchars($customer['photo']) ?>" alt="Profile Photo">
       <div>
@@ -59,5 +59,9 @@ $customer = $result->fetch_assoc();
 
     </div>
   </div>
+
 </body>
 </html>
+
+<?php include '../menu_icon.php'; ?>
+<?php include '../footer.php'; ?>

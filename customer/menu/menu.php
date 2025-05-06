@@ -13,6 +13,17 @@ if (isset($_SESSION['customer_id']) && empty($_SESSION['is_guest'])) {
     $stmt->fetch();
     $stmt->close();
 }
+// 🔔 Get unread customer notifications count
+$unreadNotif = 0;
+if (isset($_SESSION['customer_id']) && empty($_SESSION['is_guest'])) {
+    $stmt = $conn->prepare("SELECT COUNT(*) FROM customer_notifications WHERE customer_id = ? AND is_read = 0");
+    $stmt->bind_param("i", $_SESSION['customer_id']);
+    $stmt->execute();
+    $stmt->bind_result($unreadNotif);
+    $stmt->fetch();
+    $stmt->close();
+}
+
 
 $search = trim($_GET['search'] ?? '');
 $category = trim($_GET['category'] ?? '');
@@ -50,6 +61,7 @@ while ($row = $result->fetch_assoc()) {
   <meta charset="UTF-8">
   <title>Brizo Menu</title>
   <link rel="stylesheet" href="menu.css">
+  
 </head>
 <body>
 
@@ -57,6 +69,16 @@ while ($row = $result->fetch_assoc()) {
 <div class="hero-slide">
   <div>Welcome to Brizo Fast Food Melaka</div>
 </div>
+
+  <!-- 🔔 Notification Bell -->
+  <a href="/Online-Fast-Food/customer/customer_notification/customer_notification.php" class="notification-bell">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="bell-icon">
+      <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 0 0-5-5.917V4a1 1 0 1 0-2 0v1.083A6 6 0 0 0 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 1 1-6 0v-1h6z"/>
+    </svg>
+    <?php if ($unreadNotif > 0): ?>
+      <span class="notif-count"><?= $unreadNotif ?></span>
+    <?php endif; ?>
+  </a>
 
 <!-- 🛒 Floating Cart Icon -->
 <a href="cart/cart.php" class="cart-floating-btn" id="cart-icon">
