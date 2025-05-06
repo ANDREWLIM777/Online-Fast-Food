@@ -55,19 +55,17 @@ foreach ($payments as $payment) {
 
     // Check for existing refund request
     $canRequestRefund = false;
-    $refundDetails = null;
     if ($payment['status'] === 'completed') {
         try {
             $stmt = $conn->prepare("
-                SELECT id, status, total, items
+                SELECT id
                 FROM refund_requests
                 WHERE order_id = ? AND customer_id = ? AND status IN ('pending', 'approved')
             ");
             $stmt->bind_param("si", $orderId, $customerId);
             $stmt->execute();
             $result = $stmt->get_result();
-            $refundDetails = $result->fetch_assoc();
-            $canRequestRefund = !$refundDetails;
+            $canRequestRefund = !$result->fetch_assoc();
             $stmt->close();
         } catch (Exception $e) {
             file_put_contents('payment_history_errors.log', date('Y-m-d H:i:s') . ' - Error checking refund eligibility for order_id: ' . $orderId . ' - ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
@@ -78,8 +76,7 @@ foreach ($payments as $payment) {
     $paymentDetails[] = [
         'payment' => $payment,
         'items' => $items,
-        'can_request_refund' => $canRequestRefund,
-        'refund_details' => $refundDetails
+        'can_request_refund' => $canRequestRefund
     ];
 }
 
@@ -172,19 +169,6 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
         .refund-btn:disabled {
             background: #95a5a6;
             cursor: not-allowed;
-        }
-        .refund-details {
-            margin-top: 10px;
-            font-size: 0.9em;
-            color: #555;
-        }
-        .refund-details ul {
-            list-style: none;
-            padding: 0;
-            margin: 5px 0;
-        }
-        .refund-details ul li {
-            margin-bottom: 5px;
         }
         @media (max-width: 600px) {
             .container {
@@ -280,28 +264,6 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
                                     <button class="refund-btn" disabled>
                                         <?= $payment['status'] === 'refunded' ? 'Refunded' : 'Refund Requested' ?>
                                     </button>
-                                    <?php if ($detail['refund_details']): ?>
-                                        <div class="refund-details">
-                                            <strong>Refund Status:</strong> <?= htmlspecialchars(ucfirst($detail['refund_details']['status'])) ?><br>
-                                            <?php if ($detail['refund_details']['total'] !== null): ?>
-                                                <strong>Refund Amount:</strong> RM <?= number_format($detail['refund_details']['total'], 2) ?><br>
-                                            <?php endif; ?>
-                                            <?php if ($detail['refund_details']['items']): ?>
-                                                <strong>Refund Items:</strong>
-                                                <?php
-                                                $refundItems = json_decode($detail['refund_details']['items'], true);
-                                                if ($refundItems): ?>
-                                                    <ul>
-                                                        <?php foreach ($refundItems as $item): ?>
-                                                            <li><?= htmlspecialchars($item['item_name']) ?> (Qty: <?= $item['quantity'] ?>, RM <?= number_format($item['price'], 2) ?>)</li>
-                                                        <?php endforeach; ?>
-                                                    </ul>
-                                                <?php else: ?>
-                                                    N/A
-                                                <?php endif; ?>
-                                            <?php endif; ?>
-                                        </div>
-                                    <?php endif; ?>
                                 <?php endif; ?>
                             </td>
                         </tr>
