@@ -150,6 +150,7 @@ body::before {
     }
     .back-btn {
       display: inline-block;
+      position: fixed;
       background: linear-gradient(to right, #c0a23d, #e8d48b);
       color: #000;
       font-weight: bold;
@@ -166,8 +167,8 @@ body::before {
     }
 
     h1 {
-      flex: 1;
-      text-align: center;
+      flex: 2;
+      text-align: right;
       color: #c0a23d;
       font-size: 2.3rem;
     }
@@ -243,7 +244,7 @@ body::before {
     <i class="fas fa-house"></i> Back To Main Page
   </a>
     <h1>📄 Transaction History</h1>
-    <div style="width: 0px;"></div>
+    <div style="width: 230px;"></div>
     <div style="text-align: center; margin-bottom: 1rem;">
     <span style="color: #4CAF50">Approved Refunds: <?= count($refundRequests) ?></span> | 
     <span style="color: #FF5722">Refunded Orders: <?= count($refundOrders) ?></span>
