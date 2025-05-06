@@ -83,7 +83,7 @@ $stmt->close();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])) {
     header('Content-Type: application/json');
 
-    // Validate CSRF token (Fixed syntax error here)
+    // Validate CSRF token
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         $logMessage("CSRF validation failed for add_payment_method");
         echo json_encode(['status' => 'error', 'message' => 'CSRF token validation failed']);
@@ -492,6 +492,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         h2, h3 {
             color: #333;
         }
+        .back-to-cart {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .back-to-cart:hover {
+            background: #2980b9;
+        }
         .cart-items ul {
             list-style: none;
             padding: 0;
@@ -626,6 +639,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
 <body>
     <div class="container">
         <h2>Checkout</h2>
+        <a href="cart.php" class="back-to-cart">Back to Cart</a>
 
         <!-- Cart Items -->
         <div class="cart-items">
@@ -1025,4 +1039,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         }
     </script>
 </body>
-</html> 
+</html>
