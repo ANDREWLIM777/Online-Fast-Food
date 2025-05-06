@@ -22,3 +22,42 @@
 2025-05-06 08:54:00 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
 2025-05-06 08:54:00 - Cart items: [{"item_id":2,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
 2025-05-06 08:54:00 - Calculated total: 28
+2025-05-06 09:19:46 - Customer ID: 1
+2025-05-06 09:19:46 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-06 09:19:46 - Cart items: [{"item_id":2,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-06 09:19:46 - Calculated total: 28
+2025-05-06 09:28:16 - Customer ID: 1
+2025-05-06 09:28:16 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-06 09:28:16 - Cart items: [{"item_id":2,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-06 09:28:16 - Calculated total: 28
+2025-05-06 09:28:36 - Customer ID: 1
+2025-05-06 09:28:36 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-06 09:28:36 - Cart items: [{"item_id":2,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-06 09:28:36 - Calculated total: 28
+2025-05-06 09:28:41 - Customer ID: 1
+2025-05-06 09:28:41 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-06 09:28:41 - Cart items: [{"item_id":2,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-06 09:28:41 - Calculated total: 28
+2025-05-06 09:28:41 - Received make_payment request: {"csrf_token":"bf2d9078d3a9d69892c7ae6bc3140a889c796aa6141cf8825f72496380e28591","delivery_method":"pickup","delivery_address":"","payment_method_id":"9","method":"digital_wallet","amount":"28","make_payment":"1"}
+2025-05-06 09:28:41 - Received amount: 28, Expected total: 28
+2025-05-06 09:28:41 - Delivery method: pickup, Delivery address: N/A
+2025-05-06 09:28:41 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-06 09:28:41 - Generated order_id: ORD-6819BA29AE081
+2025-05-06 09:28:41 - Current database: brizo
+2025-05-06 09:28:41 - Table 'orders' exists: Yes
+2025-05-06 09:28:41 - Columns in 'orders' table: ["id","order_id","customer_id","items","total","status","created_at"]
+2025-05-06 09:28:41 - Executing SQL for orders insert: 
+            INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
+            VALUES (?, ?, ?, ?, 'pending', NOW())
+        
+2025-05-06 09:28:41 - Inserting order_item: order_id=ORD-6819BA29AE081, item_id=2, quantity=2, price=14.00
+2025-05-06 09:28:41 - Payment successful: order_id=ORD-6819BA29AE081
+2025-05-06 09:34:41 - Customer ID: 1
+2025-05-06 09:34:41 - Cart items: []
+2025-05-06 09:34:41 - Calculated total: 0
+2025-05-06 09:34:42 - Customer ID: 1
+2025-05-06 09:34:42 - Cart items: []
+2025-05-06 09:34:42 - Calculated total: 0
+2025-05-06 09:58:06 - Customer ID: 1
+2025-05-06 09:58:06 - Cart items: []
+2025-05-06 09:58:06 - Calculated total: 0
