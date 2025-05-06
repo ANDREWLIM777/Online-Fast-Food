@@ -1,0 +1,6 @@
+2025-05-05 17:29:00 - Request received: GET
+2025-05-05 17:29:00 - No customer_id in session, redirecting to login.php
+2025-05-05 17:29:44 - Request received: GET
+2025-05-05 17:29:44 - No order_id provided, redirecting to payment_history.php
+2025-05-06 08:54:09 - Request received: GET
+2025-05-06 08:54:10 - No order_id provided, redirecting to payment_history.php
