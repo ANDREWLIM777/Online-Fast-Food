@@ -1,0 +1,4 @@
+2025-05-06 09:28:41 - Items JSON for order ORD-6819BA29AE081: [{"item_id":2,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-06 09:28:41 - Decoded orderItems for order ORD-6819BA29AE081: [{"item_id":2,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-06 18:52:37 - Items JSON for order ORD-681A3E557D780: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-06 18:52:37 - Decoded orderItems for order ORD-681A3E557D780: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]

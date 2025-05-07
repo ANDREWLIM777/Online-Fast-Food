@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 session_start();
-session_regenerate_id(true); // Prevent session fixation
+session_regenerate_id(true);
 
 // Log every request
 file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Request received: ' . $_SERVER['REQUEST_METHOD'] . PHP_EOL, FILE_APPEND);
@@ -43,7 +43,7 @@ try {
     $stmt = $conn->prepare("
         SELECT ph.order_id, ph.date, ph.amount, ph.method, ph.payment_details, ph.delivery_method, ph.delivery_address, ph.status
         FROM payment_history ph
-        WHERE ph.order_id = ? AND ph.customer_id = ? AND (ph.status = 'completed' OR ph.status IS NULL)
+        WHERE ph.order_id = ? AND ph.customer_id = ?
     ");
     $stmt->bind_param("si", $orderId, $customerId);
     $stmt->execute();
@@ -52,28 +52,23 @@ try {
     $stmt->close();
 
     if (!$order) {
-        file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Invalid or ineligible order_id: ' . $orderId . ' for customer_id: ' . $customerId . PHP_EOL, FILE_APPEND);
+        file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Invalid order_id: ' . $orderId . ' for customer_id: ' . $customerId . PHP_EOL, FILE_APPEND);
         header('Location: payment_history.php');
         exit();
     }
 
     // Check for existing refund request
     $stmt = $conn->prepare("
-        SELECT id, status
+        SELECT id, status, created_at
         FROM refund_requests
         WHERE order_id = ? AND customer_id = ? AND status IN ('pending', 'approved')
+        ORDER BY created_at DESC
     ");
     $stmt->bind_param("si", $orderId, $customerId);
     $stmt->execute();
     $result = $stmt->get_result();
     $existingRefund = $result->fetch_assoc();
     $stmt->close();
-
-    if ($existingRefund) {
-        file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Existing refund request for order_id: ' . $orderId . PHP_EOL, FILE_APPEND);
-        header('Location: payment_history.php');
-        exit();
-    }
 
     // Fetch order items
     $items = [];
@@ -87,6 +82,8 @@ try {
     $stmt->execute();
     $result = $stmt->get_result();
     while ($row = $result->fetch_assoc()) {
+        // Ensure price is a float
+        $row['price'] = floatval($row['price']);
         $items[] = $row;
     }
     $stmt->close();
@@ -127,23 +124,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_refund'])) {
 
         // Prepare items and total for refund request
         $itemsArray = [];
-        $total = $order['amount']; // Default to full order amount
-        // Uncomment the following block for partial refund support
-        /*
+        $total = floatval($order['amount']);
         if (isset($_POST['items']) && is_array($_POST['items'])) {
             $total = 0;
             foreach ($_POST['items'] as $index => $itemData) {
                 if (!empty($itemData['selected'])) {
-                    $quantity = (int)$itemData['quantity'];
+                    $quantity = (int)($itemData['quantity'] ?? 0);
                     $index = (int)$index;
-                    if ($index >= 0 && $index < count($items) && $quantity > 0 && $quantity <= $items[$index]['quantity']) {
-                        $price = (float)$items[$index]['price'];
+                    if ($index >= 0 && $index < count($items) && $quantity > 0 && $quantity <= ($items[$index]['quantity'] ?? 0)) {
+                        $price = floatval($items[$index]['price'] ?? 0);
                         $itemsArray[] = [
-                            'item_id' => (int)$items[$index]['item_id'],
+                            'item_id' => (int)($items[$index]['item_id'] ?? 0),
                             'quantity' => $quantity,
                             'price' => $price,
-                            'item_name' => $items[$index]['item_name'],
-                            'photo' => $items[$index]['photo']
+                            'item_name' => $items[$index]['item_name'] ?? 'Unknown Item',
+                            'photo' => $items[$index]['photo'] ?? ''
                         ];
                         $total += $quantity * $price;
                     }
@@ -154,19 +149,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_refund'])) {
                 file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Validation failed: No items selected for refund' . PHP_EOL, FILE_APPEND);
             }
         } else {
-            $errors[] = 'No items selected for refund';
-            file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Validation failed: Items not provided' . PHP_EOL, FILE_APPEND);
-        }
-        */
-        // For full refund (default), include all items
-        if (empty($itemsArray)) {
+            // Full refund
             foreach ($items as $item) {
                 $itemsArray[] = [
-                    'item_id' => $item['item_id'],
-                    'quantity' => $item['quantity'],
-                    'price' => $item['price'],
-                    'item_name' => $item['item_name'],
-                    'photo' => $item['photo']
+                    'item_id' => (int)($item['item_id'] ?? 0),
+                    'quantity' => (int)($item['quantity'] ?? 0),
+                    'price' => floatval($item['price'] ?? 0),
+                    'item_name' => $item['item_name'] ?? 'Unknown Item',
+                    'photo' => $item['photo'] ?? ''
                 ];
             }
         }
@@ -175,20 +165,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_refund'])) {
         if (empty($errors)) {
             file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Validation passed, attempting to insert' . PHP_EOL, FILE_APPEND);
             try {
+                // Double-check for existing refund request to prevent race condition
                 $stmt = $conn->prepare("
-                    INSERT INTO refund_requests (customer_id, order_id, reason, details, status, created_at, total, items)
-                    VALUES (?, ?, ?, ?, 'pending', NOW(), ?, ?)
+                    SELECT id FROM refund_requests
+                    WHERE order_id = ? AND customer_id = ? AND status IN ('pending', 'approved')
                 ");
-                if (!$stmt) {
-                    throw new Exception('Prepare failed: ' . $conn->error);
+                $stmt->bind_param("si", $orderId, $customerId);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                if ($result->num_rows > 0) {
+                    $errors[] = 'A pending or approved refund request already exists for this order.';
+                    file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Existing refund request found during submission for order_id: ' . $orderId . PHP_EOL, FILE_APPEND);
+                    $stmt->close();
+                } else {
+                    $stmt->close();
+
+                    // Insert refund request
+                    $stmt = $conn->prepare("
+                        INSERT INTO refund_requests (customer_id, order_id, reason, details, status, created_at, total, items)
+                        VALUES (?, ?, ?, ?, 'pending', NOW(), ?, ?)
+                    ");
+                    if (!$stmt) {
+                        throw new Exception('Prepare failed: ' . $conn->error);
+                    }
+                    $stmt->bind_param("isssds", $customerId, $orderId, $reason, $details, $total, $itemsJson);
+                    if (!$stmt->execute()) {
+                        throw new Exception('Execute failed: ' . $stmt->error);
+                    }
+                    $refundId = $conn->insert_id;
+                    $stmt->close();
+
+                    // Insert notification for customer
+                    $stmt = $conn->prepare("
+                        INSERT INTO customer_notifications (customer_id, title, message, type, order_id, created_at)
+                        VALUES (?, 'Refund Request Submitted', 'Your refund request for order ? has been submitted and is pending review.', 'refund', ?, NOW())
+                    ");
+                    $stmt->bind_param("iss", $customerId, $orderId, $orderId);
+                    $stmt->execute();
+                    $stmt->close();
+
+                    $success = true;
+                    file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Refund request submitted for order_id: ' . $orderId . ' with total: ' . $total . ' and items: ' . $itemsJson . PHP_EOL, FILE_APPEND);
                 }
-                $stmt->bind_param("isssds", $customerId, $orderId, $reason, $details, $total, $itemsJson);
-                if (!$stmt->execute()) {
-                    throw new Exception('Execute failed: ' . $stmt->error);
-                }
-                $success = true;
-                file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Refund request submitted for order_id: ' . $orderId . ' with total: ' . $total . ' and items: ' . $itemsJson . PHP_EOL, FILE_APPEND);
-                $stmt->close();
             } catch (Exception $e) {
                 $errors[] = 'Database error: ' . htmlspecialchars($e->getMessage());
                 file_put_contents('refund_errors.log', date('Y-m-d H:i:s') . ' - Database error: ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
@@ -266,6 +284,10 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
         .alert-danger {
             background: #f8d7da;
             color: #721c24;
+        }
+        .alert-warning {
+            background: #fff3cd;
+            color: #856404;
         }
         .hidden {
             display: none;
@@ -354,6 +376,12 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
             </div>
         <?php endif; ?>
 
+        <?php if ($existingRefund): ?>
+            <div class="alert alert-warning">
+                A refund request for this order is already in progress (Status: <?= htmlspecialchars(ucfirst($existingRefund['status'])) ?>, Submitted on: <?= htmlspecialchars($existingRefund['created_at']) ?>). You cannot submit a new request until the current one is resolved.
+            </div>
+        <?php endif; ?>
+
         <div class="order-details">
             <h3>Order Details</h3>
             <p><strong>Order Code:</strong> <?= htmlspecialchars($order['order_id']) ?></p>
@@ -388,162 +416,157 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
                             </td>
                             <td><?= htmlspecialchars($item['item_name'] ?? 'Unknown Item') ?></td>
                             <td><?= htmlspecialchars((string)$item['quantity']) ?></td>
-                            <td><?= isset($item['price']) ? number_format((float)$item['price'], 2) : 'N/A' ?></td>
-                            <td><?= isset($item['price']) ? number_format((float)($item['quantity'] * $item['price']), 2) : 'N/A' ?></td>
+                            <td><?= number_format((float)($item['price'] ?? 0), 2) ?></td>
+                            <td><?= number_format((float)($item['quantity'] * $item['price']), 2) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         <?php endif; ?>
 
-        <h3>Refund Request Form</h3>
-        <form method="POST" id="refund-form">
-            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
-            <!-- Uncomment the following block for partial refund support -->
-            <!--
-            <div class="form-group">
-                <h4>Select Items for Refund</h4>
-                <?php if (empty($items)): ?>
-                    <p>No items available for refund.</p>
-                <?php else: ?>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Select</th>
-                                <th>Item Name</th>
-                                <th>Quantity</th>
-                                <th>Price (RM)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($items as $index => $item): ?>
+        <?php if (!$existingRefund): ?>
+            <h3>Refund Request Form</h3>
+            <form method="POST" id="refund-form">
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+                <div class="form-group">
+                    <h4>Select Items for Refund</h4>
+                    <?php if (empty($items)): ?>
+                        <p>No items available for refund.</p>
+                    <?php else: ?>
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <input type="checkbox" name="items[<?= $index ?>][selected]" value="1" onchange="updateTotal()">
-                                        <input type="hidden" name="items[<?= $index ?>][item_id]" value="<?= $item['item_id'] ?>">
-                                        <input type="hidden" name="items[<?= $index ?>][item_name]" value="<?= htmlspecialchars($item['item_name']) ?>">
-                                        <input type="hidden" name="items[<?= $index ?>][price]" value="<?= $item['price'] ?>">
-                                        <input type="hidden" name="items[<?= $index ?>][photo]" value="<?= htmlspecialchars($item['photo']) ?>">
-                                    </td>
-                                    <td><?= htmlspecialchars($item['item_name']) ?></td>
-                                    <td>
-                                        <input type="number" name="items[<?= $index ?>][quantity]" min="1" max="<?= $item['quantity'] ?>" value="<?= $item['quantity'] ?>" onchange="updateTotal()">
-                                    </td>
-                                    <td><?= number_format($item['price'], 2) ?></td>
+                                    <th>Select</th>
+                                    <th>Item Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price (RM)</th>
                                 </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                    <p><strong>Total Refund Amount: RM <span id="refund-total">0.00</span></strong></p>
-                <?php endif; ?>
-            </div>
-            -->
-            <div class="form-group">
-                <label for="reason">Reason for Refund</label>
-                <select id="reason" name="reason" required>
-                    <option value="" disabled selected>Select a reason</option>
-                    <option value="wrong-item">Wrong Item Delivered</option>
-                    <option value="poor-quality">Poor Quality</option>
-                    <option value="late-delivery">Late Delivery</option>
-                    <option value="other">Other</option>
-                </select>
-                <div id="reason-error" class="error-message"></div>
-            </div>
-            <div class="form-group">
-                <label for="details">Details</label>
-                <textarea id="details" name="details" rows="5" placeholder="Please provide detailed information about your refund request" required></textarea>
-                <div id="details-error" class="error-message"></div>
-            </div>
-            <button type="submit" name="submit_refund" id="submit-refund-btn">Submit Refund Request</button>
-        </form>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($items as $index => $item): ?>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="items[<?= $index ?>][selected]" value="1" onchange="updateTotal()">
+                                            <input type="hidden" name="items[<?= $index ?>][item_id]" value="<?= $item['item_id'] ?>">
+                                            <input type="hidden" name="items[<?= $index ?>][item_name]" value="<?= htmlspecialchars($item['item_name']) ?>">
+                                            <input type="hidden" name="items[<?= $index ?>][price]" value="<?= $item['price'] ?>">
+                                            <input type="hidden" name="items[<?= $index ?>][photo]" value="<?= htmlspecialchars($item['photo']) ?>">
+                                        </td>
+                                        <td><?= htmlspecialchars($item['item_name']) ?></td>
+                                        <td>
+                                            <input type="number" name="items[<?= $index ?>][quantity]" min="1" max="<?= $item['quantity'] ?>" value="<?= $item['quantity'] ?>" onchange="updateTotal()">
+                                        </td>
+                                        <td><?= number_format((float)($item['price'] ?? 0), 2) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <p><strong>Total Refund Amount: RM <span id="refund-total">0.00</span></strong></p>
+                    <?php endif; ?>
+                </div>
+                <div class="form-group">
+                    <label for="reason">Reason for Refund</label>
+                    <select id="reason" name="reason" required>
+                        <option value="" disabled selected>Select a reason</option>
+                        <option value="wrong-item">Wrong Item Delivered</option>
+                        <option value="poor-quality">Poor Quality</option>
+                        <option value="late-delivery">Late Delivery</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <div id="reason-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="details">Details</label>
+                    <textarea id="details" name="details" rows="5" placeholder="Please provide detailed information about your refund request" required></textarea>
+                    <div id="details-error" class="error-message"></div>
+                </div>
+                <button type="submit" name="submit_refund" id="submit-refund-btn">Submit Refund Request</button>
+            </form>
+        <?php endif; ?>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('refund-form');
-            const reasonSelect = document.getElementById('reason');
-            const detailsInput = document.getElementById('details');
-            const submitButton = document.getElementById('submit-refund-btn');
+            if (form) {
+                const reasonSelect = document.getElementById('reason');
+                const detailsInput = document.getElementById('details');
+                const submitButton = document.getElementById('submit-refund-btn');
 
-            form.addEventListener('submit', (e) => {
-                let hasError = false;
+                form.addEventListener('submit', (e) => {
+                    let hasError = false;
 
-                if (!reasonSelect.value) {
-                    showError('reason-error', 'Please select a refund reason');
-                    hasError = true;
-                } else {
-                    hideError('reason-error');
-                }
+                    if (!reasonSelect.value) {
+                        showError('reason-error', 'Please select a refund reason');
+                        hasError = true;
+                    } else {
+                        hideError('reason-error');
+                    }
 
-                const detailsValue = detailsInput.value.trim();
-                if (detailsValue.length < 10) {
-                    showError('details-error', 'Details must be at least 10 characters');
-                    hasError = true;
-                } else if (detailsValue.length > 1000) {
-                    showError('details-error', 'Details cannot exceed 1000 characters');
-                    hasError = true;
-                } else {
-                    hideError('details-error');
-                }
+                    const detailsValue = detailsInput.value.trim();
+                    if (detailsValue.length < 10) {
+                        showError('details-error', 'Details must be at least 10 characters');
+                        hasError = true;
+                    } else if (detailsValue.length > 1000) {
+                        showError('details-error', 'Details cannot exceed 1000 characters');
+                        hasError = true;
+                    } else {
+                        hideError('details-error');
+                    }
 
-                // Uncomment for partial refund validation
-                /*
-                let itemsSelected = false;
-                const itemCheckboxes = document.querySelectorAll('input[name*="items"][type="checkbox"]');
-                itemCheckboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        itemsSelected = true;
-                        const quantityInput = checkbox.closest('tr').querySelector('input[type="number"]');
-                        const max = parseInt(quantityInput.max);
-                        const value = parseInt(quantityInput.value);
-                        if (value < 1 || value > max) {
-                            showError('details-error', 'Invalid quantity for ' + checkbox.closest('tr').querySelector('td:nth-child(2)').textContent);
-                            hasError = true;
+                    let itemsSelected = false;
+                    const itemCheckboxes = document.querySelectorAll('input[name*="items"][type="checkbox"]');
+                    itemCheckboxes.forEach(checkbox => {
+                        if (checkbox.checked) {
+                            itemsSelected = true;
+                            const quantityInput = checkbox.closest('tr').querySelector('input[type="number"]');
+                            const max = parseInt(quantityInput.max);
+                            const value = parseInt(quantityInput.value);
+                            if (value < 1 || value > max) {
+                                showError('details-error', 'Invalid quantity for ' + checkbox.closest('tr').querySelector('td:nth-child(2)').textContent);
+                                hasError = true;
+                            }
                         }
+                    });
+                    if (!itemsSelected && itemCheckboxes.length > 0) {
+                        showError('details-error', 'Please select at least one item for refund');
+                        hasError = true;
+                    }
+
+                    if (hasError) {
+                        e.preventDefault();
+                        submitButton.disabled = false;
+                    } else {
+                        submitButton.disabled = true;
                     }
                 });
-                if (!itemsSelected) {
-                    showError('details-error', 'Please select at least one item for refund');
-                    hasError = true;
-                }
-                */
 
-                if (hasError) {
-                    e.preventDefault();
-                    submitButton.disabled = false;
-                } else {
-                    submitButton.disabled = true;
-                }
-            });
-
-            // Uncomment for partial refund total calculation
-            /*
-            function updateTotal() {
-                let total = 0;
-                const itemCheckboxes = document.querySelectorAll('input[name*="items"][type="checkbox"]');
-                itemCheckboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        const row = checkbox.closest('tr');
-                        const quantity = parseInt(row.querySelector('input[type="number"]').value);
-                        const price = parseFloat(row.querySelector('td:nth-child(4)').textContent);
-                        if (quantity > 0) {
-                            total += quantity * price;
+                function updateTotal() {
+                    let total = 0;
+                    const itemCheckboxes = document.querySelectorAll('input[name*="items"][type="checkbox"]');
+                    itemCheckboxes.forEach(checkbox => {
+                        if (checkbox.checked) {
+                            const row = checkbox.closest('tr');
+                            const quantity = parseInt(row.querySelector('input[type="number"]').value);
+                            const price = parseFloat(row.querySelector('input[name*="price"]').value);
+                            if (quantity > 0) {
+                                total += quantity * price;
+                            }
                         }
-                    }
-                });
-                document.getElementById('refund-total').textContent = total.toFixed(2);
-            }
-            */
+                    });
+                    document.getElementById('refund-total').textContent = total.toFixed(2);
+                }
 
-            function showError(id, message) {
-                const error = document.getElementById(id);
-                error.textContent = message;
-                error.style.display = 'block';
-            }
+                function showError(id, message) {
+                    const error = document.getElementById(id);
+                    error.textContent = message;
+                    error.style.display = 'block';
+                }
 
-            function hideError(id) {
-                const error = document.getElementById(id);
-                error.style.display = 'none';
+                function hideError(id) {
+                    const error = document.getElementById(id);
+                    error.style.display = 'none';
+                }
             }
         });
     </script>
