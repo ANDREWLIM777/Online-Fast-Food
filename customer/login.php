@@ -99,6 +99,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
   </form>
 </div>
 
+<!-- Add under login form -->
+<a href="/Online-Fast-Food/customer/forgot_password/forgot_password.php" class="forgot-link">Forgot your password?</a>
+
 
 <!-- ✅ Register link -->
 <p>Don't have an account? <a href="register.php">Register here</a></p>

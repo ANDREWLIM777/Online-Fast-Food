@@ -66,7 +66,8 @@
   </div>
   <ul class="more-links">
     <li><a href="/Online-Fast-Food/customer/home/home.php">Home</a></li>
-    <li><a href="#"></a></li>
+<!-- Add under login form -->
+<a href="/Online-Fast-Food/customer/forgot_password/forgot_password.php" class="forgot-link">Forgot your password?</a>
     <li><a href="/Online-Fast-Food/customer/payment_history/payment_history.php">Payment History</a></li>
     <li><a href="/Online-Fast-Food/customer/notification/notification.php">News</a></li>
     <li><a href="/Online-Fast-Food/customer/customer_notification/customer_notification.php">Notification</a></li>

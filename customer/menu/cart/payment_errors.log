@@ -64,3 +64,29 @@
 2025-05-06 09:58:06 - Calculated total: 0
 =======
 >>>>>>> aae1df732e892016ed84ee069cbd5a93088304ea
+2025-05-06 18:52:20 - Customer ID: 1
+2025-05-06 18:52:20 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-06 18:52:20 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-06 18:52:20 - Calculated total: 14
+2025-05-06 18:52:31 - Customer ID: 1
+2025-05-06 18:52:31 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-06 18:52:31 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-06 18:52:31 - Calculated total: 14
+2025-05-06 18:52:37 - Customer ID: 1
+2025-05-06 18:52:37 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-06 18:52:37 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-06 18:52:37 - Calculated total: 14
+2025-05-06 18:52:37 - Received make_payment request: {"csrf_token":"46fe34ef1a85cdc410c4d1d803d341e8324808cc6bc6fcd1250db691f48add53","delivery_method":"pickup","delivery_address":"","payment_method_id":"9","method":"digital_wallet","amount":"14","make_payment":"1"}
+2025-05-06 18:52:37 - Received amount: 14, Expected total: 14
+2025-05-06 18:52:37 - Delivery method: pickup, Delivery address: N/A
+2025-05-06 18:52:37 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-06 18:52:37 - Generated order_id: ORD-681A3E557D780
+2025-05-06 18:52:37 - Current database: brizo
+2025-05-06 18:52:37 - Table 'orders' exists: Yes
+2025-05-06 18:52:37 - Columns in 'orders' table: ["id","order_id","customer_id","items","total","status","created_at"]
+2025-05-06 18:52:37 - Executing SQL for orders insert: 
+            INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
+            VALUES (?, ?, ?, ?, 'pending', NOW())
+        
+2025-05-06 18:52:37 - Inserting order_item: order_id=ORD-681A3E557D780, item_id=2, quantity=1, price=14.00
+2025-05-06 18:52:37 - Payment successful: order_id=ORD-681A3E557D780

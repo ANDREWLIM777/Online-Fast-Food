@@ -4,7 +4,7 @@ session_start();
 
 // 🛒 Get cart count (only for logged-in customers, not guest)
 $cartCount = 0;
-if (isset($_SESSION['customer_id']) && empty($_SESSION['is_guest'])) {
+if (isset($_SESSION['customer_id']) && (!isset($_SESSION['is_guest']) || $_SESSION['is_guest'] === false)){
     $customerId = $_SESSION['customer_id'];
     $stmt = $conn->prepare("SELECT SUM(quantity) AS total_items FROM cart WHERE customer_id = ?");
     $stmt->bind_param("i", $customerId);
