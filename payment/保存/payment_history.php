@@ -183,7 +183,7 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
 </head>
 <body>
     <div class="container">
-        <a href="cart.php" class="back-link"><i class="fas fa-arrow-left"></i> Back to Cart</a>
+        <a href="/Online-Fast-Food/customer/menu/menu.php" class="back-link"><i class="fas fa-arrow-left"></i> Back To Menu</a>
         <h2>Payment History</h2>
 
         <?php if (empty($paymentDetails)): ?>

@@ -25,28 +25,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['delete_account'])) {
     $address = trim($_POST['address']);
     $city = trim($_POST['city']);
     $postal_code = trim($_POST['postal_code']);
-
+        // Upload image
     $photo = $_FILES['photo']['name'] ?? '';
+    $upload_dir = '/Online-Fast-Food/Admin/Manage_Customer/upload/';
+    $new_photo = '';
     $photoPath = '';
-    if (!empty($photo)) {
-        $targetDir = 'uploads/';
-        $photoPath = $targetDir . basename($photo);
-        move_uploaded_file($_FILES['photo']['tmp_name'], $photoPath);
+
+
+    if (!empty($_FILES['photo']['name'])) {
+        $photoName = time() . '_' . basename($_FILES['photo']['name']);
+        $targetDir = $_SERVER['DOCUMENT_ROOT'] . '/Online-Fast-Food/Admin/Manage_Customer/upload/';
+        $destination = $targetDir . $photoName;
+    
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0755, true);
+        }
+    
+        if (move_uploaded_file($_FILES['photo']['tmp_name'], $destination)) {
+            chmod($destination, 0644);
+            $new_photo = $photoName;
+        } else {
+            $error = "❌ Failed to upload image.";
+        }
     }
 
     $sql = "UPDATE customers SET fullname = ?, phone = ?, gender = ?, age = ?, address = ?, city = ?, postal_code = ?";
-    if (!empty($photo)) {
+    if (!empty($new_photo)) {
         $sql .= ", photo = ?";
     }
+    
     $sql .= " WHERE id = ?";
-
+    
     $stmt = $conn->prepare($sql);
-
-    if (!empty($photo)) {
-        $stmt->bind_param("sssissssi", $fullname, $phone, $gender, $age, $address, $city, $postal_code, $photo, $customerId);
+    
+    if (!empty($new_photo)) {
+        $stmt->bind_param("sssissssi", $fullname, $phone, $gender, $age, $address, $city, $postal_code, $new_photo, $customerId);
     } else {
         $stmt->bind_param("sssisssi", $fullname, $phone, $gender, $age, $address, $city, $postal_code, $customerId);
     }
+    
 
     if ($stmt->execute()) {
         header("Location: profile.php?updated=1");

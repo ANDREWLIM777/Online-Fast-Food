@@ -29,7 +29,7 @@ $customer = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -37,10 +37,16 @@ $customer = $result->fetch_assoc();
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="profile.css">
 </head>
+<body>
 
-<div class="profile-container">
+  <div class="profile-container">
     <div class="profile-header">
-      <img src="uploads/<?= htmlspecialchars($customer['photo']) ?>" alt="Profile Photo">
+    <img src="/Online-Fast-Food/Admin/Manage_Customer/upload/<?= htmlspecialchars($customer['photo']) ?>"
+     onerror="this.src='/Online-Fast-Food/Admin/Manage_Customer/upload/user.png';"
+     alt="Profile Photo"
+     class="profile-pic">
+
+
       <div>
         <h2><?= htmlspecialchars($customer['fullname']) ?></h2>
         <p><?= htmlspecialchars($customer['email']) ?></p>
@@ -54,14 +60,13 @@ $customer = $result->fetch_assoc();
       <p><span>Address:</span> <?= htmlspecialchars($customer['address']) ?: '-' ?></p>
       <p><span>City:</span> <?= htmlspecialchars($customer['city']) ?: '-' ?></p>
       <p><span>Postal Code:</span> <?= htmlspecialchars($customer['postal_code']) ?: '-' ?></p>
+
       <a href="edit_profile.php" class="edit-profile-link">Edit Profile</a>
       <a href="/Online-Fast-Food/customer/menu/menu.php" class="back-btn">Back</a>
-
     </div>
   </div>
 
+  <?php include '../menu_icon.php'; ?>
+  <?php include '../footer.php'; ?>
 </body>
 </html>
-
-<?php include '../menu_icon.php'; ?>
-<?php include '../footer.php'; ?>
