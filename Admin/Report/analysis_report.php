@@ -191,18 +191,49 @@ body::before {
             background-color: var(--gold);
             color: #000;
         }
+
+        @media print {
+    body {
+        zoom: 90%; 
+        margin: 0;
+        padding: 0;
+    }
+
+    .back-btn,
+    .date-selector,
+    .header a,
+    .header button {
+        display: none !important; /* 打印时隐藏导航和按钮 */
+    }
+
+    canvas {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    table {
+        page-break-inside: avoid;
+        font-size: 14px;
+    }
+}
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <a href="../Main Page/main_page.php" class="back-btn">
-            <i class="fas fa-house"></i> Back To Main Page
-            </a>
-            <button onclick="window.location.href='expense_input.php'" class="back-btn">
-                Input Expenses
-            </button>
-        </div>
+    <div class="header">
+    <a href="../Main Page/main_page.php" class="back-btn">
+        <i class="fas fa-house"></i> Back To Main Page
+    </a>
+    <div style="display: flex; gap: 15px;">
+        <button onclick="window.location.href='expense_input.php'" class="back-btn">
+            Input Expenses
+        </button>
+        <button onclick="window.print()" class="back-btn">
+            <i class="fas fa-print"></i> Print Report
+        </button>
+    </div>
+</div>
+
 
         <!-- Month Selector -->
         <form method="GET" class="date-selector">
