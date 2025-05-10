@@ -163,10 +163,10 @@ body::before {
 
     <a class="back-btn" href="../more.php"><i class="fas fa-arrow-left"></i> Back to More Page</a>
 
-    <h1>📢 Notifications</h1>
+    <h1>📢 Announcement</h1>
 
     <?php if ($isSuperAdmin): ?>
-        <a class="new-btn" href="create.php"><i class="fas fa-plus"></i> New Notification</a>
+        <a class="new-btn" href="create.php"><i class="fas fa-plus"></i> New Announcement</a>
     <?php endif; ?>
 
     <?php foreach ($notifications as $n): ?>

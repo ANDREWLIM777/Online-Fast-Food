@@ -68,10 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-<a class="back-btn" href="index.php"><i class="fas fa-arrow-left"></i> Back to Notifications</a>
+<a class="back-btn" href="index.php"><i class="fas fa-arrow-left"></i> Back to Announcement</a>
 
     <div class="form-container">
-        <h2>✏️ Edit Notification</h2>
+        <h2>✏️ Edit Announcement</h2>
         <?php if (isset($error)): ?><div class="error"><?= htmlspecialchars($error) ?></div><?php endif; ?>
         <form method="post">
             <input type="text" name="title" value="<?= htmlspecialchars($notification['title']) ?>" required>
