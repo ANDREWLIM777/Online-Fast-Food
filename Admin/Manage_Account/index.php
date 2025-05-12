@@ -65,7 +65,7 @@ try {
         <tr>
         <th style="width: 30px;">Photo</th>
     <th style="width: 80px;">Name</th>
-    <th style="width: 30px;">Gender</th>
+    <th style="width: 30px;">Role</th>
     <th style="width: 80px;">Position</th>
     <th style="width: 110px;">Email</th>
     <th style="width: 60px;">Phone</th>
@@ -81,7 +81,7 @@ try {
                          class="square-photo small">
             </td>
             <td data-label="Name"><?= htmlspecialchars($row['name']) ?></td>
-            <td data-label="Gender"><?= $row['gender'] ?></td>
+            <td data-label="Role"><?= $row['role'] ?></td>
             <td data-label="Position"><?= $row['position'] ?></td>
             <td data-label="Email"><?= $row['email'] ?></td>
             <td data-label="Phone"><?= $row['phone'] ?></td>
