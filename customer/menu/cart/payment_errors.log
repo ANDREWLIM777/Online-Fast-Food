@@ -90,3 +90,391 @@
         
 2025-05-06 18:52:37 - Inserting order_item: order_id=ORD-681A3E557D780, item_id=2, quantity=1, price=14.00
 2025-05-06 18:52:37 - Payment successful: order_id=ORD-681A3E557D780
+2025-05-08 11:47:27 - Customer ID: 1
+2025-05-08 11:47:27 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-08 11:47:27 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-08 11:47:27 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-08 11:47:27 - Calculated total: 26
+2025-05-08 11:48:08 - Customer ID: 1
+2025-05-08 11:48:08 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-08 11:48:08 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-08 11:48:08 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-08 11:48:08 - Calculated total: 26
+2025-05-08 11:48:08 - Attempting to add payment method: method_type=digital_wallet
+2025-05-08 11:48:08 - Duplicate phone number 01111126183 for customer_id=1
+2025-05-08 11:49:55 - Customer ID: 1
+2025-05-08 11:49:55 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-08 11:49:55 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-08 11:49:55 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-08 11:49:55 - Calculated total: 26
+2025-05-08 11:49:55 - Attempting to add payment method: method_type=digital_wallet
+2025-05-08 11:49:55 - Duplicate phone number 01111126183 for customer_id=1
+2025-05-08 11:55:46 - Customer ID: 1
+2025-05-08 11:55:46 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-08 11:55:46 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-08 11:55:46 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-08 11:55:46 - Calculated total: 26
+2025-05-09 10:45:35 - Script started
+2025-05-09 10:45:35 - Page loaded: customer_id=1
+2025-05-09 10:45:35 - CSRF token: 1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345
+2025-05-09 10:45:35 - Fetched address: address=, city=, postal_code=
+2025-05-09 10:45:35 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}], Total: 26
+2025-05-09 10:45:35 - Payment methods: [{"id":3,"method_type":"card","card_type":"visa","card_last_four":"9845","expiry_date":"12\/27","bank_name":null,"wallet_type":null,"phone_number":null},{"id":4,"method_type":"online_banking","card_type":null,"card_last_four":null,"expiry_date":null,"bank_name":"","wallet_type":null,"phone_number":null},{"id":5,"method_type":"online_banking","card_type":null,"card_last_four":null,"expiry_date":null,"bank_name":"","wallet_type":null,"phone_number":null},{"id":6,"method_type":"online_banking","card_type":null,"card_last_four":null,"expiry_date":null,"bank_name":"","wallet_type":null,"phone_number":null},{"id":7,"method_type":"online_banking","card_type":null,"card_last_four":null,"expiry_date":null,"bank_name":"","wallet_type":null,"phone_number":null},{"id":8,"method_type":"card","card_type":"visa","card_last_four":"9845","expiry_date":"12\/27","bank_name":null,"wallet_type":null,"phone_number":null},{"id":9,"method_type":"digital_wallet","card_type":null,"card_last_four":null,"expiry_date":null,"bank_name":null,"wallet_type":"tng","phone_number":"01111126183"},{"id":10,"method_type":"online_banking","card_type":null,"card_last_four":null,"expiry_date":null,"bank_name":"","wallet_type":null,"phone_number":null},{"id":11,"method_type":"online_banking","card_type":null,"card_last_four":null,"expiry_date":null,"bank_name":"","wallet_type":null,"phone_number":null},{"id":12,"method_type":"online_banking","card_type":null,"card_last_four":null,"expiry_date":null,"bank_name":"hsbc","wallet_type":null,"phone_number":null},{"id":13,"method_type":"online_banking","card_type":null,"card_last_four":null,"expiry_date":null,"bank_name":"","wallet_type":null,"phone_number":null},{"id":14,"method_type":"online_banking","card_type":null,"card_last_four":null,"expiry_date":null,"bank_name":"","wallet_type":null,"phone_number":null},{"id":15,"method_type":"online_banking","card_type":null,"card_last_four":null,"expiry_date":null,"bank_name":"","wallet_type":null,"phone_number":null},{"id":16,"method_type":"online_banking","card_type":null,"card_last_four":null,"expiry_date":null,"bank_name":"hsbc","wallet_type":null,"phone_number":null},{"id":17,"method_type":"online_banking","card_type":null,"card_last_four":null,"expiry_date":null,"bank_name":"uob","wallet_type":null,"phone_number":null}]
+2025-05-09 17:04:31 - Customer ID: 1
+2025-05-09 17:04:31 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-09 17:04:31 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:04:31 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:04:31 - Calculated total: 26
+2025-05-09 17:04:31 - Customer saved address: None
+2025-05-09 17:04:40 - Customer ID: 1
+2025-05-09 17:04:40 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-09 17:04:40 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:04:40 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:04:40 - Calculated total: 26
+2025-05-09 17:04:40 - Customer saved address: None
+2025-05-09 17:04:40 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"","payment_method_id":"9","method":"","amount":"26","make_payment":"1"}
+2025-05-09 17:04:40 - Received amount: 26, Expected total: 26
+2025-05-09 17:04:40 - Delivery method: delivery, Delivery address: N/A
+2025-05-09 17:04:40 - Payment method: , Payment method ID: 9
+2025-05-09 17:04:40 - Validation failed: Invalid payment method ()
+2025-05-09 17:04:41 - Customer ID: 1
+2025-05-09 17:04:41 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-09 17:04:41 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:04:41 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:04:41 - Calculated total: 26
+2025-05-09 17:04:41 - Customer saved address: None
+2025-05-09 17:04:48 - Customer ID: 1
+2025-05-09 17:04:48 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-09 17:04:48 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:04:48 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:04:48 - Calculated total: 26
+2025-05-09 17:04:48 - Customer saved address: None
+2025-05-09 17:04:48 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"","payment_method_id":"9","method":"","amount":"26","make_payment":"1"}
+2025-05-09 17:04:48 - Received amount: 26, Expected total: 26
+2025-05-09 17:04:48 - Delivery method: delivery, Delivery address: N/A
+2025-05-09 17:04:48 - Payment method: , Payment method ID: 9
+2025-05-09 17:04:48 - Validation failed: Invalid payment method ()
+2025-05-09 17:04:54 - Customer ID: 1
+2025-05-09 17:04:54 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-09 17:04:54 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:04:54 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:04:54 - Calculated total: 26
+2025-05-09 17:04:54 - Customer saved address: None
+2025-05-09 17:05:15 - Customer ID: 1
+2025-05-09 17:05:15 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-09 17:05:15 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:05:15 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:05:15 - Calculated total: 26
+2025-05-09 17:05:18 - Customer ID: 1
+2025-05-09 17:05:18 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-09 17:05:18 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:05:18 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:05:18 - Calculated total: 26
+2025-05-09 17:05:18 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"pickup","delivery_address":"","payment_method_id":"9","method":"digital_wallet","amount":"26","make_payment":"1"}
+2025-05-09 17:05:18 - Received amount: 26, Expected total: 26
+2025-05-09 17:05:18 - Delivery method: pickup, Delivery address: N/A
+2025-05-09 17:05:18 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:05:18 - Generated order_id: ORD-681E19AEB5D65
+2025-05-09 17:05:18 - Current database: brizo
+2025-05-09 17:05:18 - Table 'orders' exists: Yes
+2025-05-09 17:05:18 - Columns in 'orders' table: ["id","order_id","customer_id","items","total","status","created_at"]
+2025-05-09 17:05:18 - Executing SQL for orders insert: 
+            INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
+            VALUES (?, ?, ?, ?, 'pending', NOW())
+        
+2025-05-09 17:05:18 - Inserting order_item: order_id=ORD-681E19AEB5D65, item_id=2, quantity=1, price=14.00
+2025-05-09 17:05:18 - Inserting order_item: order_id=ORD-681E19AEB5D65, item_id=1, quantity=1, price=12.00
+2025-05-09 17:05:18 - Payment successful: order_id=ORD-681E19AEB5D65
+2025-05-09 17:05:21 - Customer ID: 1
+2025-05-09 17:05:21 - Cart items: []
+2025-05-09 17:05:21 - Calculated total: 0
+2025-05-09 17:14:43 - Customer ID: 1
+2025-05-09 17:14:43 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:14:43 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:14:43 - Calculated total: 12
+2025-05-09 17:14:43 - Customer saved address: None
+2025-05-09 17:14:53 - Customer ID: 1
+2025-05-09 17:14:53 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:14:53 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:14:53 - Calculated total: 12
+2025-05-09 17:14:53 - Customer saved address: None
+2025-05-09 17:14:53 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"12","method":"online_banking","amount":"12","make_payment":"1"}
+2025-05-09 17:14:53 - Received amount: 12, Expected total: 12
+2025-05-09 17:14:53 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-09 17:14:53 - Payment method: online_banking, Payment method ID: 12
+2025-05-09 17:14:53 - Validation failed: Invalid delivery method (delivery)
+2025-05-09 17:14:56 - Customer ID: 1
+2025-05-09 17:14:56 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:14:56 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:14:56 - Calculated total: 12
+2025-05-09 17:14:56 - Customer saved address: None
+2025-05-09 17:14:56 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-09 17:14:56 - Received amount: 12, Expected total: 12
+2025-05-09 17:14:56 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-09 17:14:56 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:14:56 - Validation failed: Invalid delivery method (delivery)
+2025-05-09 17:14:56 - Customer ID: 1
+2025-05-09 17:14:56 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:14:56 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:14:56 - Calculated total: 12
+2025-05-09 17:14:56 - Customer saved address: None
+2025-05-09 17:14:56 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-09 17:14:56 - Received amount: 12, Expected total: 12
+2025-05-09 17:14:56 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-09 17:14:56 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:14:56 - Validation failed: Invalid delivery method (delivery)
+2025-05-09 17:14:57 - Customer ID: 1
+2025-05-09 17:14:57 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:14:57 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:14:57 - Calculated total: 12
+2025-05-09 17:14:57 - Customer saved address: None
+2025-05-09 17:14:57 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-09 17:14:57 - Received amount: 12, Expected total: 12
+2025-05-09 17:14:57 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-09 17:14:57 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:14:57 - Validation failed: Invalid delivery method (delivery)
+2025-05-09 17:14:57 - Customer ID: 1
+2025-05-09 17:14:57 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:14:57 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:14:57 - Calculated total: 12
+2025-05-09 17:14:57 - Customer saved address: None
+2025-05-09 17:14:57 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-09 17:14:57 - Received amount: 12, Expected total: 12
+2025-05-09 17:14:57 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-09 17:14:57 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:14:57 - Validation failed: Invalid delivery method (delivery)
+2025-05-09 17:14:57 - Customer ID: 1
+2025-05-09 17:14:57 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:14:57 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:14:57 - Calculated total: 12
+2025-05-09 17:14:58 - Customer saved address: None
+2025-05-09 17:14:58 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-09 17:14:58 - Received amount: 12, Expected total: 12
+2025-05-09 17:14:58 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-09 17:14:58 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:14:58 - Validation failed: Invalid delivery method (delivery)
+2025-05-09 17:14:58 - Customer ID: 1
+2025-05-09 17:14:58 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:14:58 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:14:58 - Calculated total: 12
+2025-05-09 17:14:58 - Customer saved address: None
+2025-05-09 17:14:58 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-09 17:14:58 - Received amount: 12, Expected total: 12
+2025-05-09 17:14:58 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-09 17:14:58 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:14:58 - Validation failed: Invalid delivery method (delivery)
+2025-05-09 17:14:59 - Customer ID: 1
+2025-05-09 17:14:59 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:14:59 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:14:59 - Calculated total: 12
+2025-05-09 17:14:59 - Customer saved address: None
+2025-05-09 17:14:59 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-09 17:14:59 - Received amount: 12, Expected total: 12
+2025-05-09 17:14:59 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-09 17:14:59 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:14:59 - Validation failed: Invalid delivery method (delivery)
+2025-05-09 17:15:02 - Customer ID: 1
+2025-05-09 17:15:02 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:15:02 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:15:02 - Calculated total: 12
+2025-05-09 17:15:02 - Customer saved address: None
+2025-05-09 17:15:02 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-09 17:15:02 - Received amount: 12, Expected total: 12
+2025-05-09 17:15:02 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-09 17:15:02 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:15:02 - Validation failed: Invalid delivery method (delivery)
+2025-05-09 17:15:57 - Customer ID: 1
+2025-05-09 17:15:57 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:15:57 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:15:57 - Calculated total: 12
+2025-05-09 17:15:57 - Customer saved address: None
+2025-05-09 17:15:57 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-09 17:15:57 - Received amount: 12, Expected total: 12
+2025-05-09 17:15:57 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-09 17:15:57 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:15:57 - Validation failed: Invalid delivery method (delivery)
+2025-05-09 17:19:53 - Customer ID: 1
+2025-05-09 17:19:53 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:19:53 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:19:53 - Calculated total: 12
+2025-05-09 17:19:53 - Customer saved address: None
+2025-05-09 17:19:58 - Customer ID: 1
+2025-05-09 17:19:58 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:19:58 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:19:58 - Calculated total: 12
+2025-05-09 17:19:58 - Customer saved address: None
+2025-05-09 17:19:58 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"pickup","delivery_address":"","payment_method_id":"9","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-09 17:19:58 - Received amount: 12, Expected total: 12
+2025-05-09 17:19:58 - Delivery method: pickup, Delivery address: N/A
+2025-05-09 17:19:58 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:19:58 - Delivery method validation passed: pickup
+2025-05-09 17:19:58 - Delivery address validation passed: N/A
+2025-05-09 17:19:58 - Generated order_id: ORD-681E1D1EB39F6
+2025-05-09 17:19:58 - Executing SQL for orders insert: 
+            INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
+            VALUES (?, ?, ?, ?, 'pending', NOW())
+        
+2025-05-09 17:19:58 - Inserting order_item: order_id=ORD-681E1D1EB39F6, item_id=1, quantity=1, price=12.00
+2025-05-09 17:19:58 - Payment successful: order_id=ORD-681E1D1EB39F6
+2025-05-09 17:20:21 - Customer ID: 1
+2025-05-09 17:20:21 - Cart items: []
+2025-05-09 17:20:21 - Calculated total: 0
+2025-05-09 17:20:21 - Customer saved address: None
+2025-05-09 17:20:21 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"pickup","delivery_address":"","payment_method_id":"9","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-09 17:20:21 - Validation failed: Cart is empty for customer_id=1
+2025-05-09 17:20:28 - Customer ID: 1
+2025-05-09 17:20:28 - Cart items: []
+2025-05-09 17:20:28 - Calculated total: 0
+2025-05-09 17:20:28 - Customer saved address: None
+2025-05-09 17:20:28 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"pickup","delivery_address":"","payment_method_id":"9","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-09 17:20:28 - Validation failed: Cart is empty for customer_id=1
+2025-05-09 17:20:35 - Customer ID: 1
+2025-05-09 17:20:35 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-09 17:20:35 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"}]
+2025-05-09 17:20:35 - Calculated total: 15
+2025-05-09 17:20:35 - Customer saved address: None
+2025-05-09 17:20:38 - Customer ID: 1
+2025-05-09 17:20:38 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-09 17:20:38 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"}]
+2025-05-09 17:20:38 - Calculated total: 15
+2025-05-09 17:20:38 - Customer saved address: None
+2025-05-09 17:20:38 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"pickup","delivery_address":"","payment_method_id":"9","method":"digital_wallet","amount":"15","make_payment":"1"}
+2025-05-09 17:20:38 - Received amount: 15, Expected total: 15
+2025-05-09 17:20:38 - Delivery method: pickup, Delivery address: N/A
+2025-05-09 17:20:38 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:20:38 - Delivery method validation passed: pickup
+2025-05-09 17:20:38 - Delivery address validation passed: N/A
+2025-05-09 17:20:38 - Generated order_id: ORD-681E1D4624976
+2025-05-09 17:20:38 - Executing SQL for orders insert: 
+            INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
+            VALUES (?, ?, ?, ?, 'pending', NOW())
+        
+2025-05-09 17:20:38 - Inserting order_item: order_id=ORD-681E1D4624976, item_id=3, quantity=1, price=15.00
+2025-05-09 17:20:38 - Payment successful: order_id=ORD-681E1D4624976
+2025-05-09 17:21:18 - Customer ID: 1
+2025-05-09 17:21:18 - Cart items: []
+2025-05-09 17:21:18 - Calculated total: 0
+2025-05-09 17:21:18 - Customer saved address: None
+2025-05-09 17:21:18 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"pickup","delivery_address":"","payment_method_id":"9","method":"digital_wallet","amount":"15","make_payment":"1"}
+2025-05-09 17:21:18 - Validation failed: Cart is empty for customer_id=1
+2025-05-09 17:21:35 - Customer ID: 1
+2025-05-09 17:21:35 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:21:35 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:21:35 - Calculated total: 12
+2025-05-09 17:21:35 - Customer saved address: None
+2025-05-09 17:21:46 - Customer ID: 1
+2025-05-09 17:21:46 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:21:46 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:21:46 - Calculated total: 12
+2025-05-09 17:21:46 - Customer saved address: None
+2025-05-09 17:21:46 - Attempting to add payment method: method_type=digital_wallet
+2025-05-09 17:21:46 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-05-09 17:21:58 - Customer ID: 1
+2025-05-09 17:21:58 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:21:58 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:21:58 - Calculated total: 12
+2025-05-09 17:21:58 - Customer saved address: None
+2025-05-09 17:21:58 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-09 17:21:58 - Received amount: 12, Expected total: 12
+2025-05-09 17:21:58 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-09 17:21:58 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:21:58 - Delivery method validation passed: delivery
+2025-05-09 17:21:58 - Delivery address validation passed: Angkasa Nuri
+2025-05-09 17:21:58 - Saved delivery address for customer_id=1: Angkasa Nuri
+2025-05-09 17:21:58 - Generated order_id: ORD-681E1D9632F13
+2025-05-09 17:21:58 - Executing SQL for orders insert: 
+            INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
+            VALUES (?, ?, ?, ?, 'pending', NOW())
+        
+2025-05-09 17:21:58 - Inserting order_item: order_id=ORD-681E1D9632F13, item_id=1, quantity=1, price=12.00
+2025-05-09 17:21:58 - Payment successful: order_id=ORD-681E1D9632F13
+2025-05-09 17:26:08 - Customer ID: 1
+2025-05-09 17:26:08 - Cart items: []
+2025-05-09 17:26:08 - Calculated total: 0
+2025-05-09 17:26:08 - Customer saved address: Angkasa Nuri
+2025-05-09 17:26:15 - Customer ID: 1
+2025-05-09 17:26:15 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-09 17:26:15 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"}]
+2025-05-09 17:26:15 - Calculated total: 15
+2025-05-09 17:26:15 - Customer saved address: Angkasa Nuri
+2025-05-09 17:26:20 - Customer ID: 1
+2025-05-09 17:26:20 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-09 17:26:20 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"}]
+2025-05-09 17:26:20 - Calculated total: 15
+2025-05-09 17:26:20 - Customer saved address: Angkasa Nuri
+2025-05-09 17:26:20 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"15","make_payment":"1"}
+2025-05-09 17:26:20 - Received amount: 15, Expected total: 15
+2025-05-09 17:26:20 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-09 17:26:20 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:26:20 - Delivery method validation passed: delivery
+2025-05-09 17:26:20 - Delivery address validation passed: Angkasa Nuri
+2025-05-09 17:26:20 - Saved delivery address for customer_id=1: Angkasa Nuri
+2025-05-09 17:26:20 - Generated order_id: ORD-681E1E9C3146D
+2025-05-09 17:26:20 - Executing SQL for orders insert: 
+            INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
+            VALUES (?, ?, ?, ?, 'pending', NOW())
+        
+2025-05-09 17:26:20 - Inserting order_item: order_id=ORD-681E1E9C3146D, item_id=3, quantity=1, price=15.00
+2025-05-09 17:26:20 - Payment successful: order_id=ORD-681E1E9C3146D
+2025-05-09 17:34:04 - Customer ID: 1
+2025-05-09 17:34:04 - Cart items: []
+2025-05-09 17:34:04 - Calculated total: 0
+2025-05-09 17:34:04 - Customer saved address: Angkasa Nuri
+2025-05-09 17:34:10 - Customer ID: 1
+2025-05-09 17:34:10 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-09 17:34:10 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:34:10 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:34:10 - Calculated total: 26
+2025-05-09 17:34:10 - Customer saved address: Angkasa Nuri
+2025-05-09 17:34:16 - Customer ID: 1
+2025-05-09 17:34:16 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-09 17:34:16 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-09 17:34:16 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-09 17:34:16 - Calculated total: 26
+2025-05-09 17:34:16 - Customer saved address: Angkasa Nuri
+2025-05-09 17:34:16 - Received make_payment request: {"csrf_token":"1ce9a07d46710398aa5a2ec902045bba27795304d5cb6e34cba5d8ac80bd1345","delivery_method":"pickup","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"26","make_payment":"1"}
+2025-05-09 17:34:16 - Received amount: 26, Expected total: 26
+2025-05-09 17:34:16 - Delivery method: pickup, Delivery address: N/A
+2025-05-09 17:34:16 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-09 17:34:16 - Delivery method validation passed: pickup
+2025-05-09 17:34:16 - Delivery address validation passed: N/A
+2025-05-09 17:34:16 - Generated order_id: ORD-681E207877F98
+2025-05-09 17:34:16 - Executing SQL for orders insert: 
+            INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
+            VALUES (?, ?, ?, ?, 'pending', NOW())
+        
+2025-05-09 17:34:16 - Inserting order_item: order_id=ORD-681E207877F98, item_id=2, quantity=1, price=14.00
+2025-05-09 17:34:16 - Inserting order_item: order_id=ORD-681E207877F98, item_id=1, quantity=1, price=12.00
+2025-05-09 17:34:16 - Payment successful: order_id=ORD-681E207877F98
+2025-05-09 17:34:18 - Customer ID: 1
+2025-05-09 17:34:18 - Cart items: []
+2025-05-09 17:34:18 - Calculated total: 0
+2025-05-09 17:34:18 - Customer saved address: Angkasa Nuri
+2025-05-14 16:36:12 - Customer ID: 1
+2025-05-14 16:36:12 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-14 16:36:12 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"}]
+2025-05-14 16:36:12 - Calculated total: 15
+2025-05-14 16:36:12 - Customer saved address: Angkasa Nuri
+2025-05-14 16:36:23 - Customer ID: 1
+2025-05-14 16:36:23 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-14 16:36:23 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"}]
+2025-05-14 16:36:23 - Calculated total: 15
+2025-05-14 16:36:23 - Customer saved address: Angkasa Nuri
+2025-05-14 16:36:23 - Received make_payment request: {"csrf_token":"dece8e2601caf30a9a37056c1562c09b8703ab1765ee71bed4190c3327238373","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"15","make_payment":"1"}
+2025-05-14 16:36:23 - Received amount: 15, Expected total: 15
+2025-05-14 16:36:23 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-14 16:36:23 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-14 16:36:23 - Delivery method validation passed: delivery
+2025-05-14 16:36:23 - Delivery address validation passed: Angkasa Nuri
+2025-05-14 16:36:23 - Saved delivery address for customer_id=1: Angkasa Nuri
+2025-05-14 16:36:23 - Generated order_id: ORD-6824AA6774AB7
+2025-05-14 16:36:23 - Executing SQL for orders insert: 
+            INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
+            VALUES (?, ?, ?, ?, 'pending', NOW())
+        
+2025-05-14 16:36:23 - Inserting order_item: order_id=ORD-6824AA6774AB7, item_id=3, quantity=1, price=15.00
+2025-05-14 16:36:23 - Payment successful: order_id=ORD-6824AA6774AB7
+2025-05-14 16:48:04 - Customer ID: 1
+2025-05-14 16:48:04 - Cart items: []
+2025-05-14 16:48:04 - Calculated total: 0
+2025-05-14 16:48:04 - Customer saved address: Angkasa Nuri

@@ -30,7 +30,7 @@ try {
     die('Error: Unable to fetch payment history');
 }
 
-// Process items and refund eligibility for each payment
+// Process items and refund details for each payment
 $paymentDetails = [];
 foreach ($payments as $payment) {
     $orderId = $payment['order_id'];
@@ -53,30 +53,30 @@ foreach ($payments as $payment) {
         $items = [];
     }
 
-    // Check for existing refund request
-    $canRequestRefund = false;
-    if ($payment['status'] === 'completed') {
-        try {
-            $stmt = $conn->prepare("
-                SELECT id
-                FROM refund_requests
-                WHERE order_id = ? AND customer_id = ? AND status IN ('pending', 'approved')
-            ");
-            $stmt->bind_param("si", $orderId, $customerId);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $canRequestRefund = !$result->fetch_assoc();
-            $stmt->close();
-        } catch (Exception $e) {
-            file_put_contents('payment_history_errors.log', date('Y-m-d H:i:s') . ' - Error checking refund eligibility for order_id: ' . $orderId . ' - ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
-            $canRequestRefund = false;
+    // Fetch all refund requests for this order
+    $refundDetails = [];
+    try {
+        $stmt = $conn->prepare("
+            SELECT id, status, total, items, admin_notes, created_at
+            FROM refund_requests
+            WHERE order_id = ? AND customer_id = ?
+            ORDER BY created_at DESC
+        ");
+        $stmt->bind_param("si", $orderId, $customerId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        while ($row = $result->fetch_assoc()) {
+            $refundDetails[] = $row;
         }
+        $stmt->close();
+    } catch (Exception $e) {
+        file_put_contents('payment_history_errors.log', date('Y-m-d H:i:s') . ' - Error fetching refund details for order_id: ' . $orderId . ' - ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
     }
 
     $paymentDetails[] = [
         'payment' => $payment,
         'items' => $items,
-        'can_request_refund' => $canRequestRefund
+        'refund_details' => $refundDetails
     ];
 }
 
@@ -166,9 +166,18 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
         .refund-btn:hover {
             background: #c0392b;
         }
-        .refund-btn:disabled {
-            background: #95a5a6;
-            cursor: not-allowed;
+        .refund-details {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .refund-details ul {
+            list-style: none;
+            padding: 0;
+            margin: 5px 0;
+        }
+        .refund-details ul li {
+            margin-bottom: 5px;
         }
         @media (max-width: 600px) {
             .container {
@@ -251,19 +260,34 @@ $imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <?php
-                                // Log the refund link being generated
-                                if ($detail['can_request_refund']) {
-                                    $refundLink = "refund.php?order_id=" . urlencode($payment['order_id']);
-                                    file_put_contents('payment_history_errors.log', date('Y-m-d H:i:s') . ' - Generated refund link: ' . $refundLink . PHP_EOL, FILE_APPEND);
-                                }
-                                ?>
-                                <?php if ($detail['can_request_refund']): ?>
-                                    <a href="refund.php?order_id=<?= urlencode($payment['order_id']) ?>" class="refund-btn">Request Refund</a>
-                                <?php else: ?>
-                                    <button class="refund-btn" disabled>
-                                        <?= $payment['status'] === 'refunded' ? 'Refunded' : 'Refund Requested' ?>
-                                    </button>
+                                <a href="refund.php?order_id=<?= urlencode($payment['order_id']) ?>" class="refund-btn">Request Refund</a>
+                                <?php if (!empty($detail['refund_details'])): ?>
+                                    <?php foreach ($detail['refund_details'] as $refund): ?>
+                                        <div class="refund-details">
+                                            <strong>Refund Status:</strong> <?= htmlspecialchars(ucfirst($refund['status'])) ?><br>
+                                            <strong>Request Date:</strong> <?= htmlspecialchars($refund['created_at']) ?><br>
+                                            <?php if ($refund['total'] !== null): ?>
+                                                <strong>Refund Amount:</strong> RM <?= number_format($refund['total'], 2) ?><br>
+                                            <?php endif; ?>
+                                            <?php if ($refund['items']): ?>
+                                                <strong>Refund Items:</strong>
+                                                <?php
+                                                $refundItems = json_decode($refund['items'], true);
+                                                if ($refundItems): ?>
+                                                    <ul>
+                                                        <?php foreach ($refundItems as $item): ?>
+                                                            <li><?= htmlspecialchars($item['item_name']) ?> (Qty: <?= $item['quantity'] ?>, RM <?= number_format($item['price'], 2) ?>)</li>
+                                                        <?php endforeach; ?>
+                                                    </ul>
+                                                <?php else: ?>
+                                                    N/A
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                            <?php if ($refund['admin_notes']): ?>
+                                                <strong>Admin Notes:</strong> <?= htmlspecialchars($refund['admin_notes']) ?><br>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endforeach; ?>
                                 <?php endif; ?>
                             </td>
                         </tr>

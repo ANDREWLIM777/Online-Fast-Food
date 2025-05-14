@@ -2,158 +2,146 @@
 session_start();
 require '../db_connect.php';
 
-// Check if order details exist in session
+// Check if the user is logged in
+if (!isset($_SESSION['customer_id'])) {
+    header("Location: ../../login.php");
+    exit();
+}
+
+$customerId = $_SESSION['customer_id'];
+
+// Check if order details are available in session
 if (!isset($_SESSION['last_order'])) {
     header("Location: cart.php");
     exit();
 }
 
-$lastOrder = $_SESSION['last_order'];
-$orderId = $lastOrder['order_code'];
+$order = $_SESSION['last_order'];
+$orderCode = $order['order_code'];
+$amount = $order['amount'];
+$method = $order['method'];
+$paymentDetails = $order['payment_details'];
+$deliveryMethod = $order['delivery_method'];
+$deliveryAddress = $order['delivery_address'];
+$timestamp = $order['timestamp'];
+$items = $order['items'];
 
-// Fetch order details from the orders table
+// Fetch order items from the database to ensure data integrity
 $stmt = $conn->prepare("
-    SELECT items
-    FROM orders
-    WHERE order_id = ?
+    SELECT oi.item_id, oi.quantity, oi.price, m.item_name, m.photo
+    FROM order_items oi
+    JOIN menu_items m ON oi.item_id = m.id
+    WHERE oi.order_id = ?
 ");
-$stmt->bind_param("s", $orderId);
+$stmt->bind_param("s", $orderCode);
 $stmt->execute();
 $result = $stmt->get_result();
-$order = $result->fetch_assoc();
+$orderItems = $result->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
-// Check if the order was found
-if (!$order) {
-    file_put_contents('confirmation_errors.log', date('Y-m-d H:i:s') . " - Order not found for order_id: $orderId\n", FILE_APPEND);
-    header("Location: cart.php?error=order_not_found");
-    exit();
-}
-
-// Decode the items JSON if it exists
-$itemsJson = $order['items'];
-file_put_contents('confirmation_errors.log', date('Y-m-d H:i:s') . " - Items JSON for order $orderId: " . ($itemsJson ?? 'NULL') . "\n", FILE_APPEND);
-$orderItems = json_decode($itemsJson, true);
-file_put_contents('confirmation_errors.log', date('Y-m-d H:i:s') . " - Decoded orderItems for order $orderId: " . json_encode($orderItems) . "\n", FILE_APPEND);
-
-// Prepare items for display
-$items = [];
-if (!empty($orderItems)) {
-    // Use the items from the JSON
-    foreach ($orderItems as $item) {
-        $items[] = [
-            'item_name' => $item['item_name'],
-            'photo' => $item['photo'],
-            'quantity' => $item['quantity'],
-            'price' => $item['price']
-        ];
-    }
-} else {
-    // Fallback: Fetch items from order_items table and join with menu_items
-    $stmt = $conn->prepare("
-        SELECT oi.item_id, oi.quantity, oi.price, mi.item_name, mi.photo
-        FROM order_items oi
-        LEFT JOIN menu_items mi ON oi.item_id = mi.id
-        WHERE oi.order_id = ?
-    ");
-    $stmt->bind_param("s", $orderId);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    while ($row = $result->fetch_assoc()) {
-        $items[] = [
-            'item_name' => $row['item_name'] ?? 'Unknown Item',
-            'photo' => $row['photo'] ?? 'default-food-image.jpg',
-            'quantity' => $row['quantity'],
-            'price' => $row['price']
-        ];
-    }
-    $stmt->close();
-}
-
-// Format the payment method for display
-$paymentMethodDisplay = '';
-switch ($lastOrder['method']) {
-    case 'card':
-        $paymentMethodDisplay = 'Card';
-        break;
-    case 'online_banking':
-        $paymentMethodDisplay = 'Online Banking';
-        break;
-    case 'digital_wallet':
-        $paymentMethodDisplay = 'Digital Wallet';
-        break;
-    default:
-        $paymentMethodDisplay = ucfirst($lastOrder['method']);
-}
-
-// Base URL for images
-$imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
+// Log order details for debugging
+$logFile = 'confirmation_errors.log';
+$logMessage = function($message) use ($logFile) {
+    file_put_contents($logFile, date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, FILE_APPEND);
+};
+$logMessage("Displaying confirmation for order: $orderCode, Customer ID: $customerId");
+$logMessage("Order items: " . json_encode($orderItems));
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmation - Brizo Fast Food Melaka</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; }
-        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        .success-message { color: #155724; background: #d4edda; padding: 10px; border-radius: 4px; margin-bottom: 20px; }
-        a { color: #3498db; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background: #f8f8f8; }
-        .cart-item img { width: 70px; height: 70px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h2>Order Confirmation</h2>
-        <div class="success-message">
-            <i class="fas fa-check-circle"></i> Payment Successful! Thank you for your order.
+<body class="bg-gray-100">
+    <header class="sticky top-0 bg-white shadow z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-800">Brizo Fast Food Melaka</h1>
+            <a href="cart.php" class="text-blue-600 hover:text-blue-800 flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Cart
+            </a>
         </div>
-        <p><strong>Order ID:</strong> <?= htmlspecialchars($lastOrder['order_code']) ?></p>
-        <p><strong>Amount:</strong> RM <?= number_format($lastOrder['amount'], 2) ?></p>
-        <p><strong>Payment Method:</strong> <?= htmlspecialchars($paymentMethodDisplay) ?></p>
-        <p><strong>Payment Details:</strong> <?= htmlspecialchars($lastOrder['payment_details'] ?? 'N/A') ?></p>
-        <p><strong>Delivery Method:</strong> <?= htmlspecialchars(ucfirst($lastOrder['delivery_method'])) ?></p>
-        <?php if ($lastOrder['delivery_method'] === 'delivery'): ?>
-            <p><strong>Delivery Address:</strong> <?= htmlspecialchars($lastOrder['delivery_address']) ?></p>
-        <?php endif; ?>
-        <p><strong>Order Date:</strong> <?= htmlspecialchars($lastOrder['timestamp']) ?></p>
-        <h3>Items Ordered:</h3>
-        <?php if (empty($items)): ?>
-            <p>No items found for this order.</p>
-        <?php else: ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Photo</th>
-                        <th>Item Name</th>
-                        <th>Quantity</th>
-                        <th>Price (RM)</th>
-                        <th>Subtotal (RM)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($items as $item): ?>
-                        <tr>
-                            <td class="cart-item">
-                                <img src="<?= htmlspecialchars($imageBaseUrl . ($item['photo'] ?? 'default-food-image.jpg')) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>">
-                            </td>
-                            <td><?= htmlspecialchars($item['item_name']) ?></td>
-                            <td><?= htmlspecialchars($item['quantity']) ?></td>
-                            <td><?= number_format($item['price'], 2) ?></td>
-                            <td><?= number_format($item['quantity'] * $item['price'], 2) ?></td>
-                        </tr>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Order Confirmation</h2>
+            <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-6 rounded-lg">
+                <p class="text-green-700 text-lg flex items-center">
+                    <i class="fas fa-check-circle mr-2"></i> Thank you! Your order has been placed successfully.
+                </p>
+            </div>
+
+            <!-- Order Summary -->
+            <section class="mb-8">
+                <h3 class="text-xl font-medium text-gray-700 mb-4">Order Details</h3>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <p class="text-gray-600"><strong>Order ID:</strong> <?= htmlspecialchars($orderCode) ?></p>
+                    <p class="text-gray-600"><strong>Date:</strong> <?= date('d M Y, H:i', strtotime($timestamp)) ?></p>
+                    <p class="text-gray-600"><strong>Total:</strong> RM <?= number_format($amount, 2) ?></p>
+                    <p class="text-gray-600"><strong>Payment Method:</strong> 
+                        <i class="fas <?= $method === 'card' ? 'fa-credit-card' : ($method === 'online_banking' ? 'fa-university' : 'fa-wallet') ?> mr-1"></i>
+                        <?= ucfirst(htmlspecialchars($method)) ?> (<?= htmlspecialchars($paymentDetails) ?>)
+                    </p>
+                    <p class="text-gray-600"><strong>Delivery Method:</strong> 
+                        <i class="fas <?= $deliveryMethod === 'delivery' ? 'fa-truck' : 'fa-store' ?> mr-1"></i>
+                        <?= ucfirst(htmlspecialchars($deliveryMethod)) ?>
+                    </p>
+                    <?php if ($deliveryMethod === 'delivery' && $deliveryAddress): ?>
+                        <p class="text-gray-600"><strong>Delivery Address:</strong> <?= htmlspecialchars($deliveryAddress) ?></p>
+                    <?php endif; ?>
+                </div>
+            </section>
+
+            <!-- Order Items -->
+            <section>
+                <h3 class="text-xl font-medium text-gray-700 mb-4">Items Ordered</h3>
+                <div class="space-y-4">
+                    <?php foreach ($orderItems as $item): ?>
+                        <div class="flex items-center p-4 bg-gray-50 rounded-lg card-hover">
+                            <img src="/Online-Fast-Food/Admin/Manage_Menu_Item/<?= htmlspecialchars($item['photo']) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>" class="w-20 h-20 object-cover rounded-lg mr-4">
+                            <div class="flex-1">
+                                <h4 class="text-lg font-medium text-gray-800"><?= htmlspecialchars($item['item_name']) ?></h4>
+                                <p class="text-gray-600">Quantity: <?= $item['quantity'] ?> | Price: RM <?= number_format($item['price'], 2) ?> each | Total: RM <?= number_format($item['quantity'] * $item['price'], 2) ?></p>
+                            </div>
+                        </div>
                     <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php endif; ?>
-        <a href="cart.php">Back to Cart</a>
-    </div>
-    <?php unset($_SESSION['last_order']); ?>
+                </div>
+            </section>
+
+            <!-- Actions -->
+            <div class="mt-8 flex justify-end space-x-4">
+                <a href="payment_history.php" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center">
+                    <i class="fas fa-history mr-2"></i> View Payment History
+                </a>
+                <a href="cart.php" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 flex items-center">
+                    <i class="fas fa-shopping-cart mr-2"></i> Continue Shopping
+                </a>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
