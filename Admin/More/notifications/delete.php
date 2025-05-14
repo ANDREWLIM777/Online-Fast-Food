@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-<a class="back-btn" href="index.php"><i class="fas fa-arrow-left"></i> Back to Notifications</a>
+<a class="back-btn" href="index.php"><i class="fas fa-arrow-left"></i> Back to Announcement</a>
 
 <div class="container">
     <h2>⚠️ Confirm Deletion</h2>

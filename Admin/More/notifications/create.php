@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Notification</title>
+    <title>Create Announcement</title>
     <style>
         body { background: #0f0f0f; color: #eee; font-family: sans-serif; padding: 2rem; }
         .form-container { background: #1c1c1c; padding: 2rem; border-radius: 10px; max-width: 600px; margin: auto; }
@@ -54,15 +54,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-<a class="back-btn" href="index.php"><i class="fas fa-arrow-left"></i> Back to Notifications</a>
+<a class="back-btn" href="index.php"><i class="fas fa-arrow-left"></i> Back to Announcement</a>
 
     <div class="form-container">
-        <h2>📝 New Notification</h2>
+        <h2>📝 New Announcement</h2>
         <?php if (isset($error)): ?><div class="error"><?= htmlspecialchars($error) ?></div><?php endif; ?>
         <form method="post">
             <input type="text" name="title" placeholder="Title" required>
             <textarea name="message" rows="6" placeholder="Message" required></textarea>
-            <button type="submit">Post Notification</button>
+            <button type="submit">Post Announcement</button>
         </form>
     </div>
 </body>
