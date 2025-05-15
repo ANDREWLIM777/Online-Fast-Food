@@ -2,299 +2,166 @@
 session_start();
 require '../db_connect.php';
 
-$customerId = $_SESSION['customer_id'] ?? null;
-if (!$customerId) {
-    file_put_contents('payment_history_errors.log', date('Y-m-d H:i:s') . ' - No customer_id in session, redirecting to login.php' . PHP_EOL, FILE_APPEND);
-    header("Location: /Online-Fast-Food/customer/login.php");
+// Check if the user is logged in
+if (!isset($_SESSION['customer_id'])) {
+    header("Location: ../../login.php");
     exit();
 }
 
-// Log the customer ID in session
-file_put_contents('payment_history_errors.log', date('Y-m-d H:i:s') . ' - Customer ID in session: ' . ($customerId ?? 'not set') . PHP_EOL, FILE_APPEND);
+$customerId = $_SESSION['customer_id'];
 
-// Fetch payment history for the customer
-try {
-    $stmt = $conn->prepare("
-        SELECT ph.order_id, ph.date, ph.amount, ph.method, ph.payment_details, ph.delivery_method, ph.delivery_address, ph.status
-        FROM payment_history ph
-        WHERE ph.customer_id = ?
-        ORDER BY ph.date DESC
-    ");
-    $stmt->bind_param("i", $customerId);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $payments = $result->fetch_all(MYSQLI_ASSOC);
-    $stmt->close();
-} catch (Exception $e) {
-    file_put_contents('payment_history_errors.log', date('Y-m-d H:i:s') . ' - Error fetching payment history: ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
-    die('Error: Unable to fetch payment history');
-}
+// Fetch payment history with pagination
+$records_per_page = 10;
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $records_per_page;
 
-// Process items and refund details for each payment
-$paymentDetails = [];
-foreach ($payments as $payment) {
-    $orderId = $payment['order_id'];
+$stmt = $conn->prepare("
+    SELECT COUNT(*) as total
+    FROM payment_history
+    WHERE customer_id = ?
+");
+$stmt->bind_param("i", $customerId);
+$stmt->execute();
+$total_records = $stmt->get_result()->fetch_assoc()['total'];
+$stmt->close();
 
-    // Fetch order items
-    try {
-        $stmt = $conn->prepare("
-            SELECT oi.item_id, oi.quantity, oi.price, m.item_name, m.photo
-            FROM order_items oi
-            LEFT JOIN menu_items m ON oi.item_id = m.id
-            WHERE oi.order_id = ?
-        ");
-        $stmt->bind_param("s", $orderId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $items = $result->fetch_all(MYSQLI_ASSOC);
-        $stmt->close();
-    } catch (Exception $e) {
-        file_put_contents('payment_history_errors.log', date('Y-m-d H:i:s') . ' - Error fetching items for order_id: ' . $orderId . ' - ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
-        $items = [];
+$total_pages = ceil($total_records / $records_per_page);
+
+$stmt = $conn->prepare("
+    SELECT order_id, date, amount, status, method, payment_details, delivery_method, delivery_address
+    FROM payment_history
+    WHERE customer_id = ?
+    ORDER BY date DESC
+    LIMIT ? OFFSET ?
+");
+$stmt->bind_param("iii", $customerId, $records_per_page, $offset);
+$stmt->execute();
+$result = $stmt->get_result();
+$payment_history = $result->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+
+// Function to get status color
+function getStatusColor($status) {
+    switch (strtolower($status)) {
+        case 'completed':
+            return 'text-green-600';
+        case 'pending':
+            return 'text-yellow-600';
+        case 'failed':
+            return 'text-red-600';
+        case 'refunded':
+            return 'text-blue-600';
+        default:
+            return 'text-gray-600';
     }
-
-    // Fetch all refund requests for this order
-    $refundDetails = [];
-    try {
-        $stmt = $conn->prepare("
-            SELECT id, status, total, items, admin_notes, created_at
-            FROM refund_requests
-            WHERE order_id = ? AND customer_id = ?
-            ORDER BY created_at DESC
-        ");
-        $stmt->bind_param("si", $orderId, $customerId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        while ($row = $result->fetch_assoc()) {
-            $refundDetails[] = $row;
-        }
-        $stmt->close();
-    } catch (Exception $e) {
-        file_put_contents('payment_history_errors.log', date('Y-m-d H:i:s') . ' - Error fetching refund details for order_id: ' . $orderId . ' - ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
-    }
-
-    $paymentDetails[] = [
-        'payment' => $payment,
-        'items' => $items,
-        'refund_details' => $refundDetails
-    ];
 }
-
-// Base URL for images
-$imageBaseUrl = '/Online-Fast-Food/Admin/Manage_Menu_Item/';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment History - Brizo Fast Food Melaka</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
         }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            margin: 20px 0;
-            color: #3498db;
-            text-decoration: none;
-            font-size: 16px;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        .back-link:hover {
-            text-decoration: underline;
+        .table-container {
+            overflow-x: auto;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+        tr {
+            transition: background-color 0.2s ease;
         }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f8f8f8;
-            font-weight: bold;
-        }
-        .delivery-address {
-            color: #666;
-            font-size: 0.9em;
-            white-space: pre-wrap;
-        }
-        .items-table {
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .items-table th, .items-table td {
-            padding: 8px;
-        }
-        .cart-item img {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-        .refund-btn {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .refund-btn:hover {
-            background: #c0392b;
-        }
-        .refund-details {
-            margin-top: 10px;
-            font-size: 0.9em;
-            color: #555;
-        }
-        .refund-details ul {
-            list-style: none;
-            padding: 0;
-            margin: 5px 0;
-        }
-        .refund-details ul li {
-            margin-bottom: 5px;
-        }
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-            }
-            .refund-btn {
-                width: 100%;
-                text-align: center;
-            }
+        tr:hover {
+            background-color: #F9FAFB;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <a href="cart.php" class="back-link"><i class="fas fa-arrow-left"></i> Back to Cart</a>
-        <h2>Payment History</h2>
+<body class="bg-gray-100">
+    <header class="sticky top-0 bg-white shadow z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-800">Brizo Fast Food Melaka</h1>
+            <a href="cart.php" class="text-blue-600 hover:text-blue-800 flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Cart
+            </a>
+        </div>
+    </header>
 
-        <?php if (empty($paymentDetails)): ?>
-            <p>You have no payment history.</p>
-        <?php else: ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Date</th>
-                        <th>Amount (RM)</th>
-                        <th>Payment Method</th>
-                        <th>Payment Details</th>
-                        <th>Delivery Method</th>
-                        <th>Delivery Address</th>
-                        <th>Items</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($paymentDetails as $detail): ?>
-                        <?php $payment = $detail['payment']; ?>
-                        <tr>
-                            <td><?= htmlspecialchars($payment['order_id']) ?></td>
-                            <td><?= htmlspecialchars($payment['date']) ?></td>
-                            <td><?= number_format($payment['amount'], 2) ?></td>
-                            <td><?= htmlspecialchars(ucfirst($payment['method'])) ?></td>
-                            <td><?= htmlspecialchars($payment['payment_details'] ?? 'N/A') ?></td>
-                            <td><?= htmlspecialchars(ucfirst($payment['delivery_method'])) ?></td>
-                            <td>
-                                <?php if ($payment['delivery_method'] === 'delivery' && !empty($payment['delivery_address'])): ?>
-                                    <span class="delivery-address"><?= htmlspecialchars($payment['delivery_address']) ?></span>
-                                <?php else: ?>
-                                    N/A
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?php if (empty($detail['items'])): ?>
-                                    No items found
-                                <?php else: ?>
-                                    <table class="items-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Photo</th>
-                                                <th>Item Name</th>
-                                                <th>Quantity</th>
-                                                <th>Price (RM)</th>
-                                                <th>Subtotal (RM)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($detail['items'] as $item): ?>
-                                                <tr>
-                                                    <td class="cart-item">
-                                                        <img src="<?= htmlspecialchars($imageBaseUrl . ($item['photo'] ?? 'Uploads/default-food-image.jpg')) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>">
-                                                    </td>
-                                                    <td><?= htmlspecialchars($item['item_name']) ?></td>
-                                                    <td><?= htmlspecialchars($item['quantity']) ?></td>
-                                                    <td><?= number_format($item['price'], 2) ?></td>
-                                                    <td><?= number_format($item['quantity'] * $item['price'], 2) ?></td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <a href="refund.php?order_id=<?= urlencode($payment['order_id']) ?>" class="refund-btn">Request Refund</a>
-                                <?php if (!empty($detail['refund_details'])): ?>
-                                    <?php foreach ($detail['refund_details'] as $refund): ?>
-                                        <div class="refund-details">
-                                            <strong>Refund Status:</strong> <?= htmlspecialchars(ucfirst($refund['status'])) ?><br>
-                                            <strong>Request Date:</strong> <?= htmlspecialchars($refund['created_at']) ?><br>
-                                            <?php if ($refund['total'] !== null): ?>
-                                                <strong>Refund Amount:</strong> RM <?= number_format($refund['total'], 2) ?><br>
-                                            <?php endif; ?>
-                                            <?php if ($refund['items']): ?>
-                                                <strong>Refund Items:</strong>
-                                                <?php
-                                                $refundItems = json_decode($refund['items'], true);
-                                                if ($refundItems): ?>
-                                                    <ul>
-                                                        <?php foreach ($refundItems as $item): ?>
-                                                            <li><?= htmlspecialchars($item['item_name']) ?> (Qty: <?= $item['quantity'] ?>, RM <?= number_format($item['price'], 2) ?>)</li>
-                                                        <?php endforeach; ?>
-                                                    </ul>
-                                                <?php else: ?>
-                                                    N/A
-                                                <?php endif; ?>
-                                            <?php endif; ?>
-                                            <?php if ($refund['admin_notes']): ?>
-                                                <strong>Admin Notes:</strong> <?= htmlspecialchars($refund['admin_notes']) ?><br>
-                                            <?php endif; ?>
-                                        </div>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php endif; ?>
-    </div>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Payment History</h2>
+
+            <?php if (empty($payment_history)): ?>
+                <p class="text-gray-600">No payment history available.</p>
+            <?php else: ?>
+                <div class="table-container">
+                    <table class="w-full table-auto border-collapse">
+                        <thead>
+                            <tr class="bg-blue-50">
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Order ID</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Date</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Amount</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Status</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Method</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Details</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Delivery</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($payment_history as $payment): ?>
+                                <tr class="border-b border-gray-200">
+                                    <td class="px-4 py-3 text-sm text-gray-600"><?= htmlspecialchars($payment['order_id']) ?></td>
+                                    <td class="px-4 py-3 text-sm text-gray-600"><?= date('d M Y, H:i', strtotime($payment['date'])) ?></td>
+                                    <td class="px-4 py-3 text-sm text-gray-600">RM <?= number_format($payment['amount'], 2) ?></td>
+                                    <td class="px-4 py-3 text-sm <?= getStatusColor($payment['status']) ?>">
+                                        <?= ucfirst(htmlspecialchars($payment['status'])) ?>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm text-gray-600">
+                                        <i class="fas <?= $payment['method'] === 'card' ? 'fa-credit-card' : ($payment['method'] === 'online_banking' ? 'fa-university' : 'fa-wallet') ?> mr-2"></i>
+                                        <?= ucfirst(htmlspecialchars($payment['method'])) ?>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm text-gray-600"><?= htmlspecialchars($payment['payment_details'] ?: 'N/A') ?></td>
+                                    <td class="px-4 py-3 text-sm text-gray-600">
+                                        <i class="fas <?= $payment['delivery_method'] === 'delivery' ? 'fa-truck' : 'fa-store' ?> mr-2"></i>
+                                        <?= ucfirst(htmlspecialchars($payment['delivery_method'])) ?>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm text-gray-600"><?= htmlspecialchars($payment['delivery_address'] ?: 'N/A') ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <?php if ($total_pages > 1): ?>
+                    <div class="mt-6 flex justify-between items-center">
+                        <p class="text-sm text-gray-600">
+                            Showing <?= ($offset + 1) ?> to <?= min($offset + $records_per_page, $total_records) ?> of <?= $total_records ?> records
+                        </p>
+                        <div class="flex space-x-2">
+                            <a href="?page=<?= max(1, $page - 1) ?>" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 <?= $page <= 1 ? 'opacity-50 cursor-not-allowed' : '' ?>" aria-label="Previous Page">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                            <span class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Page <?= $page ?> of <?= $total_pages ?></span>
+                            <a href="?page=<?= min($total_pages, $page + 1) ?>" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 <?= $page >= $total_pages ? 'opacity-50 cursor-not-allowed' : '' ?>" aria-label="Next Page">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+        </div>
+    </main>
 </body>
 </html>

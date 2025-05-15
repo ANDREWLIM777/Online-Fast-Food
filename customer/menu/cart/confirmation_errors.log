@@ -2,3 +2,11 @@
 2025-05-06 09:28:41 - Decoded orderItems for order ORD-6819BA29AE081: [{"item_id":2,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
 2025-05-06 18:52:37 - Items JSON for order ORD-681A3E557D780: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
 2025-05-06 18:52:37 - Decoded orderItems for order ORD-681A3E557D780: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-09 17:05:18 - Items JSON for order ORD-681E19AEB5D65: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-09 17:05:18 - Decoded orderItems for order ORD-681E19AEB5D65: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-09 17:34:16 - Items JSON for order ORD-681E207877F98: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-09 17:34:16 - Decoded orderItems for order ORD-681E207877F98: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-14 16:36:23 - Displaying confirmation for order: ORD-6824AA6774AB7, Customer ID: 1
+2025-05-14 16:36:23 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-14 16:48:04 - Displaying confirmation for order: ORD-6824AA6774AB7, Customer ID: 1
+2025-05-14 16:48:04 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]

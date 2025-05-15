@@ -1,4 +1,5 @@
 <?php
+ob_start(); // Start output buffering to prevent stray output
 session_start();
 require '../db_connect.php';
 
@@ -52,7 +53,18 @@ while ($row = $result->fetch_assoc()) {
 }
 $stmt->close();
 
-// Log cart items for debugging
+// Fetch customer's saved address
+$customerAddress = '';
+$stmt = $conn->prepare("SELECT address FROM customers WHERE id = ?");
+$stmt->bind_param("i", $customerId);
+$stmt->execute();
+$result = $stmt->get_result();
+if ($row = $result->fetch_assoc()) {
+    $customerAddress = $row['address'] ?? '';
+}
+$stmt->close();
+
+// Log cart items and address for debugging
 $logFile = 'payment_errors.log';
 $logMessage = function($message) use ($logFile) {
     file_put_contents($logFile, date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, FILE_APPEND);
@@ -63,6 +75,7 @@ foreach ($cartItems as $item) {
 }
 $logMessage("Cart items: " . json_encode($cartItems));
 $logMessage("Calculated total: $total");
+$logMessage("Customer saved address: " . ($customerAddress ?: 'None'));
 
 // Fetch saved payment methods
 $paymentMethods = [];
@@ -86,6 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])
     // Validate CSRF token
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         $logMessage("CSRF validation failed for add_payment_method");
+        ob_end_clean();
         echo json_encode(['status' => 'error', 'message' => 'CSRF token validation failed']);
         exit();
     }
@@ -95,12 +109,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])
 
     if (!in_array($methodType, ['card', 'online_banking', 'digital_wallet'])) {
         $logMessage("Invalid payment method type: $methodType");
+        ob_end_clean();
         echo json_encode(['status' => 'error', 'message' => 'Invalid payment method type']);
         exit();
     }
 
     try {
-        // Prepare the insert statement with all possible fields
+        // Check for duplicate payment method
+        $isDuplicate = false;
+        $duplicateCheckStmt = null;
+        if ($methodType === 'card') {
+            $cardLastFour = substr(preg_replace('/\D/', '', $_POST['card_number'] ?? ''), -4);
+            $cardType = $_POST['card_type'] ?? '';
+            $cardExpiry = $_POST['expiry_date'] ?? '';
+            $duplicateCheckStmt = $conn->prepare("
+                SELECT id FROM payment_methods
+                WHERE customer_id = ? AND method_type = 'card'
+                AND card_last_four = ? AND card_type = ? AND expiry_date = ?
+            ");
+            $duplicateCheckStmt->bind_param("isss", $customerId, $cardLastFour, $cardType, $cardExpiry);
+        } elseif ($methodType === 'online_banking') {
+            $bankName = $_POST['bank_name'] ?? '';
+            $duplicateCheckStmt = $conn->prepare("
+                SELECT id FROM payment_methods
+                WHERE customer_id = ? AND method_type = 'online_banking'
+                AND bank_name = ?
+            ");
+            $duplicateCheckStmt->bind_param("is", $customerId, $bankName);
+        } elseif ($methodType === 'digital_wallet') {
+            $walletType = $_POST['wallet_type'] ?? '';
+            $phoneNumber = preg_replace('/\D/', '', $_POST['phone_number'] ?? '');
+            $duplicateCheckStmt = $conn->prepare("
+                SELECT id FROM payment_methods
+                WHERE customer_id = ? AND method_type = 'digital_wallet'
+                AND wallet_type = ? AND phone_number = ?
+            ");
+            $duplicateCheckStmt->bind_param("iss", $customerId, $walletType, $phoneNumber);
+        }
+
+        if ($duplicateCheckStmt) {
+            $duplicateCheckStmt->execute();
+            $result = $duplicateCheckStmt->get_result();
+            if ($result->num_rows > 0) {
+                $isDuplicate = true;
+                $logMessage("Duplicate payment method detected for customer_id=$customerId, method_type=$methodType");
+                ob_end_clean();
+                echo json_encode(['status' => 'error', 'message' => 'This payment method is already saved']);
+                $duplicateCheckStmt->close();
+                exit();
+            }
+            $duplicateCheckStmt->close();
+        }
+
+        // Prepare the insert statement
         $stmt = $conn->prepare("
             INSERT INTO payment_methods (customer_id, method_type, card_type, card_last_four, expiry_date, bank_name, wallet_type, phone_number)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -129,21 +190,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])
 
             if (empty($cardNumber) || !preg_match('/^\d{16}$/', $cardNumber)) {
                 $logMessage("Invalid card number: $cardNumber");
+                ob_end_clean();
                 echo json_encode(['status' => 'error', 'message' => 'Card number must be 16 digits']);
                 exit();
             }
             if (!luhnCheck($cardNumber)) {
                 $logMessage("Card number failed Luhn check: $cardNumber");
+                ob_end_clean();
                 echo json_encode(['status' => 'error', 'message' => 'Invalid card number (failed validation check)']);
                 exit();
             }
             if (empty($cardType) || !in_array($cardType, ['visa', 'mastercard', 'jcb', 'amex', 'mydebit', 'unionpay'])) {
                 $logMessage("Invalid card type: $cardType");
+                ob_end_clean();
                 echo json_encode(['status' => 'error', 'message' => 'Invalid card type']);
                 exit();
             }
             if (empty($expiry) || !preg_match('/^\d{2}\/\d{2}$/', $expiry)) {
                 $logMessage("Invalid expiry date format: $expiry");
+                ob_end_clean();
                 echo json_encode(['status' => 'error', 'message' => 'Invalid expiry date']);
                 exit();
             }
@@ -154,16 +219,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])
             $currentMonth = (int)date('m');
             if ($month < 1 || $month > 12 || $year < $currentYear || ($year === $currentYear && $month < $currentMonth)) {
                 $logMessage("Expired card: $month/$year");
+                ob_end_clean();
                 echo json_encode(['status' => 'error', 'message' => 'Card is expired']);
                 exit();
             }
             if (empty($cvv) || !preg_match('/^\d{3,4}$/', $cvv)) {
                 $logMessage("Invalid CVV: $cvv");
+                ob_end_clean();
                 echo json_encode(['status' => 'error', 'message' => 'CVV must be 3 or 4 digits']);
                 exit();
             }
-            if (empty($cardName) || preg_match('/\d/', $cardName)) {
+            if (empty($cardName) || preg_match('/\D/', $cardName)) {
                 $logMessage("Invalid card name: $cardName");
+                ob_end_clean();
                 echo json_encode(['status' => 'error', 'message' => 'Invalid name on card']);
                 exit();
             }
@@ -175,6 +243,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])
             $allowedBanks = ['maybank', 'cimb', 'public_bank', 'rhb', 'hong_leong', 'ambank', 'uob', 'ocbc', 'hsbc', 'standard_chartered'];
             if (empty($bankName) || !in_array($bankName, $allowedBanks)) {
                 $logMessage("Invalid bank name: $bankName");
+                ob_end_clean();
                 echo json_encode(['status' => 'error', 'message' => 'Invalid bank name']);
                 exit();
             }
@@ -184,11 +253,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])
             $allowedWallets = ['shopeepay', 'tng', 'grabpay', 'boost', 'googlepay'];
             if (empty($walletType) || !in_array($walletType, $allowedWallets)) {
                 $logMessage("Invalid wallet type: $walletType");
+                ob_end_clean();
                 echo json_encode(['status' => 'error', 'message' => 'Invalid wallet type']);
                 exit();
             }
             if (empty($phoneNumber) || !preg_match('/^\d{10,15}$/', $phoneNumber)) {
                 $logMessage("Invalid phone number: $phoneNumber");
+                ob_end_clean();
                 echo json_encode(['status' => 'error', 'message' => 'Phone number must be 10-15 digits']);
                 exit();
             }
@@ -225,6 +296,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])
                 $displayText = ucfirst($newMethod['wallet_type']) . ' (' . $newMethod['phone_number'] . ')';
             }
 
+            ob_end_clean();
             echo json_encode([
                 'status' => 'success',
                 'message' => $displayText . ' added successfully',
@@ -232,15 +304,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])
             ]);
         } else {
             $logMessage("Failed to add payment method: " . $stmt->error);
+            ob_end_clean();
             echo json_encode(['status' => 'error', 'message' => 'Failed to add payment method']);
         }
         exit();
     } catch (Exception $e) {
         $logMessage("Exception while adding payment method: " . $e->getMessage());
+        ob_end_clean();
         echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
         exit();
     } catch (Throwable $t) {
-        $logMessage("Unexpected error while adding payment method: " . $t->getMessage() . " in " . $t->getFile() . " at line " . $t->getLine());
+        $logMessage("Unexpected error while adding payment method: " . $t->getMessage());
+        ob_end_clean();
         echo json_encode(['status' => 'error', 'message' => 'Unexpected error occurred. Please try again later.']);
         exit();
     }
@@ -259,21 +334,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
 
         if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
             $logMessage("CSRF validation failed for make_payment");
+            ob_end_clean();
             echo json_encode(['status' => 'error', 'message' => 'CSRF token validation failed']);
             exit();
         }
 
         if (empty($cartItems)) {
             $logMessage("Validation failed: Cart is empty for customer_id=$customerId");
+            ob_end_clean();
             echo json_encode(['status' => 'error', 'message' => 'Your cart is empty']);
             exit();
         }
 
-        $method = $_POST['method'] ?? '';
+        $method = trim($_POST['method'] ?? '');
         $paymentMethodId = (int)($_POST['payment_method_id'] ?? 0);
         $amount = floatval($_POST['amount'] ?? 0);
-        $deliveryMethod = $_POST['delivery_method'] ?? '';
-        $deliveryAddress = $_POST['delivery_address'] ?? '';
+        $deliveryMethod = trim($_POST['delivery_method'] ?? '');
+        $deliveryAddress = trim($_POST['delivery_address'] ?? '');
         $deliveryAddress = ($deliveryMethod === 'delivery') ? $deliveryAddress : null;
 
         $logMessage("Received amount: $amount, Expected total: $total");
@@ -282,35 +359,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
 
         if (!in_array($method, ['card', 'online_banking', 'digital_wallet'])) {
             $logMessage("Validation failed: Invalid payment method ($method)");
+            ob_end_clean();
             echo json_encode(['status' => 'error', 'message' => 'Invalid payment method']);
             exit();
         }
         if ($paymentMethodId <= 0) {
             $logMessage("Validation failed: No payment method selected");
+            ob_end_clean();
             echo json_encode(['status' => 'error', 'message' => 'Please select a payment method']);
             exit();
         }
+        // Relaxed amount comparison to handle floating-point precision
         if ($amount <= 0 || abs($amount - $total) > 0.01) {
             $logMessage("Validation failed: Invalid payment amount ($amount, expected $total)");
+            ob_end_clean();
             echo json_encode(['status' => 'error', 'message' => 'Invalid payment amount']);
             exit();
         }
         if (!in_array($deliveryMethod, ['pickup', 'delivery'])) {
             $logMessage("Validation failed: Invalid delivery method ($deliveryMethod)");
+            ob_end_clean();
             echo json_encode(['status' => 'error', 'message' => 'Invalid delivery method']);
             exit();
         }
-        if ($deliveryMethod === 'delivery' && (empty($deliveryAddress) || strlen(trim($deliveryAddress)) < 5)) {
+        $logMessage("Delivery method validation passed: $deliveryMethod");
+        if ($deliveryMethod === 'delivery' && (empty($deliveryAddress) || strlen($deliveryAddress) < 5)) {
             $logMessage("Validation failed: Delivery address too short or empty");
+            ob_end_clean();
             echo json_encode(['status' => 'error', 'message' => 'Delivery address must be at least 5 characters']);
             exit();
+        }
+        $logMessage("Delivery address validation passed: " . ($deliveryAddress ?: 'N/A'));
+
+        // Save delivery address to customers table if delivery method is selected
+        if ($deliveryMethod === 'delivery' && $deliveryAddress) {
+            $stmt = $conn->prepare("UPDATE customers SET address = ? WHERE id = ?");
+            if (!$stmt) {
+                $logMessage("Prepare failed for customers address update: " . $conn->error);
+                throw new Exception('Database error: Unable to prepare address update statement');
+            }
+            $stmt->bind_param("si", $deliveryAddress, $customerId);
+            if (!$stmt->execute()) {
+                $logMessage("Execute failed for customers address update: " . $stmt->error);
+                throw new Exception('Failed to save delivery address: ' . $stmt->error);
+            }
+            $stmt->close();
+            $logMessage("Saved delivery address for customer_id=$customerId: $deliveryAddress");
         }
 
         $selectedMethod = null;
         foreach ($paymentMethods as $pm) {
             if ($pm['id'] === $paymentMethodId) {
                 if ($pm['method_type'] !== $method) {
-                    $logMessage("Validation failed: Method type mismatch for payment_method_id=$paymentMethodId. Expected method_type=$method, got method_type=" . $pm['method_type']);
+                    $logMessage("Validation failed: Method type mismatch for payment_method_id=$paymentMethodId");
+                    ob_end_clean();
                     echo json_encode(['status' => 'error', 'message' => 'Selected payment method type does not match']);
                     exit();
                 }
@@ -320,6 +422,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         }
         if (!$selectedMethod) {
             $logMessage("Validation failed: Invalid payment method ID ($paymentMethodId)");
+            ob_end_clean();
             echo json_encode(['status' => 'error', 'message' => 'Invalid payment method selected']);
             exit();
         }
@@ -349,21 +452,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         $orderId = 'ORD-' . strtoupper(uniqid());
         $logMessage("Generated order_id: $orderId");
 
-        // Debug: Log the database and table existence
-        $dbName = $conn->query("SELECT DATABASE()")->fetch_row()[0];
-        $logMessage("Current database: $dbName");
-        $tableExists = $conn->query("SHOW TABLES LIKE 'orders'");
-        $logMessage("Table 'orders' exists: " . ($tableExists->num_rows > 0 ? 'Yes' : 'No'));
-
-        // Debug: Verify the columns in the orders table
-        $columns = $conn->query("DESCRIBE orders");
-        $columnNames = [];
-        while ($row = $columns->fetch_assoc()) {
-            $columnNames[] = $row['Field'];
-        }
-        $logMessage("Columns in 'orders' table: " . json_encode($columnNames));
-
-        // Save to orders table, including the items JSON
+        // Save to orders table
         $sql = "
             INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
             VALUES (?, ?, ?, ?, 'pending', NOW())
@@ -371,14 +460,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         $logMessage("Executing SQL for orders insert: $sql");
         $stmt = $conn->prepare($sql);
         if (!$stmt) {
-            $error = "Prepare failed for orders insert: " . $conn->error;
-            $logMessage($error);
+            $logMessage("Prepare failed for orders insert: " . $conn->error);
             throw new Exception('Database error: Unable to prepare orders insert statement');
         }
         $stmt->bind_param("sisd", $orderId, $customerId, $itemsJson, $amount);
         if (!$stmt->execute()) {
-            $error = "Execute failed for orders insert: " . $stmt->error;
-            $logMessage($error);
+            $logMessage("Execute failed for orders insert: " . $stmt->error);
             throw new Exception('Failed to save order: ' . $stmt->error);
         }
         $stmt->close();
@@ -389,8 +476,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             VALUES (?, ?, ?, ?)
         ");
         if (!$stmt) {
-            $error = "Prepare failed for order_items insert: " . $conn->error;
-            $logMessage($error);
+            $logMessage("Prepare failed for order_items insert: " . $conn->error);
             throw new Exception('Database error: Unable to prepare order_items insert statement');
         }
         foreach ($cartItems as $item) {
@@ -398,8 +484,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             $price = (float)$item['price'];
             $stmt->bind_param("siid", $orderId, $item['item_id'], $item['quantity'], $price);
             if (!$stmt->execute()) {
-                $error = "Execute failed for order_items insert: " . $stmt->error;
-                $logMessage($error);
+                $logMessage("Execute failed for order_items insert: " . $stmt->error);
                 throw new Exception('Failed to save order items: ' . $stmt->error);
             }
         }
@@ -412,14 +497,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             VALUES (?, NOW(), ?, 'pending', ?, ?, ?, ?, ?, ?)
         ");
         if (!$stmt) {
-            $error = "Prepare failed for payment_history insert: " . $conn->error;
-            $logMessage($error);
+            $logMessage("Prepare failed for payment_history insert: " . $conn->error);
             throw new Exception('Database error: Unable to prepare payment insert statement');
         }
         $stmt->bind_param("sdssiiss", $orderId, $amount, $method, $paymentDetails, $paymentMethodId, $customerId, $deliveryMethod, $deliveryAddress);
         if (!$stmt->execute()) {
-            $error = "Execute failed for payment_history insert: " . $stmt->error;
-            $logMessage($error);
+            $logMessage("Execute failed for payment_history insert: " . $stmt->error);
             throw new Exception('Failed to save payment: ' . $stmt->error);
         }
         $stmt->close();
@@ -427,14 +510,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         // Clear cart
         $stmt = $conn->prepare("DELETE FROM cart WHERE customer_id = ?");
         if (!$stmt) {
-            $error = "Prepare failed for cart deletion: " . $conn->error;
-            $logMessage($error);
+            $logMessage("Prepare failed for cart deletion: " . $conn->error);
             throw new Exception('Database error: Unable to prepare cart deletion statement');
         }
         $stmt->bind_param("i", $customerId);
         if (!$stmt->execute()) {
-            $error = "Execute failed for cart deletion: " . $stmt->error;
-            $logMessage($error);
+            $logMessage("Execute failed for cart deletion: " . $stmt->error);
             throw new Exception('Failed to clear cart: ' . $stmt->error);
         }
         $stmt->close();
@@ -453,366 +534,213 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             'items' => $itemsArray
         ];
 
+        ob_end_clean();
         echo json_encode(['status' => 'success', 'message' => 'Payment Successful']);
+        exit();
     } catch (Exception $e) {
         $conn->rollback();
         $logMessage("Exception in make_payment: " . $e->getMessage());
+        ob_end_clean();
         echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+        exit();
     } catch (Throwable $t) {
         $conn->rollback();
-        $logMessage("Unexpected error in make_payment: " . $t->getMessage() . " in " . $t->getFile() . " at line " . $t->getLine());
+        $logMessage("Unexpected error in make_payment: " . $t->getMessage());
+        ob_end_clean();
         echo json_encode(['status' => 'error', 'message' => 'Unexpected error occurred. Please try again later.']);
+        exit();
     }
-    exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment</title>
+    <title>Checkout - Brizo Fast Food Melaka</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: #f4f4f4;
+            font-family: 'Inter', sans-serif;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
         }
-        h2, h3 {
-            color: #333;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        .back-to-cart {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-        .back-to-cart:hover {
-            background: #2980b9;
-        }
-        .cart-items ul {
-            list-style: none;
-            padding: 0;
-        }
-        .cart-items li {
-            display: flex;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #ddd;
-        }
-        .cart-items img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-right: 15px;
-        }
-        .cart-items .item-details {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .cart-items .item-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 5px;
-        }
-        .cart-items .item-quantity-price {
-            font-size: 16px;
-            color: #555;
-        }
-        .delivery-options, .payment-methods {
-            margin: 20px 0;
-        }
-        .delivery-options label, .payment-methods label {
-            display: block;
-            margin: 10px 0;
-        }
-        .delivery-options input[type="radio"], .payment-methods input[type="radio"] {
-            margin-right: 5px;
-        }
-        #deliveryAddress {
-            width: 100%;
-            padding: 8px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        #paymentMethodSelect {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .add-payment-method {
-            cursor: pointer;
-            color: #3498db;
-            text-decoration: underline;
-            margin-top: 10px;
-            display: inline-block;
-        }
-        .payment-form {
-            display: none;
-            margin-top: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .payment-form input, .payment-form select {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .payment-form button {
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .payment-form button:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-        }
-        .payment-form button:hover:not(:disabled) {
-            background: #2980b9;
-        }
-        .total {
-            font-weight: bold;
-            margin: 20px 0;
-        }
-        button[type="submit"] {
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button[type="submit"]:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-        }
-        button[type="submit"]:hover:not(:disabled) {
-            background: #2980b9;
+        .invalid {
+            border-color: #EF4444 !important;
         }
         .message {
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-        }
-        .message.success {
-            background: #d4edda;
-            color: #155724;
-        }
-        .message.error {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        .hint {
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
+            transition: opacity 0.3s ease-in-out;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h2>Checkout</h2>
-        <a href="cart.php" class="back-to-cart">Back to Cart</a>
-
-        <!-- Cart Items -->
-        <div class="cart-items">
-            <h3>Cart Items</h3>
-            <?php if (empty($cartItems)): ?>
-                <p>Your cart is empty. <a href="cart.php">Add items to your cart</a>.</p>
-            <?php else: ?>
-                <ul>
-                    <?php foreach ($cartItems as $item): ?>
-                        <li>
-                            <img src="/Online-Fast-Food/Admin/Manage_Menu_Item/<?= htmlspecialchars($item['photo']) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>">
-                            <div class="item-details">
-                                <span class="item-name"><?= htmlspecialchars($item['item_name']) ?></span>
-                                <span class="item-quantity-price">Quantity: <?= $item['quantity'] ?> | Price: RM <?= number_format($item['price'], 2) ?> each | Total: RM <?= number_format($item['quantity'] * $item['price'], 2) ?></span>
-                            </div>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php endif; ?>
+<body class="bg-gray-100">
+    <header class="sticky top-0 bg-white shadow z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-800">Brizo Fast Food Melaka</h1>
+            <a href="cart.php" class="text-blue-600 hover:text-blue-800 flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Cart
+            </a>
         </div>
+    </header>
 
-        <!-- Delivery Options -->
-        <form id="paymentForm" action="payment.php" method="POST">
-            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
-            <div class="delivery-options">
-                <h3>Delivery Options</h3>
-                <label>
-                    <input type="radio" name="delivery_method" value="pickup" checked>
-                    <i class="fas fa-store"></i> Pick Up
-                </label>
-                <label>
-                    <input type="radio" name="delivery_method" value="delivery">
-                    <i class="fas fa-truck"></i> Delivery
-                </label>
-                <textarea id="deliveryAddress" name="delivery_address" placeholder="Enter delivery address" style="display: none;"></textarea>
-            </div>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Checkout</h2>
 
-            <!-- Payment Section -->
-            <div class="payment-methods">
-                <h3>Make Payment</h3>
-                <div id="message" class="message" style="display: none;"></div>
+            <!-- Cart Items -->
+            <section class="mb-8">
+                <h3 class="text-xl font-medium text-gray-700 mb-4">Cart Items</h3>
+                <?php if (empty($cartItems)): ?>
+                    <p class="text-gray-600">Your cart is empty. <a href="cart.php" class="text-blue-600 hover:underline">Add items to your cart</a>.</p>
+                <?php else: ?>
+                    <div class="space-y-4">
+                        <?php foreach ($cartItems as $item): ?>
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <img src="/Online-Fast-Food/Admin/Manage_Menu_Item/<?= htmlspecialchars($item['photo']) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>" class="w-20 h-20 object-cover rounded-lg mr-4">
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-medium text-gray-800"><?= htmlspecialchars($item['item_name']) ?></h4>
+                                    <p class="text-gray-600">Quantity: <?= $item['quantity'] ?> | Price: RM <?= number_format($item['price'], 2) ?> each | Total: RM <?= number_format($item['quantity'] * $item['price'], 2) ?></p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+            </section>
 
-                <label for="paymentMethodSelect">Select Payment Method</label>
-                <select id="paymentMethodSelect" name="payment_method_id">
-                    <option value="">Select a payment method</option>
-                    <?php foreach ($paymentMethods as $pm): ?>
-                        <?php
-                        $displayText = '';
-                        $iconClass = 'fa-credit-card'; // Default icon
-                        if ($pm['method_type'] === 'card') {
-                            $displayText = ucfirst($pm['card_type']) . ' ending in ' . $pm['card_last_four'];
-                            $iconClass = 'fa-credit-card';
-                        } elseif ($pm['method_type'] === 'online_banking') {
-                            $displayText = ucfirst(str_replace('_', ' ', $pm['bank_name']));
-                            $iconClass = 'fa-university';
-                        } elseif ($pm['method_type'] === 'digital_wallet') {
-                            $displayText = ucfirst($pm['wallet_type']) . ($pm['phone_number'] ? ' (' . $pm['phone_number'] . ')' : '');
-                            $iconClass = 'fa-wallet';
-                        }
-                        ?>
-                        <option value="<?= $pm['id'] ?>" data-method-type="<?= $pm['method_type'] ?>">
-                            <i class="fas <?= $iconClass ?>"></i> <?= htmlspecialchars($displayText) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <div class="add-payment-method" onclick="showPaymentForm()">+ Add New Payment Method</div>
+            <!-- Payment Form -->
+            <form id="paymentForm" action="payment.php" method="POST" class="space-y-6">
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
 
-                <!-- New Payment Method Form -->
-                <div id="newPaymentForm" class="payment-form">
-                    <select id="methodTypeSelect" onchange="updatePaymentForm()">
-                        <option value="">Select Method</option>
-                        <option value="card">Card</option>
-                        <option value="online_banking">Online Banking</option>
-                        <option value="digital_wallet">Digital Wallet</option>
-                    </select>
+                <!-- Delivery Options -->
+                <section class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-medium text-gray-700 mb-4">Delivery Options</h3>
+                    <div class="space-y-4">
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="radio" name="delivery_method" value="pickup" checked class="form-radio text-blue-600">
+                            <span class="text-gray-700"><i class="fas fa-store mr-2"></i>Pick Up</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="radio" name="delivery_method" value="delivery" class="form-radio text-blue-600">
+                            <span class="text-gray-700"><i class="fas fa-truck mr-2"></i>Delivery</span>
+                        </label>
+                        <textarea id="deliveryAddress" name="delivery_address" placeholder="Enter delivery address" class="w-full p-3 border border-gray-300 rounded-lg hidden" aria-label="Delivery Address"><?= htmlspecialchars($customerAddress) ?></textarea>
+                    </div>
+                </section>
 
-                    <!-- Card Payment Fields -->
-                    <div id="cardFields" style="display: none;">
-                        <select id="cardTypeSelect" onchange="validatePaymentForm()">
-                            <option value="">Select Card Type</option>
-                            <option value="visa">Visa</option>
-                            <option value="mastercard">Mastercard</option>
-                            <option value="jcb">JCB</option>
-                            <option value="amex">Amex</option>
-                            <option value="mydebit">MyDebit</option>
-                            <option value="unionpay">UnionPay</option>
+                <!-- Payment Methods -->
+                <section class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-medium text-gray-700 mb-4">Payment Method</h3>
+                    <div id="message" class="message hidden p-4 rounded-lg"></div>
+                    <div class="space-y-4">
+                        <label for="paymentMethodSelect" class="block text-gray-700 font-medium">Select Payment Method</label>
+                        <select id="paymentMethodSelect" name="payment_method_id" class="w-full p-3 border border-gray-300 rounded-lg" aria-label="Payment Method">
+                            <option value="">Select a payment method</option>
+                            <?php foreach ($paymentMethods as $pm): ?>
+                                <?php
+                                $displayText = '';
+                                $iconClass = 'fa-credit-card';
+                                if ($pm['method_type'] === 'card') {
+                                    $displayText = ucfirst($pm['card_type']) . ' ending in ' . $pm['card_last_four'];
+                                    $iconClass = 'fa-credit-card';
+                                } elseif ($pm['method_type'] === 'online_banking') {
+                                    $displayText = ucfirst(str_replace('_', ' ', $pm['bank_name'] ?: 'Unknown Bank'));
+                                    $iconClass = 'fa-university';
+                                } elseif ($pm['method_type'] === 'digital_wallet') {
+                                    $displayText = ucfirst($pm['wallet_type']) . ($pm['phone_number'] ? ' (' . $pm['phone_number'] . ')' : '');
+                                    $iconClass = 'fa-wallet';
+                                }
+                                ?>
+                                <option value="<?= $pm['id'] ?>" data-method-type="<?= $pm['method_type'] ?>">
+                                    <i class="fas <?= $iconClass ?>"></i> <?= htmlspecialchars($displayText) ?>
+                                </option>
+                            <?php endforeach; ?>
                         </select>
-                        <input type="text" id="cardNumber" placeholder="Card Number" maxlength="19" onkeyup="formatCardNumber(this); validatePaymentForm()">
-                        <div class="hint">For testing, use Visa card: 4242424242424242</div>
-                        <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" onkeyup="formatExpiryDate(this); validatePaymentForm()">
-                        <input type="text" id="cvv" placeholder="CVV" oninput="validatePaymentForm()">
-                        <input type="text" id="cardName" placeholder="Name on Card" oninput="validatePaymentForm()">
+                        <button type="button" class="add-payment-method text-blue-600 hover:underline" onclick="showPaymentForm()">+ Add New Payment Method</button>
+
+                        <!-- New Payment Method Form -->
+                        <div id="newPaymentForm" class="hidden mt-4 p-4 bg-white border border-gray-200 rounded-lg">
+                            <select id="methodTypeSelect" onchange="updatePaymentForm()" class="w-full p-3 border border-gray-300 rounded-lg mb-4" aria-label="Payment Method Type">
+                                <option value="">Select Method</option>
+                                <option value="card">Card</option>
+                                <option value="online_banking">Online Banking</option>
+                                <option value="digital_wallet">Digital Wallet</option>
+                            </select>
+
+                            <!-- Card Payment Fields -->
+                            <div id="cardFields" class="hidden space-y-4">
+                                <select id="cardTypeSelect" onchange="validatePaymentForm()" class="w-full p-3 border border-gray-300 rounded-lg" aria-label="Card Type">
+                                    <option value="">Select Card Type</option>
+                                    <option value="visa">Visa</option>
+                                    <option value="mastercard">Mastercard</option>
+                                    <option value="jcb">JCB</option>
+                                    <option value="amex">Amex</option>
+                                    <option value="mydebit">MyDebit</option>
+                                    <option value="unionpay">UnionPay</option>
+                                </select>
+                                <input type="text" id="cardNumber" placeholder="Card Number" maxlength="19" onkeyup="formatCardNumber(this); validatePaymentForm()" class="w-full p-3 border border-gray-300 rounded-lg" aria-label="Card Number">
+                                <p class="text-sm text-gray-500">For testing, use Visa card: 4242424242424242</p>
+                                <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" onkeyup="formatExpiryDate(this); validatePaymentForm()" class="w-full p-3 border border-gray-300 rounded-lg" aria-label="Expiry Date">
+                                <input type="text" id="cvv" placeholder="CVV" oninput="validatePaymentForm()" class="w-full p-3 border border-gray-300 rounded-lg" aria-label="CVV">
+                                <input type="text" id="cardName" placeholder="Name on Card" oninput="validatePaymentForm()" class="w-full p-3 border border-gray-300 rounded-lg" aria-label="Cardholder Name">
+                            </div>
+
+                            <!-- Online Banking Fields -->
+                            <div id="onlineBankingFields" class="hidden space-y-4">
+                                <select id="bankNameSelect" onchange="validatePaymentForm()" class="w-full p-3 border border-gray-300 rounded-lg" aria-label="Bank Name">
+                                    <option value="">Select Bank</option>
+                                    <option value="maybank">Maybank</option>
+                                    <option value="cimb">CIMB</option>
+                                    <option value="public_bank">Public Bank</option>
+                                    <option value="rhb">RHB</option>
+                                    <option value="hong_leong">Hong Leong</option>
+                                    <option value="ambank">AmBank</option>
+                                    <option value="uob">UOB</option>
+                                    <option value="ocbc">OCBC</option>
+                                    <option value="hsbc">HSBC</option>
+                                    <option value="standard_chartered">Standard Chartered</option>
+                                </select>
+                            </div>
+
+                            <!-- Digital Wallet Fields -->
+                            <div id="digitalWalletFields" class="hidden space-y-4">
+                                <select id="walletTypeSelect" onchange="validatePaymentForm()" class="w-full p-3 border border-gray-300 rounded-lg" aria-label="Wallet Type">
+                                    <option value="">Select Wallet</option>
+                                    <option value="shopeepay">ShopeePay</option>
+                                    <option value="tng">Touch 'n Go</option>
+                                    <option value="grabpay">GrabPay</option>
+                                    <option value="boost">Boost</option>
+                                    <option value="googlepay">Google Pay</option>
+                                </select>
+                                <input type="text" id="phoneNumber" placeholder="Phone Number" oninput="validatePaymentForm()" class="w-full p-3 border border-gray-300 rounded-lg" aria-label="Phone Number">
+                            </div>
+
+                            <button type="button" id="addPaymentButton" onclick="addPaymentMethod()" disabled class="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">Add Payment Method</button>
+                        </div>
                     </div>
 
-                    <!-- Online Banking Fields -->
-                    <div id="onlineBankingFields" style="display: none;">
-                        <select id="bankNameSelect" onchange="validatePaymentForm()">
-                            <option value="">Select Bank</option>
-                            <option value="maybank">Maybank</option>
-                            <option value="cimb">CIMB</option>
-                            <option value="public_bank">Public Bank</option>
-                            <option value="rhb">RHB</option>
-                            <option value="hong_leong">Hong Leong</option>
-                            <option value="ambank">AmBank</option>
-                            <option value="uob">UOB</option>
-                            <option value="ocbc">OCBC</option>
-                            <option value="hsbc">HSBC</option>
-                            <option value="standard_chartered">Standard Chartered</option>
-                        </select>
-                    </div>
+                    <input type="hidden" name="method" id="method">
+                    <input type="hidden" name="amount" value="<?= $total ?>">
+                    <input type="hidden" name="make_payment" value="1">
+                </section>
 
-                    <!-- Digital Wallet Fields -->
-                    <div id="digitalWalletFields" style="display: none;">
-                        <select id="walletTypeSelect" onchange="validatePaymentForm()">
-                            <option value="">Select Wallet</option>
-                            <option value="shopeepay">ShopeePay</option>
-                            <option value="tng">Touch 'n Go</option>
-                            <option value="grabpay">GrabPay</option>
-                            <option value="boost">Boost</option>
-                            <option value="googlepay">Google Pay</option>
-                        </select>
-                        <input type="text" id="phoneNumber" placeholder="Phone Number" oninput="validatePaymentForm()">
-                    </div>
-
-                    <button type="button" id="addPaymentButton" onclick="addPaymentMethod()" disabled>Add Payment Method</button>
+                <!-- Total and Submit -->
+                <div class="flex justify-between items-center mt-6">
+                    <p class="text-lg font-semibold text-gray-800">Total: RM <?= number_format($total, 2) ?></p>
+                    <button type="submit" id="submitButton" class="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed" <?php if (empty($cartItems) || empty($paymentMethods)) echo 'disabled'; ?>>Make Payment</button>
                 </div>
-
-                <!-- Hidden fields for payment submission -->
-                <input type="hidden" name="method" id="method">
-                <input type="hidden" name="amount" value="<?= $total ?>">
-                <input type="hidden" name="make_payment" value="1">
-            </div>
-
-            <div class="total">
-                Payment Amount (RM): <?= number_format($total, 2) ?>
-            </div>
-
-            <button type="submit" id="submitButton" <?php if (empty($cartItems)) echo 'disabled'; ?>>Make Payment</button>
-        </form>
-    </div>
+            </form>
+        </div>
+    </main>
 
     <script>
-        function formatCardNumber(input) {
-            console.log('Formatting card number, raw value:', input.value);
-            let value = input.value.replace(/\D/g, '');
-            if (value.length > 16) {
-                value = value.substring(0, 16);
-            }
-            let formatted = '';
-            for (let i = 0; i < value.length; i++) {
-                if (i > 0 && i % 4 === 0) {
-                    formatted += ' ';
-                }
-                formatted += value[i];
-            }
-            console.log('Formatted card number:', formatted);
-            input.value = formatted;
-        }
-
-        function formatExpiryDate(input) {
-            console.log('Formatting expiry date, raw value:', input.value);
-            let value = input.value.replace(/\D/g, '');
-            if (value.length > 4) {
-                value = value.substring(0, 4);
-            }
-            let formatted = value;
-            if (value.length > 2) {
-                formatted = value.substring(0, 2) + '/' + value.substring(2);
-            }
-            console.log('Formatted expiry date:', formatted);
-            input.value = formatted;
-        }
-
+        // Initialize elements
         const deliveryRadios = document.querySelectorAll('input[name="delivery_method"]');
         const deliveryAddress = document.getElementById('deliveryAddress');
         const paymentMethodSelect = document.getElementById('paymentMethodSelect');
@@ -827,44 +755,80 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         const addPaymentButton = document.getElementById('addPaymentButton');
         const submitButton = document.getElementById('submitButton');
 
+        // Format card number
+        function formatCardNumber(input) {
+            console.log('Formatting card number, raw value:', input.value);
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 16) value = value.substring(0, 16);
+            let formatted = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) formatted += ' ';
+                formatted += value[i];
+            }
+            console.log('Formatted card number:', formatted);
+            input.value = formatted;
+        }
+
+        // Format expiry date
+        function formatExpiryDate(input) {
+            console.log('Formatting expiry date, raw value:', input.value);
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 4) value = value.substring(0, 4);
+            let formatted = value;
+            if (value.length > 2) formatted = value.substring(0, 2) + '/' + value.substring(2);
+            console.log('Formatted expiry date:', formatted);
+            input.value = formatted;
+        }
+
+        // Handle delivery radio changes
         deliveryRadios.forEach(radio => {
             radio.addEventListener('change', () => {
+                console.log('Delivery method changed to:', radio.value);
                 if (radio.value === 'delivery') {
-                    deliveryAddress.style.display = 'block';
+                    deliveryAddress.classList.remove('hidden');
                     deliveryAddress.required = true;
+                    deliveryAddress.focus();
                 } else {
-                    deliveryAddress.style.display = 'none';
+                    deliveryAddress.classList.add('hidden');
                     deliveryAddress.required = false;
-                    deliveryAddress.value = '';
+                    deliveryAddress.value = '<?php echo addslashes(htmlspecialchars($customerAddress)); ?>';
+                    deliveryAddress.classList.remove('invalid');
                 }
+                validateForm();
             });
         });
 
+        // Show payment form
         function showPaymentForm() {
-            newPaymentForm.style.display = 'block';
+            console.log('Showing new payment form');
+            newPaymentForm.classList.remove('hidden');
         }
 
+        // Update payment form based on method type
         function updatePaymentForm() {
-            cardFields.style.display = 'none';
-            onlineBankingFields.style.display = 'none';
-            digitalWalletFields.style.display = 'none';
+            console.log('Updating payment form for method:', methodTypeSelect.value);
+            cardFields.classList.add('hidden');
+            onlineBankingFields.classList.add('hidden');
+            digitalWalletFields.classList.add('hidden');
             addPaymentButton.disabled = true;
 
             if (methodTypeSelect.value === 'card') {
-                cardFields.style.display = 'block';
+                cardFields.classList.remove('hidden');
             } else if (methodTypeSelect.value === 'online_banking') {
-                onlineBankingFields.style.display = 'block';
+                onlineBankingFields.classList.remove('hidden');
                 validatePaymentForm();
             } else if (methodTypeSelect.value === 'digital_wallet') {
-                digitalWalletFields.style.display = 'block';
+                digitalWalletFields.classList.remove('hidden');
                 validatePaymentForm();
             }
         }
 
+        // Validate payment form inputs
         function validatePaymentForm() {
             const method = methodTypeSelect.value;
             let isValid = false;
 
+            console.log('Validating payment form for method:', method);
             if (method === 'card') {
                 const cardType = document.getElementById('cardTypeSelect').value;
                 const cardNumber = document.getElementById('cardNumber').value.replace(/\D/g, '');
@@ -887,8 +851,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             }
 
             addPaymentButton.disabled = !isValid;
+            console.log('Payment form valid:', isValid);
         }
 
+        // Add new payment method
         function addPaymentMethod() {
             const method = methodTypeSelect.value;
             if (!method) {
@@ -896,10 +862,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
                 return;
             }
 
+            console.log('Adding payment method:', method);
             const formData = new FormData();
             formData.append('add_payment_method', '1');
             formData.append('method_type', method);
-            formData.append('csrf_token', '<?= htmlspecialchars($csrfToken) ?>');
+            formData.append('csrf_token', '<?php echo addslashes(htmlspecialchars($csrfToken)); ?>');
 
             if (method === 'card') {
                 let cardNumber = document.getElementById('cardNumber').value.replace(/\D/g, '');
@@ -960,14 +927,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
+            .then(response => {
+                console.log('Add payment method response status:', response.status);
+                return response.json();
+            })
             .then(data => {
+                console.log('Add payment method response data:', data);
                 if (data.status === 'success') {
                     showMessage('success', data.message);
                     const option = new Option(data.message, data.payment_method.id, true, true);
                     option.setAttribute('data-method-type', method);
                     paymentMethodSelect.appendChild(option);
-                    newPaymentForm.style.display = 'none';
+                    newPaymentForm.classList.add('hidden');
                     methodTypeSelect.value = '';
                     updatePaymentForm();
 
@@ -983,25 +954,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
                         document.getElementById('walletTypeSelect').value = '';
                         document.getElementById('phoneNumber').value = '';
                     }
+                    validateForm();
                 } else {
                     showMessage('error', data.message);
                 }
             })
             .catch(error => {
+                console.error('Error adding payment method:', error);
                 showMessage('error', 'An error occurred while adding payment method');
-                console.error(error);
             });
         }
 
+        // Validate entire form for submit button
+        function validateForm() {
+            const selectedMethod = paymentMethodSelect.value;
+            const deliveryMethod = document.querySelector('input[name="delivery_method"]:checked').value;
+            const addressValid = deliveryMethod !== 'delivery' || (deliveryAddress.value.trim().length >= 5);
+            if (deliveryMethod === 'delivery' && !addressValid) {
+                deliveryAddress.classList.add('invalid');
+            } else {
+                deliveryAddress.classList.remove('invalid');
+            }
+
+            const isValid = selectedMethod !== '' && addressValid && <?php echo empty($cartItems) ? 'false' : 'true'; ?>;
+            submitButton.disabled = !isValid;
+            console.log('Form validation: Payment method selected:', selectedMethod, 'Address valid:', addressValid, 'Cart not empty:', <?php echo empty($cartItems) ? 'false' : 'true'; ?>, 'Submit enabled:', isValid);
+        }
+
+        // Handle payment form submission
+        let isSubmitting = false;
         paymentForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            if (isSubmitting) {
+                console.log('Submission blocked: Already processing payment');
+                return;
+            }
+            isSubmitting = true;
+            submitButton.disabled = true;
+            console.log('Payment form submitted');
+
             const selectedOption = paymentMethodSelect.options[paymentMethodSelect.selectedIndex];
             if (!selectedOption || !selectedOption.value) {
                 showMessage('error', 'Please select a payment method');
+                console.log('Payment submission failed: No payment method selected');
+                isSubmitting = false;
+                submitButton.disabled = false;
                 return;
             }
 
-            const methodType = selectedOption.getAttribute('data-method-type');
+            const methodType = selectedOption.getAttribute('data-method-type') || '';
+            console.log('Selected payment method ID:', selectedOption.value, 'Method type:', methodType);
+            if (!methodType) {
+                showMessage('error', 'Invalid payment method type');
+                console.log('Payment submission failed: Invalid method type');
+                isSubmitting = false;
+                submitButton.disabled = false;
+                return;
+            }
             methodInput.value = methodType;
             const formData = new FormData(paymentForm);
 
@@ -1015,28 +1024,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
+            .then(response => {
+                console.log('Payment response status:', response.status);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text().then(text => {
+                    console.log('Raw payment response:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        console.log('Parsed payment response data:', data);
+                        return data;
+                    } catch (e) {
+                        console.error('Failed to parse JSON response:', text);
+                        if (text.includes('"status":"success"')) {
+                            console.log('Fallback: Detected success in raw response');
+                            return { status: 'success', message: 'Payment Successful' };
+                        }
+                        throw new Error('Invalid JSON response from server');
+                    }
+                });
+            })
             .then(data => {
                 if (data.status === 'success') {
-                    window.location.href = 'confirmation.php';
+                    console.log('Payment successful, attempting redirect to confirmation.php');
+                    try {
+                        window.location.href = './confirmation.php';
+                        // Fallback redirect after a short delay
+                        setTimeout(() => {
+                            console.log('Fallback redirect triggered');
+                            window.location.assign('./confirmation.php');
+                        }, 500);
+                    } catch (redirectError) {
+                        console.error('Redirect failed:', redirectError);
+                        showMessage('error', 'Payment successful, but redirect failed. Please go to the confirmation page manually.');
+                    }
                 } else {
+                    console.log('Payment failed:', data.message);
                     showMessage('error', data.message);
                 }
             })
             .catch(error => {
-                showMessage('error', 'An error occurred while processing payment');
-                console.error(error);
+                console.error('Error processing payment:', error);
+                showMessage('error', 'An error occurred while processing payment: ' + error.message);
+            })
+            .finally(() => {
+                isSubmitting = false;
+                submitButton.disabled = false;
+                console.log('Payment processing complete');
             });
         });
 
+        // Show message to user
         function showMessage(type, message) {
-            messageDiv.className = 'message ' + type;
+            console.log('Showing message:', type, message);
+            messageDiv.className = `message p-4 rounded-lg ${type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
             messageDiv.textContent = message;
-            messageDiv.style.display = 'block';
+            messageDiv.classList.remove('hidden');
             setTimeout(() => {
-                messageDiv.style.display = 'none';
+                messageDiv.classList.add('hidden');
             }, 5000);
         }
+
+        // Initialize form validation on page load
+        paymentMethodSelect.addEventListener('change', validateForm);
+        deliveryAddress.addEventListener('input', validateForm);
+        validateForm();
+
+        // Log initial state
+        console.log('Page loaded. Cart empty:', <?php echo empty($cartItems) ? 'true' : 'false'; ?>, 'Payment methods:', <?php echo count($paymentMethods); ?>, 'Saved address:', '<?php echo addslashes(htmlspecialchars($customerAddress)); ?>');
     </script>
 </body>
 </html>

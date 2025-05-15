@@ -463,7 +463,7 @@ include '../Admin_Account/db.php';
 
 <main class="more-container">
   <a href="notifications/index.php" class="more-item">
-    <span>Notifications</span>
+    <span>Announcement</span>
     <i class="fas fa-angle-right"></i>
   </a>
 </main>
@@ -843,7 +843,7 @@ if (targetLink) {
             <a href="../Main Page/main_page.php">Home</a>
             <a href="../Order_Management/index.php">Services</a>
             <a href="../More/Contact.php">Contact</a>
-            <a href="../MOre/notifications/index.php">Notifications</a>
+            <a href="../MOre/notifications/index.php">Announcement</a>
         </nav>
     </div>
 

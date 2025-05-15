@@ -604,7 +604,7 @@ window.onclick = function(event) {
             <a href="../Main Page/main_page.php">Home</a>
             <a href="../Order_Management/index.php">Services</a>
             <a href="../More/Contact.php">Contact</a>
-            <a href="../MOre/notifications/index.php">Notifications</a>
+            <a href="../MOre/notifications/index.php">Announcement</a>
         </nav>
     </div>
 
