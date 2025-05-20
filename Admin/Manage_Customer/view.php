@@ -1,7 +1,6 @@
 <?php
 require 'db_conn.php';
 include '../auth_cus.php';
-check_permission('superadmin');
 
 if (!isset($_GET['id'])) die('Invalid ID.');
 

@@ -2,23 +2,14 @@
 require 'db_conn.php';
 session_start();
 
+// 获取订单年份
 function getYears($pdo) {
-    $stmt = $pdo->query("
-        SELECT DISTINCT YEAR(created_at) as year 
-        FROM (
-            SELECT created_at FROM orders
-            UNION ALL
-            SELECT created_at FROM refund_requests
-        ) AS combined 
-        ORDER BY year DESC
-    ");
+    $stmt = $pdo->query("SELECT DISTINCT YEAR(created_at) as year FROM orders ORDER BY year DESC");
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
 }
 
 $years = getYears($pdo);
 $selectedDate = $_GET['date'] ?? null;
-$refundRequests = $pdo->query("SELECT * FROM refund_requests WHERE status = 'approved' ORDER BY created_at DESC LIMIT 20")->fetchAll();
-
 
 // 查询已完成订单
 if ($selectedDate) {
@@ -35,226 +26,304 @@ if ($selectedDate) {
     $stmt->execute();
 }
 $orders = $stmt->fetchAll();
-
-// 查询已审核通过的退款请求（refund_requests.status = 'approved'）
-if ($selectedDate) {
-    $stmt = $pdo->prepare("
-        SELECT r.id AS refund_id, r.customer_id, r.order_id, r.created_at AS refund_date, 
-        r.status AS refund_status, r.reason, r.details, r.evidence_path, r.admin_notes, 
-        c.fullname, r.total
-        FROM refund_requests r
-        LEFT JOIN orders o ON r.order_id = o.order_id
-        LEFT JOIN customers c ON r.customer_id = c.id
-        WHERE DATE(r.created_at) = ? AND r.status = 'approved'
-        ORDER BY r.created_at DESC
-    ");
-    $stmt->execute([$selectedDate]);
-} else {
-    $stmt = $pdo->query("
-        SELECT r.id AS refund_id, r.customer_id, r.order_id, r.created_at AS refund_date, 
-        r.status AS refund_status, r.reason, r.details, r.evidence_path, r.admin_notes, 
-        c.fullname, r.total
-        FROM refund_requests r
-        LEFT JOIN orders o ON r.order_id = o.order_id
-        LEFT JOIN customers c ON r.customer_id = c.id
-        WHERE r.status = 'approved'
-        ORDER BY r.created_at DESC LIMIT 20
-    ");
-}
-$refundRequests = $stmt->fetchAll();
-
-
-// 查询订单中 status = refunded 的记录
-if ($selectedDate) {
-    $stmt = $pdo->prepare("SELECT o.id AS order_id, o.order_id, o.total, o.created_at AS refund_date, o.status AS refund_status, NULL AS reason, c.fullname 
-                           FROM orders o
-                           JOIN customers c ON o.customer_id = c.id
-                           WHERE DATE(o.created_at) = ? AND o.status = 'refunded'
-                           ORDER BY o.created_at DESC");
-    $stmt->execute([$selectedDate]);
-} else {
-    $stmt = $pdo->prepare("SELECT o.id AS order_id, o.order_id, o.total, o.created_at AS refund_date, o.status AS refund_status, NULL AS reason, c.fullname 
-                           FROM orders o
-                           JOIN customers c ON o.customer_id = c.id
-                           WHERE o.status = 'refunded'
-                           ORDER BY o.created_at DESC LIMIT 20");
-    $stmt->execute();
-}
-$refundOrders = $stmt->fetchAll();
-
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Transaction History</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
- body {
-      font-family: Arial, sans-serif;
-      background: #121212;
-      color: #eee;
-      padding: 2rem;
-      padding-bottom: 60px;
-    }
+    <meta charset="UTF-8">
+    <title>Order History</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
 
-                    /* 背景发光环 */
-body::after {
-  content: '';
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
-  animation: auraPulse 8s infinite;
-  pointer-events: none;
-  z-index: -1; /* ⬅ 放底层 */
-}
+    <style>
+        /* header 样式（来自你提供的代码） */
+        .header {
+            left: 0;
+            right: 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background:
+                linear-gradient(135deg, #000000 0%, #0c0a10 100%),
+                repeating-linear-gradient(-30deg,
+                    transparent 0px 10px,
+                    #f4e3b215 10px 12px,
+                    transparent 12px 22px);
+            padding: 1.8rem 0;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #eee3c975;
+            overflow: hidden;
+        }
 
-/* 星尘粒子 */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: 
-    radial-gradient(circle at 20% 30%, rgba(244, 228, 178, 0.15) 1px, transparent 2px),
-    radial-gradient(circle at 80% 70%, rgba(244, 228, 178, 0.15) 1px, transparent 2px);
-  background-size: 60px 60px;
-  animation: stardust 20s linear infinite;
-  pointer-events: none;
-  z-index: -2; /* ⬅ 更底层 */
-}
+        .title-group {
+            position: relative;
+            text-align: center;
+            padding: 0 2.5rem;
+        }
 
-@keyframes auraPulse {
-  0% { transform: scale(0.8); opacity: 0.3; }
-  50% { transform: scale(1.2); opacity: 0.08; }
-  100% { transform: scale(0.8); opacity: 0.3; }
-}
+        .main-title {
+            font-size: 2.1rem;
+            background: linear-gradient(45deg, #c0a23d, #907722);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1.8px;
+            line-height: 1.15;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+            margin-bottom: 0.4rem;
+            transition: all 0.3s ease;
+        }
 
-@keyframes stardust {
-  0% { background-position: 0 0, 100px 100px; }
-  100% { background-position: 100px 100px, 0 0; }
-}
+        .sub-title {
+            font-size: 1.05rem;
+            color: #907722;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            position: relative;
+            display: inline-block;
+            padding: 0 15px;
+        }
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-    .back-btn {
-      display: inline-block;
-      position: fixed;
-      background: linear-gradient(to right, #c0a23d, #e8d48b);
-      color: #000;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: 0.2s ease;
-      margin-bottom: 2rem;
-    }
+        .sub-title::before,
+        .sub-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 35px;
+            height: 1.2px;
+            background: linear-gradient(90deg, #c9a227aa, transparent);
+        }
 
-    .back-btn:hover {
-      background: #e8d48b;
-      box-shadow: 0 0 10px #e8d48b;
-    }
+        .sub-title::before {
+            left: -30px;
+            transform: translateY(-50%) rotate(-15deg);
+        }
 
-    h1 {
-      flex: 2;
-      text-align: right;
-      color: #c0a23d;
-      font-size: 2.3rem;
-    }
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
+        .sub-title::after {
+            right: -30px;
+            transform: translateY(-50%) rotate(15deg);
+        }
 
-    .tab-btn {
-      background: #252525;
-      color: #e8d48b;
-      border: none;
-      padding: 10px 30px;
-      font-size: 1rem;
-      cursor: pointer;
-      border-bottom: 3px solid transparent;
-    }
+        .header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, #f4e3b210 0%, transparent 60%);
+            animation: auraPulse 8s infinite;
+            pointer-events: none;
+        }
 
-    .tab-btn.active {
-      border-bottom: 3px solid gold;
-      font-weight: bold;
-    }
+        @keyframes auraPulse {
+            0% { transform: scale(0.8); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.1; }
+            100% { transform: scale(0.8); opacity: 0.3; }
+        }
 
-    .tab-page { display: none; }
-    .tab-page.active { display: block; }
-    .filter {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 1rem;
-    }
-    select {
-      padding: 8px 10px;
-      border-radius: 6px;
-      background: #252525;
-      color: #fff;
-      border: 1px solid #444;
-    }
-    .transaction-card {
-      background: #1c1c1c;
-      padding: 1rem;
-      border-radius: 10px;
-      border-left: 5px solid #c0a23d;
-      max-width: 800px;
-      margin: 1rem auto;
-    }
-    .transaction-card h3 {
-      margin: 0;
-      color: #f0e68c;
-    }
-    .transaction-meta {
-      font-size: 0.95rem;
-      color: #bbb;
-      margin-top: 5px;
-    }
-    .view-btn {
-      margin-top: 10px;
-      display: inline-block;
-      background: #e8d48b;
-      color: #000;
-      padding: 6px 14px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-</style>
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 30%, #f4e4b239 1px, transparent 2px),
+                radial-gradient(circle at 80% 70%, #f4e4b236 1px, transparent 2px);
+            background-size: 40px 40px;
+            animation: stardust 20s linear infinite;
+        }
+
+        @keyframes stardust {
+            0% { background-position: 0 0, 100px 100px; }
+            100% { background-position: 100px 100px, 0 0; }
+        }
+
+        /* 日期查询样式 */
+        .date-controls {
+            margin-top: 130px;
+            margin-left: 50px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .date-controls button {
+            margin: 0 5px;
+            padding: 10px 15px;
+            background-color: #c0a23d;
+            border: none;
+            color: black;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .date-controls button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .current-date {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #c0a23d;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            color: #eee;
+            padding: 2rem;
+            padding-bottom: 60px;
+        }
+
+        /* Background glow effect */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
+            animation: auraPulse 8s infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Stardust particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(244, 228, 178, 0.15) 1px, transparent 2px),
+                radial-gradient(circle at 80% 70%, rgba(244, 228, 178, 0.15) 1px, transparent 2px);
+            background-size: 60px 60px;
+            animation: stardust 20s linear infinite;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        @keyframes auraPulse {
+            0% { transform: scale(0.8); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.08; }
+            100% { transform: scale(0.8); opacity: 0.3; }
+        }
+
+        @keyframes stardust {
+            0% { background-position: 0 0, 100px 100px; }
+            100% { background-position: 100px 100px, 0 0; }
+        }
+
+        .back-btn {
+            display: inline-block;
+            position: fixed;
+            background: linear-gradient(to right, #c0a23d, #e8d48b);
+            color: #000;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.2s ease;
+            margin-right: 80rem;
+        }
+
+        .back-btn:hover {
+            
+            background: #e8d48b;
+            box-shadow: 0 0 10px #e8d48b;
+        }
+
+        h1 {
+            text-align: center;
+            color: #c0a23d;
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter {
+            display: flex;
+            justify-content: center;
+            margin-top:10px;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        select {
+            padding: 8px 10px;
+            border-radius: 6px;
+            background: #252525;
+            color: #fff;
+            border: 1px solid #444;
+        }
+
+        .transaction-card {
+            background: #1c1c1c;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 5px solid #c0a23d;
+            max-width: 800px;
+            margin: 1rem auto;
+        }
+
+        .transaction-card h3 {
+            margin: 0;
+            color: #f0e68c;
+        }
+
+        .transaction-meta {
+            font-size: 0.95rem;
+            color: #bbb;
+            margin-top: 5px;
+        }
+
+        .view-btn {
+            margin-top: 10px;
+            display: inline-block;
+            background: #e8d48b;
+            color: #000;
+            padding: 6px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
-  <a href="../Main Page/main_page.php" class="back-btn">
-    <i class="fas fa-house"></i> Back To Main Page
-  </a>
-    <h1>📄 Transaction History</h1>
-    <div style="width: 230px;"></div>
-    <div style="text-align: center; margin-bottom: 1rem;">
-    <span style="color: #4CAF50">Approved Refunds: <?= count($refundRequests) ?></span> | 
-    <span style="color: #FF5722">Refunded Orders: <?= count($refundOrders) ?></span>
-</div>
-</div>
 
-<div class="tabs">
-    <button class="tab-btn" onclick="switchTab('orders')">Order History</button>
-    <button class="tab-btn" onclick="switchTab('refunds')">Refund History</button>
-</div>
+  <div class="header">
+
+        <div class="title-group">
+            <div class="main-title">BRIZO MELAKA</div>
+            <div class="sub-title">Transaction History Page</div>
+        </div>
+
+        <a href="../Main Page/main_page.php" class="back-btn">
+        <i class="fas fa-house"></i> Back To Main Page
+    </a>
+
+    </div>
+
+
+<div class="date-controls">
+        <button id="prevBtn">Previous Day</button>
+        <span class="current-date" id="currentDate"></span>
+        <button id="nextBtn">Next Day</button>
+        <button id="todayBtn">Today</button>
+    </div>
 
 <div class="filter">
     <select id="yearFilter" onchange="filterByDate()">
@@ -277,112 +346,84 @@ body::before {
     </select>
 </div>
 
-<div id="orders" class="tab-content active">
-<?php foreach ($orders as $o): ?>
-    <div class="transaction-card">
-        <h3><?= htmlspecialchars($o['order_id']) ?> | RM <?= number_format($o['total'], 2) ?></h3>
-        <div class="transaction-meta"><?= htmlspecialchars($o['fullname']) ?> | <?= date('Y-m-d H:i', strtotime($o['created_at'])) ?></div>
-        <a href="view_order.php?id=<?= $o['id'] ?>" class="view-btn"><i class="fas fa-eye"></i> View</a>
-    </div>
-<?php endforeach; ?>
-</div>
-
-<div id="refunds" class="tab-content" style="display:none">
-<?php foreach ($refundRequests as $r): ?>
-    <div class="transaction-card" style="border-left-color: #4CAF50;">
-        <h3><?= htmlspecialchars($r['order_id']) ?> | 
-        RM <?= number_format($r['total'] ?? 0, 2) ?> |
-            Status: <span style="color: #4CAF50">APPROVED</span>
-        </h3>
-        <div class="transaction-meta">
-            <?= htmlspecialchars($r['fullname'] ?? 'Unknown') ?> | 
-            <?= date('Y-m-d H:i', strtotime($r['refund_date'])) ?>
-        </div>
-        <p><strong>Reason:</strong> <?= htmlspecialchars($r['reason']) ?></p>
-        <?php if (!empty($r['details'])): ?>
-            <p><strong>Details:</strong> <?= nl2br(htmlspecialchars($r['details'])) ?></p>
-        <?php endif; ?>
-        <?php if (!empty($r['evidence_path'])): ?>
-            <p><strong>Evidence:</strong><br>
-            <img src="<?= htmlspecialchars($r['evidence_path']) ?>" style="max-width: 300px;">
-            </p>
-        <?php endif; ?>
-        <a href="view_refund.php?id=<?= $r['refund_id'] ?>" class="view-btn">
-            <i class="fas fa-eye"></i> View
-        </a>
-    </div>
-<?php endforeach; ?>
-
-
-
-    <?php foreach ($refundOrders as $o): ?>
-        <div class="transaction-card" style="border-left-color: #FF5722;">
-            <h3><?= htmlspecialchars($o['order_id']) ?> | 
-            RM <?= number_format($o['total'] ?? 0, 2) ?> |
-                Status: <span style="color: #FF5722">REFUNDED</span>
-            </h3>
-            <div class="transaction-meta">
-                <?= htmlspecialchars($o['fullname']) ?> | 
-                <?= date('Y-m-d H:i', strtotime($o['refund_date'])) ?>
-            </div>
-            </a>
+<div>
+    <?php foreach ($orders as $o): ?>
+        <div class="transaction-card">
+            <h3><?= htmlspecialchars($o['order_id']) ?> | RM <?= number_format($o['total'], 2) ?></h3>
+            <div class="transaction-meta"><?= htmlspecialchars($o['fullname']) ?> | <?= date('Y-m-d H:i', strtotime($o['created_at'])) ?></div>
+            <a href="view_order.php?id=<?= $o['id'] ?>" class="view-btn"><i class="fas fa-eye"></i> View</a>
         </div>
     <?php endforeach; ?>
 </div>
 
-
 <script>
-// 修改后的 switchTab 函数
-function switchTab(tab) {
-  // 使用平滑滚动到顶部
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
 
-  // 使用 URL 参数代替 hash
-  const url = new URL(window.location);
-  url.searchParams.set('tab', tab);
-  window.history.replaceState(null, '', url);
+const currentDateSpan = document.getElementById("currentDate");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const todayBtn = document.getElementById("todayBtn");
 
-  // 原有切换逻辑保持不变
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.onclick.toString().includes(tab));
-  });
-  
-  document.querySelectorAll('.tab-content').forEach(content => {
-    content.style.display = content.id === tab ? 'block' : 'none';
-  });
+let currentDate = getTodayDate();
+
+function getTodayDate() {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d;
 }
 
-// 修改页面加载逻辑
-window.addEventListener('DOMContentLoaded', () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const targetTab = urlParams.get('tab') || 'orders';
-  
-  // 延迟执行确保 DOM 加载完成
-  setTimeout(() => {
-    switchTab(targetTab);
-    window.scrollTo(0, 0); // 强制回顶
-  }, 50);
+function formatDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+function updateDisplay() {
+    const today = getTodayDate();
+    currentDateSpan.textContent = formatDate(currentDate);
+
+    nextBtn.disabled = formatDate(currentDate) === formatDate(today);
+}
+
+prevBtn.addEventListener("click", () => {
+    currentDate.setDate(currentDate.getDate() - 1);
+    updateDisplay();
 });
 
+nextBtn.addEventListener("click", () => {
+    const today = getTodayDate();
+    const nextDay = new Date(currentDate);
+    nextDay.setDate(currentDate.getDate() + 1);
+
+    if (formatDate(nextDay) <= formatDate(today)) {
+        currentDate = nextDay;
+        updateDisplay();
+    }
+});
+
+todayBtn.addEventListener("click", () => {
+    currentDate = getTodayDate();
+    updateDisplay();
+});
+
+updateDisplay();
+
 function filterByDate() {
-  const year = document.getElementById('yearFilter').value;
-  const month = document.getElementById('monthFilter').value;
-  const day = document.getElementById('dayFilter').value;
+    const year = document.getElementById('yearFilter').value;
+    const month = document.getElementById('monthFilter').value;
+    const day = document.getElementById('dayFilter').value;
 
-  if (!year || !month || !day) return;
+    if (!year || !month || !day) return;
 
-  const date = `${year}-${month}-${day}`;
-  const today = new Date().toISOString().split('T')[0];
+    const date = `${year}-${month}-${day}`;
+    const today = new Date().toISOString().split('T')[0];
 
-  if (date > today) {
-    alert("Cannot select future date.");
-    return;
-  }
+    if (date > today) {
+        alert("Cannot select future date.");
+        return;
+    }
 
-  window.location.href = `index.php?date=${date}`;
+    window.location.href = `index.php?date=${date}`;
 }
 </script>
 </body>

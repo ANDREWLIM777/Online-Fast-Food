@@ -2,7 +2,6 @@
 <?php
 require 'db_conn.php';
 include '../auth_acc.php';
-check_permission('superadmin');
 
 
 if (!isset($_GET['id'])) {
