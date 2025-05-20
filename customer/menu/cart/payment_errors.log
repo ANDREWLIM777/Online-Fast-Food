@@ -888,3 +888,66 @@
 2025-05-20 06:05:19 - Payment method: digital_wallet, Payment method ID: 9
 2025-05-20 06:05:19 - Generated order_id: ORD-682BFF7F8F844
 2025-05-20 06:05:19 - Payment successful: order_id=ORD-682BFF7F8F844
+2025-05-20 06:09:10 - Customer ID: 1
+2025-05-20 06:09:10 - Customer saved address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:09:10 - Cart items: []
+2025-05-20 06:09:10 - Calculated total: 0
+2025-05-20 06:10:12 - Customer ID: 2
+2025-05-20 06:10:12 - Customer saved address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:10:12 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-20 06:10:12 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:10:12 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-20 06:10:12 - Calculated total: 27
+2025-05-20 06:10:53 - Customer ID: 2
+2025-05-20 06:10:53 - Customer saved address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:10:53 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-20 06:10:53 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:10:53 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-20 06:10:53 - Calculated total: 27
+2025-05-20 06:11:13 - Customer ID: 2
+2025-05-20 06:11:13 - Customer saved address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:11:13 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-20 06:11:13 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:11:13 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-20 06:11:13 - Calculated total: 27
+2025-05-20 06:11:13 - Attempting to add payment method: method_type=digital_wallet
+2025-05-20 06:11:13 - Adding digital wallet - Wallet Type: tng, Phone Number: 01111126183
+2025-05-20 06:11:14 - Payment method added successfully: ID 18
+2025-05-20 06:11:19 - Customer ID: 2
+2025-05-20 06:11:19 - Customer saved address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:11:19 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-20 06:11:19 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:11:19 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-20 06:11:19 - Calculated total: 27
+2025-05-20 06:11:19 - Received make_payment request: {"csrf_token":"edd252ec471ac843f2f044e0f84e90e4fe819145237712db0fd09241d4b9b879","delivery_method":"pickup","delivery_street_address":"","delivery_city":"","delivery_postal_code":"","payment_method_id":"18","method":"digital_wallet","amount":"27","make_payment":"1"}
+2025-05-20 06:11:19 - Received amount: 27, Expected total: 27
+2025-05-20 06:11:19 - Delivery method: pickup, Delivery address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:11:19 - Save address: No
+2025-05-20 06:11:19 - Payment method: digital_wallet, Payment method ID: 18
+2025-05-20 06:11:19 - Generated order_id: ORD-682C00E7D4239
+2025-05-20 06:11:19 - Payment successful: order_id=ORD-682C00E7D4239
+2025-05-20 06:12:56 - Customer ID: 2
+2025-05-20 06:12:56 - Customer saved address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:12:56 - Cart items: []
+2025-05-20 06:12:56 - Calculated total: 0
+2025-05-20 06:42:19 - Customer ID: 2
+2025-05-20 06:42:19 - Customer saved address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:42:19 - Cart items: []
+2025-05-20 06:42:19 - Calculated total: 0
+2025-05-20 06:51:48 - Attempting to add delivery address: street=4501, Angkasa Nuri, city=Kuala Lumpur, postal_code=50450, default=1
+2025-05-20 06:51:48 - Delivery address added successfully: ID 1, 4501, Angkasa Nuri, Kuala Lumpur, 
+2025-05-20 06:52:05 - Received make_payment request: {"csrf_token":"edd252ec471ac843f2f044e0f84e90e4fe819145237712db0fd09241d4b9b879","delivery_method":"delivery","delivery_address_id":"1","save_address":"1","payment_method_id":"18","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-20 06:52:05 - Received amount: 12, Expected total: 12
+2025-05-20 06:52:05 - Delivery method: delivery, Delivery address ID: 1
+2025-05-20 06:52:05 - Payment method: digital_wallet, Payment method ID: 18
+2025-05-20 06:52:05 - Generated order_id: ORD-682C0A757D1A8
+2025-05-20 06:52:05 - Payment successful: order_id=ORD-682C0A757D1A8
+2025-05-20 07:24:00 - Attempting to add payment method: method_type=digital_wallet
+2025-05-20 07:24:00 - Adding digital wallet - Wallet Type: tng, Phone Number: 01111126183
+2025-05-20 07:24:00 - Payment method added successfully: ID 19
+2025-05-20 07:24:02 - Received make_payment request: {"csrf_token":"4d688b72ebd8ca70aa7970475d288e32fb6063c534f9604ac8c471bfffd70a09","delivery_method":"pickup","delivery_address_id":"","save_address":"1","payment_method_id":"19","method":"digital_wallet","amount":"15","make_payment":"1"}
+2025-05-20 07:24:02 - Received amount: 15, Expected total: 15
+2025-05-20 07:24:02 - Delivery method: pickup, Delivery address ID: 0
+2025-05-20 07:24:02 - Payment method: digital_wallet, Payment method ID: 19
+2025-05-20 07:24:02 - Generated order_id: ORD-682C11F2171A2
+2025-05-20 07:24:02 - Payment successful: order_id=ORD-682C11F2171A2

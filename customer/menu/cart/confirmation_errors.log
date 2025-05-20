@@ -317,3 +317,495 @@ Autoload file not found at: ../../vendor/autoload.phpAutoload file not found at:
 2025-05-20 06:06:41 - Fetched 2 completed orders for customer_id: 1
 2025-05-20 06:06:41 - Selected order: ORD-68288BB09FC83
 2025-05-20 06:06:41 - Fetched feedback for order ORD-68288BB09FC83: Not found
+2025-05-20 06:08:53 - Customer ID from session: 1
+2025-05-20 06:08:53 - Fetched 2 completed orders for customer_id: 1
+2025-05-20 06:08:53 - Selected order: ORD-6828798B96011
+2025-05-20 06:08:53 - Fetched feedback for order ORD-6828798B96011: Not found
+2025-05-20 06:08:56 - Customer ID from session: 1
+2025-05-20 06:08:56 - Fetched 2 completed orders for customer_id: 1
+2025-05-20 06:08:57 - Customer ID from session: 1
+2025-05-20 06:08:57 - Fetched 2 completed orders for customer_id: 1
+2025-05-20 06:08:57 - Selected order: ORD-68288BB09FC83
+2025-05-20 06:08:57 - Fetched feedback for order ORD-68288BB09FC83: Not found
+2025-05-20 06:11:19 - Memory limit: 256M
+2025-05-20 06:11:19 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:11:19 - Order items count: 2
+2025-05-20 06:11:19 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:11:19 - Delivery method: pickup
+2025-05-20 06:11:19 - Delivery address: null
+2025-05-20 06:11:19 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:11:22 - Memory limit: 256M
+2025-05-20 06:11:22 - Session delivery_method: pickup, delivery_address: null
+2025-05-20 06:11:22 - Order items for ORD-682C00E7D4239: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:11:25 - Invoice email failed for order: ORD-682C00E7D4239 - SMTP Error: Could not authenticate.
+2025-05-20 06:11:53 - Memory limit: 256M
+2025-05-20 06:11:53 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:11:53 - Order items count: 2
+2025-05-20 06:11:53 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:11:53 - Delivery method: pickup
+2025-05-20 06:11:53 - Delivery address: null
+2025-05-20 06:11:53 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:11:53 - Downloaded invoice for order: ORD-682C00E7D4239
+2025-05-20 06:13:09 - Memory limit: 256M
+2025-05-20 06:13:09 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:13:09 - Order items count: 2
+2025-05-20 06:13:09 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:13:09 - Delivery method: pickup
+2025-05-20 06:13:09 - Delivery address: null
+2025-05-20 06:13:09 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:21:04 - Customer ID from session: 2
+2025-05-20 06:21:04 - Fetched 0 completed orders for customer_id: 2
+2025-05-20 06:31:08 - Memory limit: 256M
+2025-05-20 06:31:08 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:31:08 - Order items count: 2
+2025-05-20 06:31:08 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:31:08 - Delivery method: pickup
+2025-05-20 06:31:08 - Delivery address: null
+2025-05-20 06:31:08 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:31:12 - Memory limit: 256M
+2025-05-20 06:31:12 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:31:12 - Order items count: 2
+2025-05-20 06:31:12 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:31:12 - Delivery method: pickup
+2025-05-20 06:31:12 - Delivery address: null
+2025-05-20 06:31:12 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:31:13 - Downloaded invoice for order: ORD-682C00E7D4239
+2025-05-20 06:31:31 - Memory limit: 256M
+2025-05-20 06:31:31 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:31:31 - Order items count: 2
+2025-05-20 06:31:31 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:31:31 - Delivery method: pickup
+2025-05-20 06:31:31 - Delivery address: null
+2025-05-20 06:31:31 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:31:35 - Memory limit: 256M
+2025-05-20 06:31:35 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:31:35 - Order items count: 2
+2025-05-20 06:31:35 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:31:35 - Delivery method: pickup
+2025-05-20 06:31:35 - Delivery address: null
+2025-05-20 06:31:35 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:37:46 - Memory limit: 256M
+2025-05-20 06:37:46 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:37:46 - Order items count: 2
+2025-05-20 06:37:46 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:37:46 - Delivery method: pickup
+2025-05-20 06:37:46 - Delivery address: null
+2025-05-20 06:37:46 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:37:57 - Memory limit: 256M
+2025-05-20 06:37:57 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:37:57 - Order items count: 2
+2025-05-20 06:37:57 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:37:57 - Delivery method: pickup
+2025-05-20 06:37:57 - Delivery address: null
+2025-05-20 06:37:57 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:41:41 - Memory limit: 256M
+2025-05-20 06:41:41 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:41:41 - Order items count: 2
+2025-05-20 06:41:41 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:41:41 - Delivery method: pickup
+2025-05-20 06:41:41 - Delivery address: null
+2025-05-20 06:41:41 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:41:46 - Memory limit: 256M
+2025-05-20 06:41:46 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:41:46 - Order items count: 2
+2025-05-20 06:41:46 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:41:46 - Delivery method: pickup
+2025-05-20 06:41:46 - Delivery address: null
+2025-05-20 06:41:46 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:41:48 - Generated PDF for email: C:\xampp\apache\bin\htdocs\Online-Fast-Food\customer\menu\cart/Uploads/Invoices/Invoice_ORD-682C00E7D4239.pdf
+2025-05-20 06:41:51 - Invoice email failed for order: ORD-682C00E7D4239 - SMTP Error: Could not authenticate.
+2025-05-20 06:41:51 - Memory limit: 256M
+2025-05-20 06:41:51 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:41:51 - Order items count: 2
+2025-05-20 06:41:51 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:41:51 - Delivery method: pickup
+2025-05-20 06:41:51 - Delivery address: null
+2025-05-20 06:41:51 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:42:18 - Memory limit: 256M
+2025-05-20 06:42:19 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:42:19 - Order items count: 2
+2025-05-20 06:42:19 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:42:19 - Delivery method: pickup
+2025-05-20 06:42:19 - Delivery address: null
+2025-05-20 06:42:19 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:45:24 - Memory limit: 256M
+2025-05-20 06:45:24 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:45:24 - Order items count: 2
+2025-05-20 06:45:24 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:45:24 - Delivery method: pickup
+2025-05-20 06:45:24 - Delivery address: null
+2025-05-20 06:45:24 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:45:26 - Generated PDF for email: C:\xampp\apache\bin\htdocs\Online-Fast-Food\customer\menu\cart/Uploads/Invoices/Invoice_ORD-682C00E7D4239.pdf
+2025-05-20 06:45:27 - SMTP Debug level 2: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 41be03b00d2f7-b26ecfc85e9sm6823903a12.11 - gsmtp
+
+2025-05-20 06:45:27 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-20 06:45:27 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.73]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-20 06:45:27 - SMTP Debug level 1: CLIENT -> SERVER: STARTTLS
+
+2025-05-20 06:45:27 - SMTP Debug level 2: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+2025-05-20 06:45:28 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-20 06:45:28 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.73]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-20 06:45:28 - SMTP Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+2025-05-20 06:45:29 - SMTP Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+2025-05-20 06:45:29 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-20 06:45:29 - SMTP Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+2025-05-20 06:45:29 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-20 06:45:29 - SMTP Debug level 2: SERVER -> CLIENT: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 41be03b00d2f7-b26ecfc85e9sm6823903a12.11 - gsmtp
+
+2025-05-20 06:45:29 - SMTP Debug level 1: SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 41be03b00d2f7-b26ecfc85e9sm6823903a12.11 - gsmtp
+
+2025-05-20 06:45:29 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-20 06:45:29 - SMTP Debug level 1: CLIENT -> SERVER: QUIT
+
+2025-05-20 06:45:29 - SMTP Debug level 2: SERVER -> CLIENT: 221 2.0.0 closing connection 41be03b00d2f7-b26ecfc85e9sm6823903a12.11 - gsmtp
+
+2025-05-20 06:45:29 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-20 06:45:29 - Invoice email failed for order: ORD-682C00E7D4239 - SMTP Error: Could not authenticate.
+2025-05-20 06:45:29 - Memory limit: 256M
+2025-05-20 06:45:29 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:45:29 - Order items count: 2
+2025-05-20 06:45:29 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:45:29 - Delivery method: pickup
+2025-05-20 06:45:29 - Delivery address: null
+2025-05-20 06:45:29 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:51:17 - Memory limit: 256M
+2025-05-20 06:51:17 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:51:17 - Order items count: 2
+2025-05-20 06:51:17 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:51:17 - Delivery method: pickup
+2025-05-20 06:51:17 - Delivery address: null
+2025-05-20 06:51:17 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:52:05 - Memory limit: 256M
+2025-05-20 06:52:05 - Displaying confirmation for order: ORD-682C0A757D1A8, Customer ID: 2
+2025-05-20 06:52:05 - Order items count: 1
+2025-05-20 06:52:05 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:52:05 - Delivery method: delivery
+2025-05-20 06:52:05 - Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:52:05 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:52:12 - Memory limit: 256M
+2025-05-20 06:52:12 - Displaying confirmation for order: ORD-682C00E7D4239, Customer ID: 2
+2025-05-20 06:52:12 - Order items count: 2
+2025-05-20 06:52:12 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:52:12 - Delivery method: pickup
+2025-05-20 06:52:12 - Delivery address: null
+2025-05-20 06:52:12 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:52:14 - Memory limit: 256M
+2025-05-20 06:52:14 - Displaying confirmation for order: ORD-682C0A757D1A8, Customer ID: 2
+2025-05-20 06:52:14 - Order items count: 1
+2025-05-20 06:52:14 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:52:14 - Delivery method: delivery
+2025-05-20 06:52:14 - Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:52:14 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:52:17 - Memory limit: 256M
+2025-05-20 06:52:17 - Displaying confirmation for order: ORD-682C0A757D1A8, Customer ID: 2
+2025-05-20 06:52:17 - Order items count: 1
+2025-05-20 06:52:17 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:52:17 - Delivery method: delivery
+2025-05-20 06:52:17 - Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:52:17 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:52:19 - Memory limit: 256M
+2025-05-20 06:52:19 - Displaying confirmation for order: ORD-682C0A757D1A8, Customer ID: 2
+2025-05-20 06:52:19 - Order items count: 1
+2025-05-20 06:52:19 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:52:19 - Delivery method: delivery
+2025-05-20 06:52:19 - Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:52:19 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:52:19 - Downloaded invoice for order: ORD-682C0A757D1A8
+2025-05-20 06:52:26 - Customer ID from session: 2
+2025-05-20 06:52:26 - Fetched 0 completed orders for customer_id: 2
+2025-05-20 06:52:38 - Generated PDF for email: C:\xampp\apache\bin\htdocs\Online-Fast-Food\customer\menu\cart/Uploads/Invoices/Invoice_ORD-682C0A757D1A8.pdf
+2025-05-20 06:52:39 - SMTP Debug level 2: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 98e67ed59e1d1-30f36515776sm742839a91.48 - gsmtp
+
+2025-05-20 06:52:39 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-20 06:52:39 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.73]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-20 06:52:39 - SMTP Debug level 1: CLIENT -> SERVER: STARTTLS
+
+2025-05-20 06:52:40 - SMTP Debug level 2: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+2025-05-20 06:52:40 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-20 06:52:41 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.73]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-20 06:52:41 - SMTP Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+2025-05-20 06:52:41 - SMTP Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+2025-05-20 06:52:41 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-20 06:52:41 - SMTP Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+2025-05-20 06:52:41 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-20 06:52:41 - SMTP Debug level 2: SERVER -> CLIENT: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-30f36515776sm742839a91.48 - gsmtp
+
+2025-05-20 06:52:41 - SMTP Debug level 1: SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-30f36515776sm742839a91.48 - gsmtp
+
+2025-05-20 06:52:41 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-20 06:52:41 - SMTP Debug level 1: CLIENT -> SERVER: QUIT
+
+2025-05-20 06:52:42 - SMTP Debug level 2: SERVER -> CLIENT: 221 2.0.0 closing connection 98e67ed59e1d1-30f36515776sm742839a91.48 - gsmtp
+
+2025-05-20 06:52:42 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-20 06:52:42 - Invoice email failed for order: ORD-682C0A757D1A8 - SMTP Error: Could not authenticate.
+2025-05-20 06:52:42 - Memory limit: 256M
+2025-05-20 06:52:42 - Displaying confirmation for order: ORD-682C0A757D1A8, Customer ID: 2
+2025-05-20 06:52:42 - Order items count: 1
+2025-05-20 06:52:42 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:52:42 - Delivery method: delivery
+2025-05-20 06:52:42 - Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:52:42 - Customer email: andrewlim8756@gmail.com
+2025-05-20 06:56:28 - Generated PDF for email: C:\xampp\apache\bin\htdocs\Online-Fast-Food\customer\menu\cart/Uploads/Invoices/Invoice_ORD-682C0A757D1A8.pdf
+2025-05-20 06:56:29 - SMTP Debug level 2: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-231d4adbfe1sm68473985ad.66 - gsmtp
+
+2025-05-20 06:56:29 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-20 06:56:29 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.73]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-20 06:56:29 - SMTP Debug level 1: CLIENT -> SERVER: STARTTLS
+
+2025-05-20 06:56:29 - SMTP Debug level 2: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+2025-05-20 06:56:30 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-20 06:56:31 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.73]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-20 06:56:31 - SMTP Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+2025-05-20 06:56:31 - SMTP Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+2025-05-20 06:56:31 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-20 06:56:31 - SMTP Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+2025-05-20 06:56:31 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-20 06:56:32 - SMTP Debug level 2: SERVER -> CLIENT: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4adbfe1sm68473985ad.66 - gsmtp
+
+2025-05-20 06:56:32 - SMTP Debug level 1: SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4adbfe1sm68473985ad.66 - gsmtp
+
+2025-05-20 06:56:32 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-20 06:56:32 - SMTP Debug level 1: CLIENT -> SERVER: QUIT
+
+2025-05-20 06:56:32 - SMTP Debug level 2: SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-231d4adbfe1sm68473985ad.66 - gsmtp
+
+2025-05-20 06:56:32 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-20 06:56:32 - Invoice email failed for order: ORD-682C0A757D1A8 - SMTP Error: Could not authenticate.
+2025-05-20 06:56:32 - Memory limit: 256M
+2025-05-20 06:56:32 - Displaying confirmation for order: ORD-682C0A757D1A8, Customer ID: 2
+2025-05-20 06:56:32 - Order items count: 1
+2025-05-20 06:56:32 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 06:56:32 - Delivery method: delivery
+2025-05-20 06:56:32 - Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:56:32 - Customer email: andrewlim8756@gmail.com
+2025-05-20 07:13:24 - Memory limit: 256M
+2025-05-20 07:13:24 - Displaying confirmation for order: ORD-682C0A757D1A8, Customer ID: 2
+2025-05-20 07:13:24 - Order items count: 1
+2025-05-20 07:13:24 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 07:13:24 - Delivery method: delivery
+2025-05-20 07:13:24 - Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 07:13:24 - Customer email: andrewlim8756@gmail.com
+2025-05-20 07:13:26 - Generated PDF for email: C:\xampp\apache\bin\htdocs\Online-Fast-Food\customer\menu\cart/Uploads/Invoices/Invoice_ORD-682C0A757D1A8.pdf
+2025-05-20 07:13:26 - SMTP Debug level 2: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 98e67ed59e1d1-30f365157d9sm712407a91.47 - gsmtp
+
+2025-05-20 07:13:26 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-20 07:13:26 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.73]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-20 07:13:26 - SMTP Debug level 1: CLIENT -> SERVER: STARTTLS
+
+2025-05-20 07:13:26 - SMTP Debug level 2: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+2025-05-20 07:13:27 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-20 07:13:27 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.73]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-20 07:13:27 - SMTP Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+2025-05-20 07:13:27 - SMTP Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+2025-05-20 07:13:27 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-20 07:13:27 - SMTP Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+2025-05-20 07:13:27 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-20 07:13:28 - SMTP Debug level 2: SERVER -> CLIENT: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-30f365157d9sm712407a91.47 - gsmtp
+
+2025-05-20 07:13:28 - SMTP Debug level 1: SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-30f365157d9sm712407a91.47 - gsmtp
+
+2025-05-20 07:13:28 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-20 07:13:28 - SMTP Debug level 1: CLIENT -> SERVER: QUIT
+
+2025-05-20 07:13:28 - SMTP Debug level 2: SERVER -> CLIENT: 221 2.0.0 closing connection 98e67ed59e1d1-30f365157d9sm712407a91.47 - gsmtp
+
+2025-05-20 07:13:28 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-20 07:13:28 - Invoice email failed for order: ORD-682C0A757D1A8 - SMTP Error: Could not authenticate.
+2025-05-20 07:13:28 - Memory limit: 256M
+2025-05-20 07:13:28 - Displaying confirmation for order: ORD-682C0A757D1A8, Customer ID: 2
+2025-05-20 07:13:28 - Order items count: 1
+2025-05-20 07:13:28 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 07:13:28 - Delivery method: delivery
+2025-05-20 07:13:28 - Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 07:13:28 - Customer email: andrewlim8756@gmail.com
+2025-05-20 07:21:53 - Memory limit: 256M
+2025-05-20 07:21:53 - Displaying confirmation for order: ORD-682C0A757D1A8, Customer ID: 2
+2025-05-20 07:21:53 - Order items count: 1
+2025-05-20 07:21:53 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 07:21:53 - Delivery method: delivery
+2025-05-20 07:21:53 - Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 07:21:53 - Customer email: andrewlim8756@gmail.com
+2025-05-20 07:21:54 - Memory limit: 256M
+2025-05-20 07:21:54 - Displaying confirmation for order: ORD-682C0A757D1A8, Customer ID: 2
+2025-05-20 07:21:54 - Order items count: 1
+2025-05-20 07:21:54 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 07:21:54 - Delivery method: delivery
+2025-05-20 07:21:54 - Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 07:21:54 - Customer email: andrewlim8756@gmail.com
+2025-05-20 07:21:54 - Memory limit: 256M
+2025-05-20 07:21:54 - Displaying confirmation for order: ORD-682C0A757D1A8, Customer ID: 2
+2025-05-20 07:21:54 - Order items count: 1
+2025-05-20 07:21:54 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 07:21:54 - Delivery method: delivery
+2025-05-20 07:21:54 - Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 07:21:54 - Customer email: andrewlim8756@gmail.com
+2025-05-20 07:21:55 - Memory limit: 256M
+2025-05-20 07:21:55 - Displaying confirmation for order: ORD-682C0A757D1A8, Customer ID: 2
+2025-05-20 07:21:55 - Order items count: 1
+2025-05-20 07:21:55 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-20 07:21:55 - Delivery method: delivery
+2025-05-20 07:21:55 - Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 07:21:55 - Customer email: andrewlim8756@gmail.com
+2025-05-20 07:24:02 - Memory limit: 256M
+2025-05-20 07:24:02 - Displaying confirmation for order: ORD-682C11F2171A2, Customer ID: 3
+2025-05-20 07:24:02 - Order items count: 1
+2025-05-20 07:24:02 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-20 07:24:02 - Delivery method: pickup
+2025-05-20 07:24:02 - Delivery address: null
+2025-05-20 07:24:02 - Customer email: playgame0567@gmail.com
+2025-05-20 07:24:04 - Generated PDF for email: C:\xampp\apache\bin\htdocs\Online-Fast-Food\customer\menu\cart/Uploads/Invoices/Invoice_ORD-682C11F2171A2.pdf
+2025-05-20 07:24:04 - SMTP Debug level 2: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-231d4ebb0f5sm68621805ad.192 - gsmtp
+
+2025-05-20 07:24:04 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-20 07:24:05 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.73]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-20 07:24:05 - SMTP Debug level 1: CLIENT -> SERVER: STARTTLS
+
+2025-05-20 07:24:05 - SMTP Debug level 2: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+2025-05-20 07:24:05 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-20 07:24:06 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.73]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-20 07:24:06 - SMTP Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+2025-05-20 07:24:06 - SMTP Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+2025-05-20 07:24:06 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-20 07:24:06 - SMTP Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+2025-05-20 07:24:06 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-20 07:24:06 - SMTP Debug level 2: SERVER -> CLIENT: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4ebb0f5sm68621805ad.192 - gsmtp
+
+2025-05-20 07:24:06 - SMTP Debug level 1: SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4ebb0f5sm68621805ad.192 - gsmtp
+
+2025-05-20 07:24:06 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-20 07:24:06 - SMTP Debug level 1: CLIENT -> SERVER: QUIT
+
+2025-05-20 07:24:07 - SMTP Debug level 2: SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-231d4ebb0f5sm68621805ad.192 - gsmtp
+
+2025-05-20 07:24:07 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-20 07:24:07 - Invoice email failed for order: ORD-682C11F2171A2 - SMTP Error: Could not authenticate.
+2025-05-20 07:24:07 - Memory limit: 256M
+2025-05-20 07:24:07 - Displaying confirmation for order: ORD-682C11F2171A2, Customer ID: 3
+2025-05-20 07:24:07 - Order items count: 1
+2025-05-20 07:24:07 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-20 07:24:07 - Delivery method: pickup
+2025-05-20 07:24:07 - Delivery address: null
+2025-05-20 07:24:07 - Customer email: playgame0567@gmail.com
+2025-05-20 07:24:21 - Customer ID from session: 3
+2025-05-20 07:24:21 - Fetched 0 completed orders for customer_id: 3
