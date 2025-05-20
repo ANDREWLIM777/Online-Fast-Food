@@ -55,6 +55,28 @@ function getStatusColor($status) {
             return 'text-gray-600';
     }
 }
+
+// Function to format delivery address
+function formatDeliveryAddress($address) {
+    if (empty($address)) {
+        return 'N/A';
+    }
+    $decoded = json_decode($address, true);
+    if ($decoded && is_array($decoded)) {
+        $addressParts = [];
+        if (!empty($decoded['street_address'])) {
+            $addressParts[] = htmlspecialchars($decoded['street_address']);
+        }
+        if (!empty($decoded['city'])) {
+            $addressParts[] = htmlspecialchars($decoded['city']);
+        }
+        if (!empty($decoded['postal_code'])) {
+            $addressParts[] = htmlspecialchars($decoded['postal_code']);
+        }
+        return implode(', ', $addressParts) ?: 'N/A';
+    }
+    return htmlspecialchars($address);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,25 +88,12 @@ function getStatusColor($status) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .fade-in {
-            animation: fadeIn 0.3s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .table-container {
-            overflow-x: auto;
-        }
-        tr {
-            transition: background-color 0.2s ease;
-        }
-        tr:hover {
-            background-color: #F9FAFB;
-        }
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .table-container { overflow-x: auto; }
+        tr { transition: background-color 0.2s ease; }
+        tr:hover { background-color: #F9FAFB; }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -102,7 +111,7 @@ function getStatusColor($status) {
             <h2 class="text-2xl font-semibold text-gray-800 mb-6">Payment History</h2>
 
             <?php if (empty($payment_history)): ?>
-                <p class="text-gray-600">No payment history available.</p>
+                <p class="text-gray-600">No payment records found.</p>
             <?php else: ?>
                 <div class="table-container">
                     <table class="w-full table-auto border-collapse">
@@ -112,16 +121,20 @@ function getStatusColor($status) {
                                 <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Date</th>
                                 <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Amount</th>
                                 <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Status</th>
-                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Method</th>
-                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Details</th>
-                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Delivery</th>
-                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Address</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Payment Method</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Payment Details</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Delivery Method</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Delivery Address</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($payment_history as $payment): ?>
                                 <tr class="border-b border-gray-200">
-                                    <td class="px-4 py-3 text-sm text-gray-600"><?= htmlspecialchars($payment['order_id']) ?></td>
+                                    <td class="px-4 py-3 text-sm text-gray-600">
+                                        <a href="confirmation.php?order_id=<?= urlencode($payment['order_id']) ?>" class="text-blue-600 hover:underline">
+                                            <?= htmlspecialchars($payment['order_id']) ?>
+                                        </a>
+                                    </td>
                                     <td class="px-4 py-3 text-sm text-gray-600"><?= date('d M Y, H:i', strtotime($payment['date'])) ?></td>
                                     <td class="px-4 py-3 text-sm text-gray-600">RM <?= number_format($payment['amount'], 2) ?></td>
                                     <td class="px-4 py-3 text-sm <?= getStatusColor($payment['status']) ?>">
@@ -136,25 +149,24 @@ function getStatusColor($status) {
                                         <i class="fas <?= $payment['delivery_method'] === 'delivery' ? 'fa-truck' : 'fa-store' ?> mr-2"></i>
                                         <?= ucfirst(htmlspecialchars($payment['delivery_method'])) ?>
                                     </td>
-                                    <td class="px-4 py-3 text-sm text-gray-600"><?= htmlspecialchars($payment['delivery_address'] ?: 'N/A') ?></td>
+                                    <td class="px-4 py-3 text-sm text-gray-600"><?= formatDeliveryAddress($payment['delivery_address']) ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Pagination -->
                 <?php if ($total_pages > 1): ?>
                     <div class="mt-6 flex justify-between items-center">
                         <p class="text-sm text-gray-600">
                             Showing <?= ($offset + 1) ?> to <?= min($offset + $records_per_page, $total_records) ?> of <?= $total_records ?> records
                         </p>
                         <div class="flex space-x-2">
-                            <a href="?page=<?= max(1, $page - 1) ?>" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 <?= $page <= 1 ? 'opacity-50 cursor-not-allowed' : '' ?>" aria-label="Previous Page">
+                            <a href="?page=<?= max(1, $page - 1) ?>" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 <?= $page <= 1 ? 'opacity-50 cursor-not-allowed' : '' ?>" aria-label="Previous page">
                                 <i class="fas fa-chevron-left"></i>
                             </a>
                             <span class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Page <?= $page ?> of <?= $total_pages ?></span>
-                            <a href="?page=<?= min($total_pages, $page + 1) ?>" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 <?= $page >= $total_pages ? 'opacity-50 cursor-not-allowed' : '' ?>" aria-label="Next Page">
+                            <a href="?page=<?= min($total_pages, $page + 1) ?>" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 <?= $page >= $total_pages ? 'opacity-50 cursor-not-allowed' : '' ?>" aria-label="Next page">
                                 <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>
