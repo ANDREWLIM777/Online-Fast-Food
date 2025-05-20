@@ -55,6 +55,30 @@ function getStatusColor($status) {
             return 'text-gray-600';
     }
 }
+
+// Function to format delivery address
+function formatDeliveryAddress($address) {
+    if (empty($address)) {
+        return 'N/A';
+    }
+    // Try to decode JSON
+    $decoded = json_decode($address, true);
+    if ($decoded && is_array($decoded)) {
+        $addressParts = [];
+        if (!empty($decoded['street_address'])) {
+            $addressParts[] = htmlspecialchars($decoded['street_address']);
+        }
+        if (!empty($decoded['city'])) {
+            $addressParts[] = htmlspecialchars($decoded['city']);
+        }
+        if (!empty($decoded['postal_code'])) {
+            $addressParts[] = htmlspecialchars($decoded['postal_code']);
+        }
+        return implode(', ', $addressParts) ?: 'N/A';
+    }
+    // Fallback to plain text
+    return htmlspecialchars($address);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -136,7 +160,7 @@ function getStatusColor($status) {
                                         <i class="fas <?= $payment['delivery_method'] === 'delivery' ? 'fa-truck' : 'fa-store' ?> mr-2"></i>
                                         <?= ucfirst(htmlspecialchars($payment['delivery_method'])) ?>
                                     </td>
-                                    <td class="px-4 py-3 text-sm text-gray-600"><?= htmlspecialchars($payment['delivery_address'] ?: 'N/A') ?></td>
+                                    <td class="px-4 py-3 text-sm text-gray-600"><?= formatDeliveryAddress($payment['delivery_address']) ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

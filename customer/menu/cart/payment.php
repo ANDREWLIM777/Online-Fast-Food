@@ -1,9 +1,9 @@
 <?php
-ob_start(); // Start output buffering to prevent stray output
+ob_start();
 session_start();
 require '../db_connect.php';
 
-// Check if the user is logged in
+// Check if user is logged in
 if (!isset($_SESSION['customer_id'])) {
     header("Location: ../../login.php");
     exit();
@@ -35,6 +35,12 @@ function luhnCheck($number) {
     return $sum % 10 === 0;
 }
 
+// Log function
+$logFile = 'payment_errors.log';
+$logMessage = function($message) use ($logFile) {
+    file_put_contents($logFile, date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, FILE_APPEND);
+};
+
 // Fetch cart items
 $cartItems = [];
 $total = 0;
@@ -54,28 +60,28 @@ while ($row = $result->fetch_assoc()) {
 $stmt->close();
 
 // Fetch customer's saved address
-$customerAddress = '';
-$stmt = $conn->prepare("SELECT address FROM customers WHERE id = ?");
+$customerAddress = [
+    'street_address' => '',
+    'city' => '',
+    'postal_code' => ''
+];
+$stmt = $conn->prepare("SELECT address, city, postal_code FROM customers WHERE id = ?");
 $stmt->bind_param("i", $customerId);
 $stmt->execute();
 $result = $stmt->get_result();
 if ($row = $result->fetch_assoc()) {
-    $customerAddress = $row['address'] ?? '';
+    $customerAddress['street_address'] = $row['address'] ?? '';
+    $customerAddress['city'] = $row['city'] ?? '';
+    $customerAddress['postal_code'] = $row['postal_code'] ?? '';
 }
 $stmt->close();
-
-// Log cart items and address for debugging
-$logFile = 'payment_errors.log';
-$logMessage = function($message) use ($logFile) {
-    file_put_contents($logFile, date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, FILE_APPEND);
-};
 $logMessage("Customer ID: $customerId");
+$logMessage("Customer saved address: " . json_encode($customerAddress));
 foreach ($cartItems as $item) {
     $logMessage("Item: {$item['item_name']}, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/{$item['photo']}");
 }
 $logMessage("Cart items: " . json_encode($cartItems));
 $logMessage("Calculated total: $total");
-$logMessage("Customer saved address: " . ($customerAddress ?: 'None'));
 
 // Fetch saved payment methods
 $paymentMethods = [];
@@ -229,10 +235,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])
                 echo json_encode(['status' => 'error', 'message' => 'CVV must be 3 or 4 digits']);
                 exit();
             }
-            if (empty($cardName) || preg_match('/\D/', $cardName)) {
+            if (empty($cardName) || preg_match('/\d/', $cardName)) {
                 $logMessage("Invalid card name: $cardName");
                 ob_end_clean();
-                echo json_encode(['status' => 'error', 'message' => 'Invalid name on card']);
+                echo json_encode(['status' => 'error', 'message' => 'Invalid name on card (no numbers allowed)']);
                 exit();
             }
 
@@ -240,7 +246,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])
             $cardExpiry = $expiry;
         } elseif ($methodType === 'online_banking') {
             $bankName = $_POST['bank_name'] ?? '';
-            $allowedBanks = ['maybank', 'cimb', 'public_bank', 'rhb', 'hong_leong', 'ambank', 'uob', 'ocbc', 'hsbc', 'standard_chartered'];
+            $allowedBanks = ['maybank2u', 'cimbclicks', 'rhb', 'publicbank', 'hongleong', 'ambank', 'mybsn', 'bankrakyat', 'uob', 'affinbank', 'bankislam', 'hsbc', 'banknegaramalaysia', 'alliancebank', 'ocbc', 'bankmuamalat', 'standardchartered', 'citibank', 'alrajhi', 'bankrakyatbaloyete'];
             if (empty($bankName) || !in_array($bankName, $allowedBanks)) {
                 $logMessage("Invalid bank name: $bankName");
                 ob_end_clean();
@@ -323,15 +329,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_payment_method'])
 
 // Handle payment processing
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
-    $logFile = 'payment_errors.log';
-    $logMessage = function($message) use ($logFile) {
-        file_put_contents($logFile, date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, FILE_APPEND);
-    };
     header('Content-Type: application/json');
 
     try {
         $logMessage("Received make_payment request: " . json_encode($_POST));
 
+        // CSRF validation
         if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
             $logMessage("CSRF validation failed for make_payment");
             ob_end_clean();
@@ -339,6 +342,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             exit();
         }
 
+        // Validate cart
         if (empty($cartItems)) {
             $logMessage("Validation failed: Cart is empty for customer_id=$customerId");
             ob_end_clean();
@@ -346,17 +350,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             exit();
         }
 
+        // Get form data
         $method = trim($_POST['method'] ?? '');
         $paymentMethodId = (int)($_POST['payment_method_id'] ?? 0);
         $amount = floatval($_POST['amount'] ?? 0);
         $deliveryMethod = trim($_POST['delivery_method'] ?? '');
-        $deliveryAddress = trim($_POST['delivery_address'] ?? '');
-        $deliveryAddress = ($deliveryMethod === 'delivery') ? $deliveryAddress : null;
+        $deliveryAddress = [
+            'street_address' => trim($_POST['delivery_street_address'] ?? ''),
+            'city' => trim($_POST['delivery_city'] ?? ''),
+            'postal_code' => trim($_POST['delivery_postal_code'] ?? '')
+        ];
+        $saveAddress = isset($_POST['save_address']) && $_POST['save_address'] === '1';
 
         $logMessage("Received amount: $amount, Expected total: $total");
-        $logMessage("Delivery method: $deliveryMethod, Delivery address: " . ($deliveryAddress ?: 'N/A'));
+        $logMessage("Delivery method: $deliveryMethod, Delivery address: " . json_encode($deliveryAddress));
+        $logMessage("Save address: " . ($saveAddress ? 'Yes' : 'No'));
         $logMessage("Payment method: $method, Payment method ID: $paymentMethodId");
 
+        // Validate payment method
         if (!in_array($method, ['card', 'online_banking', 'digital_wallet'])) {
             $logMessage("Validation failed: Invalid payment method ($method)");
             ob_end_clean();
@@ -369,7 +380,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             echo json_encode(['status' => 'error', 'message' => 'Please select a payment method']);
             exit();
         }
-        // Relaxed amount comparison to handle floating-point precision
         if ($amount <= 0 || abs($amount - $total) > 0.01) {
             $logMessage("Validation failed: Invalid payment amount ($amount, expected $total)");
             ob_end_clean();
@@ -382,31 +392,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             echo json_encode(['status' => 'error', 'message' => 'Invalid delivery method']);
             exit();
         }
-        $logMessage("Delivery method validation passed: $deliveryMethod");
-        if ($deliveryMethod === 'delivery' && (empty($deliveryAddress) || strlen($deliveryAddress) < 5)) {
-            $logMessage("Validation failed: Delivery address too short or empty");
-            ob_end_clean();
-            echo json_encode(['status' => 'error', 'message' => 'Delivery address must be at least 5 characters']);
-            exit();
-        }
-        $logMessage("Delivery address validation passed: " . ($deliveryAddress ?: 'N/A'));
 
-        // Save delivery address to customers table if delivery method is selected
-        if ($deliveryMethod === 'delivery' && $deliveryAddress) {
-            $stmt = $conn->prepare("UPDATE customers SET address = ? WHERE id = ?");
+        // Validate delivery address if delivery is selected
+        if ($deliveryMethod === 'delivery') {
+            if (empty($deliveryAddress['street_address']) || strlen($deliveryAddress['street_address']) < 5) {
+                $logMessage("Validation failed: Street address too short or empty");
+                ob_end_clean();
+                echo json_encode(['status' => 'error', 'message' => 'Street address must be at least 5 characters']);
+                exit();
+            }
+            if (empty($deliveryAddress['city']) || strlen($deliveryAddress['city']) < 2) {
+                $logMessage("Validation failed: City is empty or too short");
+                ob_end_clean();
+                echo json_encode(['status' => 'error', 'message' => 'City is required and must be at least 2 characters']);
+                exit();
+            }
+            if (empty($deliveryAddress['postal_code']) || !preg_match('/^\d{5}$/', $deliveryAddress['postal_code'])) {
+                $logMessage("Validation failed: Invalid postal code");
+                ob_end_clean();
+                echo json_encode(['status' => 'error', 'message' => 'Postal code must be 5 digits']);
+                exit();
+            }
+        } else {
+            $deliveryAddress = null;
+        }
+
+        // Save delivery address to customers table if requested
+        if ($deliveryMethod === 'delivery' && $saveAddress && $deliveryAddress) {
+            $stmt = $conn->prepare("UPDATE customers SET address = ?, city = ?, postal_code = ? WHERE id = ?");
             if (!$stmt) {
                 $logMessage("Prepare failed for customers address update: " . $conn->error);
                 throw new Exception('Database error: Unable to prepare address update statement');
             }
-            $stmt->bind_param("si", $deliveryAddress, $customerId);
+            $stmt->bind_param("sssi", $deliveryAddress['street_address'], $deliveryAddress['city'], $deliveryAddress['postal_code'], $customerId);
             if (!$stmt->execute()) {
                 $logMessage("Execute failed for customers address update: " . $stmt->error);
                 throw new Exception('Failed to save delivery address: ' . $stmt->error);
             }
             $stmt->close();
-            $logMessage("Saved delivery address for customer_id=$customerId: $deliveryAddress");
+            $logMessage("Saved delivery address for customer_id=$customerId: " . json_encode($deliveryAddress));
         }
 
+        // Validate selected payment method
         $selectedMethod = null;
         foreach ($paymentMethods as $pm) {
             if ($pm['id'] === $paymentMethodId) {
@@ -457,7 +484,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
             VALUES (?, ?, ?, ?, 'pending', NOW())
         ";
-        $logMessage("Executing SQL for orders insert: $sql");
         $stmt = $conn->prepare($sql);
         if (!$stmt) {
             $logMessage("Prepare failed for orders insert: " . $conn->error);
@@ -480,7 +506,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             throw new Exception('Database error: Unable to prepare order_items insert statement');
         }
         foreach ($cartItems as $item) {
-            $logMessage("Inserting order_item: order_id=$orderId, item_id={$item['item_id']}, quantity={$item['quantity']}, price={$item['price']}");
             $price = (float)$item['price'];
             $stmt->bind_param("siid", $orderId, $item['item_id'], $item['quantity'], $price);
             if (!$stmt->execute()) {
@@ -491,7 +516,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         $stmt->close();
 
         // Save to payment_history
-        $deliveryAddress = $deliveryAddress ?? '';
+        $deliveryAddressJson = $deliveryAddress ? json_encode($deliveryAddress) : '';
         $stmt = $conn->prepare("
             INSERT INTO payment_history (order_id, date, amount, status, method, payment_details, payment_method_id, customer_id, delivery_method, delivery_address)
             VALUES (?, NOW(), ?, 'pending', ?, ?, ?, ?, ?, ?)
@@ -500,7 +525,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             $logMessage("Prepare failed for payment_history insert: " . $conn->error);
             throw new Exception('Database error: Unable to prepare payment insert statement');
         }
-        $stmt->bind_param("sdssiiss", $orderId, $amount, $method, $paymentDetails, $paymentMethodId, $customerId, $deliveryMethod, $deliveryAddress);
+        $stmt->bind_param("sdssiiss", $orderId, $amount, $method, $paymentDetails, $paymentMethodId, $customerId, $deliveryMethod, $deliveryAddressJson);
         if (!$stmt->execute()) {
             $logMessage("Execute failed for payment_history insert: " . $stmt->error);
             throw new Exception('Failed to save payment: ' . $stmt->error);
@@ -630,7 +655,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
                             <input type="radio" name="delivery_method" value="delivery" class="form-radio text-blue-600">
                             <span class="text-gray-700"><i class="fas fa-truck mr-2"></i>Delivery</span>
                         </label>
-                        <textarea id="deliveryAddress" name="delivery_address" placeholder="Enter delivery address" class="w-full p-3 border border-gray-300 rounded-lg hidden" aria-label="Delivery Address"><?= htmlspecialchars($customerAddress) ?></textarea>
+                        <div id="deliveryAddressFields" class="hidden space-y-4">
+                            <input type="text" id="deliveryStreetAddress" name="delivery_street_address" placeholder="Street Address" value="<?= htmlspecialchars($customerAddress['street_address']) ?>" class="w-full p-3 border border-gray-300 rounded-lg" aria-label="Street Address">
+                            <input type="text" id="deliveryCity" name="delivery_city" placeholder="City" value="<?= htmlspecialchars($customerAddress['city']) ?>" class="w-full p-3 border border-gray-300 rounded-lg" aria-label="City">
+                            <input type="text" id="deliveryPostalCode" name="delivery_postal_code" placeholder="Postal Code (e.g., 75450)" value="<?= htmlspecialchars($customerAddress['postal_code']) ?>" class="w-full p-3 border border-gray-300 rounded-lg" aria-label="Postal Code">
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="save_address" value="1" class="form-checkbox text-blue-600">
+                                <span class="text-gray-700">Save this address for future orders</span>
+                            </label>
+                        </div>
                     </div>
                 </section>
 
@@ -695,16 +728,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
                             <div id="onlineBankingFields" class="hidden space-y-4">
                                 <select id="bankNameSelect" onchange="validatePaymentForm()" class="w-full p-3 border border-gray-300 rounded-lg" aria-label="Bank Name">
                                     <option value="">Select Bank</option>
-                                    <option value="maybank">Maybank</option>
-                                    <option value="cimb">CIMB</option>
-                                    <option value="public_bank">Public Bank</option>
+                                    <option value="maybank2u">Maybank2U</option>
+                                    <option value="cimbclicks">CIMB Clicks</option>
+                                    <option value="publicbank">Public Bank</option>
                                     <option value="rhb">RHB</option>
-                                    <option value="hong_leong">Hong Leong</option>
+                                    <option value="hongleong">Hong Leong</option>
                                     <option value="ambank">AmBank</option>
+                                    <option value="mybsn">MyBSN</option>
+                                    <option value="bankrakyat">Bank Rakyat</option>
                                     <option value="uob">UOB</option>
-                                    <option value="ocbc">OCBC</option>
+                                    <option value="affinbank">Affin Bank</option>
+                                    <option value="bankislam">Bank Islam</option>
                                     <option value="hsbc">HSBC</option>
-                                    <option value="standard_chartered">Standard Chartered</option>
+                                    <option value="banknegaramalaysia">Bank Negara Malaysia</option>
+                                    <option value="alliancebank">Alliance Bank</option>
+                                    <option value="ocbc">OCBC</option>
+                                    <option value="bankmuamalat">Bank Muamalat</option>
+                                    <option value="standardchartered">Standard Chartered</option>
+                                    <option value="citibank">Citibank</option>
+                                    <option value="alrajhi">Al Rajhi</option>
+                                    <option value="bankrakyatbaloyete">Bank Rakyat Baloyete</option>
                                 </select>
                             </div>
 
@@ -742,7 +785,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
     <script>
         // Initialize elements
         const deliveryRadios = document.querySelectorAll('input[name="delivery_method"]');
-        const deliveryAddress = document.getElementById('deliveryAddress');
+        const deliveryAddressFields = document.getElementById('deliveryAddressFields');
+        const deliveryStreetAddress = document.getElementById('deliveryStreetAddress');
+        const deliveryCity = document.getElementById('deliveryCity');
+        const deliveryPostalCode = document.getElementById('deliveryPostalCode');
         const paymentMethodSelect = document.getElementById('paymentMethodSelect');
         const newPaymentForm = document.getElementById('newPaymentForm');
         const methodTypeSelect = document.getElementById('methodTypeSelect');
@@ -757,7 +803,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
 
         // Format card number
         function formatCardNumber(input) {
-            console.log('Formatting card number, raw value:', input.value);
             let value = input.value.replace(/\D/g, '');
             if (value.length > 16) value = value.substring(0, 16);
             let formatted = '';
@@ -765,48 +810,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
                 if (i > 0 && i % 4 === 0) formatted += ' ';
                 formatted += value[i];
             }
-            console.log('Formatted card number:', formatted);
             input.value = formatted;
         }
 
         // Format expiry date
         function formatExpiryDate(input) {
-            console.log('Formatting expiry date, raw value:', input.value);
             let value = input.value.replace(/\D/g, '');
             if (value.length > 4) value = value.substring(0, 4);
             let formatted = value;
             if (value.length > 2) formatted = value.substring(0, 2) + '/' + value.substring(2);
-            console.log('Formatted expiry date:', formatted);
             input.value = formatted;
         }
 
         // Handle delivery radio changes
         deliveryRadios.forEach(radio => {
             radio.addEventListener('change', () => {
-                console.log('Delivery method changed to:', radio.value);
                 if (radio.value === 'delivery') {
-                    deliveryAddress.classList.remove('hidden');
-                    deliveryAddress.required = true;
-                    deliveryAddress.focus();
+                    deliveryAddressFields.classList.remove('hidden');
+                    deliveryStreetAddress.required = true;
+                    deliveryCity.required = true;
+                    deliveryPostalCode.required = true;
+                    deliveryStreetAddress.focus();
                 } else {
-                    deliveryAddress.classList.add('hidden');
-                    deliveryAddress.required = false;
-                    deliveryAddress.value = '<?php echo addslashes(htmlspecialchars($customerAddress)); ?>';
-                    deliveryAddress.classList.remove('invalid');
+                    deliveryAddressFields.classList.add('hidden');
+                    deliveryStreetAddress.required = false;
+                    deliveryCity.required = false;
+                    deliveryPostalCode.required = false;
+                    deliveryStreetAddress.value = '<?php echo addslashes(htmlspecialchars($customerAddress['street_address'])); ?>';
+                    deliveryCity.value = '<?php echo addslashes(htmlspecialchars($customerAddress['city'])); ?>';
+                    deliveryPostalCode.value = '<?php echo addslashes(htmlspecialchars($customerAddress['postal_code'])); ?>';
+                    deliveryStreetAddress.classList.remove('invalid');
+                    deliveryCity.classList.remove('invalid');
+                    deliveryPostalCode.classList.remove('invalid');
                 }
                 validateForm();
             });
         });
 
+        // Validate address fields
+        function validateAddressFields() {
+            const deliveryMethod = document.querySelector('input[name="delivery_method"]:checked').value;
+            if (deliveryMethod !== 'delivery') return true;
+
+            const streetValid = deliveryStreetAddress.value.trim().length >= 5;
+            const cityValid = deliveryCity.value.trim().length >= 2;
+            const postalValid = /^\d{5}$/.test(deliveryPostalCode.value.trim());
+
+            deliveryStreetAddress.classList.toggle('invalid', !streetValid);
+            deliveryCity.classList.toggle('invalid', !cityValid);
+            deliveryPostalCode.classList.toggle('invalid', !postalValid);
+
+            return streetValid && cityValid && postalValid;
+        }
+
         // Show payment form
         function showPaymentForm() {
-            console.log('Showing new payment form');
             newPaymentForm.classList.remove('hidden');
         }
 
         // Update payment form based on method type
         function updatePaymentForm() {
-            console.log('Updating payment form for method:', methodTypeSelect.value);
             cardFields.classList.add('hidden');
             onlineBankingFields.classList.add('hidden');
             digitalWalletFields.classList.add('hidden');
@@ -828,7 +891,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             const method = methodTypeSelect.value;
             let isValid = false;
 
-            console.log('Validating payment form for method:', method);
             if (method === 'card') {
                 const cardType = document.getElementById('cardTypeSelect').value;
                 const cardNumber = document.getElementById('cardNumber').value.replace(/\D/g, '');
@@ -851,7 +913,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             }
 
             addPaymentButton.disabled = !isValid;
-            console.log('Payment form valid:', isValid);
         }
 
         // Add new payment method
@@ -862,7 +923,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
                 return;
             }
 
-            console.log('Adding payment method:', method);
             const formData = new FormData();
             formData.append('add_payment_method', '1');
             formData.append('method_type', method);
@@ -927,12 +987,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
                 method: 'POST',
                 body: formData
             })
-            .then(response => {
-                console.log('Add payment method response status:', response.status);
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
-                console.log('Add payment method response data:', data);
                 if (data.status === 'success') {
                     showMessage('success', data.message);
                     const option = new Option(data.message, data.payment_method.id, true, true);
@@ -960,7 +1016,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
                 }
             })
             .catch(error => {
-                console.error('Error adding payment method:', error);
                 showMessage('error', 'An error occurred while adding payment method');
             });
         }
@@ -968,45 +1023,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         // Validate entire form for submit button
         function validateForm() {
             const selectedMethod = paymentMethodSelect.value;
-            const deliveryMethod = document.querySelector('input[name="delivery_method"]:checked').value;
-            const addressValid = deliveryMethod !== 'delivery' || (deliveryAddress.value.trim().length >= 5);
-            if (deliveryMethod === 'delivery' && !addressValid) {
-                deliveryAddress.classList.add('invalid');
-            } else {
-                deliveryAddress.classList.remove('invalid');
-            }
-
+            const addressValid = validateAddressFields();
             const isValid = selectedMethod !== '' && addressValid && <?php echo empty($cartItems) ? 'false' : 'true'; ?>;
             submitButton.disabled = !isValid;
-            console.log('Form validation: Payment method selected:', selectedMethod, 'Address valid:', addressValid, 'Cart not empty:', <?php echo empty($cartItems) ? 'false' : 'true'; ?>, 'Submit enabled:', isValid);
         }
+
+        // Handle address field input
+        [deliveryStreetAddress, deliveryCity, deliveryPostalCode].forEach(field => {
+            field.addEventListener('input', () => {
+                validateForm();
+            });
+        });
 
         // Handle payment form submission
         let isSubmitting = false;
         paymentForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            if (isSubmitting) {
-                console.log('Submission blocked: Already processing payment');
-                return;
-            }
+            if (isSubmitting) return;
             isSubmitting = true;
             submitButton.disabled = true;
-            console.log('Payment form submitted');
+
+            if (!validateAddressFields()) {
+                showMessage('error', 'Please fill in all address fields correctly');
+                isSubmitting = false;
+                submitButton.disabled = false;
+                return;
+            }
 
             const selectedOption = paymentMethodSelect.options[paymentMethodSelect.selectedIndex];
             if (!selectedOption || !selectedOption.value) {
                 showMessage('error', 'Please select a payment method');
-                console.log('Payment submission failed: No payment method selected');
                 isSubmitting = false;
                 submitButton.disabled = false;
                 return;
             }
 
             const methodType = selectedOption.getAttribute('data-method-type') || '';
-            console.log('Selected payment method ID:', selectedOption.value, 'Method type:', methodType);
             if (!methodType) {
                 showMessage('error', 'Invalid payment method type');
-                console.log('Payment submission failed: Invalid method type');
                 isSubmitting = false;
                 submitButton.disabled = false;
                 return;
@@ -1014,70 +1068,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             methodInput.value = methodType;
             const formData = new FormData(paymentForm);
 
-            const formDataEntries = {};
-            for (let [key, value] of formData.entries()) {
-                formDataEntries[key] = value;
-            }
-            console.log('Sending make_payment request:', formDataEntries);
-
             fetch('payment.php', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => {
-                console.log('Payment response status:', response.status);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.text().then(text => {
-                    console.log('Raw payment response:', text);
-                    try {
-                        const data = JSON.parse(text);
-                        console.log('Parsed payment response data:', data);
-                        return data;
-                    } catch (e) {
-                        console.error('Failed to parse JSON response:', text);
-                        if (text.includes('"status":"success"')) {
-                            console.log('Fallback: Detected success in raw response');
-                            return { status: 'success', message: 'Payment Successful' };
-                        }
-                        throw new Error('Invalid JSON response from server');
-                    }
-                });
-            })
+            .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    console.log('Payment successful, attempting redirect to confirmation.php');
-                    try {
-                        window.location.href = './confirmation.php';
-                        // Fallback redirect after a short delay
-                        setTimeout(() => {
-                            console.log('Fallback redirect triggered');
-                            window.location.assign('./confirmation.php');
-                        }, 500);
-                    } catch (redirectError) {
-                        console.error('Redirect failed:', redirectError);
-                        showMessage('error', 'Payment successful, but redirect failed. Please go to the confirmation page manually.');
-                    }
+                    window.location.href = './confirmation.php';
                 } else {
-                    console.log('Payment failed:', data.message);
                     showMessage('error', data.message);
                 }
             })
             .catch(error => {
-                console.error('Error processing payment:', error);
-                showMessage('error', 'An error occurred while processing payment: ' + error.message);
+                showMessage('error', 'An error occurred while processing payment');
             })
             .finally(() => {
                 isSubmitting = false;
                 submitButton.disabled = false;
-                console.log('Payment processing complete');
             });
         });
 
         // Show message to user
         function showMessage(type, message) {
-            console.log('Showing message:', type, message);
             messageDiv.className = `message p-4 rounded-lg ${type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
             messageDiv.textContent = message;
             messageDiv.classList.remove('hidden');
@@ -1088,11 +1101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
 
         // Initialize form validation on page load
         paymentMethodSelect.addEventListener('change', validateForm);
-        deliveryAddress.addEventListener('input', validateForm);
         validateForm();
-
-        // Log initial state
-        console.log('Page loaded. Cart empty:', <?php echo empty($cartItems) ? 'true' : 'false'; ?>, 'Payment methods:', <?php echo count($paymentMethods); ?>, 'Saved address:', '<?php echo addslashes(htmlspecialchars($customerAddress)); ?>');
     </script>
 </body>
 </html>
