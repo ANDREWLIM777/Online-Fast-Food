@@ -9,8 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $id = intval($_POST['id']);
 $fullname = $_POST['fullname'];
-$gender = $_POST['gender'];
-$age = $_POST['age'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
 $city = $_POST['city'];
@@ -34,13 +32,13 @@ if (!empty($photo)) {
 
 if (!empty($password)) {
     $hashed = password_hash($password, PASSWORD_BCRYPT);
-    $sql = "UPDATE customers SET fullname=?, gender=?, age=?, email=?, phone=?, city=?, postal_code=?, address=?, password=?, photo=? WHERE id=?";
+    $sql = "UPDATE customers SET fullname=?, email=?, phone=?, city=?, postal_code=?, address=?, password=?, photo=? WHERE id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssisssssssi", $fullname, $gender, $age, $email, $phone, $city, $postal, $address, $hashed, $new_photo, $id);
+    $stmt->bind_param("ssssssssi", $fullname,  $email, $phone, $city, $postal, $address, $hashed, $new_photo, $id);
 } else {
-    $sql = "UPDATE customers SET fullname=?, gender=?, age=?, email=?, phone=?, city=?, postal_code=?, address=?, photo=? WHERE id=?";
+    $sql = "UPDATE customers SET fullname=?,  email=?, phone=?, city=?, postal_code=?, address=?, photo=? WHERE id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssissssssi", $fullname, $gender, $age, $email, $phone, $city, $postal, $address, $new_photo, $id);
+    $stmt->bind_param("sssssssi", $fullname,  $email, $phone, $city, $postal, $address, $new_photo, $id);
 }
 
 if ($stmt->execute()) {

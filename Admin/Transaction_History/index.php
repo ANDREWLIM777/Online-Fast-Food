@@ -299,6 +299,29 @@ $orders = $stmt->fetchAll();
             text-decoration: none;
             font-weight: bold;
         }
+
+        #messageBox {
+    position: fixed;
+    top: 100px;
+    right: 30px;
+    background: #ffc107;
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+#messageBox.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
     </style>
 </head>
 <body>
@@ -363,14 +386,14 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const todayBtn = document.getElementById("todayBtn");
 
-let currentDate = getTodayDate();
+// 从 URL 中获取初始日期
+const urlParams = new URLSearchParams(window.location.search);
+let currentDate = urlParams.get('date') ? new Date(urlParams.get('date')) : new Date();
 
-function getTodayDate() {
-    const d = new Date();
-    d.setHours(0, 0, 0, 0);
-    return d;
-}
+// 清除时间部分
+currentDate.setHours(0, 0, 0, 0);
 
+// 工具函数：格式化日期为 yyyy-mm-dd
 function formatDate(date) {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -378,36 +401,61 @@ function formatDate(date) {
     return `${year}-${month}-${day}`;
 }
 
-function updateDisplay() {
-    const today = getTodayDate();
-    currentDateSpan.textContent = formatDate(currentDate);
+// 更新顶部显示
+function updateDateDisplay() {
+    const formatted = formatDate(currentDate);
+    currentDateSpan.textContent = formatted;
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // 禁用 next 按钮如果今天了
     nextBtn.disabled = formatDate(currentDate) === formatDate(today);
 }
 
+// 跳转到指定日期
+function navigateTo(date) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (date > today) {
+        alert("Cannot select future date.");
+        return;
+    }
+
+    const target = formatDate(date);
+    window.location.href = `index.php?date=${target}`;
+}
+
+// 按钮事件处理
 prevBtn.addEventListener("click", () => {
     currentDate.setDate(currentDate.getDate() - 1);
-    updateDisplay();
+    navigateTo(currentDate);
 });
 
 nextBtn.addEventListener("click", () => {
-    const today = getTodayDate();
-    const nextDay = new Date(currentDate);
-    nextDay.setDate(currentDate.getDate() + 1);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-    if (formatDate(nextDay) <= formatDate(today)) {
-        currentDate = nextDay;
-        updateDisplay();
+    const next = new Date(currentDate);
+    next.setDate(currentDate.getDate() + 1);
+
+    if (next > today) {
+        showMessage("Cannot select a future date.");
+        return;
     }
+
+    currentDate = next;
+    navigateTo(currentDate);
 });
 
 todayBtn.addEventListener("click", () => {
-    currentDate = getTodayDate();
-    updateDisplay();
+    currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    navigateTo(currentDate);
 });
 
-updateDisplay();
-
+// 过滤器（下拉选择）
 function filterByDate() {
     const year = document.getElementById('yearFilter').value;
     const month = document.getElementById('monthFilter').value;
@@ -415,17 +463,36 @@ function filterByDate() {
 
     if (!year || !month || !day) return;
 
-    const date = `${year}-${month}-${day}`;
-    const today = new Date().toISOString().split('T')[0];
+    const selected = new Date(`${year}-${month}-${day}`);
+    selected.setHours(0, 0, 0, 0);
 
-    if (date > today) {
-        alert("Cannot select future date.");
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (selected > today) {
+        showMessage("Cannot select a future date.");
         return;
     }
 
-    window.location.href = `index.php?date=${date}`;
+    function showMessage(msg) {
+    const box = document.getElementById('messageBox');
+    box.textContent = '⚠️ ' + msg;
+    box.classList.add('show');
+
+    // 自动隐藏
+    setTimeout(() => {
+        box.classList.remove('show');
+    }, 3000);
 }
+
+
+    navigateTo(selected);
+}
+
+// 初始化显示
+updateDateDisplay();
 </script>
+<div id="messageBox" class="hidden">⚠️ Cannot select a future date.</div>
 </body>
 </html>
 

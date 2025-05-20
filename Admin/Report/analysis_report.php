@@ -432,7 +432,7 @@ body::before {
         </div>
 
         <!-- Detailed Report Table -->
-        <h3>Detailed Financial Report for <?= $selected_month ?></h3>
+        <h3 id="reportHeader">Detailed Financial Report for <?= $reportMonth ?></h3>
 <table>
     <tr><th>Income</th><td>RM <?= number_format($income, 2) ?></td></tr>
     <?php if($expenses): ?>
@@ -521,11 +521,11 @@ function generatePDF() {
         clone.style.paddingTop = '0';
 
         // 添加标题
-        const reportTitle = document.createElement('h2');
-        reportTitle.textContent = `Profit Analysis Report for ${reportMonth} - Generated on ${formattedDate}`;
-        reportTitle.style.textAlign = 'center';
-        reportTitle.style.marginBottom = '1rem';
-        clone.insertBefore(reportTitle, clone.firstChild);
+  const dateInfo = document.createElement('p');
+dateInfo.textContent = `Generated on ${formattedDate}`;
+dateInfo.style.textAlign = 'center';
+dateInfo.style.marginBottom = '1rem';
+clone.insertBefore(dateInfo, clone.firstChild);
 
         // 替换图表 canvas 为 img
         const canvasIds = ['expenseChart', 'profitChart'];

@@ -35,15 +35,6 @@ $customer = $result->fetch_assoc();
         </div>
 
         <div class="profile-details">
-    <div class="detail-item">
-        <i class="fas fa-venus-mars"></i>
-        <div><span class="label">Gender</span><span class="value"><?= $customer['gender'] ?></span></div>
-    </div>
-
-    <div class="detail-item">
-        <i class="fas fa-birthday-cake"></i>
-        <div><span class="label">Age</span><span class="value"><?= $customer['age'] ?></span></div>
-    </div>
 
     <div class="detail-item">
         <i class="fas fa-envelope"></i>
