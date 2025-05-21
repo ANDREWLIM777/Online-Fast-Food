@@ -6,7 +6,7 @@ include '../auth.php';
 
 $user_id = $_SESSION['user_id'];
 
-$stmt = $conn->prepare("SELECT photo, name, gender, age, position, phone, role, email FROM admin WHERE id = ?");
+$stmt = $conn->prepare("SELECT photo, name, position, phone, role, email FROM admin WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -174,16 +174,6 @@ body::before {
   <div class="info-group">
     <label>Full Name</label>
     <div class="value"><?= htmlspecialchars($user['name']) ?></div>
-  </div>
-
-  <div class="info-group">
-    <label>Gender</label>
-    <div class="value"><?= htmlspecialchars($user['gender']) ?></div>
-  </div>
-
-  <div class="info-group">
-    <label>Age</label>
-    <div class="value"><?= htmlspecialchars($user['age']) ?></div>
   </div>
 
   <div class="info-group">

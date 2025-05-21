@@ -296,6 +296,56 @@ session_start();
         font-size: 0.9rem;
       }
     }
+
+.slide-to-confirm {
+  position: relative;
+  left: 250px;
+  width: 300px;
+  height: 50px;
+  background: linear-gradient(to right, #c0a23d, #e8d48b);
+  border-radius: 25px;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  margin: 0rem auto;
+  border: 2px solid #c0a23d;
+}
+
+.slider-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 130px;
+  background: #1a1a1a;
+  color: #c0a23d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  z-index: 2;
+  transition: background 0.3s ease;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.slide-hint {
+  position: absolute;
+  width: 140%;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  z-index: 1;
+  pointer-events: none;
+  letter-spacing: 1px;
+}
+
   </style>
 </head>
 <body>
@@ -318,29 +368,78 @@ session_start();
   <?php
   $orders = $pdo->query("SELECT * FROM orders WHERE status = 'pending' ORDER BY created_at ASC")->fetchAll();
   foreach ($orders as $order):
-    $items = json_decode($order['items'], true);
+$stmtItems = $pdo->prepare("SELECT oi.item_id, oi.quantity, m.item_name 
+                            FROM order_items oi 
+                            JOIN menu_items m ON oi.item_id = m.id 
+                            WHERE oi.order_id = ?");
+$stmtItems->execute([$order['order_id']]);
+$items = $stmtItems->fetchAll();
   ?>
   <div class="order-card">
     <h3>🧾 Order: <?= htmlspecialchars($order['order_id']) ?></h3>
     <ul>
-      <?php foreach ($items as $i): 
-        $item = $pdo->prepare("SELECT item_name FROM menu_items WHERE id = ?");
-        $item->execute([$i['item_id']]);
-        $item_name = $item->fetchColumn();
-      ?>
-        <li><?= htmlspecialchars($item_name) ?> x <?= $i['quantity'] ?></li>
-      <?php endforeach; ?>
+<?php foreach ($items as $i): ?>
+  <li><?= htmlspecialchars($i['item_name']) ?> x <?= $i['quantity'] ?></li>
+<?php endforeach; ?>
     </ul>
     <strong>Total: RM <?= number_format($order['total'], 2) ?></strong>
     <div class="actions">
-      <form action="approve_order.php" method="post">
-        <input type="hidden" name="id" value="<?= $order['id'] ?>">
-        <button class="btn-approve"><i class="fas fa-check"></i> Complete</button>
-      </form>
+<form action="approve_order.php" method="post" class="slide-form">
+  <input type="hidden" name="id" value="<?= $order['id'] ?>">
+  <div class="slide-to-confirm" data-form-id="<?= $order['id'] ?>">
+    <span class="slide-hint">Slide to confirm</span>
+    <div class="slider-button">
+      <i class="fas fa-hourglass-half" style="margin-right: 10px;"></i>
+  Preparing
+    </div>
+  </div>
+</form>
     </div>
   </div>
   <?php endforeach; ?>
+
+ <script>
+document.querySelectorAll('.slide-to-confirm').forEach(slide => {
+  const slider = slide.querySelector('.slider-button');
+  const form = slide.closest('form');
+
+  let isDown = false;
+  let startX, moved;
+
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.clientX;
+    moved = 0;
+    slider.style.transition = 'none';
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    moved = e.clientX - startX;
+    if (moved < 0) moved = 0;
+    if (moved > 170) moved = 170; // 滑动最大距离
+    slider.style.transform = `translateX(${moved}px)`;
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!isDown) return;
+    isDown = false;
+    slider.style.transition = 'transform 0.3s ease';
+
+    if (moved >= 90) {
+      slider.style.transform = `translateX(170px)`;
+      setTimeout(() => {
+        form.submit();
+      }, 300);
+    } else {
+      slider.style.transform = 'translateX(0)';
+    }
+  });
+});
+
+    </script>
 </div>
+
 
 </body>
 </html>

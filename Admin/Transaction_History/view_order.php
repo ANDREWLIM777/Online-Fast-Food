@@ -4,14 +4,24 @@ require 'db_conn.php';
 $id = $_GET['id'] ?? null;
 if (!$id) die('Missing order ID.');
 
-$stmt = $pdo->prepare("SELECT o.*, c.fullname, c.email FROM orders o 
-                       JOIN customers c ON o.customer_id = c.id 
+// 查询订单和客户资料
+$stmt = $pdo->prepare("SELECT o.*, c.fullname, c.email 
+                       FROM orders o 
+                       LEFT JOIN customers c ON o.customer_id = c.id 
                        WHERE o.id = ?");
 $stmt->execute([$id]);
 $order = $stmt->fetch();
 if (!$order) die('Order not found.');
 
-$items = json_decode($order['items'], true);
+// 查询商品明细（order_items + menu_items）
+$stmt = $pdo->prepare("
+    SELECT oi.item_id, oi.quantity, oi.price, oi.total, m.item_name
+    FROM order_items oi
+    LEFT JOIN menu_items m ON oi.item_id = m.id
+    WHERE oi.order_id = ?
+");
+$stmt->execute([$order['order_id']]);
+$orderItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +57,7 @@ $items = json_decode($order['items'], true);
   <h2>Order: <?= htmlspecialchars($order['order_id']) ?></h2>
 
   <div class="info">
-    <p><strong>Customer:</strong> <?= htmlspecialchars($order['fullname']) ?> (<?= htmlspecialchars($order['email']) ?>)</p>
+    <p><strong>Customer:</strong> <?= htmlspecialchars($order['fullname'] ?? 'Guest') ?> (<?= htmlspecialchars($order['email'] ?? 'N/A') ?>)</p>
     <p><strong>Date:</strong> <?= date('Y-m-d H:i', strtotime($order['created_at'])) ?></p>
     <p><strong>Status:</strong> <?= htmlspecialchars($order['status']) ?></p>
     <p><strong>Total:</strong> RM <?= number_format($order['total'], 2) ?></p>
@@ -63,19 +73,12 @@ $items = json_decode($order['items'], true);
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($items as $i):
-        $stmt = $pdo->prepare("SELECT item_name, price FROM menu_items WHERE id = ?");
-        $stmt->execute([$i['item_id']]);
-        $menuItem = $stmt->fetch();
-        $item_name = $menuItem['item_name'] ?? 'Unknown Item';
-        $unit_price = $i['price'] ?? ($menuItem['price'] ?? 0);
-        $itemTotal = $i['quantity'] * $unit_price;
-      ?>
+      <?php foreach ($orderItems as $item): ?>
         <tr>
-          <td><?= htmlspecialchars($item_name) ?></td>
-          <td>RM <?= number_format($unit_price, 2) ?></td>
-          <td><?= $i['quantity'] ?></td>
-          <td>RM <?= number_format($itemTotal, 2) ?></td>
+          <td><?= htmlspecialchars($item['item_name'] ?? 'Unknown') ?></td>
+          <td>RM <?= number_format($item['price'], 2) ?></td>
+          <td><?= $item['quantity'] ?></td>
+          <td>RM <?= number_format($item['total'], 2) ?></td>
         </tr>
       <?php endforeach; ?>
       <tr style="font-weight:bold; background:#f0f0f0">
@@ -84,6 +87,5 @@ $items = json_decode($order['items'], true);
       </tr>
     </tbody>
   </table>
-
 </body>
 </html>

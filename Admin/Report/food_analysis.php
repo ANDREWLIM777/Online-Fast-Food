@@ -10,15 +10,18 @@ $reportMonth = DateTime::createFromFormat('Y-m', $selected_month)->format('F Y')
 
 // Fetch food category sales count
 $stmt = $pdo->prepare("
-    SELECT m.category, SUM(o.quantity) as total_quantity
-    FROM orders o
-    JOIN menu_items m ON o.item_id = m.id
-    WHERE o.status = 'completed' AND DATE_FORMAT(o.created_at, '%Y-%m') = ?
+    SELECT m.category AS category, SUM(oi.quantity) AS total_quantity
+    FROM order_items oi
+    JOIN orders o ON oi.order_id = o.order_id
+    JOIN menu_items m ON oi.item_id = m.id
+    WHERE o.status = 'completed' 
+      AND DATE_FORMAT(o.created_at, '%Y-%m') = ?
     GROUP BY m.category
     ORDER BY total_quantity DESC
 ");
 $stmt->execute([$selected_month]);
 $category_sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -402,13 +405,14 @@ body::before {
 </form>
 
 <div class="charts-container">
-            <div>
-                <canvas id="expenseChart" width="400" height="400"></canvas>
-            </div>
-            <div>
-                <canvas id="profitChart" width="600" height="400"></canvas>
-            </div>
-        </div>
+  <div>
+    <canvas id="categoryPieChart" width="400" height="400"></canvas>
+  </div>
+  <div>
+    <canvas id="categoryChart" width="600" height="400"></canvas>
+  </div>
+</div>
+
 
         <h3>Category Sales Breakdown for <?= $reportMonth ?></h3>
         <table>
@@ -421,32 +425,122 @@ body::before {
         </table>
     </div>
 
-    <script>
-        const data = <?= json_encode(array_column($category_sales, 'total_quantity')) ?>;
-        const labels = <?= json_encode(array_map('ucfirst', array_column($category_sales, 'category'))) ?>;
+<script>
+const data = <?= json_encode(array_column($category_sales, 'total_quantity')) ?>;
+const labels = <?= json_encode(array_map('ucfirst', array_column($category_sales, 'category'))) ?>;
 
-        new Chart(document.getElementById('categoryChart'), {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Total Quantity Sold',
-                    data: data,
-                    backgroundColor: '#c0a23d'
-                }]
-            },
-            options: {
-                responsive: false,
-                scales: {
-                    y: { beginAtZero: true, ticks: { color: '#000' } },
-                    x: { ticks: { color: '#000' } }
-                },
-                plugins: {
-                    legend: { display: false }
+// 柱状图
+new Chart(document.getElementById('categoryChart'), {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Total Quantity Sold',
+            data: data,
+            backgroundColor: '#c0a23d'
+        }]
+    },
+    options: {
+        responsive: false,
+        scales: {
+            y: { beginAtZero: true, ticks: { color: '#000' } },
+            x: { ticks: { color: '#000' } }
+        },
+        plugins: {
+            legend: { display: false }
+        }
+    }
+});
+
+// 饼形图
+new Chart(document.getElementById('categoryPieChart'), {
+    type: 'pie',
+    data: {
+        labels: labels,
+        datasets: [{
+            data: data,
+            backgroundColor: [
+              '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+              '#9966FF', '#FF9F40', '#C0A23D', '#e8d48b',
+              '#8AC24A', '#FF6B6B', 
+               '#47B8E0', '#7CDDDD', '#FFA07A', '#9370DB'
+            ]
+        }]
+    },
+    options: {
+        responsive: false,
+        plugins: {
+            legend: {
+                position: 'right',
+                labels: {
+                    color: '#000',
+                    font: { size: 14 }
                 }
             }
+        }
+    }
+});
+
+function generatePDF() {
+        const sourceElement = document.querySelector('.container');
+        const reportMonth = '<?= $reportMonth ?>'; // 使用格式化后的月份
+        const currentDate = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = currentDate.toLocaleDateString('en-US', options);
+
+        // 克隆容器
+        const clone = sourceElement.cloneNode(true);
+        clone.style.paddingTop = '0';
+
+        // 添加标题
+  const dateInfo = document.createElement('p');
+dateInfo.textContent = `Generated on ${formattedDate}`;
+dateInfo.style.textAlign = 'center';
+dateInfo.style.marginBottom = '1rem';
+clone.insertBefore(dateInfo, clone.firstChild);
+
+        // 替换图表 canvas 为 img
+        const canvasIds = ['categoryPieChart', 'categoryChart'];
+        canvasIds.forEach(id => {
+            const canvas = document.getElementById(id);
+            const cloneCanvas = clone.querySelector(`#${id}`);
+
+            if (canvas && cloneCanvas) {
+                const img = document.createElement('img');
+                img.src = canvas.toDataURL('image/png');
+                img.style.maxWidth = '350px';
+                img.style.display = 'block';
+                img.style.margin = '0 auto 0rem';
+                img.style.pageBreakInside = 'avoid';
+                cloneCanvas.parentNode.replaceChild(img, cloneCanvas);
+            }
         });
-    </script>
+
+        // 移除不需要导出的元素
+        clone.querySelectorAll('.date-selector').forEach(el => el.remove());
+
+        // 放入隐藏容器
+        const tempContainer = document.createElement('div');
+        tempContainer.style.position = 'absolute';
+        tempContainer.style.left = '-9999px';
+        tempContainer.appendChild(clone);
+        document.body.appendChild(tempContainer);
+
+        const opt = {
+            margin: 0.3,
+            filename: `Profit_Analysis_${reportMonth}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+
+        html2pdf().from(clone).set(opt).save().then(() => {
+            document.body.removeChild(tempContainer);
+        });
+    }
+
+</script>
+
 
 </body>
 </html>
