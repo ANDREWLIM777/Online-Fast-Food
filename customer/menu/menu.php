@@ -4,7 +4,8 @@ session_start();
 
 // 🛒 Get cart count (only for logged-in customers, not guest)
 $cartCount = 0;
-if (isset($_SESSION['customer_id']) && (!isset($_SESSION['is_guest']) || $_SESSION['is_guest'] === false)){
+$isGuest = isset($_SESSION['is_guest']) ? (bool)$_SESSION['is_guest'] : false;
+if (isset($_SESSION['customer_id']) && !$isGuest) {
     $customerId = $_SESSION['customer_id'];
     $stmt = $conn->prepare("SELECT SUM(quantity) AS total_items FROM cart WHERE customer_id = ?");
     $stmt->bind_param("i", $customerId);
@@ -15,7 +16,7 @@ if (isset($_SESSION['customer_id']) && (!isset($_SESSION['is_guest']) || $_SESSI
 }
 // 🔔 Get unread customer notifications count
 $unreadNotif = 0;
-if (isset($_SESSION['customer_id']) && empty($_SESSION['is_guest'])) {
+if (isset($_SESSION['customer_id']) && !$isGuest) {
     $stmt = $conn->prepare("SELECT COUNT(*) FROM customer_notifications WHERE customer_id = ? AND is_read = 0");
     $stmt->bind_param("i", $_SESSION['customer_id']);
     $stmt->execute();
@@ -23,7 +24,6 @@ if (isset($_SESSION['customer_id']) && empty($_SESSION['is_guest'])) {
     $stmt->fetch();
     $stmt->close();
 }
-
 
 $search = trim($_GET['search'] ?? '');
 $category = trim($_GET['category'] ?? '');
@@ -61,7 +61,6 @@ while ($row = $result->fetch_assoc()) {
   <meta charset="UTF-8">
   <title>Brizo Menu</title>
   <link rel="stylesheet" href="menu.css">
-  
 </head>
 <body>
 
@@ -70,21 +69,28 @@ while ($row = $result->fetch_assoc()) {
   <div>Welcome to Brizo Fast Food Melaka</div>
 </div>
 
-  <!-- 🔔 Notification Bell -->
-  <a href="/Online-Fast-Food/customer/customer_notification/customer_notification.php" class="notification-bell">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="bell-icon">
-      <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 0 0-5-5.917V4a1 1 0 1 0-2 0v1.083A6 6 0 0 0 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 1 1-6 0v-1h6z"/>
-    </svg>
-    <?php if ($unreadNotif > 0): ?>
-      <span class="notif-count"><?= $unreadNotif ?></span>
-    <?php endif; ?>
-  </a>
-
-<!-- 🛒 Floating Cart Icon -->
-<a href="cart/cart.php" class="cart-floating-btn" id="cart-icon">
-  🛒
-  <span id="cart-count" class="cart-count"><?= (int)$cartCount ?></span>
+<!-- 🔔 Notification Bell -->
+<a href="/Online-Fast-Food/customer/customer_notification/customer_notification.php" class="notification-bell">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="bell-icon">
+    <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 0 0-5-5.917V4a1 1 0 1 0-2 0v1.083A6 6 0 0 0 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 1 1-6 0v-1h6z"/>
+  </svg>
+  <?php if ($unreadNotif > 0): ?>
+    <span class="notif-count"><?= $unreadNotif ?></span>
+  <?php endif; ?>
 </a>
+
+<!-- 🛒 Floating Cart Icon (for logged-in users) -->
+<?php if (!$isGuest): ?>
+  <a href="cart/cart.php" class="cart-floating-btn" id="cart-icon">
+    🛒
+    <span id="cart-count" class="cart-count"><?= (int)$cartCount ?></span>
+  </a>
+<?php endif; ?>
+
+<!--  Floating Log In / Sign Up Button (for guests) -->
+<?php if ($isGuest): ?>
+  <a href="/Online-Fast-Food/customer/login.php" class="login-floating-btn" id="login-icon">Sign Up / Log In</a>
+<?php endif; ?>
 
 <!-- 🔍 Filter Form -->
 <form method="GET" class="filter-form">
@@ -131,19 +137,14 @@ while ($row = $result->fetch_assoc()) {
                 <p class="promo-tag">🔥 <?= htmlspecialchars($item['promotion']) ?></p>
               <?php endif; ?>
 
-              <?php if (!empty($_SESSION['is_guest'])): ?>
-                <!-- 👤 Guest still needs a form to detect blocking -->
-                <form class="add-to-cart-form guest-block" data-id="<?= $item['id'] ?>">
-                  <button type="submit" class="add-to-cart-btn">🛒 Add to Cart (Guest)</button>
-                </form>
+              <?php if ($isGuest): ?>
+                <a href="/Online-Fast-Food/customer/login.php" class="sign-in-link">Sign in to start ordering!</a>
               <?php else: ?>
                 <!-- 🛒 Normal Customer Form -->
                 <form class="add-to-cart-form" data-id="<?= $item['id'] ?>">
                   <button type="submit" class="add-to-cart-btn">🛒 Add to Cart</button>
-                  
                 </form>
               <?php endif; ?>
-
             </div>
           </div>
         <?php endforeach; ?>
@@ -152,8 +153,10 @@ while ($row = $result->fetch_assoc()) {
   <?php endforeach; ?>
 <?php endif; ?>
 
-<!--  JS and Footer -->
+<!-- JS and Footer -->
 <script src="menu.js"></script>
 <?php include '../menu_icon.php'; ?>
 <?php include '../footer.php'; ?>
 <?php include '../footer2.php'; ?>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <?php
-require_once('../db_connect.php');
+require_once("../db_connect.php");
 session_start();
 if (isset($_SESSION["login_sess"])) {
     header("Location: account.php");
@@ -16,7 +16,7 @@ if (empty($email)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Reset Password - Brizo Fast Food</title>
+    <title>Verify OTP - Brizo Fast Food</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -78,42 +78,33 @@ if (empty($email)) {
 <body>
     <div class="login-box text-center">
         <img src="assets/images/brizo-logo.png" alt="Brizo Fast Food" class="img-fluid logo">
-        <h4 class="mb-4"><i class="fas fa-lock"></i> Reset Password</h4>
-        <form id="resetForm">
+        <h4 class="mb-4"><i class="fas fa-key"></i> Enter OTP</h4>
+        <form id="otpForm">
             <div class="form-group">
-                <label for="password">New Password</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Enter new password" required minlength="8">
+                <label for="otp">OTP</label>
+                <input type="text" name="otp" id="otp" class="form-control" placeholder="Enter 6-digit OTP" required maxlength="6" pattern="\d{6}">
+                <input type="hidden" name="email" value="<?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?>">
             </div>
-            <div class="form-group">
-                <label for="confirm_password">Confirm Password</label>
-                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password" required minlength="8">
-            </div>
-            <input type="hidden" name="email" value="<?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?>">
-            <button type="submit" class="btn form_btn btn-block">Reset Password</button>
+            <button type="submit" class="btn form_btn btn-block">Verify OTP</button>
         </form>
-        <p class="mt-3"><a href="login.php" style="color: #ffa751;">Back to Login</a></p>
+        <p class="mt-3"><a href="forgot_password.php" style="color: #ffa751;">Resend OTP</a></p>
     </div>
     <div class="toast-container" id="toastContainer"></div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#resetForm').on('submit', function(e) {
+            $('#otpForm').on('submit', function(e) {
                 e.preventDefault();
-                const password = $('input[name=password]').val();
-                const confirm = $('input[name=confirm_password]').val();
-                if (password.length < 8) {
-                    showToast("Password must be at least 8 characters.", "error");
-                    return;
-                }
-                if (password !== confirm) {
-                    showToast("Passwords do not match.", "error");
+                const otp = $('input[name=otp]').val();
+                if (!/^\d{6}$/.test(otp)) {
+                    showToast("Please enter a valid 6-digit OTP.", "error");
                     return;
                 }
                 const $btn = $('button[type="submit"]');
-                $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Resetting...');
+                $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Verifying...');
                 $.ajax({
-                    url: 'reset_process.php',
+                    url: 'verify_otp_process.php',
                     type: 'POST',
                     data: $(this).serialize(),
                     success: function(response) {
@@ -122,7 +113,7 @@ if (empty($email)) {
                             showToast(res.message, res.status);
                             if (res.status === 'success') {
                                 setTimeout(() => {
-                                    window.location.href = 'login.php';
+                                    window.location.href = 'reset_password.php?email=' + encodeURIComponent($('input[name=email]').val());
                                 }, 2000);
                             }
                         } catch (e) {
@@ -134,7 +125,7 @@ if (empty($email)) {
                         console.error("AJAX error:", status, error);
                     },
                     complete: function() {
-                        $btn.prop('disabled', false).html('Reset Password');
+                        $btn.prop('disabled', false).html('Verify OTP');
                     }
                 });
             });

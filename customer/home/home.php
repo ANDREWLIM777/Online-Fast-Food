@@ -16,9 +16,9 @@
 <img src="/Online-Fast-Food/customer/menu/pictures/burger-bg1.png" alt="Brizo Fast Food Logo" class="brizo-logo">
 
   <nav>
-    <a href="menu.php">Menu</a>
+    <a href="/Online-Fast-Food/customer/menu/menu.php">Menu</a>
     <a href="orders.php">My Orders</a>
-    <a href="cart.php">Cart</a>
+    <a href="/Online-Fast-Food/customer/menu/cart/cart.php">Cart</a>
     <?php if (isset($_SESSION['customer_id'])): ?>
       <a href="/Online-Fast-Food/customer/login.php" class="btn-logout">Logout</a>
     <?php else: ?>

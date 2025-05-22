@@ -478,3 +478,32 @@
 2025-05-14 16:48:04 - Cart items: []
 2025-05-14 16:48:04 - Calculated total: 0
 2025-05-14 16:48:04 - Customer saved address: Angkasa Nuri
+2025-05-15 04:47:14 - Customer ID: 45
+2025-05-15 04:47:14 - Item: Crispy Whole Chicken Set, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png
+2025-05-15 04:47:14 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-15 04:47:14 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-15 04:47:14 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-15 04:47:14 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-15 04:47:14 - Item: Buttermilk Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f889fd4887d.png
+2025-05-15 04:47:14 - Item: Sprite (Soft Drink), Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74ac2d2f20.jpg
+2025-05-15 04:47:14 - Cart items: [{"item_id":13,"quantity":9,"price":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png","category":"meal"},{"item_id":2,"quantity":6,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"},{"item_id":4,"quantity":2,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":3,"quantity":4,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":3,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":6,"quantity":1,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png","category":"chicken"},{"item_id":8,"quantity":2,"price":"2.50","item_name":"Sprite (Soft Drink)","photo":"uploads\/67f74ac2d2f20.jpg","category":"drink"}]
+2025-05-15 04:47:14 - Calculated total: 714.5
+2025-05-15 04:47:14 - Customer saved address: None
+2025-05-20 07:31:15 - Customer ID: 45
+2025-05-20 07:31:15 - Item: Crispy Whole Chicken Set, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png
+2025-05-20 07:31:15 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-20 07:31:15 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-20 07:31:15 - Item: Buttermilk Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f889fd4887d.png
+2025-05-20 07:31:15 - Item: Sprite (Soft Drink), Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74ac2d2f20.jpg
+2025-05-20 07:31:15 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-20 07:31:15 - Cart items: [{"item_id":13,"quantity":21,"price":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png","category":"meal"},{"item_id":3,"quantity":6,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"},{"item_id":5,"quantity":12,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":6,"quantity":1,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png","category":"chicken"},{"item_id":8,"quantity":4,"price":"2.50","item_name":"Sprite (Soft Drink)","photo":"uploads\/67f74ac2d2f20.jpg","category":"drink"},{"item_id":4,"quantity":3,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"}]
+2025-05-20 07:31:15 - Calculated total: 1454
+2025-05-20 07:31:15 - Customer saved address: None
+2025-05-20 08:43:58 - Customer ID: 45
+2025-05-20 08:43:58 - Item: Korean Fried Chicken, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-05-20 08:43:58 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 08:43:58 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-20 08:43:58 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-20 08:43:58 - Cart items: [{"item_id":5,"quantity":12,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":2,"quantity":2,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"},{"item_id":4,"quantity":2,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":3,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-20 08:43:58 - Calculated total: 172
+2025-05-20 08:43:58 - Customer saved address: None
