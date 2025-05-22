@@ -809,3 +809,519 @@ Autoload file not found at: ../../vendor/autoload.phpAutoload file not found at:
 2025-05-20 07:24:07 - Customer email: playgame0567@gmail.com
 2025-05-20 07:24:21 - Customer ID from session: 3
 2025-05-20 07:24:21 - Fetched 0 completed orders for customer_id: 3
+2025-05-21 09:26:59 - Memory limit: 256M
+2025-05-21 09:26:59 - Displaying confirmation for order: ORD-682D80427759B, Customer ID: 1
+2025-05-21 09:26:59 - Order items count: 1
+2025-05-21 09:26:59 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-21 09:26:59 - Delivery method: pickup
+2025-05-21 09:26:59 - Delivery address: null
+2025-05-21 09:26:59 - Customer email: andrew@gmail.com
+2025-05-21 09:27:44 - Memory limit: 256M
+2025-05-21 09:27:44 - Displaying confirmation for order: ORD-682D806F9FBC5, Customer ID: 1
+2025-05-21 09:27:44 - Order items count: 1
+2025-05-21 09:27:44 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-21 09:27:44 - Delivery method: pickup
+2025-05-21 09:27:44 - Delivery address: null
+2025-05-21 09:27:44 - Customer email: andrew@gmail.com
+2025-05-21 09:27:46 - Memory limit: 256M
+2025-05-21 09:27:54 - Memory limit: 256M
+2025-05-21 09:27:59 - Customer ID from session: 1
+2025-05-21 09:27:59 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:28:01 - Customer ID from session: 1
+2025-05-21 09:28:01 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:32:37 - Memory limit: 256M
+2025-05-21 09:32:37 - Displaying confirmation for order: ORD-682D806F9FBC5, Customer ID: 1
+2025-05-21 09:32:37 - Order items count: 1
+2025-05-21 09:32:37 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-21 09:32:37 - Delivery method: pickup
+2025-05-21 09:32:37 - Delivery address: null
+2025-05-21 09:32:37 - Customer email: andrew@gmail.com
+2025-05-21 09:32:39 - Memory limit: 256M
+2025-05-21 09:32:39 - No order_id or last_order for customer_id: 1
+2025-05-21 09:32:48 - Memory limit: 256M
+2025-05-21 09:32:48 - Displaying confirmation for order: ORD-682D819EF3ACC, Customer ID: 1
+2025-05-21 09:32:48 - Order items count: 1
+2025-05-21 09:32:48 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-21 09:32:48 - Delivery method: pickup
+2025-05-21 09:32:48 - Delivery address: null
+2025-05-21 09:32:48 - Customer email: andrew@gmail.com
+2025-05-21 09:32:58 - Memory limit: 256M
+2025-05-21 09:32:58 - Displaying confirmation for order: ORD-682D819EF3ACC, Customer ID: 1
+2025-05-21 09:32:58 - Order items count: 1
+2025-05-21 09:32:58 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-21 09:32:58 - Delivery method: pickup
+2025-05-21 09:32:58 - Delivery address: null
+2025-05-21 09:32:58 - Customer email: andrew@gmail.com
+2025-05-21 09:33:08 - Downloaded invoice for order: ORD-682D819EF3ACC
+2025-05-21 09:34:15 - Customer ID from session: 1
+2025-05-21 09:34:15 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:34:17 - Customer ID from session: 1
+2025-05-21 09:34:17 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:34:17 - Selected order: ORD-68288BB09FC83
+2025-05-21 09:34:17 - Fetched feedback for order ORD-68288BB09FC83: Not found
+2025-05-21 09:34:21 - Customer ID from session: 1
+2025-05-21 09:34:21 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:34:21 - Selected order: ORD-68288BB09FC83
+2025-05-21 09:34:21 - Fetched feedback for order ORD-68288BB09FC83: Not found
+2025-05-21 09:34:30 - Customer ID from session: 1
+2025-05-21 09:34:30 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:34:32 - Customer ID from session: 1
+2025-05-21 09:34:32 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:34:32 - Selected order: ORD-68288BB09FC83
+2025-05-21 09:34:32 - Fetched feedback for order ORD-68288BB09FC83: Not found
+2025-05-21 09:34:37 - Customer ID from session: 1
+2025-05-21 09:34:37 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:34:37 - Selected order: ORD-6828798B96011
+2025-05-21 09:34:37 - Fetched feedback for order ORD-6828798B96011: Not found
+2025-05-21 09:35:15 - Generated PDF for email: C:\xampp\apache\bin\htdocs\Online-Fast-Food\customer\menu\cart/Uploads/Invoices/Invoice_ORD-682D819EF3ACC.pdf
+2025-05-21 09:35:16 - SMTP Debug level 2: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-231d4eba3a2sm87756755ad.167 - gsmtp
+
+2025-05-21 09:35:16 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:35:16 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:35:16 - SMTP Debug level 1: CLIENT -> SERVER: STARTTLS
+
+2025-05-21 09:35:16 - SMTP Debug level 2: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+2025-05-21 09:35:17 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:35:17 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:35:17 - SMTP Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+2025-05-21 09:35:17 - SMTP Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+2025-05-21 09:35:17 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:35:17 - SMTP Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+2025-05-21 09:35:17 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:35:18 - SMTP Debug level 2: SERVER -> CLIENT: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4eba3a2sm87756755ad.167 - gsmtp
+
+2025-05-21 09:35:18 - SMTP Debug level 1: SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4eba3a2sm87756755ad.167 - gsmtp
+
+2025-05-21 09:35:18 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:35:18 - SMTP Debug level 1: CLIENT -> SERVER: QUIT
+
+2025-05-21 09:35:18 - SMTP Debug level 2: SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-231d4eba3a2sm87756755ad.167 - gsmtp
+
+2025-05-21 09:35:18 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:35:18 - Invoice email failed for order: ORD-682D819EF3ACC - SMTP Error: Could not authenticate.
+2025-05-21 09:35:18 - Memory limit: 256M
+2025-05-21 09:35:18 - No order_id or last_order for customer_id: 1
+2025-05-21 09:35:22 - Generated PDF for email: C:\xampp\apache\bin\htdocs\Online-Fast-Food\customer\menu\cart/Uploads/Invoices/Invoice_ORD-682D819EF3ACC.pdf
+2025-05-21 09:35:22 - SMTP Debug level 2: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-742a9877063sm9024475b3a.153 - gsmtp
+
+2025-05-21 09:35:22 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:35:22 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:35:22 - SMTP Debug level 1: CLIENT -> SERVER: STARTTLS
+
+2025-05-21 09:35:22 - SMTP Debug level 2: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+2025-05-21 09:35:23 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:35:23 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:35:23 - SMTP Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+2025-05-21 09:35:23 - SMTP Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+2025-05-21 09:35:23 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:35:23 - SMTP Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+2025-05-21 09:35:23 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:35:24 - SMTP Debug level 2: SERVER -> CLIENT: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-742a9877063sm9024475b3a.153 - gsmtp
+
+2025-05-21 09:35:24 - SMTP Debug level 1: SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-742a9877063sm9024475b3a.153 - gsmtp
+
+2025-05-21 09:35:24 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:35:24 - SMTP Debug level 1: CLIENT -> SERVER: QUIT
+
+2025-05-21 09:35:24 - SMTP Debug level 2: SERVER -> CLIENT: 221 2.0.0 closing connection d2e1a72fcca58-742a9877063sm9024475b3a.153 - gsmtp
+
+2025-05-21 09:35:24 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:35:24 - Invoice email failed for order: ORD-682D819EF3ACC - SMTP Error: Could not authenticate.
+2025-05-21 09:35:24 - Memory limit: 256M
+2025-05-21 09:35:24 - No order_id or last_order for customer_id: 1
+2025-05-21 09:35:27 - Customer ID from session: 1
+2025-05-21 09:35:27 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:37:57 - Customer ID from session: 1
+2025-05-21 09:37:57 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:37:57 - Orders: [{"order_id":"ORD-68288BB09FC83","created_at":"2025-05-17 10:01:00"},{"order_id":"ORD-6828798B96011","created_at":"2025-05-17 10:00:00"}]
+2025-05-21 09:37:59 - Customer ID from session: 1
+2025-05-21 09:37:59 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:37:59 - Orders: [{"order_id":"ORD-68288BB09FC83","created_at":"2025-05-17 10:01:00"},{"order_id":"ORD-6828798B96011","created_at":"2025-05-17 10:00:00"}]
+2025-05-21 09:37:59 - Selected order: ORD-68288BB09FC83
+2025-05-21 09:37:59 - Fetched feedback for order ORD-68288BB09FC83: Not found
+2025-05-21 09:38:10 - Generated PDF for email: C:\xampp\apache\bin\htdocs\Online-Fast-Food\customer\menu\cart/Uploads/Invoices/Invoice_ORD-682D819EF3ACC.pdf
+2025-05-21 09:38:10 - SMTP Debug level 2: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 98e67ed59e1d1-30f36368e7fsm3274783a91.2 - gsmtp
+
+2025-05-21 09:38:10 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:38:10 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:38:10 - SMTP Debug level 1: CLIENT -> SERVER: STARTTLS
+
+2025-05-21 09:38:11 - SMTP Debug level 2: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+2025-05-21 09:38:11 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:38:11 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:38:11 - SMTP Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+2025-05-21 09:38:11 - SMTP Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+2025-05-21 09:38:11 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:38:11 - SMTP Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+2025-05-21 09:38:12 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:38:12 - SMTP Debug level 2: SERVER -> CLIENT: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-30f36368e7fsm3274783a91.2 - gsmtp
+
+2025-05-21 09:38:12 - SMTP Debug level 1: SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-30f36368e7fsm3274783a91.2 - gsmtp
+
+2025-05-21 09:38:12 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:38:12 - SMTP Debug level 1: CLIENT -> SERVER: QUIT
+
+2025-05-21 09:38:12 - SMTP Debug level 2: SERVER -> CLIENT: 221 2.0.0 closing connection 98e67ed59e1d1-30f36368e7fsm3274783a91.2 - gsmtp
+
+2025-05-21 09:38:12 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:38:12 - Invoice email failed for order: ORD-682D819EF3ACC - SMTP Error: Could not authenticate.
+2025-05-21 09:38:12 - Generated PDF for email: C:\xampp\apache\bin\htdocs\Online-Fast-Food\customer\menu\cart/Uploads/Invoices/Invoice_ORD-682D819EF3ACC.pdf
+2025-05-21 09:38:13 - SMTP Debug level 2: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-231d4ac99f4sm87598105ad.23 - gsmtp
+
+2025-05-21 09:38:13 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:38:13 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:38:13 - SMTP Debug level 1: CLIENT -> SERVER: STARTTLS
+
+2025-05-21 09:38:13 - SMTP Debug level 2: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+2025-05-21 09:38:13 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:38:14 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:38:14 - SMTP Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+2025-05-21 09:38:14 - SMTP Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+2025-05-21 09:38:14 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:38:14 - SMTP Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+2025-05-21 09:38:14 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:38:14 - SMTP Debug level 2: SERVER -> CLIENT: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4ac99f4sm87598105ad.23 - gsmtp
+
+2025-05-21 09:38:14 - SMTP Debug level 1: SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4ac99f4sm87598105ad.23 - gsmtp
+
+2025-05-21 09:38:14 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:38:14 - SMTP Debug level 1: CLIENT -> SERVER: QUIT
+
+2025-05-21 09:38:15 - SMTP Debug level 2: SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-231d4ac99f4sm87598105ad.23 - gsmtp
+
+2025-05-21 09:38:15 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:38:15 - Invoice email failed for order: ORD-682D819EF3ACC - SMTP Error: Could not authenticate.
+2025-05-21 09:38:44 - Memory limit: 256M
+2025-05-21 09:38:44 - No order_id or last_order for customer_id: 1
+2025-05-21 09:38:58 - Memory limit: 256M
+2025-05-21 09:38:58 - Displaying confirmation for order: ORD-682D831150BFA, Customer ID: 1
+2025-05-21 09:38:58 - Order items count: 1
+2025-05-21 09:38:58 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-21 09:38:58 - Delivery method: pickup
+2025-05-21 09:38:58 - Delivery address: null
+2025-05-21 09:38:58 - Customer email: andrew@gmail.com
+2025-05-21 09:42:03 - Session customer_id: 1
+2025-05-21 09:42:03 - Received CSRF token: 3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7
+2025-05-21 09:42:03 - Expected CSRF token: 3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7
+2025-05-21 09:42:03 - Processing order_code: ORD-682D831150BFA, customer_email: andrew@gmail.com
+2025-05-21 09:42:03 - Order query result: {"order_id":"ORD-682D831150BFA","total":"12.00","created_at":"2025-05-21 15:38:57"}
+2025-05-21 09:42:03 - Order items count: 1
+2025-05-21 09:42:03 - Delivery method: pickup, Address: null
+2025-05-21 09:42:04 - Generated PDF for email: C:\xampp\apache\bin\htdocs\Online-Fast-Food\customer\menu\cart/Uploads/Invoices/Invoice_ORD-682D831150BFA.pdf
+2025-05-21 09:42:04 - SMTP Debug level 2: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-231d4ebaf5esm88069245ad.194 - gsmtp
+
+2025-05-21 09:42:04 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:42:04 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:42:04 - SMTP Debug level 1: CLIENT -> SERVER: STARTTLS
+
+2025-05-21 09:42:04 - SMTP Debug level 2: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+2025-05-21 09:42:05 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:42:05 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:42:05 - SMTP Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+2025-05-21 09:42:05 - SMTP Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+2025-05-21 09:42:05 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:42:05 - SMTP Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+2025-05-21 09:42:05 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:42:05 - SMTP Debug level 2: SERVER -> CLIENT: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4ebaf5esm88069245ad.194 - gsmtp
+
+2025-05-21 09:42:05 - SMTP Debug level 1: SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4ebaf5esm88069245ad.194 - gsmtp
+
+2025-05-21 09:42:05 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:42:05 - SMTP Debug level 1: CLIENT -> SERVER: QUIT
+
+2025-05-21 09:42:06 - SMTP Debug level 2: SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-231d4ebaf5esm88069245ad.194 - gsmtp
+
+2025-05-21 09:42:06 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:42:06 - Invoice email failed for order: ORD-682D831150BFA - SMTP Error: Could not authenticate.
+2025-05-21 09:42:06 - Memory limit: 256M
+2025-05-21 09:42:06 - No order_id or last_order for customer_id: 1
+2025-05-21 09:43:46 - Session customer_id: 1
+2025-05-21 09:43:46 - Received CSRF token: 3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7
+2025-05-21 09:43:46 - Expected CSRF token: 3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7
+2025-05-21 09:43:46 - Processing order_code: ORD-682D831150BFA, customer_email: andrew@gmail.com
+2025-05-21 09:43:46 - Order query result: {"order_id":"ORD-682D831150BFA","total":"12.00","created_at":"2025-05-21 15:38:57"}
+2025-05-21 09:43:46 - Order items count: 1
+2025-05-21 09:43:46 - Delivery method: pickup, Address: null
+2025-05-21 09:43:47 - Generated PDF for email: C:\xampp\apache\bin\htdocs\Online-Fast-Food\customer\menu\cart/Uploads/Invoices/Invoice_ORD-682D831150BFA.pdf
+2025-05-21 09:43:47 - SMTP Debug level 2: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 41be03b00d2f7-b270543ef6dsm6202106a12.29 - gsmtp
+
+2025-05-21 09:43:47 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:43:48 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:43:48 - SMTP Debug level 1: CLIENT -> SERVER: STARTTLS
+
+2025-05-21 09:43:48 - SMTP Debug level 2: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+2025-05-21 09:43:48 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:43:48 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:43:48 - SMTP Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+2025-05-21 09:43:49 - SMTP Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+2025-05-21 09:43:49 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:43:49 - SMTP Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+2025-05-21 09:43:49 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:43:49 - SMTP Debug level 2: SERVER -> CLIENT: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 41be03b00d2f7-b270543ef6dsm6202106a12.29 - gsmtp
+
+2025-05-21 09:43:49 - SMTP Debug level 1: SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 41be03b00d2f7-b270543ef6dsm6202106a12.29 - gsmtp
+
+2025-05-21 09:43:49 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:43:49 - SMTP Debug level 1: CLIENT -> SERVER: QUIT
+
+2025-05-21 09:43:49 - SMTP Debug level 2: SERVER -> CLIENT: 221 2.0.0 closing connection 41be03b00d2f7-b270543ef6dsm6202106a12.29 - gsmtp
+
+2025-05-21 09:43:49 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:43:49 - Invoice email failed for order: ORD-682D831150BFA - SMTP Error: Could not authenticate.
+2025-05-21 09:43:49 - Memory limit: 256M
+2025-05-21 09:43:49 - No order_id or last_order for customer_id: 1
+2025-05-21 09:46:04 - Session customer_id: 1
+2025-05-21 09:46:04 - Received CSRF token: 3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7
+2025-05-21 09:46:04 - Expected CSRF token: 3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7
+2025-05-21 09:46:04 - Processing order_code: ORD-682D831150BFA, customer_email: andrew@gmail.com
+2025-05-21 09:46:04 - Order query result: {"order_id":"ORD-682D831150BFA","total":"12.00","created_at":"2025-05-21 15:38:57"}
+2025-05-21 09:46:04 - Order items count: 1
+2025-05-21 09:46:04 - Delivery method: pickup, Address: null
+2025-05-21 09:46:04 - Generated PDF for email: C:\xampp\apache\bin\htdocs\Online-Fast-Food\customer\menu\cart/Uploads/Invoices/Invoice_ORD-682D831150BFA.pdf
+2025-05-21 09:46:05 - SMTP Debug level 2: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-231d4ebabe5sm87664575ad.164 - gsmtp
+
+2025-05-21 09:46:05 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:46:05 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:46:05 - SMTP Debug level 1: CLIENT -> SERVER: STARTTLS
+
+2025-05-21 09:46:05 - SMTP Debug level 2: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+2025-05-21 09:46:06 - SMTP Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+2025-05-21 09:46:06 - SMTP Debug level 2: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [115.132.156.152]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+2025-05-21 09:46:06 - SMTP Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+2025-05-21 09:46:06 - SMTP Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+2025-05-21 09:46:06 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:46:07 - SMTP Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+2025-05-21 09:46:07 - SMTP Debug level 1: CLIENT -> SERVER: [credentials hidden]
+2025-05-21 09:46:07 - SMTP Debug level 2: SERVER -> CLIENT: 454-4.7.0 Too many login attempts, please try again later. For more information,
+454-4.7.0 go to
+454 4.7.0  https://support.google.com/mail/answer/7126229 d9443c01a7336-231d4ebabe5sm87664575ad.164 - gsmtp
+
+2025-05-21 09:46:07 - SMTP Debug level 1: SMTP ERROR: Password command failed: 454-4.7.0 Too many login attempts, please try again later. For more information,
+454-4.7.0 go to
+454 4.7.0  https://support.google.com/mail/answer/7126229 d9443c01a7336-231d4ebabe5sm87664575ad.164 - gsmtp
+
+2025-05-21 09:46:07 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:46:07 - SMTP Debug level 1: CLIENT -> SERVER: QUIT
+
+2025-05-21 09:46:07 - SMTP Debug level 2: SERVER -> CLIENT: 
+2025-05-21 09:46:07 - SMTP Debug level 1: SMTP ERROR: QUIT command failed: 
+2025-05-21 09:46:07 - SMTP Debug level 2: SMTP Error: Could not authenticate.
+2025-05-21 09:46:07 - Invoice email failed for order: ORD-682D831150BFA - SMTP Error: Could not authenticate. SMTP server error: QUIT command failed
+2025-05-21 09:46:07 - Memory limit: 256M
+2025-05-21 09:46:07 - Displaying confirmation for order: ORD-682D831150BFA, Customer ID: 1
+2025-05-21 09:46:07 - Order items count: 1
+2025-05-21 09:46:07 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-21 09:46:07 - Delivery method: pickup
+2025-05-21 09:46:07 - Delivery address: null
+2025-05-21 09:46:07 - Customer email: andrew@gmail.com
+2025-05-21 09:46:25 - Customer ID from session: 1
+2025-05-21 09:46:25 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:46:25 - Orders: [{"order_id":"ORD-68288BB09FC83","created_at":"2025-05-17 10:01:00"},{"order_id":"ORD-6828798B96011","created_at":"2025-05-17 10:00:00"}]
+2025-05-21 09:46:27 - Customer ID from session: 1
+2025-05-21 09:46:27 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:46:27 - Orders: [{"order_id":"ORD-68288BB09FC83","created_at":"2025-05-17 10:01:00"},{"order_id":"ORD-6828798B96011","created_at":"2025-05-17 10:00:00"}]
+2025-05-21 09:46:27 - Selected order: ORD-68288BB09FC83
+2025-05-21 09:46:27 - Fetched feedback for order ORD-68288BB09FC83: Not found
+2025-05-21 09:46:37 - Customer ID from session: 1
+2025-05-21 09:46:37 - Feedback saved for order: ORD-68288BB09FC83, rating: 5
+2025-05-21 09:46:39 - Feedback email failed for order: ORD-68288BB09FC83 - SMTP Error: Could not authenticate.
+2025-05-21 09:46:40 - Customer ID from session: 1
+2025-05-21 09:46:40 - Fetched 2 completed orders for customer_id: 1
+2025-05-21 09:46:40 - Orders: [{"order_id":"ORD-68288BB09FC83","created_at":"2025-05-17 10:01:00"},{"order_id":"ORD-6828798B96011","created_at":"2025-05-17 10:00:00"}]
+2025-05-21 09:46:40 - Selected order: ORD-68288BB09FC83
+2025-05-21 09:46:40 - Fetched feedback for order ORD-68288BB09FC83: Found
+2025-05-21 13:27:13 - Memory limit: 256M
+2025-05-21 13:27:13 - Displaying confirmation for order: ORD-682DB890B5CE6, Customer ID: 1
+2025-05-21 13:27:13 - Order items count: 1
+2025-05-21 13:27:13 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-21 13:27:13 - Delivery method: pickup
+2025-05-21 13:27:13 - Delivery address: null
+2025-05-21 13:27:13 - Customer email: andrew@gmail.com
+2025-05-21 15:03:55 - Displaying confirmation for order: ORD-682DCF3A3085A, Customer ID: 1
+2025-05-21 15:03:55 - Order items count: 1
+2025-05-21 15:03:55 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-21 15:03:55 - Delivery method: pickup
+2025-05-21 15:03:55 - Delivery address: null
+2025-05-21 15:03:55 - Customer email: andrew@gmail.com
+2025-05-21 15:04:00 - Displaying confirmation for order: ORD-682DCF3A3085A, Customer ID: 1
+2025-05-21 15:04:00 - Order items count: 1
+2025-05-21 15:04:00 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-21 15:04:00 - Delivery method: pickup
+2025-05-21 15:04:00 - Delivery address: null
+2025-05-21 15:04:00 - Customer email: andrew@gmail.com
+2025-05-21 15:04:06 - Downloaded invoice for order: ORD-682DCF3A3085A
+2025-05-21 17:07:17 - Session expired for customer_id: unknown
+2025-05-21 17:07:31 - Displaying confirmation for order: ORD-682DEC323FBE1, Customer ID: 1
+2025-05-21 17:07:31 - Order items count: 1
+2025-05-21 17:07:31 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-21 17:07:31 - Delivery method: pickup
+2025-05-21 17:07:31 - Delivery address: null
+2025-05-21 17:07:31 - Customer email: andrew@gmail.com
+2025-05-21 17:07:34 - No order_id or last_order for customer_id: 1
+2025-05-21 17:07:42 - No order_id or last_order for customer_id: 1

@@ -951,3 +951,269 @@
 2025-05-20 07:24:02 - Payment method: digital_wallet, Payment method ID: 19
 2025-05-20 07:24:02 - Generated order_id: ORD-682C11F2171A2
 2025-05-20 07:24:02 - Payment successful: order_id=ORD-682C11F2171A2
+2025-05-21 09:00:48 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:00:48 - Received amount: 12, Expected total: 12
+2025-05-21 09:00:48 - Delivery method: pickup, Delivery address ID: 0
+2025-05-21 09:00:48 - Payment method: card, Payment method ID: 3
+2025-05-21 09:00:48 - Generated order_id: ORD-682D7A2053B7C
+2025-05-21 09:00:48 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:01:01 - Attempting to add delivery address: street=4501, Angkasa Nuri, city=Kuala Lumpur, postal_code=50450, default=1
+2025-05-21 09:01:01 - Delivery address added successfully: ID 2, 4501, Angkasa Nuri, Kuala Lumpur, 50450
+2025-05-21 09:01:03 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:01:03 - Received amount: 12, Expected total: 12
+2025-05-21 09:01:03 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:01:03 - Payment method: card, Payment method ID: 3
+2025-05-21 09:01:03 - Generated order_id: ORD-682D7A2FD811B
+2025-05-21 09:01:03 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:01:08 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:01:08 - Received amount: 12, Expected total: 12
+2025-05-21 09:01:08 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:01:08 - Payment method: card, Payment method ID: 3
+2025-05-21 09:01:08 - Generated order_id: ORD-682D7A34E2E8A
+2025-05-21 09:01:08 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:01:51 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:01:51 - Received amount: 12, Expected total: 12
+2025-05-21 09:01:51 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:01:51 - Payment method: card, Payment method ID: 3
+2025-05-21 09:01:51 - Generated order_id: ORD-682D7A5FA4C3D
+2025-05-21 09:01:51 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:01:57 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:01:57 - Received amount: 12, Expected total: 12
+2025-05-21 09:01:57 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:01:57 - Payment method: card, Payment method ID: 3
+2025-05-21 09:01:57 - Generated order_id: ORD-682D7A6592235
+2025-05-21 09:01:57 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:01:59 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:01:59 - Received amount: 12, Expected total: 12
+2025-05-21 09:01:59 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:01:59 - Payment method: card, Payment method ID: 3
+2025-05-21 09:01:59 - Generated order_id: ORD-682D7A6701DD0
+2025-05-21 09:01:59 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:01:59 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:01:59 - Received amount: 12, Expected total: 12
+2025-05-21 09:01:59 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:01:59 - Payment method: card, Payment method ID: 3
+2025-05-21 09:01:59 - Generated order_id: ORD-682D7A67C8DA6
+2025-05-21 09:01:59 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:00 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:00 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:00 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:00 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:00 - Generated order_id: ORD-682D7A68086B0
+2025-05-21 09:02:00 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:00 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:00 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:00 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:00 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:00 - Generated order_id: ORD-682D7A683790A
+2025-05-21 09:02:00 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:00 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:00 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:00 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:00 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:00 - Generated order_id: ORD-682D7A6864874
+2025-05-21 09:02:00 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:00 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:00 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:00 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:00 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:00 - Generated order_id: ORD-682D7A68924AF
+2025-05-21 09:02:00 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:01 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:01 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:01 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:01 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:01 - Generated order_id: ORD-682D7A691C1F9
+2025-05-21 09:02:01 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:01 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:01 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:01 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:01 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:01 - Generated order_id: ORD-682D7A69698CF
+2025-05-21 09:02:01 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:01 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:01 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:01 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:01 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:01 - Generated order_id: ORD-682D7A699E8A6
+2025-05-21 09:02:01 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:01 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:01 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:01 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:01 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:01 - Generated order_id: ORD-682D7A69CE28F
+2025-05-21 09:02:01 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:02 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:02 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:02 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:02 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:02 - Generated order_id: ORD-682D7A6A095FF
+2025-05-21 09:02:02 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:02 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:02 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:02 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:02 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:02 - Generated order_id: ORD-682D7A6A38266
+2025-05-21 09:02:02 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:02 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:02 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:02 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:02 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:02 - Generated order_id: ORD-682D7A6A666DC
+2025-05-21 09:02:02 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:02 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:02 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:02 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:02 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:02 - Generated order_id: ORD-682D7A6A92F05
+2025-05-21 09:02:02 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:04 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:04 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:04 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:04 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:04 - Generated order_id: ORD-682D7A6C52DBD
+2025-05-21 09:02:04 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:18 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:18 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:18 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:18 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:18 - Generated order_id: ORD-682D7A7A3EAB7
+2025-05-21 09:02:18 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:21 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:21 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:21 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:21 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:21 - Generated order_id: ORD-682D7A7DA50DE
+2025-05-21 09:02:21 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:03:39 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:03:39 - Received amount: 12, Expected total: 12
+2025-05-21 09:03:39 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:03:39 - Payment method: card, Payment method ID: 3
+2025-05-21 09:03:39 - Generated order_id: ORD-682D7ACB5B47C
+2025-05-21 09:03:39 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:03:46 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:03:46 - Received amount: 12, Expected total: 12
+2025-05-21 09:03:46 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:03:46 - Payment method: card, Payment method ID: 3
+2025-05-21 09:03:46 - Generated order_id: ORD-682D7AD26B61B
+2025-05-21 09:03:46 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:03:57 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:03:57 - Received amount: 12, Expected total: 12
+2025-05-21 09:03:57 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:03:57 - Payment method: card, Payment method ID: 3
+2025-05-21 09:03:57 - Generated order_id: ORD-682D7ADD5382E
+2025-05-21 09:03:57 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:02 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:02 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:02 - Delivery method: pickup, Delivery address ID: 0
+2025-05-21 09:04:02 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:02 - Generated order_id: ORD-682D7AE2DC068
+2025-05-21 09:04:02 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:06 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:06 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:06 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:06 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:06 - Generated order_id: ORD-682D7AE6B396A
+2025-05-21 09:04:06 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:07 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:07 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:07 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:07 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:07 - Generated order_id: ORD-682D7AE7820F5
+2025-05-21 09:04:07 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:07 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:07 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:07 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:07 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:07 - Generated order_id: ORD-682D7AE7AC8DB
+2025-05-21 09:04:07 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:07 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:07 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:07 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:07 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:07 - Generated order_id: ORD-682D7AE7DB80A
+2025-05-21 09:04:07 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:08 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:08 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:08 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:08 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:08 - Generated order_id: ORD-682D7AE80D442
+2025-05-21 09:04:08 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:08 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:08 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:08 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:08 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:08 - Generated order_id: ORD-682D7AE83258C
+2025-05-21 09:04:08 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:08 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:08 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:08 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:08 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:08 - Generated order_id: ORD-682D7AE85E805
+2025-05-21 09:04:08 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:08 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:08 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:08 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:08 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:08 - Generated order_id: ORD-682D7AE88261B
+2025-05-21 09:04:08 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:08 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:08 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:08 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:08 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:08 - Generated order_id: ORD-682D7AE8AB45C
+2025-05-21 09:04:08 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:51 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:51 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:51 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:51 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:51 - Generated order_id: ORD-682D7B137A8F3
+2025-05-21 09:04:51 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:59 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:59 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:59 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:59 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:59 - Generated order_id: ORD-682D7B1B7E856
+2025-05-21 09:04:59 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:26:58 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:26:58 - Received amount: 12, Expected total: 12
+2025-05-21 09:26:58 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 09:26:58 - Payment method: card, Payment method ID: 3
+2025-05-21 09:26:58 - Generated order_id: ORD-682D80427759B
+2025-05-21 09:26:58 - Payment successful: order_id=ORD-682D80427759B
+2025-05-21 09:27:43 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:27:43 - Received amount: 15, Expected total: 15
+2025-05-21 09:27:43 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 09:27:43 - Payment method: card, Payment method ID: 3
+2025-05-21 09:27:43 - Generated order_id: ORD-682D806F9FBC5
+2025-05-21 09:27:43 - Payment successful: order_id=ORD-682D806F9FBC5
+2025-05-21 09:32:46 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;8&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:32:46 - Received amount: 15, Expected total: 15
+2025-05-21 09:32:46 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 09:32:46 - Payment method: card, Payment method ID: 8
+2025-05-21 09:32:46 - Generated order_id: ORD-682D819EF3ACC
+2025-05-21 09:32:47 - Payment successful: order_id=ORD-682D819EF3ACC
+2025-05-21 09:38:57 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;9&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:38:57 - Received amount: 12, Expected total: 12
+2025-05-21 09:38:57 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 09:38:57 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-21 09:38:57 - Generated order_id: ORD-682D831150BFA
+2025-05-21 09:38:57 - Payment successful: order_id=ORD-682D831150BFA
+2025-05-21 13:27:12 - Received make_payment request: {&#34;csrf_token&#34;:&#34;fea21a0ffd0bd04d774b4681be0bb6c2d279d1c4e1b477d8ae5ea85d67830bfd&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 13:27:12 - Received amount: 15, Expected total: 15
+2025-05-21 13:27:12 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 13:27:12 - Payment method: card, Payment method ID: 3
+2025-05-21 13:27:12 - Generated order_id: ORD-682DB890B5CE6
+2025-05-21 13:27:12 - Payment successful: order_id=ORD-682DB890B5CE6
+2025-05-21 15:03:54 - Received make_payment request: {&#34;csrf_token&#34;:&#34;04aa5f1c7edbe588327b093ac060bed76f3a0b160615fb55dc46810e4edc76b3&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;8&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 15:03:54 - Received amount: 15, Expected total: 15
+2025-05-21 15:03:54 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 15:03:54 - Payment method: card, Payment method ID: 8
+2025-05-21 15:03:54 - Generated order_id: ORD-682DCF3A3085A
+2025-05-21 15:03:54 - Payment successful: order_id=ORD-682DCF3A3085A
+2025-05-21 17:07:30 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3cc8e91941f59cfe0931e7dce0dd1db73cf363adc0d391e65d6c931c43bf3e7d&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;9&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;14&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 17:07:30 - Received amount: 14, Expected total: 14
+2025-05-21 17:07:30 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 17:07:30 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-21 17:07:30 - Generated order_id: ORD-682DEC323FBE1
+2025-05-21 17:07:30 - Payment successful: order_id=ORD-682DEC323FBE1
