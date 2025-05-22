@@ -27,6 +27,38 @@ $admin = $result->fetch_assoc();
     <title>Edit Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+.error-box {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff4d4d;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 0 0 12px 12px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 1s ease-out;
+    max-width: 600px;
+    width: 90%;
+}
+
+.error-box.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+    </style>
+        <?php if (isset($_SESSION['error'])): ?>
+    <div class="error-box">
+        <?= $_SESSION['error'] ?>
+        <?php unset($_SESSION['error']); ?>
+    </div>
+<?php endif; ?>
 </head>
 <body>
 <div class="container profile-edit">
@@ -36,6 +68,8 @@ $admin = $result->fetch_assoc();
         </a>
         <h2>Edit Admin Profile</h2>
     </div>
+
+
 
     <form action="update.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= $admin['id'] ?>">
@@ -62,29 +96,6 @@ $admin = $result->fetch_assoc();
         <div class="input-with-icon">
             <i class="fas fa-user"></i>
             <input type="text" name="name" value="<?= htmlspecialchars($admin['name']) ?>" required>
-        </div>
-    </div>
-
-    <!-- 第二行：性别 + 年龄 -->
-    <div class="form-row">
-        <div class="form-group">
-            <label>Gender</label>
-            <div class="styled-select">
-                <i class="fas fa-venus-mars"></i>
-                <select name="gender" required>
-                    <option value="Male" <?= $admin['gender'] == 'Male' ? 'selected' : '' ?>>Male</option>
-                    <option value="Female" <?= $admin['gender'] == 'Female' ? 'selected' : '' ?>>Female</option>
-                </select>
-                <div class="select-arrow"></div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Age</label>
-            <div class="input-with-icon">
-                <i class="fas fa-birthday-cake"></i>
-                <input type="number" name="age" value="<?= $admin['age'] ?>" min="18" max="99" required>
-            </div>
         </div>
     </div>
 

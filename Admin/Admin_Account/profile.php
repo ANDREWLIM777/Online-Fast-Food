@@ -9,7 +9,6 @@ $stmt->execute();
 $user = $stmt->get_result()->fetch_assoc();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $age = $_POST['age'];
     $phone = $_POST['phone'];
 
     if ($_FILES['photo']['name']) {
@@ -143,9 +142,6 @@ body::before {
 
         <label>Role</label>
         <input type="text" value="<?php echo $user['role']; ?>" disabled>
-
-        <label>Age</label>
-        <input type="number" name="age" value="<?php echo $user['age']; ?>" required>
 
         <label>Phone</label>
         <input type="text" name="phone" value="<?php echo $user['phone']; ?>" required>
