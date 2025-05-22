@@ -1,18 +1,147 @@
 <?php
 require 'db_conn.php';
 session_start();
-
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order Management</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+
+
+<style>
+
+/* 黄金比例艺术标题 */
+.header {
+    left: 0;
+    right: 0;   
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: 
+        linear-gradient(135deg, #000000 0%, #0c0a10 100%),
+        repeating-linear-gradient(-30deg, 
+            transparent 0px 10px, 
+            #f4e3b215 10px 12px,
+            transparent 12px 22px);
+    padding: 1.8rem 0;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #eee3c975;
+    overflow: hidden;
+}
+
+.title-group {
+    position: relative;
+    text-align: center;
+    padding: 0 2.5rem;
+}
+
+.main-title {
+    font-size: 2.1rem;/* 中间尺寸 */
+    background: linear-gradient(45deg, #c0a23d, #907722);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1.8px;
+    line-height: 1.15;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+    margin-bottom: 0.4rem;
+    transition: all 0.3s ease;
+}
+
+.sub-title {
+    font-size: 1.05rem;
+    color: #907722;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    opacity: 0.9;
+    position: relative;
+    display: inline-block;
+    padding: 0 15px;
+}
+
+/* 双装饰线动画 */
+.sub-title::before,
+.sub-title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 35px;
+    height: 1.2px;
+    background: linear-gradient(90deg, #c9a227aa, transparent);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.sub-title::before {
+    left: -30px;
+    transform: translateY(-50%) rotate(-15deg);
+}
+
+.sub-title::after {
+    right: -30px;
+    transform: translateY(-50%) rotate(15deg);
+}
+
+.title-group:hover .sub-title::before {
+    left: -35px;
+    width: 35px;
+}
+
+.title-group:hover .sub-title::after {
+    right: -35px;
+    width: 35px;
+}
+
+/* 动态光晕背景 */
+.header::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 50%, 
+        #f4e3b210 0%, 
+        transparent 60%);
+    animation: auraPulse 8s infinite;
+    pointer-events: none;
+}
+
+@keyframes auraPulse {
+    0% { transform: scale(0.8); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.1; }
+    100% { transform: scale(0.8); opacity: 0.3; }
+}
+
+/* 微光粒子 */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, #f4e4b239 1px, transparent 2px),
+        radial-gradient(circle at 80% 70%, #f4e4b236 1px, transparent 2px);
+    background-size: 40px 40px;
+    animation: stardust 20s linear infinite;
+}
+
+@keyframes stardust {
+    0% { background-position: 0 0, 100px 100px; }
+    100% { background-position: 100px 100px, 0 0; }
+}
+
     body {
       font-family: Arial, sans-serif;
       background: #121212;
@@ -20,379 +149,297 @@ session_start();
       margin: 0;
       padding: 2rem;
       padding-bottom: 50px;
+      position: relative;
     }
 
-                /* 背景发光环 */
-body::after {
-  content: '';
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
-  animation: auraPulse 8s infinite;
-  pointer-events: none;
-  z-index: -1; /* ⬅ 放底层 */
-}
+    /* Background glow effect */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
+      animation: auraPulse 8s infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
 
-/* 星尘粒子 */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: 
-    radial-gradient(circle at 20% 30%, rgba(244, 228, 178, 0.15) 1px, transparent 2px),
-    radial-gradient(circle at 80% 70%, rgba(244, 228, 178, 0.15) 1px, transparent 2px);
-  background-size: 60px 60px;
-  animation: stardust 20s linear infinite;
-  pointer-events: none;
-  z-index: -2; /* ⬅ 更底层 */
-}
+    /* Stardust particles */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(244, 228, 178, 0.15) 1px, transparent 2px),
+        radial-gradient(circle at 80% 70%, rgba(244, 228, 178, 0.15) 1px, transparent 2px);
+      background-size: 60px 60px;
+      animation: stardust 20s linear infinite;
+      pointer-events: none;
+      z-index: -2;
+    }
 
-@keyframes auraPulse {
-  0% { transform: scale(0.8); opacity: 0.3; }
-  50% { transform: scale(1.2); opacity: 0.08; }
-  100% { transform: scale(0.8); opacity: 0.3; }
-}
+    @keyframes auraPulse {
+      0% { transform: scale(0.8); opacity: 0.3; }
+      50% { transform: scale(1.2); opacity: 0.08; }
+      100% { transform: scale(0.8); opacity: 0.3; }
+    }
 
-@keyframes stardust {
-  0% { background-position: 0 0, 100px 100px; }
-  100% { background-position: 100px 100px, 0 0; }
-}
+    @keyframes stardust {
+      0% { background-position: 0 0, 100px 100px; }
+      100% { background-position: 100px 100px, 0 0; }
+    }
 
     h1 {
       text-align: center;
       font-size: 2.5rem;
       color: #c0a23d;
-    }
-
-    .tabs {
-      display: flex;
-      justify-content: center;
       margin-bottom: 2rem;
     }
 
-    .tab-btn {
-      background: #252525;
-      color: #e8d48b;
-      border: none;
-      padding: 10px 30px;
-      font-size: 1rem;
-      cursor: pointer;
-      border-bottom: 3px solid transparent;
-    }
-
-    .tab-btn.active {
-      border-bottom: 3px solid gold;
-      font-weight: bold;
-    }
-
-    .tab-page { display: none; }
-    .tab-page.active { display: block; }
-
-    .order-card, .refund-card {
-  background: #fffbe6;
-  color: #1c1c1c;
-  padding: 2rem;
-  border-radius: 14px;
-  margin: 2rem auto;
-  max-width: 800px;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-  border: 2px solid #c0a23d;
-}
-
-    .order-card h3 { margin-top: 0; color: #000; }
-
-    .actions {
+    .order-container {
+      padding-top: 160px;
       display: flex;
-      justify-content: space-between;
-      margin-top: 1rem;
-    }
-
-    .btn-approve {
-      flex: 3;
-      background: #4CAF50;
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-
-    .btn-refund {
-      flex: 1;
-      background: #f44336;
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-
-    .btn-approve:hover { background: #45a049; }
-    .btn-refund:hover { background: #e53935; }
-
-    .back-btn {
-      display: inline-block;
-      background: linear-gradient(to right, #c0a23d, #e8d48b);
-      color: #000;
-      font-weight: bold;
-      position: fixed;
-      padding: 10px 20px;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: 0.2s ease;
-      margin-bottom: 2rem;
-    }
-
-    .back-btn:hover {
-      background: #e8d48b;
-      box-shadow: 0 0 10px #e8d48b;
-    }
-
-    /* Modal */
-    .modal {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      display: none;
-      align-items: center;
+      flex-wrap: wrap;
       justify-content: center;
-      z-index: 1000;
+      gap: 2rem;
     }
 
-    .modal-content {
-      background: #1c1c1c;
+    .order-card {
+      background: #fffbe6;
+      color: #1c1c1c;
       padding: 2rem;
-      border-radius: 10px;
-      width: 400px;
-      text-align: center;
-      color: #fff;
+      border-radius: 14px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       border: 2px solid #c0a23d;
     }
 
-    .modal-actions {
-      margin-top: 20px;
-      display: flex;
-      justify-content: space-around;
+    .order-card h3 {
+      margin-top: 0;
+      color: #000;
+      font-size: 1.5rem;
     }
 
-    .modal-actions .cancel {
-      background: #444;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
+    .order-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
     }
 
-    .modal-actions .confirm {
-      background: #ff4d4d;
+    .order-card li {
+      margin-bottom: 0.5rem;
+    }
+
+    .order-card strong {
+      display: block;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .actions {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .btn-approve {
+      background: #4CAF50;
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
     }
+
+    .btn-approve:hover {
+      background: #45a049;
+    }
+
+     .back-btn {
+            display: inline-block;
+            position: fixed;
+            background: linear-gradient(to right, #c0a23d, #e8d48b);
+            color: #000;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.2s ease;
+            margin-right: 80rem;
+        }
+
+        .back-btn:hover {
+            
+            background: #e8d48b;
+            box-shadow: 0 0 10px #e8d48b;
+        }
+
+    @media (max-width: 768px) {
+      .order-card {
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .btn-approve {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+
+.slide-to-confirm {
+  position: relative;
+  left: 250px;
+  width: 300px;
+  height: 50px;
+  background: linear-gradient(to right, #c0a23d, #e8d48b);
+  border-radius: 25px;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  margin: 0rem auto;
+  border: 2px solid #c0a23d;
+}
+
+.slider-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 130px;
+  background: #1a1a1a;
+  color: #c0a23d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  z-index: 2;
+  transition: background 0.3s ease;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.slide-hint {
+  position: absolute;
+  width: 140%;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  z-index: 1;
+  pointer-events: none;
+  letter-spacing: 1px;
+}
+
   </style>
 </head>
 <body>
 
-<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
-  <a href="../Main Page/main_page.php" class="back-btn">
-    <i class="fas fa-house"></i> Back To Main Page
-  </a>
-  <h1 style="flex: 1; text-align: center; color: #c0a23d; font-size: 2.5rem;">📦 Order Management</h1>
-  <div style="width: 50px;"></div> 
-</div>
+ <div class="header">
 
-<div class="tabs">
-  <button class="tab-btn active" onclick="showTab(event, 'approve')">Order Approve</button>
-  <button class="tab-btn" onclick="showTab(event, 'refund')">Refund Requests</button>
-</div>
+        <div class="title-group">
+            <div class="main-title">BRIZO MELAKA</div>
+            <div class="sub-title">Order Management Page</div>
+        </div>
 
-<!-- Order Approval -->
-<div id="approve" class="tab-page active">
+        <a href="../Main Page/main_page.php" class="back-btn">
+        <i class="fas fa-house"></i> Back To Main Page
+    </a>
+
+    </div>
+
+
+<div class="order-container">
   <?php
   $orders = $pdo->query("SELECT * FROM orders WHERE status = 'pending' ORDER BY created_at ASC")->fetchAll();
   foreach ($orders as $order):
-    $items = json_decode($order['items'], true);
+$stmtItems = $pdo->prepare("SELECT oi.item_id, oi.quantity, m.item_name 
+                            FROM order_items oi 
+                            JOIN menu_items m ON oi.item_id = m.id 
+                            WHERE oi.order_id = ?");
+$stmtItems->execute([$order['order_id']]);
+$items = $stmtItems->fetchAll();
   ?>
   <div class="order-card">
     <h3>🧾 Order: <?= htmlspecialchars($order['order_id']) ?></h3>
     <ul>
-      <?php foreach ($items as $i): 
-        $item = $pdo->prepare("SELECT item_name FROM menu_items WHERE id = ?");
-        $item->execute([$i['item_id']]);
-        $item_name = $item->fetchColumn();
-      ?>
-        <li><?= $item_name ?> x <?= $i['quantity'] ?></li>
-      <?php endforeach; ?>
+<?php foreach ($items as $i): ?>
+  <li><?= htmlspecialchars($i['item_name']) ?> x <?= $i['quantity'] ?></li>
+<?php endforeach; ?>
     </ul>
     <strong>Total: RM <?= number_format($order['total'], 2) ?></strong>
     <div class="actions">
-      <form action="approve_order.php" method="post">
-        <input type="hidden" name="id" value="<?= $order['id'] ?>">
-        <button class="btn-approve"><i class="fas fa-check"></i> Complete</button>
-      </form>
-      <form onsubmit="openRefundModal(this, true); return false;" method="post" action="refund_order.php">
-        <input type="hidden" name="id" value="<?= $order['id'] ?>">
-        <button class="btn-refund"><i class="fas fa-times"></i></button>
-      </form>
+<form action="approve_order.php" method="post" class="slide-form">
+  <input type="hidden" name="id" value="<?= $order['id'] ?>">
+  <div class="slide-to-confirm" data-form-id="<?= $order['id'] ?>">
+    <span class="slide-hint">Slide to confirm</span>
+    <div class="slider-button">
+      <i class="fas fa-hourglass-half" style="margin-right: 10px;"></i>
+  Preparing
     </div>
   </div>
-  <?php endforeach; ?>
-</div>
-
-<!-- Refund Request -->
-<div id="refund" class="tab-page">
-  <?php
-  $refunds = $pdo->query("SELECT * FROM refund_requests WHERE status = 'pending' ORDER BY created_at DESC")->fetchAll();
-  foreach ($refunds as $r):
-  ?>
-  <div class="refund-card">
-    <h3>Refund for Order: <?= htmlspecialchars($r['order_id']) ?></h3>
-    <p><strong>Reason:</strong> <?= htmlspecialchars($r['reason']) ?></p>
-    <p><?= nl2br(htmlspecialchars($r['details'])) ?></p>
-    <div class="actions">
-      <form action="handle_refund.php" method="post">
-        <input type="hidden" name="id" value="<?= $r['id'] ?>">
-        <button class="btn-approve" name="action" value="approve"><i class="fas fa-check"></i> Approve</button>
-      </form>
-      <form onsubmit="openDropdownModal(this); return false;" method="post" action="handle_refund.php">
-  <input type="hidden" name="id" value="<?= $r['id'] ?>">
-  <input type="hidden" name="action" value="reject">
-  <button class="btn-refund"><i class="fas fa-times"></i></button>
 </form>
-
-
     </div>
   </div>
   <?php endforeach; ?>
-</div>
 
-<!-- Modal -->
+ <script>
+document.querySelectorAll('.slide-to-confirm').forEach(slide => {
+  const slider = slide.querySelector('.slider-button');
+  const form = slide.closest('form');
 
-<div id="confirmModal" class="modal">
-  <div class="modal-content">
-    <h3>⚠️ Confirm Refund</h3>
-    <p id="confirmText">Please enter refund reason:</p>
-    <textarea id="confirmReason" placeholder="Enter reason here..." style="width: 100%; margin-top: 10px;"></textarea>
-    <div class="modal-actions">
-      <button onclick="closeModal()" class="cancel">Cancel</button>
-      <button onclick="submitRefund()" class="confirm">Yes, Refund</button>
-    </div>
-  </div>
-</div>
+  let isDown = false;
+  let startX, moved;
 
-<div id="confirmDropdownModal" class="modal">
-  <div class="modal-content">
-    <h3>⚠️ Reject Refund Request</h3>
-    <select id="confirmReasonDropdown" style="width: 100%; padding: 10px; font-size: 1rem;">
-      <option disabled selected>Select a reason...</option>
-      <option value="Item already consumed">Item already consumed</option>
-      <option value="Order completed">Order completed</option>
-      <option value="Invalid refund request">Invalid refund request</option>
-      <option value="Outside refund window">Outside refund window</option>
-    </select>
-    <div class="modal-actions">
-      <button onclick="closeDropdownModal()" class="cancel">Cancel</button>
-      <button onclick="submitRefundDropdown()" class="confirm">Confirm</button>
-    </div>
-  </div>
-</div>
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.clientX;
+    moved = 0;
+    slider.style.transition = 'none';
+  });
 
+  document.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    moved = e.clientX - startX;
+    if (moved < 0) moved = 0;
+    if (moved > 170) moved = 170; // 滑动最大距离
+    slider.style.transform = `translateX(${moved}px)`;
+  });
 
-<script>
+  document.addEventListener('mouseup', () => {
+    if (!isDown) return;
+    isDown = false;
+    slider.style.transition = 'transform 0.3s ease';
 
-window.addEventListener('DOMContentLoaded', () => {
-  const hash = window.location.hash;
-  if (hash === "#refund" || hash === "#approve") {
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    document.querySelectorAll('.tab-page').forEach(page => page.classList.remove('active'));
-
-    document.querySelector(`[onclick*="${hash.replace('#','')}"]`)?.classList.add('active');
-    document.getElementById(hash.replace('#', '')).classList.add('active');
-  }
+    if (moved >= 90) {
+      slider.style.transform = `translateX(170px)`;
+      setTimeout(() => {
+        form.submit();
+      }, 300);
+    } else {
+      slider.style.transform = 'translateX(0)';
+    }
+  });
 });
 
-function showTab(e, id) {
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  document.querySelectorAll('.tab-page').forEach(page => page.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  e.target.classList.add('active');
-}
+    </script>
+</div>
 
-let currentForm = null;
-function openRefundModal(form, requireReason = false) {
-  currentForm = form;
-  document.getElementById("confirmModal").style.display = "flex";
-  document.getElementById("confirmReason").style.display = requireReason ? "block" : "none";
-}
-
-function submitRefund() {
-  const reasonField = document.getElementById("confirmReason");
-  const reason = reasonField.value.trim();
-
-  if (reason === "") {
-    reasonField.style.border = "2px solid red";
-    reasonField.placeholder = "⚠ Please provide a reason!";
-    reasonField.focus();
-    return;
-  }
-
-  const input = document.createElement('input');
-  input.type = 'hidden';
-  input.name = 'note';
-  input.value = reason;
-  currentForm.appendChild(input);
-  currentForm.submit();
-}
-
-function submitRefundDropdown() {
-  const select = document.getElementById("confirmReasonDropdown");
-  const reason = select.value;
-
-  if (!reason || reason === "Select a reason...") {
-    select.style.border = "2px solid red";
-    return;
-  }
-
-  const input = document.createElement('input');
-  input.type = 'hidden';
-  input.name = 'reason';
-  input.value = reason;
-  currentForm.appendChild(input);
-  currentForm.submit();
-}
-
-
-function closeModal() {
-  document.getElementById("confirmModal").style.display = "none";
-  currentForm = null;
-}
-
-function openRefundModal(form, requireReason = false) {
-  currentForm = form;
-  document.getElementById("confirmModal").style.display = "flex";
-}
-
-function openDropdownModal(form) {
-  currentForm = form;
-  document.getElementById("confirmDropdownModal").style.display = "flex";
-}
-
-function closeDropdownModal() {
-  document.getElementById("confirmDropdownModal").style.display = "none";
-  currentForm = null;
-}
-
-</script>
 
 </body>
 </html>
@@ -621,3 +668,4 @@ if (targetLink) {
             });
         });
     </script>
+

@@ -53,7 +53,7 @@ try {
         <tr>
           <th style="width: 50px;">Photo</th>
     <th style="width: 110px;">Name</th>
-    <th style="width: 40px;">Gender</th>
+    <th style="width: 40px;">City</th>
     <th style="width: 110px;">Email</th>
     <th style="width: 60px;">Phone</th>
     <th style="width: 140px;">Actions</th>
@@ -66,7 +66,7 @@ try {
             <img src="upload/<?= $row['photo'] ?? 'user.png' ?>" alt="User Photo" class="square-photo small">
           </td>
           <td><?= htmlspecialchars($row['fullname']) ?></td>
-          <td><?= ucfirst($row['gender']) ?></td>
+          <td><?= ucfirst($row['city']) ?></td>
           <td><?= $row['email'] ?></td>
           <td><?= $row['phone'] ?></td>
           <td class="actions">

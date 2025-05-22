@@ -1,5 +1,4 @@
 <?php
-// analysis_report.php
 require 'db_conn.php';
 session_start();
 
@@ -8,13 +7,27 @@ $current_month = date('Y-m');
 $selected_month = isset($_GET['month']) ? $_GET['month'] : $current_month;
 
 $reportMonth = DateTime::createFromFormat('Y-m', $selected_month)->format('F Y');
+
+// Fetch food category sales count
+$stmt = $pdo->prepare("
+    SELECT m.category AS category, SUM(oi.quantity) AS total_quantity
+    FROM order_items oi
+    JOIN orders o ON oi.order_id = o.order_id
+    JOIN menu_items m ON oi.item_id = m.id
+    WHERE o.status = 'completed' 
+      AND DATE_FORMAT(o.created_at, '%Y-%m') = ?
+    GROUP BY m.category
+    ORDER BY total_quantity DESC
+");
+$stmt->execute([$selected_month]);
+$category_sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Profit Analysis Report</title>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Food Sales Analysis</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
@@ -177,6 +190,7 @@ $reportMonth = DateTime::createFromFormat('Y-m', $selected_month)->format('F Y')
 
         .container {
             max-width: 1200px;
+
             margin: 0 auto;
             padding: 20px;
         }
@@ -351,7 +365,7 @@ body::before {
 }
     </style>
 </head>
-<body data-month="<?= $selected_month ?>">
+<body>
 
   <div class="header">
     <!-- 左侧按钮 -->
@@ -364,16 +378,16 @@ body::before {
     <!-- 中间标题 -->
     <div class="title-group">
         <div class="main-title">BRIZO MELAKA</div>
-        <div class="sub-title">Profit Analysis Page</div>
+        <div class="sub-title">Food Analysis Page</div>
     </div>
 
     <!-- 右侧按钮 -->
     <div style="position: absolute; right: 2rem; top: 50%; transform: translateY(-50%); display: flex; gap: 10px;">
-        <button onclick="window.location.href='expense_input.php'" class="back-btn">Input Expenses</button>
         <button onclick="generatePDF()" class="back-btn"><i class="fas fa-file-pdf"></i> Export PDF</button>
         <button onclick="window.print()" class="back-btn"><i class="fas fa-print"></i> Print Report</button>
     </div>
 </div>
+
 
 <div class="container" style="padding-top: 110px;">
         <!-- Month Selector -->
@@ -390,124 +404,82 @@ body::before {
     </button>
 </form>
 
-        <?php
-        // Calculate income from completed orders
-        $income = 0;
-        $stmt = $pdo->prepare("SELECT SUM(total) FROM orders 
-                              WHERE status = 'completed' 
-                              AND DATE_FORMAT(created_at, '%Y-%m') = ?");
-        $stmt->execute([$selected_month]);
-        $income = $stmt->fetchColumn();
+<div class="charts-container">
+  <div>
+    <canvas id="categoryPieChart" width="400" height="400"></canvas>
+  </div>
+  <div>
+    <canvas id="categoryChart" width="600" height="400"></canvas>
+  </div>
+</div>
 
 
-        // Get monthly expenses
-        $stmt = $pdo->prepare("SELECT * FROM monthly_expenses 
-                              WHERE month_year = ?");
-        $stmt->execute([$selected_month]);
-        $expenses = $stmt->fetch();
+        <h3>Category Sales Breakdown for <?= $reportMonth ?></h3>
+        <table>
+            <thead><tr><th>Category</th><th>Total Quantity Sold</th></tr></thead>
+            <tbody>
+                <?php foreach ($category_sales as $row): ?>
+                <tr><td><?= ucfirst($row['category']) ?></td><td><?= $row['total_quantity'] ?></td></tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 
-        if($expenses) {
-            $total_expenses = array_sum([
-                $expenses['electricity'],
-                $expenses['water'],
-                $expenses['salaries'],
-                $expenses['rent'],
-                $expenses['cost'],
-                $expenses['tax'],
-                $expenses['other']
-            ]);
-            
-            $net_profit = ($income) - $total_expenses;
+<script>
+const data = <?= json_encode(array_column($category_sales, 'total_quantity')) ?>;
+const labels = <?= json_encode(array_map('ucfirst', array_column($category_sales, 'category'))) ?>;
+
+// 柱状图
+new Chart(document.getElementById('categoryChart'), {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Total Quantity Sold',
+            data: data,
+            backgroundColor: '#c0a23d'
+        }]
+    },
+    options: {
+        responsive: false,
+        scales: {
+            y: { beginAtZero: true, ticks: { color: '#000' } },
+            x: { ticks: { color: '#000' } }
+        },
+        plugins: {
+            legend: { display: false }
         }
-        ?>
+    }
+});
 
-        <!-- Charts Container -->
-        <div class="charts-container">
-            <div>
-                <canvas id="expenseChart" width="400" height="400"></canvas>
-            </div>
-            <div>
-                <canvas id="profitChart" width="600" height="400"></canvas>
-            </div>
-        </div>
-
-        <!-- Detailed Report Table -->
-        <h3 id="reportHeader">Detailed Financial Report for <?= $reportMonth ?></h3>
-<table>
-    <tr><th>Income</th><td>RM <?= number_format($income, 2) ?></td></tr>
-    <?php if($expenses): ?>
-    <tr><th>Electricity</th><td>RM <?= number_format($expenses['electricity'], 2) ?></td></tr>
-    <tr><th>Water</th><td>RM <?= number_format($expenses['water'], 2) ?></td></tr>
-    <tr><th>Salaries</th><td>RM <?= number_format($expenses['salaries'], 2) ?></td></tr>
-    <tr><th>Rent</th><td>RM <?= number_format($expenses['rent'], 2) ?></td></tr>
-    <tr><th>Cost</th><td>RM <?= number_format($expenses['cost'], 2) ?></td></tr>
-    <tr><th>Tax</th><td>RM <?= number_format($expenses['tax'], 2) ?></td></tr>
-    <tr><th>Other</th><td>RM <?= number_format($expenses['other'], 2) ?></td></tr>
-    <tr><th>Total Expenses</th><td>RM <?= number_format($total_expenses, 2) ?></td></tr>
-    <tr><th>Net Profit</th><td>RM <?= number_format($net_profit, 2) ?></td></tr>
-    <?php endif; ?>
-</table>
-
-        <script>
-            // Expense Distribution Pie Chart
-            new Chart(document.getElementById('expenseChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['Electricity', 'Water', 'Salaries', 'Rent', 'Cost', 'Tax', 'Other'],
-                    datasets: [{
-                        data: <?= json_encode(array_values($expenses ? array_slice($expenses, 2) : [])) ?>,
-                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#7CDDDD']
-                    }]
-                },
-                options: {
-                    responsive: false,
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                            labels: {
-                                color: '#000',
-                                font: {
-                                    size: 14
-                                }
-                            }
-                        }
-                    }
+// 饼形图
+new Chart(document.getElementById('categoryPieChart'), {
+    type: 'pie',
+    data: {
+        labels: labels,
+        datasets: [{
+            data: data,
+            backgroundColor: [
+              '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+              '#9966FF', '#FF9F40', '#C0A23D', '#e8d48b',
+              '#8AC24A', '#FF6B6B', 
+               '#47B8E0', '#7CDDDD', '#FFA07A', '#9370DB'
+            ]
+        }]
+    },
+    options: {
+        responsive: false,
+        plugins: {
+            legend: {
+                position: 'right',
+                labels: {
+                    color: '#000',
+                    font: { size: 14 }
                 }
-            });
-
-            // Profit Analysis Bar Chart
-            new Chart(document.getElementById('profitChart'), {
-                type: 'bar',
-                data: {
-                    labels: ['Income', 'Expenses', 'Net Profit'],
-                    datasets: [{
-                        label: 'Amount',
-                        data: [<?= $income ?>, <?= $total_expenses ?? 0 ?>, <?= $net_profit ?? 0 ?>],
-                        backgroundColor: '#c0a23d'
-                    }]
-                },
-                options: {
-                    responsive: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                color: '#000'
-                            }
-                        },
-                        x: {
-                            ticks: {
-                                color: '#000'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    }
-                }
-            });
+            }
+        }
+    }
+});
 
 function generatePDF() {
         const sourceElement = document.querySelector('.container');
@@ -528,7 +500,7 @@ dateInfo.style.marginBottom = '1rem';
 clone.insertBefore(dateInfo, clone.firstChild);
 
         // 替换图表 canvas 为 img
-        const canvasIds = ['expenseChart', 'profitChart'];
+        const canvasIds = ['categoryPieChart', 'categoryChart'];
         canvasIds.forEach(id => {
             const canvas = document.getElementById(id);
             const cloneCanvas = clone.querySelector(`#${id}`);
@@ -569,6 +541,6 @@ clone.insertBefore(dateInfo, clone.firstChild);
 
 </script>
 
-    </div>
+
 </body>
 </html>

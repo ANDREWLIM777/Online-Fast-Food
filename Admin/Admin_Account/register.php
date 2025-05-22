@@ -7,8 +7,6 @@ $error = '';  // 用于提示错误信息
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
-    $gender = $_POST['gender'];
-    $age = $_POST['age'];
     $position = $_POST['position'];
     $phone = $_POST['phone'];
     $role = $_POST['role'];
@@ -30,8 +28,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if ($check_email_stmt->num_rows > 0) {
             $error = "This email is already registered.";
-        } else {
-            // 继续执行原本的 INSERT
+        } 
+        else {
+    $check_phone_stmt = $conn->prepare("SELECT id FROM admin WHERE phone = ?");
+    $check_phone_stmt->bind_param("s", $phone);
+    $check_phone_stmt->execute();
+    $check_phone_stmt->store_result();
+
+    if ($check_phone_stmt->num_rows > 0) {
+        $error = "This phone number is already registered.";
+    } else {
+           
             $password = password_hash($password_raw, PASSWORD_DEFAULT);
         
             $photo = "default.jpg";
@@ -41,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file);
             }
         
-            $stmt = $conn->prepare("INSERT INTO admin (name, gender, age, position, phone, role, email, password, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssissssss", $name, $gender, $age, $position, $phone, $role, $email, $password, $photo);
+            $stmt = $conn->prepare("INSERT INTO admin (name, position, phone, role, email, password, photo) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssss", $name, $position, $phone, $role, $email, $password, $photo);
         
             if ($stmt->execute()) {
     echo '
@@ -171,6 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $error = "Registration Failed: " . $conn->error;
 }
 }   
+}
 }
 }
 ?>
@@ -393,16 +401,6 @@ body::before {
 
             <label>Full Name</label>
             <input type="text" name="name" required>
-
-            <label>Gender</label>
-            <select name="gender" required>
-                <option value="">-- Select --</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
-
-            <label>Age</label>
-            <input type="number" name="age" required>
 
             <label>Position</label>
             <input type="text" name="position" required>

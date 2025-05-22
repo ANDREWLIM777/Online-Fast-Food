@@ -478,6 +478,7 @@
 2025-05-14 16:48:04 - Cart items: []
 2025-05-14 16:48:04 - Calculated total: 0
 2025-05-14 16:48:04 - Customer saved address: Angkasa Nuri
+<<<<<<< HEAD
 2025-05-15 04:47:14 - Customer ID: 45
 2025-05-15 04:47:14 - Item: Crispy Whole Chicken Set, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png
 2025-05-15 04:47:14 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
@@ -507,3 +508,744 @@
 2025-05-20 08:43:58 - Cart items: [{"item_id":5,"quantity":12,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg","category":"chicken"},{"item_id":2,"quantity":2,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"},{"item_id":4,"quantity":2,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":3,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
 2025-05-20 08:43:58 - Calculated total: 172
 2025-05-20 08:43:58 - Customer saved address: None
+=======
+2025-05-15 04:47:30 - Customer ID: 1
+2025-05-15 04:47:31 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-15 04:47:31 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-15 04:47:31 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-15 04:47:31 - Calculated total: 27
+2025-05-15 04:47:31 - Customer saved address: Angkasa Nuri
+2025-05-15 04:49:11 - Customer ID: 1
+2025-05-15 04:49:11 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-15 04:49:11 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-15 04:49:11 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-15 04:49:11 - Calculated total: 27
+2025-05-15 04:49:11 - Customer saved address: Angkasa Nuri
+2025-05-15 04:49:11 - Attempting to add payment method: method_type=digital_wallet
+2025-05-15 04:49:11 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-05-15 04:50:44 - Customer ID: 1
+2025-05-15 04:50:44 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-15 04:50:44 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-15 04:50:44 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-15 04:50:44 - Calculated total: 27
+2025-05-15 04:50:44 - Customer saved address: Angkasa Nuri
+2025-05-15 04:50:44 - Received make_payment request: {"csrf_token":"a4621e556bb521ea11f8e4c6c075b889a46ebfc0c0e9c9e75b88eddb5a39d29d","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"9","method":"digital_wallet","amount":"27","make_payment":"1"}
+2025-05-15 04:50:44 - Received amount: 27, Expected total: 27
+2025-05-15 04:50:44 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-15 04:50:44 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-15 04:50:44 - Delivery method validation passed: delivery
+2025-05-15 04:50:44 - Delivery address validation passed: Angkasa Nuri
+2025-05-15 04:50:44 - Saved delivery address for customer_id=1: Angkasa Nuri
+2025-05-15 04:50:44 - Generated order_id: ORD-682556844CF28
+2025-05-15 04:50:44 - Executing SQL for orders insert: 
+            INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
+            VALUES (?, ?, ?, ?, 'pending', NOW())
+        
+2025-05-15 04:50:44 - Inserting order_item: order_id=ORD-682556844CF28, item_id=3, quantity=1, price=15.00
+2025-05-15 04:50:44 - Inserting order_item: order_id=ORD-682556844CF28, item_id=1, quantity=1, price=12.00
+2025-05-15 04:50:44 - Payment successful: order_id=ORD-682556844CF28
+2025-05-16 15:37:39 - Customer ID: 1
+2025-05-16 15:37:39 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-16 15:37:39 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-16 15:37:39 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-16 15:37:39 - Calculated total: 27
+2025-05-16 15:37:39 - Customer saved address: Angkasa Nuri
+2025-05-16 15:39:46 - Customer ID: 1
+2025-05-16 15:39:46 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-16 15:39:46 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-16 15:39:46 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-16 15:39:46 - Calculated total: 27
+2025-05-16 15:39:46 - Customer saved address: Angkasa Nuri
+2025-05-16 15:42:19 - Customer ID: 1
+2025-05-16 15:42:19 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-16 15:42:19 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-16 15:42:19 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-16 15:42:19 - Calculated total: 27
+2025-05-16 15:42:19 - Customer saved address: Angkasa Nuri
+2025-05-16 15:42:19 - Received make_payment request: {"csrf_token":"0b24a51ba478bfe5847cfd506ec5f745f41a3ec58053ea8a8b80e7c5c64e574a","delivery_method":"delivery","delivery_address":"Angkasa Nuri","payment_method_id":"3","method":"card","amount":"27","make_payment":"1"}
+2025-05-16 15:42:19 - Received amount: 27, Expected total: 27
+2025-05-16 15:42:19 - Delivery method: delivery, Delivery address: Angkasa Nuri
+2025-05-16 15:42:19 - Payment method: card, Payment method ID: 3
+2025-05-16 15:42:19 - Delivery method validation passed: delivery
+2025-05-16 15:42:19 - Delivery address validation passed: Angkasa Nuri
+2025-05-16 15:42:19 - Saved delivery address for customer_id=1: Angkasa Nuri
+2025-05-16 15:42:19 - Generated order_id: ORD-682740BB28138
+2025-05-16 15:42:19 - Executing SQL for orders insert: 
+            INSERT INTO orders (order_id, customer_id, items, total, status, created_at)
+            VALUES (?, ?, ?, ?, 'pending', NOW())
+        
+2025-05-16 15:42:19 - Inserting order_item: order_id=ORD-682740BB28138, item_id=3, quantity=1, price=15.00
+2025-05-16 15:42:19 - Inserting order_item: order_id=ORD-682740BB28138, item_id=1, quantity=1, price=12.00
+2025-05-16 15:42:19 - Payment successful: order_id=ORD-682740BB28138
+2025-05-16 16:17:54 - Customer ID: 1
+2025-05-16 16:17:54 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-16 16:17:54 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-16 16:17:54 - Calculated total: 14
+2025-05-16 16:17:54 - Customer saved address: Angkasa Nuri
+2025-05-16 16:19:50 - Customer ID: 1
+2025-05-16 16:19:50 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-16 16:19:50 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-16 16:19:50 - Calculated total: 14
+2025-05-16 16:19:50 - Customer saved address: Angkasa Nuri
+2025-05-16 16:30:48 - Item: Crispy Chicken Burger, Photo: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-16 16:30:48 - Customer address: Angkasa Nuri
+2025-05-16 16:31:06 - Item: Crispy Chicken Burger, Photo: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-16 16:31:06 - Customer address: Angkasa Nuri
+2025-05-16 16:38:23 - Item: Crispy Chicken Burger, Photo: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-16 16:38:23 - Customer address: Angkasa Nuri
+2025-05-16 16:38:30 - Item: Crispy Chicken Burger, Photo: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-16 16:38:30 - Customer address: Angkasa Nuri
+2025-05-16 16:44:55 - Customer ID: 1
+2025-05-16 16:44:55 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-16 16:44:55 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-16 16:44:55 - Calculated total: 14
+2025-05-16 16:44:55 - Customer saved address: Angkasa Nuri
+2025-05-16 16:50:04 - Customer ID: 1
+2025-05-16 16:50:04 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-16 16:50:04 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-16 16:50:04 - Calculated total: 14
+2025-05-16 16:50:04 - Customer saved address: Angkasa Nuri
+2025-05-16 17:18:12 - Customer ID: 1
+2025-05-16 17:18:12 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-16 17:18:12 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-16 17:18:12 - Calculated total: 14
+2025-05-16 17:18:12 - Customer saved address: Angkasa Nuri
+2025-05-16 17:18:58 - Customer ID: 1
+2025-05-16 17:18:58 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-16 17:18:58 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-16 17:18:58 - Calculated total: 14
+2025-05-16 17:18:58 - Customer saved address: Angkasa Nuri
+2025-05-17 03:03:18 - Customer ID: 1
+2025-05-17 03:03:18 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 03:03:18 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 03:03:18 - Calculated total: 14
+2025-05-17 03:03:18 - Customer saved address: Angkasa Nuri
+2025-05-17 03:04:34 - Customer ID: 1
+2025-05-17 03:04:34 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 03:04:34 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 03:04:34 - Calculated total: 14
+2025-05-17 03:04:34 - Customer saved address: Angkasa Nuri
+2025-05-17 09:52:14 - Customer ID: 1
+2025-05-17 09:52:14 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 09:52:14 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 09:52:14 - Calculated total: 14
+2025-05-17 09:52:14 - Customer saved address: Angkasa Nuri
+2025-05-17 09:52:24 - Customer ID: 1
+2025-05-17 09:52:24 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 09:52:24 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 09:52:24 - Calculated total: 14
+2025-05-17 09:52:24 - Customer saved address: Angkasa Nuri
+2025-05-17 11:03:10 - Customer ID: 1
+2025-05-17 11:03:10 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:03:10 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:03:10 - Calculated total: 14
+2025-05-17 11:03:10 - Customer saved address: Angkasa Nuri
+2025-05-17 11:03:15 - Customer ID: 1
+2025-05-17 11:03:15 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:03:15 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:03:15 - Calculated total: 14
+2025-05-17 11:03:15 - Customer saved address: Angkasa Nuri
+2025-05-17 11:03:29 - Customer ID: 1
+2025-05-17 11:03:29 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:03:29 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:03:29 - Calculated total: 14
+2025-05-17 11:03:29 - Customer saved address: Angkasa Nuri
+2025-05-17 11:09:31 - Customer ID: 1
+2025-05-17 11:09:31 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:09:31 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:09:31 - Calculated total: 14
+2025-05-17 11:09:31 - Customer saved address: Angkasa Nuri
+2025-05-17 11:09:54 - Customer ID: 1
+2025-05-17 11:09:54 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:09:54 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:09:54 - Calculated total: 14
+2025-05-17 11:09:54 - Customer saved address: Angkasa Nuri
+2025-05-17 11:09:54 - Attempting to add payment method: method_type=digital_wallet
+2025-05-17 11:09:54 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-05-17 11:09:55 - Customer ID: 1
+2025-05-17 11:09:55 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:09:55 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:09:55 - Calculated total: 14
+2025-05-17 11:09:55 - Customer saved address: Angkasa Nuri
+2025-05-17 11:09:55 - Attempting to add payment method: method_type=digital_wallet
+2025-05-17 11:09:55 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-05-17 11:13:49 - Customer ID: 1
+2025-05-17 11:13:49 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:13:49 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:13:49 - Calculated total: 14
+2025-05-17 11:13:49 - Customer saved address: Angkasa Nuri
+2025-05-17 11:15:13 - Customer ID: 1
+2025-05-17 11:15:13 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:15:13 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:15:13 - Calculated total: 14
+2025-05-17 11:15:13 - Customer saved address: Angkasa Nuri
+2025-05-17 11:22:16 - Customer ID: 1
+2025-05-17 11:22:16 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:22:16 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:22:16 - Calculated total: 14
+2025-05-17 11:22:16 - Customer saved address: Angkasa Nuri
+2025-05-17 11:22:21 - Customer ID: 1
+2025-05-17 11:22:21 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:22:21 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:22:21 - Calculated total: 14
+2025-05-17 11:22:21 - Customer saved address: Angkasa Nuri
+2025-05-17 11:30:01 - Customer ID: 1
+2025-05-17 11:30:01 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:30:01 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:30:01 - Calculated total: 14
+2025-05-17 11:30:01 - Customer saved address: Angkasa Nuri
+2025-05-17 11:30:10 - Customer ID: 1
+2025-05-17 11:30:10 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:30:10 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:30:10 - Calculated total: 14
+2025-05-17 11:30:10 - Customer saved address: Angkasa Nuri
+2025-05-17 11:30:10 - Received make_payment request: {"csrf_token":"3b1693051837df0f8b983a25b5ad665aa9d71b87ff71d29dc7f9ef058412397a","delivery_method":"pickup","delivery_address":"Angkasa Nuri","payment_method_id":"","method":"","amount":"14","make_payment":"1"}
+2025-05-17 11:30:10 - Received amount: 14, Expected total: 14
+2025-05-17 11:30:10 - Delivery method: pickup, Delivery address: N/A
+2025-05-17 11:30:10 - Payment method: , Payment method ID: 0
+2025-05-17 11:30:10 - Validation failed: Invalid payment method ()
+2025-05-17 11:30:12 - Customer ID: 1
+2025-05-17 11:30:12 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:30:12 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:30:12 - Calculated total: 14
+2025-05-17 11:30:12 - Customer saved address: Angkasa Nuri
+2025-05-17 11:31:19 - Customer ID: 1
+2025-05-17 11:31:19 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:31:19 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:31:19 - Calculated total: 14
+2025-05-17 11:31:19 - Customer saved address: Angkasa Nuri
+2025-05-17 11:31:20 - Customer ID: 1
+2025-05-17 11:31:20 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-17 11:31:20 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 11:31:20 - Calculated total: 14
+2025-05-17 11:31:20 - Customer saved address: Angkasa Nuri
+2025-05-17 11:31:20 - Received make_payment request: {"csrf_token":"3b1693051837df0f8b983a25b5ad665aa9d71b87ff71d29dc7f9ef058412397a","delivery_method":"pickup","delivery_address":"Angkasa Nuri","payment_method_id":"","method":"","amount":"14","make_payment":"1"}
+2025-05-17 11:31:20 - Received amount: 14, Expected total: 14
+2025-05-17 11:31:20 - Delivery method: pickup, Delivery address: N/A
+2025-05-17 11:31:20 - Payment method: , Payment method ID: 0
+2025-05-17 11:31:20 - Validation failed: Invalid payment method ()
+2025-05-17 11:35:25 - Customer ID: 1
+2025-05-17 11:35:25 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-17 11:35:25 - Total: 14
+2025-05-17 11:35:25 - Address: Angkasa Nuri
+2025-05-17 11:35:26 - Customer ID: 1
+2025-05-17 11:35:26 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-17 11:35:26 - Total: 14
+2025-05-17 11:35:26 - Address: Angkasa Nuri
+2025-05-17 11:40:32 - Customer ID: 1
+2025-05-17 11:40:32 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-17 11:40:32 - Total: 14
+2025-05-17 11:40:32 - Address: Angkasa Nuri
+2025-05-17 11:40:53 - Customer ID: 1
+2025-05-17 11:40:53 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-17 11:40:53 - Total: 14
+2025-05-17 11:40:53 - Address: Angkasa Nuri
+2025-05-17 11:42:36 - Customer ID: 1
+2025-05-17 11:42:36 - Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-17 11:42:36 - Total: 14
+2025-05-17 11:42:36 - Address: Angkasa Nuri
+2025-05-17 12:43:23 - Error fetching customer address: Unknown column 'state' in 'field list'
+2025-05-17 12:43:23 - Error fetching payment methods: Unknown column 'card_number' in 'field list'
+2025-05-17 12:49:53 - Error fetching customer address: Unknown column 'state' in 'field list'
+2025-05-17 12:49:53 - Customer ID: 1, Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 12:49:53 - Total: 14, Address: {"street_address":"","city":"","postal_code":"","state":""}
+2025-05-17 12:50:10 - Error fetching customer address: Unknown column 'state' in 'field list'
+2025-05-17 12:50:10 - Customer ID: 1, Cart items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-17 12:50:10 - Total: 14, Address: {"street_address":"","city":"","postal_code":"","state":""}
+2025-05-17 12:50:10 - Payment successful: order_id=ORD-682869E20B9FD
+2025-05-17 12:50:23 - Error fetching customer address: Unknown column 'state' in 'field list'
+2025-05-17 12:50:23 - Customer ID: 1, Cart items: []
+2025-05-17 12:50:23 - Total: 0, Address: {"street_address":"","city":"","postal_code":"","state":""}
+2025-05-17 12:50:33 - Error fetching customer address: Unknown column 'state' in 'field list'
+2025-05-17 12:50:33 - Customer ID: 1, Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-17 12:50:33 - Total: 12, Address: {"street_address":"","city":"","postal_code":"","state":""}
+2025-05-17 12:52:06 - Error fetching customer address: Unknown column 'state' in 'field list'
+2025-05-17 12:52:06 - Customer ID: 1, Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-17 12:52:06 - Total: 12, Address: {"street_address":"","city":"","postal_code":"","state":""}
+2025-05-17 12:52:06 - Payment successful: order_id=ORD-68286A56DE783
+2025-05-17 13:48:27 - Customer ID: 1
+2025-05-17 13:48:27 - Customer saved address: {"street_address":"Angkasa Nuri","city":"","state":"","postal_code":""}
+2025-05-17 13:48:27 - Cart items: []
+2025-05-17 13:48:27 - Calculated total: 0
+2025-05-17 13:48:38 - Customer ID: 1
+2025-05-17 13:48:38 - Customer saved address: {"street_address":"Angkasa Nuri","city":"","state":"","postal_code":""}
+2025-05-17 13:48:38 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-17 13:48:38 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-17 13:48:38 - Calculated total: 12
+2025-05-17 13:56:48 - Customer ID: 1
+2025-05-17 13:56:48 - Customer saved address: {"street_address":"Angkasa Nuri","city":"","postal_code":""}
+2025-05-17 13:56:48 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-17 13:56:48 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-17 13:56:48 - Calculated total: 12
+2025-05-17 13:56:59 - Customer ID: 1
+2025-05-17 13:56:59 - Customer saved address: {"street_address":"Angkasa Nuri","city":"","postal_code":""}
+2025-05-17 13:56:59 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-17 13:56:59 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-17 13:56:59 - Calculated total: 12
+2025-05-17 13:56:59 - Received make_payment request: {"csrf_token":"3b1693051837df0f8b983a25b5ad665aa9d71b87ff71d29dc7f9ef058412397a","delivery_method":"delivery","delivery_street_address":"Angkasa Nuri","delivery_city":"Kuala Lumpur","delivery_postal_code":"50450","save_address":"1","payment_method_id":"3","method":"card","amount":"12","make_payment":"1"}
+2025-05-17 13:56:59 - Received amount: 12, Expected total: 12
+2025-05-17 13:56:59 - Delivery method: delivery, Delivery address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-17 13:56:59 - Save address: Yes
+2025-05-17 13:56:59 - Payment method: card, Payment method ID: 3
+2025-05-17 13:56:59 - Saved delivery address for customer_id=1: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-17 13:56:59 - Generated order_id: ORD-6828798B96011
+2025-05-17 13:56:59 - Payment successful: order_id=ORD-6828798B96011
+2025-05-17 14:41:57 - Customer ID: 1
+2025-05-17 14:41:57 - Customer saved address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-17 14:41:57 - Cart items: []
+2025-05-17 14:41:57 - Calculated total: 0
+2025-05-17 14:42:00 - Customer ID: 1
+2025-05-17 14:42:00 - Customer saved address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-17 14:42:00 - Cart items: []
+2025-05-17 14:42:00 - Calculated total: 0
+2025-05-17 14:42:01 - Customer ID: 1
+2025-05-17 14:42:01 - Customer saved address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-17 14:42:01 - Cart items: []
+2025-05-17 14:42:01 - Calculated total: 0
+2025-05-17 15:14:20 - Customer ID: 1
+2025-05-17 15:14:20 - Customer saved address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-17 15:14:20 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-17 15:14:20 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"}]
+2025-05-17 15:14:20 - Calculated total: 15
+2025-05-17 15:14:24 - Customer ID: 1
+2025-05-17 15:14:24 - Customer saved address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-17 15:14:24 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-17 15:14:24 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"}]
+2025-05-17 15:14:24 - Calculated total: 15
+2025-05-17 15:14:24 - Received make_payment request: {"csrf_token":"590aa9d9ffdb445a4eea4a7ac549a69448bc82e447ee8b31601eb5b06e975cf6","delivery_method":"pickup","delivery_street_address":"Angkasa Nuri","delivery_city":"Kuala Lumpur","delivery_postal_code":"50450","payment_method_id":"3","method":"card","amount":"15","make_payment":"1"}
+2025-05-17 15:14:24 - Received amount: 15, Expected total: 15
+2025-05-17 15:14:24 - Delivery method: pickup, Delivery address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-17 15:14:24 - Save address: No
+2025-05-17 15:14:24 - Payment method: card, Payment method ID: 3
+2025-05-17 15:14:24 - Generated order_id: ORD-68288BB09FC83
+2025-05-17 15:14:24 - Payment successful: order_id=ORD-68288BB09FC83
+2025-05-18 04:59:48 - Customer ID: 1
+2025-05-18 04:59:48 - Customer saved address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-18 04:59:48 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-18 04:59:48 - Cart items: [{"item_id":3,"quantity":2,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"}]
+2025-05-18 04:59:48 - Calculated total: 30
+2025-05-18 04:59:54 - Customer ID: 1
+2025-05-18 04:59:54 - Customer saved address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-18 04:59:54 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-18 04:59:54 - Cart items: [{"item_id":3,"quantity":2,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"}]
+2025-05-18 04:59:54 - Calculated total: 30
+2025-05-18 04:59:54 - Received make_payment request: {"csrf_token":"590aa9d9ffdb445a4eea4a7ac549a69448bc82e447ee8b31601eb5b06e975cf6","delivery_method":"delivery","delivery_street_address":"Angkasa Nuri","delivery_city":"Kuala Lumpur","delivery_postal_code":"50450","save_address":"1","payment_method_id":"8","method":"card","amount":"30","make_payment":"1"}
+2025-05-18 04:59:54 - Received amount: 30, Expected total: 30
+2025-05-18 04:59:54 - Delivery method: delivery, Delivery address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-18 04:59:54 - Save address: Yes
+2025-05-18 04:59:54 - Payment method: card, Payment method ID: 8
+2025-05-18 04:59:54 - Saved delivery address for customer_id=1: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-18 04:59:54 - Generated order_id: ORD-68294D2AA806D
+2025-05-18 04:59:54 - Payment successful: order_id=ORD-68294D2AA806D
+2025-05-18 05:26:42 - Customer ID: 1
+2025-05-18 05:26:42 - Customer saved address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-18 05:26:42 - Cart items: []
+2025-05-18 05:26:42 - Calculated total: 0
+2025-05-18 05:26:49 - Customer ID: 1
+2025-05-18 05:26:49 - Customer saved address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-18 05:26:49 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-18 05:26:49 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"}]
+2025-05-18 05:26:49 - Calculated total: 15
+2025-05-18 05:26:54 - Customer ID: 1
+2025-05-18 05:26:54 - Customer saved address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-18 05:26:54 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-18 05:26:54 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"}]
+2025-05-18 05:26:54 - Calculated total: 15
+2025-05-18 05:26:54 - Received make_payment request: {"csrf_token":"590aa9d9ffdb445a4eea4a7ac549a69448bc82e447ee8b31601eb5b06e975cf6","delivery_method":"pickup","delivery_street_address":"Angkasa Nuri","delivery_city":"Kuala Lumpur","delivery_postal_code":"50450","payment_method_id":"3","method":"card","amount":"15","make_payment":"1"}
+2025-05-18 05:26:54 - Received amount: 15, Expected total: 15
+2025-05-18 05:26:54 - Delivery method: pickup, Delivery address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-18 05:26:54 - Save address: No
+2025-05-18 05:26:54 - Payment method: card, Payment method ID: 3
+2025-05-18 05:26:54 - Generated order_id: ORD-6829537E041BE
+2025-05-18 05:26:54 - Payment successful: order_id=ORD-6829537E041BE
+2025-05-20 06:01:37 - Customer ID: 1
+2025-05-20 06:01:37 - Customer saved address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:01:37 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-20 06:01:37 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:01:37 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-20 06:01:37 - Calculated total: 27
+2025-05-20 06:02:05 - Customer ID: 1
+2025-05-20 06:02:05 - Customer saved address: {"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:02:05 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-20 06:02:05 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:02:05 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-20 06:02:05 - Calculated total: 27
+2025-05-20 06:02:05 - Received make_payment request: {"csrf_token":"7777fc8bd501ef4c94a6a7ce33f8892de4120dbb053304956466204bdb0ec100","delivery_method":"delivery","delivery_street_address":"4501, Angkasa Nuri","delivery_city":"Kuala Lumpur","delivery_postal_code":"50450","save_address":"1","payment_method_id":"3","method":"card","amount":"27","make_payment":"1"}
+2025-05-20 06:02:05 - Received amount: 27, Expected total: 27
+2025-05-20 06:02:05 - Delivery method: delivery, Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:02:05 - Save address: Yes
+2025-05-20 06:02:05 - Payment method: card, Payment method ID: 3
+2025-05-20 06:02:05 - Saved delivery address for customer_id=1: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:02:05 - Generated order_id: ORD-682BFEBDD1703
+2025-05-20 06:02:05 - Payment successful: order_id=ORD-682BFEBDD1703
+2025-05-20 06:02:23 - Customer ID: 1
+2025-05-20 06:02:23 - Customer saved address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:02:23 - Cart items: []
+2025-05-20 06:02:23 - Calculated total: 0
+2025-05-20 06:02:52 - Customer ID: 1
+2025-05-20 06:02:52 - Customer saved address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:02:52 - Cart items: []
+2025-05-20 06:02:52 - Calculated total: 0
+2025-05-20 06:03:00 - Customer ID: 1
+2025-05-20 06:03:00 - Customer saved address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:03:00 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:03:00 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-20 06:03:00 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"},{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-20 06:03:00 - Calculated total: 26
+2025-05-20 06:04:28 - Customer ID: 1
+2025-05-20 06:04:28 - Customer saved address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:04:28 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:04:28 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-20 06:04:28 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"},{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-20 06:04:28 - Calculated total: 26
+2025-05-20 06:04:28 - Attempting to add payment method: method_type=digital_wallet
+2025-05-20 06:04:28 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-05-20 06:04:53 - Customer ID: 1
+2025-05-20 06:04:53 - Customer saved address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:04:53 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:04:53 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-20 06:04:53 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"},{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-20 06:04:53 - Calculated total: 26
+2025-05-20 06:05:19 - Customer ID: 1
+2025-05-20 06:05:19 - Customer saved address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:05:19 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:05:19 - Item: Crispy Chicken Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-05-20 06:05:19 - Cart items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"},{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg","category":"burger"}]
+2025-05-20 06:05:19 - Calculated total: 26
+2025-05-20 06:05:19 - Received make_payment request: {"csrf_token":"7777fc8bd501ef4c94a6a7ce33f8892de4120dbb053304956466204bdb0ec100","delivery_method":"delivery","delivery_street_address":"4501, Angkasa Nuri","delivery_city":"Kuala Lumpur","delivery_postal_code":"50450","payment_method_id":"9","method":"digital_wallet","amount":"26","make_payment":"1"}
+2025-05-20 06:05:19 - Received amount: 26, Expected total: 26
+2025-05-20 06:05:19 - Delivery method: delivery, Delivery address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:05:19 - Save address: No
+2025-05-20 06:05:19 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-20 06:05:19 - Generated order_id: ORD-682BFF7F8F844
+2025-05-20 06:05:19 - Payment successful: order_id=ORD-682BFF7F8F844
+2025-05-20 06:09:10 - Customer ID: 1
+2025-05-20 06:09:10 - Customer saved address: {"street_address":"4501, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"}
+2025-05-20 06:09:10 - Cart items: []
+2025-05-20 06:09:10 - Calculated total: 0
+2025-05-20 06:10:12 - Customer ID: 2
+2025-05-20 06:10:12 - Customer saved address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:10:12 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-20 06:10:12 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:10:12 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-20 06:10:12 - Calculated total: 27
+2025-05-20 06:10:53 - Customer ID: 2
+2025-05-20 06:10:53 - Customer saved address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:10:53 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-20 06:10:53 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:10:53 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-20 06:10:53 - Calculated total: 27
+2025-05-20 06:11:13 - Customer ID: 2
+2025-05-20 06:11:13 - Customer saved address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:11:13 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-20 06:11:13 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:11:13 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-20 06:11:13 - Calculated total: 27
+2025-05-20 06:11:13 - Attempting to add payment method: method_type=digital_wallet
+2025-05-20 06:11:13 - Adding digital wallet - Wallet Type: tng, Phone Number: 01111126183
+2025-05-20 06:11:14 - Payment method added successfully: ID 18
+2025-05-20 06:11:19 - Customer ID: 2
+2025-05-20 06:11:19 - Customer saved address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:11:19 - Item: Charcoal-grilled burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-05-20 06:11:19 - Item: Classic Onion Burger, Photo Path: /Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-05-20 06:11:19 - Cart items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg","category":"burger"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg","category":"burger"}]
+2025-05-20 06:11:19 - Calculated total: 27
+2025-05-20 06:11:19 - Received make_payment request: {"csrf_token":"edd252ec471ac843f2f044e0f84e90e4fe819145237712db0fd09241d4b9b879","delivery_method":"pickup","delivery_street_address":"","delivery_city":"","delivery_postal_code":"","payment_method_id":"18","method":"digital_wallet","amount":"27","make_payment":"1"}
+2025-05-20 06:11:19 - Received amount: 27, Expected total: 27
+2025-05-20 06:11:19 - Delivery method: pickup, Delivery address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:11:19 - Save address: No
+2025-05-20 06:11:19 - Payment method: digital_wallet, Payment method ID: 18
+2025-05-20 06:11:19 - Generated order_id: ORD-682C00E7D4239
+2025-05-20 06:11:19 - Payment successful: order_id=ORD-682C00E7D4239
+2025-05-20 06:12:56 - Customer ID: 2
+2025-05-20 06:12:56 - Customer saved address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:12:56 - Cart items: []
+2025-05-20 06:12:56 - Calculated total: 0
+2025-05-20 06:42:19 - Customer ID: 2
+2025-05-20 06:42:19 - Customer saved address: {"street_address":"","city":"","postal_code":""}
+2025-05-20 06:42:19 - Cart items: []
+2025-05-20 06:42:19 - Calculated total: 0
+2025-05-20 06:51:48 - Attempting to add delivery address: street=4501, Angkasa Nuri, city=Kuala Lumpur, postal_code=50450, default=1
+2025-05-20 06:51:48 - Delivery address added successfully: ID 1, 4501, Angkasa Nuri, Kuala Lumpur, 
+2025-05-20 06:52:05 - Received make_payment request: {"csrf_token":"edd252ec471ac843f2f044e0f84e90e4fe819145237712db0fd09241d4b9b879","delivery_method":"delivery","delivery_address_id":"1","save_address":"1","payment_method_id":"18","method":"digital_wallet","amount":"12","make_payment":"1"}
+2025-05-20 06:52:05 - Received amount: 12, Expected total: 12
+2025-05-20 06:52:05 - Delivery method: delivery, Delivery address ID: 1
+2025-05-20 06:52:05 - Payment method: digital_wallet, Payment method ID: 18
+2025-05-20 06:52:05 - Generated order_id: ORD-682C0A757D1A8
+2025-05-20 06:52:05 - Payment successful: order_id=ORD-682C0A757D1A8
+2025-05-20 07:24:00 - Attempting to add payment method: method_type=digital_wallet
+2025-05-20 07:24:00 - Adding digital wallet - Wallet Type: tng, Phone Number: 01111126183
+2025-05-20 07:24:00 - Payment method added successfully: ID 19
+2025-05-20 07:24:02 - Received make_payment request: {"csrf_token":"4d688b72ebd8ca70aa7970475d288e32fb6063c534f9604ac8c471bfffd70a09","delivery_method":"pickup","delivery_address_id":"","save_address":"1","payment_method_id":"19","method":"digital_wallet","amount":"15","make_payment":"1"}
+2025-05-20 07:24:02 - Received amount: 15, Expected total: 15
+2025-05-20 07:24:02 - Delivery method: pickup, Delivery address ID: 0
+2025-05-20 07:24:02 - Payment method: digital_wallet, Payment method ID: 19
+2025-05-20 07:24:02 - Generated order_id: ORD-682C11F2171A2
+2025-05-20 07:24:02 - Payment successful: order_id=ORD-682C11F2171A2
+2025-05-21 09:00:48 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:00:48 - Received amount: 12, Expected total: 12
+2025-05-21 09:00:48 - Delivery method: pickup, Delivery address ID: 0
+2025-05-21 09:00:48 - Payment method: card, Payment method ID: 3
+2025-05-21 09:00:48 - Generated order_id: ORD-682D7A2053B7C
+2025-05-21 09:00:48 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:01:01 - Attempting to add delivery address: street=4501, Angkasa Nuri, city=Kuala Lumpur, postal_code=50450, default=1
+2025-05-21 09:01:01 - Delivery address added successfully: ID 2, 4501, Angkasa Nuri, Kuala Lumpur, 50450
+2025-05-21 09:01:03 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:01:03 - Received amount: 12, Expected total: 12
+2025-05-21 09:01:03 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:01:03 - Payment method: card, Payment method ID: 3
+2025-05-21 09:01:03 - Generated order_id: ORD-682D7A2FD811B
+2025-05-21 09:01:03 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:01:08 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:01:08 - Received amount: 12, Expected total: 12
+2025-05-21 09:01:08 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:01:08 - Payment method: card, Payment method ID: 3
+2025-05-21 09:01:08 - Generated order_id: ORD-682D7A34E2E8A
+2025-05-21 09:01:08 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:01:51 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:01:51 - Received amount: 12, Expected total: 12
+2025-05-21 09:01:51 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:01:51 - Payment method: card, Payment method ID: 3
+2025-05-21 09:01:51 - Generated order_id: ORD-682D7A5FA4C3D
+2025-05-21 09:01:51 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:01:57 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:01:57 - Received amount: 12, Expected total: 12
+2025-05-21 09:01:57 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:01:57 - Payment method: card, Payment method ID: 3
+2025-05-21 09:01:57 - Generated order_id: ORD-682D7A6592235
+2025-05-21 09:01:57 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:01:59 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:01:59 - Received amount: 12, Expected total: 12
+2025-05-21 09:01:59 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:01:59 - Payment method: card, Payment method ID: 3
+2025-05-21 09:01:59 - Generated order_id: ORD-682D7A6701DD0
+2025-05-21 09:01:59 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:01:59 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:01:59 - Received amount: 12, Expected total: 12
+2025-05-21 09:01:59 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:01:59 - Payment method: card, Payment method ID: 3
+2025-05-21 09:01:59 - Generated order_id: ORD-682D7A67C8DA6
+2025-05-21 09:01:59 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:00 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:00 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:00 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:00 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:00 - Generated order_id: ORD-682D7A68086B0
+2025-05-21 09:02:00 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:00 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:00 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:00 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:00 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:00 - Generated order_id: ORD-682D7A683790A
+2025-05-21 09:02:00 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:00 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:00 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:00 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:00 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:00 - Generated order_id: ORD-682D7A6864874
+2025-05-21 09:02:00 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:00 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:00 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:00 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:00 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:00 - Generated order_id: ORD-682D7A68924AF
+2025-05-21 09:02:00 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:01 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:01 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:01 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:01 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:01 - Generated order_id: ORD-682D7A691C1F9
+2025-05-21 09:02:01 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:01 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:01 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:01 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:01 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:01 - Generated order_id: ORD-682D7A69698CF
+2025-05-21 09:02:01 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:01 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:01 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:01 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:01 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:01 - Generated order_id: ORD-682D7A699E8A6
+2025-05-21 09:02:01 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:01 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:01 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:01 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:01 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:01 - Generated order_id: ORD-682D7A69CE28F
+2025-05-21 09:02:01 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:02 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:02 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:02 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:02 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:02 - Generated order_id: ORD-682D7A6A095FF
+2025-05-21 09:02:02 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:02 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:02 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:02 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:02 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:02 - Generated order_id: ORD-682D7A6A38266
+2025-05-21 09:02:02 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:02 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:02 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:02 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:02 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:02 - Generated order_id: ORD-682D7A6A666DC
+2025-05-21 09:02:02 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:02 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:02 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:02 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:02 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:02 - Generated order_id: ORD-682D7A6A92F05
+2025-05-21 09:02:02 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:04 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:04 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:04 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:04 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:04 - Generated order_id: ORD-682D7A6C52DBD
+2025-05-21 09:02:04 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:18 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:18 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:18 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:18 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:18 - Generated order_id: ORD-682D7A7A3EAB7
+2025-05-21 09:02:18 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:02:21 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:02:21 - Received amount: 12, Expected total: 12
+2025-05-21 09:02:21 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:02:21 - Payment method: card, Payment method ID: 3
+2025-05-21 09:02:21 - Generated order_id: ORD-682D7A7DA50DE
+2025-05-21 09:02:21 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:03:39 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:03:39 - Received amount: 12, Expected total: 12
+2025-05-21 09:03:39 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:03:39 - Payment method: card, Payment method ID: 3
+2025-05-21 09:03:39 - Generated order_id: ORD-682D7ACB5B47C
+2025-05-21 09:03:39 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:03:46 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:03:46 - Received amount: 12, Expected total: 12
+2025-05-21 09:03:46 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:03:46 - Payment method: card, Payment method ID: 3
+2025-05-21 09:03:46 - Generated order_id: ORD-682D7AD26B61B
+2025-05-21 09:03:46 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:03:57 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:03:57 - Received amount: 12, Expected total: 12
+2025-05-21 09:03:57 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:03:57 - Payment method: card, Payment method ID: 3
+2025-05-21 09:03:57 - Generated order_id: ORD-682D7ADD5382E
+2025-05-21 09:03:57 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:02 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:02 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:02 - Delivery method: pickup, Delivery address ID: 0
+2025-05-21 09:04:02 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:02 - Generated order_id: ORD-682D7AE2DC068
+2025-05-21 09:04:02 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:06 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:06 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:06 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:06 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:06 - Generated order_id: ORD-682D7AE6B396A
+2025-05-21 09:04:06 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:07 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:07 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:07 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:07 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:07 - Generated order_id: ORD-682D7AE7820F5
+2025-05-21 09:04:07 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:07 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:07 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:07 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:07 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:07 - Generated order_id: ORD-682D7AE7AC8DB
+2025-05-21 09:04:07 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:07 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:07 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:07 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:07 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:07 - Generated order_id: ORD-682D7AE7DB80A
+2025-05-21 09:04:07 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:08 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:08 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:08 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:08 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:08 - Generated order_id: ORD-682D7AE80D442
+2025-05-21 09:04:08 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:08 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:08 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:08 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:08 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:08 - Generated order_id: ORD-682D7AE83258C
+2025-05-21 09:04:08 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:08 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:08 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:08 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:08 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:08 - Generated order_id: ORD-682D7AE85E805
+2025-05-21 09:04:08 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:08 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:08 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:08 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:08 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:08 - Generated order_id: ORD-682D7AE88261B
+2025-05-21 09:04:08 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:08 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:08 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:08 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:08 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:08 - Generated order_id: ORD-682D7AE8AB45C
+2025-05-21 09:04:08 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:51 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:51 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:51 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:51 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:51 - Generated order_id: ORD-682D7B137A8F3
+2025-05-21 09:04:51 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:04:59 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:04:59 - Received amount: 12, Expected total: 12
+2025-05-21 09:04:59 - Delivery method: delivery, Delivery address ID: 2
+2025-05-21 09:04:59 - Payment method: card, Payment method ID: 3
+2025-05-21 09:04:59 - Generated order_id: ORD-682D7B1B7E856
+2025-05-21 09:04:59 - Exception in make_payment: Unknown column &#39;items&#39; in &#39;field list&#39;
+2025-05-21 09:26:58 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:26:58 - Received amount: 12, Expected total: 12
+2025-05-21 09:26:58 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 09:26:58 - Payment method: card, Payment method ID: 3
+2025-05-21 09:26:58 - Generated order_id: ORD-682D80427759B
+2025-05-21 09:26:58 - Payment successful: order_id=ORD-682D80427759B
+2025-05-21 09:27:43 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:27:43 - Received amount: 15, Expected total: 15
+2025-05-21 09:27:43 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 09:27:43 - Payment method: card, Payment method ID: 3
+2025-05-21 09:27:43 - Generated order_id: ORD-682D806F9FBC5
+2025-05-21 09:27:43 - Payment successful: order_id=ORD-682D806F9FBC5
+2025-05-21 09:32:46 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;8&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:32:46 - Received amount: 15, Expected total: 15
+2025-05-21 09:32:46 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 09:32:46 - Payment method: card, Payment method ID: 8
+2025-05-21 09:32:46 - Generated order_id: ORD-682D819EF3ACC
+2025-05-21 09:32:47 - Payment successful: order_id=ORD-682D819EF3ACC
+2025-05-21 09:38:57 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3156b8eed8158220dc79fec73dbc3be8d4828ccb4153b877b208e3401456c0f7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;9&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 09:38:57 - Received amount: 12, Expected total: 12
+2025-05-21 09:38:57 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 09:38:57 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-21 09:38:57 - Generated order_id: ORD-682D831150BFA
+2025-05-21 09:38:57 - Payment successful: order_id=ORD-682D831150BFA
+2025-05-21 13:27:12 - Received make_payment request: {&#34;csrf_token&#34;:&#34;fea21a0ffd0bd04d774b4681be0bb6c2d279d1c4e1b477d8ae5ea85d67830bfd&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 13:27:12 - Received amount: 15, Expected total: 15
+2025-05-21 13:27:12 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 13:27:12 - Payment method: card, Payment method ID: 3
+2025-05-21 13:27:12 - Generated order_id: ORD-682DB890B5CE6
+2025-05-21 13:27:12 - Payment successful: order_id=ORD-682DB890B5CE6
+2025-05-21 15:03:54 - Received make_payment request: {&#34;csrf_token&#34;:&#34;04aa5f1c7edbe588327b093ac060bed76f3a0b160615fb55dc46810e4edc76b3&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;8&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 15:03:54 - Received amount: 15, Expected total: 15
+2025-05-21 15:03:54 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 15:03:54 - Payment method: card, Payment method ID: 8
+2025-05-21 15:03:54 - Generated order_id: ORD-682DCF3A3085A
+2025-05-21 15:03:54 - Payment successful: order_id=ORD-682DCF3A3085A
+2025-05-21 17:07:30 - Received make_payment request: {&#34;csrf_token&#34;:&#34;3cc8e91941f59cfe0931e7dce0dd1db73cf363adc0d391e65d6c931c43bf3e7d&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;9&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;14&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-21 17:07:30 - Received amount: 14, Expected total: 14
+2025-05-21 17:07:30 - Delivery method: pickup, Delivery address ID: 2
+2025-05-21 17:07:30 - Payment method: digital_wallet, Payment method ID: 9
+2025-05-21 17:07:30 - Generated order_id: ORD-682DEC323FBE1
+2025-05-21 17:07:30 - Payment successful: order_id=ORD-682DEC323FBE1
+>>>>>>> 1a754cde8b18e19b6b1c18126b723e81b059f6c3

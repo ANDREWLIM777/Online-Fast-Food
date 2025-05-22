@@ -2,7 +2,6 @@
 <?php
 require 'db_conn.php';
 include '../auth_acc.php';
-check_permission('superadmin');
 
 
 if (!isset($_GET['id'])) {
@@ -46,23 +45,6 @@ $admin = $result->fetch_assoc();
             <h3><?= htmlspecialchars($admin['name']) ?></h3>
             <p class="position"><?= htmlspecialchars($admin['position']) ?></p>
         </div>
-
-        <div class="profile-details">
-            <div class="detail-item">
-                <i class="fas fa-venus-mars"></i>
-                <div>
-                    <span class="label">Gender</span>
-                    <span class="value"><?= htmlspecialchars($admin['gender']) ?></span>
-                </div>
-            </div>
-
-            <div class="detail-item">
-                <i class="fas fa-birthday-cake"></i>
-                <div>
-                    <span class="label">Age</span>
-                    <span class="value"><?= $admin['age'] ?></span>
-                </div>
-            </div>
 
             <div class="detail-item">
                 <i class="fas fa-shield-alt"></i>

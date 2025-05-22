@@ -58,28 +58,7 @@ $customer = $result->fetch_assoc();
                         <input type="text" name="fullname" value="<?= htmlspecialchars($customer['fullname']) ?>" required>
                     </div>
                 </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Gender</label>
-                        <div class="styled-select">
-                            <i class="fas fa-venus-mars"></i>
-                            <select name="gender" required>
-                                <option value="male" <?= $customer['gender'] == 'male' ? 'selected' : '' ?>>Male</option>
-                                <option value="female" <?= $customer['gender'] == 'female' ? 'selected' : '' ?>>Female</option>
-                            </select>
-                            <div class="select-arrow"></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Age</label>
-                        <div class="input-with-icon">
-                            <i class="fas fa-birthday-cake"></i>
-                            <input type="number" name="age" value="<?= $customer['age'] ?>" required>
-                        </div>
-                    </div>
-                </div>
-
+                    
                 <div class="form-row">
                     <div class="form-group">
                         <label>Email</label>
