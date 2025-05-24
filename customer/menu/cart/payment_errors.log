@@ -1249,3 +1249,27 @@
 2025-05-21 17:07:30 - Generated order_id: ORD-682DEC323FBE1
 2025-05-21 17:07:30 - Payment successful: order_id=ORD-682DEC323FBE1
 >>>>>>> 1a754cde8b18e19b6b1c18126b723e81b059f6c3
+2025-05-22 04:44:22 - Received make_payment request: {&#34;csrf_token&#34;:&#34;2a9d0002c3648b0042ae71060fc922ea8ace9d71c6519d8cde5b7682d3b31057&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;online_banking&#34;,&#34;amount&#34;:&#34;282&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-22 04:44:22 - Received amount: 282, Expected total: 282
+2025-05-22 04:44:22 - Delivery method: delivery, Delivery address ID: 1
+2025-05-22 04:44:22 - Payment method: online_banking, Payment method ID: 1
+2025-05-22 04:44:22 - Generated order_id: ORD-682E8F8658517
+2025-05-22 04:44:22 - Payment successful: order_id=ORD-682E8F8658517
+2025-05-24 10:30:53 - Received make_payment request: {&#34;csrf_token&#34;:&#34;61265bd00beaf935113c98fb23710c0951baa5221367e331592ff0baa50c1ffe&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;online_banking&#34;,&#34;amount&#34;:&#34;90&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-24 10:30:53 - Received amount: 90, Expected total: 90
+2025-05-24 10:30:53 - Delivery method: pickup, Delivery address ID: 1
+2025-05-24 10:30:53 - Payment method: online_banking, Payment method ID: 1
+2025-05-24 10:30:53 - Generated order_id: ORD-683183BDA385D
+2025-05-24 10:30:53 - Payment successful: order_id=ORD-683183BDA385D
+2025-05-24 10:31:42 - Received make_payment request: {&#34;csrf_token&#34;:&#34;61265bd00beaf935113c98fb23710c0951baa5221367e331592ff0baa50c1ffe&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;online_banking&#34;,&#34;amount&#34;:&#34;106&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-24 10:31:42 - Received amount: 106, Expected total: 106
+2025-05-24 10:31:42 - Delivery method: delivery, Delivery address ID: 1
+2025-05-24 10:31:42 - Payment method: online_banking, Payment method ID: 1
+2025-05-24 10:31:42 - Generated order_id: ORD-683183EED4B9F
+2025-05-24 10:31:42 - Payment successful: order_id=ORD-683183EED4B9F
+2025-05-24 10:32:05 - Received make_payment request: {&#34;csrf_token&#34;:&#34;61265bd00beaf935113c98fb23710c0951baa5221367e331592ff0baa50c1ffe&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;online_banking&#34;,&#34;amount&#34;:&#34;68&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-24 10:32:05 - Received amount: 68, Expected total: 68
+2025-05-24 10:32:05 - Delivery method: delivery, Delivery address ID: 1
+2025-05-24 10:32:05 - Payment method: online_banking, Payment method ID: 1
+2025-05-24 10:32:05 - Generated order_id: ORD-683184055710E
+2025-05-24 10:32:05 - Payment successful: order_id=ORD-683184055710E
