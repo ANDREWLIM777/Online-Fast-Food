@@ -1,3 +1,0 @@
-2025-05-21 15:04:28 - Customer ID from session: 1
-2025-05-21 15:04:28 - Fetched 2 completed orders for customer_id: 1
-2025-05-21 15:04:28 - Orders: [{"order_id":"ORD-68288BB09FC83","created_at":"2025-05-17 10:01:00"},{"order_id":"ORD-6828798B96011","created_at":"2025-05-17 10:00:00"}]

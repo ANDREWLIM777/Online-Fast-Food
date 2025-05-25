@@ -1,0 +1,146 @@
+2025-05-25 12:32:24 - Autoload file not found at: C:\xampp\apache\bin\htdocs/vendor/autoload.php
+2025-05-25 12:33:34 - Autoload file not found at: C:\xampp\apache\bin\htdocs/vendor/autoload.php
+2025-05-25 13:19:16 - Autoload file not found at: C:\xampp\apache\bin\htdocs/vendor/autoload.php
+2025-05-25 13:19:33 - Autoload file not found at: C:\xampp\apache\bin\htdocs/vendor/autoload.php
+2025-05-25 13:22:18 - Updated order status to completed: ORD-6832FCC5D111C
+2025-05-25 13:22:18 - Order ORD-6832FCC5D111C completion status: completed
+2025-05-25 13:22:18 - Displaying confirmation for order: ORD-6832FCC5D111C, Customer ID: 1
+2025-05-25 13:22:18 - Order items count: 1
+2025-05-25 13:22:18 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-25 13:22:18 - Delivery method: pickup
+2025-05-25 13:22:18 - Delivery address: ""
+2025-05-25 13:22:18 - Customer email: andrew@gmail.com
+2025-05-25 13:22:18 - Payment details: 01111126183
+2025-05-25 13:22:21 - Order ORD-6832FCC5D111C completion status: completed
+2025-05-25 13:22:21 - Displaying confirmation for order: ORD-6832FCC5D111C, Customer ID: 1
+2025-05-25 13:22:21 - Order items count: 1
+2025-05-25 13:22:21 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-25 13:22:21 - Delivery method: pickup
+2025-05-25 13:22:21 - Delivery address: ""
+2025-05-25 13:22:21 - Customer email: andrew@gmail.com
+2025-05-25 13:22:21 - Payment details: 01111126183
+2025-05-25 13:22:31 - Downloaded invoice for order: ORD-6832FCC5D111C
+2025-05-25 13:36:58 - Order ORD-6832FCC5D111C completion status: completed
+2025-05-25 13:36:58 - Displaying confirmation for order: ORD-6832FCC5D111C, Customer ID: 1
+2025-05-25 13:36:58 - Order items count: 1
+2025-05-25 13:36:58 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-25 13:36:58 - Delivery method: pickup
+2025-05-25 13:36:58 - Delivery address: ""
+2025-05-25 13:36:58 - Customer email: andrew@gmail.com
+2025-05-25 13:36:58 - Payment details: 01111126183
+2025-05-25 14:55:37 - Session expired for customer_id: unknown
+2025-05-25 15:15:57 - Updated order status to completed: ORD-6833180D4BDC6
+2025-05-25 15:15:57 - Order ORD-6833180D4BDC6 completion status: completed
+2025-05-25 15:15:57 - Displaying confirmation for order: ORD-6833180D4BDC6, Customer ID: 1
+2025-05-25 15:15:57 - Order items count: 1
+2025-05-25 15:15:57 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-25 15:15:57 - Delivery method: pickup
+2025-05-25 15:15:57 - Delivery address: ""
+2025-05-25 15:15:57 - Customer email: andrew@gmail.com
+2025-05-25 15:15:57 - Payment details: 01111126183
+2025-05-25 15:16:28 - Order ORD-6833180D4BDC6 completion status: completed
+2025-05-25 15:16:28 - Displaying confirmation for order: ORD-6833180D4BDC6, Customer ID: 1
+2025-05-25 15:16:28 - Order items count: 1
+2025-05-25 15:16:28 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-25 15:16:28 - Delivery method: pickup
+2025-05-25 15:16:28 - Delivery address: ""
+2025-05-25 15:16:28 - Customer email: andrew@gmail.com
+2025-05-25 15:16:28 - Payment details: 01111126183
+2025-05-25 15:16:42 - Order ORD-68286A56DE783 completion status: completed
+2025-05-25 15:16:42 - Displaying confirmation for order: ORD-68286A56DE783, Customer ID: 1
+2025-05-25 15:16:42 - Order items count: 1
+2025-05-25 15:16:42 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-25 15:16:42 - Delivery method: pickup
+2025-05-25 15:16:42 - Delivery address: null
+2025-05-25 15:16:42 - Customer email: andrew@gmail.com
+2025-05-25 15:16:42 - Payment details: 01111126183
+2025-05-25 15:24:05 - Order ORD-68286A56DE783 completion status: completed
+2025-05-25 15:24:05 - Displaying confirmation for order: ORD-68286A56DE783, Customer ID: 1
+2025-05-25 15:24:05 - Order items count: 1
+2025-05-25 15:24:05 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-25 15:24:05 - Delivery method: pickup
+2025-05-25 15:24:05 - Delivery address: null
+2025-05-25 15:24:05 - Customer email: andrew@gmail.com
+2025-05-25 15:24:05 - Payment details: 01111126183
+2025-05-25 15:24:07 - Order ORD-68286A56DE783 completion status: completed
+2025-05-25 15:24:07 - Displaying confirmation for order: ORD-68286A56DE783, Customer ID: 1
+2025-05-25 15:24:07 - Order items count: 1
+2025-05-25 15:24:07 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-25 15:24:07 - Delivery method: pickup
+2025-05-25 15:24:07 - Delivery address: null
+2025-05-25 15:24:07 - Customer email: andrew@gmail.com
+2025-05-25 15:24:07 - Payment details: 01111126183
+2025-05-25 15:29:11 - Order ORD-68286A56DE783 completion status: completed
+2025-05-25 15:29:11 - Displaying confirmation for order: ORD-68286A56DE783, Customer ID: 1
+2025-05-25 15:29:11 - Order items count: 1
+2025-05-25 15:29:11 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-25 15:29:11 - Delivery method: pickup
+2025-05-25 15:29:11 - Delivery address: null
+2025-05-25 15:29:11 - Customer email: andrew@gmail.com
+2025-05-25 15:29:11 - Payment details: 01111126183
+2025-05-25 15:31:57 - Order ORD-6833180D4BDC6 completion status: completed
+2025-05-25 15:31:57 - Displaying confirmation for order: ORD-6833180D4BDC6, Customer ID: 1
+2025-05-25 15:31:57 - Order items count: 1
+2025-05-25 15:31:57 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-25 15:31:57 - Delivery method: pickup
+2025-05-25 15:31:57 - Delivery address: ""
+2025-05-25 15:31:57 - Customer email: andrew@gmail.com
+2025-05-25 15:31:57 - Payment details: 01111126183
+2025-05-25 15:46:25 - Order ORD-68286A56DE783 completion status: completed
+2025-05-25 15:46:25 - Displaying confirmation for order: ORD-68286A56DE783, Customer ID: 1
+2025-05-25 15:46:25 - Order items count: 1
+2025-05-25 15:46:25 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-25 15:46:25 - Delivery method: pickup
+2025-05-25 15:46:25 - Delivery address: null
+2025-05-25 15:46:25 - Customer email: andrew@gmail.com
+2025-05-25 15:46:25 - Payment details: 01111126183
+2025-05-25 16:06:34 - Order ORD-68286A56DE783 completion status: completed
+2025-05-25 16:06:34 - Displaying confirmation for order: ORD-68286A56DE783, Customer ID: 1
+2025-05-25 16:06:34 - Order items count: 1
+2025-05-25 16:06:34 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-25 16:06:34 - Delivery method: pickup
+2025-05-25 16:06:34 - Delivery address: null
+2025-05-25 16:06:34 - Customer email: andrew@gmail.com
+2025-05-25 16:06:34 - Payment details: 01111126183
+2025-05-25 16:06:36 - Order ORD-68286A56DE783 completion status: completed
+2025-05-25 16:06:36 - Displaying confirmation for order: ORD-68286A56DE783, Customer ID: 1
+2025-05-25 16:06:36 - Order items count: 1
+2025-05-25 16:06:36 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-25 16:06:36 - Delivery method: pickup
+2025-05-25 16:06:36 - Delivery address: null
+2025-05-25 16:06:36 - Customer email: andrew@gmail.com
+2025-05-25 16:06:36 - Payment details: 01111126183
+2025-05-25 16:25:44 - Order ORD-6833180D4BDC6 completion status: completed
+2025-05-25 16:25:44 - Displaying confirmation for order: ORD-6833180D4BDC6, Customer ID: 1
+2025-05-25 16:25:44 - Order items count: 1
+2025-05-25 16:25:44 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-25 16:25:44 - Delivery method: pickup
+2025-05-25 16:25:44 - Delivery address: ""
+2025-05-25 16:25:44 - Customer email: andrew@gmail.com
+2025-05-25 16:25:44 - Payment details: 01111126183
+2025-05-25 16:34:52 - Updated order status to completed: ORD-68332A8CE30E2
+2025-05-25 16:34:52 - Order ORD-68332A8CE30E2 completion status: completed
+2025-05-25 16:34:52 - Displaying confirmation for order: ORD-68332A8CE30E2, Customer ID: 1
+2025-05-25 16:34:52 - Order items count: 1
+2025-05-25 16:34:52 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-25 16:34:52 - Delivery method: delivery
+2025-05-25 16:34:52 - Delivery address: "{\"street_address\":\"4501, Angkasa Nuri\",\"city\":\"Kuala Lumpur\",\"postal_code\":\"50450\"}"
+2025-05-25 16:34:52 - Customer email: andrew@gmail.com
+2025-05-25 16:34:52 - Payment details: 01111126183
+2025-05-25 16:35:20 - Order ORD-68332A8CE30E2 completion status: completed
+2025-05-25 16:35:20 - Displaying confirmation for order: ORD-68332A8CE30E2, Customer ID: 1
+2025-05-25 16:35:20 - Order items count: 1
+2025-05-25 16:35:20 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-25 16:35:20 - Delivery method: delivery
+2025-05-25 16:35:20 - Delivery address: "{\"street_address\":\"4501, Angkasa Nuri\",\"city\":\"Kuala Lumpur\",\"postal_code\":\"50450\"}"
+2025-05-25 16:35:20 - Customer email: andrew@gmail.com
+2025-05-25 16:35:20 - Payment details: 01111126183
+2025-05-25 16:35:20 - Downloaded invoice for order: ORD-68332A8CE30E2
+2025-05-25 16:36:54 - Order ORD-68286A56DE783 completion status: completed
+2025-05-25 16:36:54 - Displaying confirmation for order: ORD-68286A56DE783, Customer ID: 1
+2025-05-25 16:36:54 - Order items count: 1
+2025-05-25 16:36:54 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-05-25 16:36:54 - Delivery method: pickup
+2025-05-25 16:36:54 - Delivery address: null
+2025-05-25 16:36:54 - Customer email: andrew@gmail.com
+2025-05-25 16:36:54 - Payment details: 01111126183

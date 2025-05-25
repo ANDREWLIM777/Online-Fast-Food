@@ -15,7 +15,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) >
     session_unset();
     session_destroy();
     $logMessage("Session expired for customer_id: " . ($_SESSION['customer_id'] ?? 'unknown'));
-    header("Location: ../../login.php?message=Session+expired");
+    header("Location: /Online-Fast-Food/login.php?message=" . urlencode("Your session has expired. Please log in again."));
     exit();
 }
 $_SESSION['last_activity'] = time();
@@ -23,18 +23,18 @@ $_SESSION['last_activity'] = time();
 // Check database connection
 if ($conn->connect_error) {
     $logMessage("Database connection failed: " . $conn->connect_error);
-    header("Location: ../../error.php?message=Database+connection+failed");
+    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database connection failed"));
     exit();
 }
 
 // Check for vendor/autoload.php
-$autoloadPath = dirname(__DIR__, 3) . '/vendor/autoload.php';
+$autoloadPath = dirname(__DIR__, 2) . '/vendor/autoload.php';
 if (!file_exists($autoloadPath)) {
     $logMessage("Autoload file not found at: $autoloadPath");
     if ($debug) {
         die("Debug: Autoload file not found at: $autoloadPath");
     }
-    header("Location: ../../error.php?message=Required+dependencies+missing");
+    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Required dependencies missing"));
     exit();
 }
 require $autoloadPath;
@@ -44,11 +44,25 @@ use Dompdf\Dompdf;
 // Check if user is logged in
 if (!isset($_SESSION['customer_id'])) {
     $logMessage("No customer_id in session");
-    header("Location: ../../login.php");
+    header("Location: /Online-Fast-Food/login.php");
     exit();
 }
 
 $customerId = (int)$_SESSION['customer_id'];
+
+// Generate CSRF token
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+$csrfToken = $_SESSION['csrf_token'];
+$csrf_param = urlencode($csrfToken);
+
+// Validate CSRF token for GET requests
+if (isset($_GET['csrf_token']) && $_GET['csrf_token'] !== $csrfToken) {
+    $logMessage("Invalid CSRF token for order_id: " . ($_GET['order_id'] ?? 'unknown'));
+    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Invalid CSRF token"));
+    exit();
+}
 
 // Handle order_id from GET or session
 $orderCode = '';
@@ -65,7 +79,7 @@ if (isset($_GET['order_id'])) {
     ");
     if (!$stmt) {
         $logMessage("Prepare failed for payment_history: " . $conn->error);
-        header("Location: ../../error.php?message=Database+error");
+        header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
         exit();
     }
     $stmt->bind_param("si", $orderCode, $customerId);
@@ -94,7 +108,7 @@ if (isset($_GET['order_id'])) {
     } elseif (!is_array($deliveryAddress)) {
         $deliveryAddress = null;
     }
-    $timestamp = $order['timestamp'] ?? date('Y-m-d H:i:s');
+    $timestamp = $order['timestamp'] ?? date('Y-m-d H:i:s', strtotime('2025-05-25 19:29:00 +08:00'));
     $sessionItems = $order['items'] ?? [];
 } else {
     $logMessage("No order_id or last_order for customer_id: $customerId");
@@ -111,7 +125,7 @@ if (empty($orderCode) && empty($errorMessage)) {
 $stmt = $conn->prepare("SELECT email FROM customers WHERE id = ?");
 if (!$stmt) {
     $logMessage("Prepare failed for customer email: " . $conn->error);
-    header("Location: ../../error.php?message=Database+error");
+    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
     exit();
 }
 $stmt->bind_param("i", $customerId);
@@ -120,35 +134,48 @@ $customer = $stmt->get_result()->fetch_assoc();
 $customerEmail = $customer['email'] ?? 'unknown@example.com';
 $stmt->close();
 
-// Update order status to completed if payment is confirmed
-if (isset($_SESSION['last_order']) && !empty($orderCode)) {
-    $stmt = $conn->prepare("
-        SELECT status FROM payment_history WHERE order_id = ? AND customer_id = ?
-    ");
+// Sync order to orders table
+if (!empty($orderCode)) {
+    $stmt = $conn->prepare("SELECT order_id, status FROM orders WHERE order_id = ? AND customer_id = ?");
     if (!$stmt) {
-        $logMessage("Prepare failed for payment status: " . $conn->error);
-        header("Location: ../../error.php?message=Database+error");
-        exit();
-    }
-    $stmt->bind_param("si", $orderCode, $customerId);
-    $stmt->execute();
-    $payment = $stmt->get_result()->fetch_assoc();
-    $stmt->close();
+        $logMessage("Prepare failed for orders check: " . $conn->error);
+    } else {
+        $stmt->bind_param("si", $orderCode, $customerId);
+        $stmt->execute();
+        $existingOrder = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
 
-    if ($payment && $payment['status'] === 'completed') {
-        $stmt = $conn->prepare("
-            UPDATE orders SET status = 'completed' WHERE order_id = ? AND customer_id = ?
-        ");
-        if (!$stmt) {
-            $logMessage("Prepare failed for order update: " . $conn->error);
-        } else {
-            $stmt->bind_param("si", $orderCode, $customerId);
-            if ($stmt->execute()) {
-                $logMessage("Updated order status to completed for order: $orderCode");
+        if (!$existingOrder) {
+            $stmt = $conn->prepare("
+                INSERT INTO orders (order_id, customer_id, total, status, created_at)
+                VALUES (?, ?, ?, 'completed', ?)
+            ");
+            if (!$stmt) {
+                $logMessage("Prepare failed for orders insert: " . $conn->error);
             } else {
-                $logMessage("Failed to update order status for order: $orderCode - " . $stmt->error);
+                $total = $order['amount'] ?? 0;
+                $createdAt = $order['timestamp'] ?? date('Y-m-d H:i:s', strtotime('2025-05-25 19:29:00 +08:00'));
+                $stmt->bind_param("sids", $orderCode, $customerId, $total, $createdAt);
+                if ($stmt->execute()) {
+                    $logMessage("Inserted order into orders: $orderCode");
+                } else {
+                    $logMessage("Failed to insert order into orders: $orderCode - " . $stmt->error);
+                }
+                $stmt->close();
             }
-            $stmt->close();
+        } elseif ($existingOrder['status'] !== 'completed') {
+            $stmt = $conn->prepare("UPDATE orders SET status = 'completed' WHERE order_id = ? AND customer_id = ?");
+            if (!$stmt) {
+                $logMessage("Prepare failed for orders update: " . $conn->error);
+            } else {
+                $stmt->bind_param("si", $orderCode, $customerId);
+                if ($stmt->execute()) {
+                    $logMessage("Updated order status to completed: $orderCode");
+                } else {
+                    $logMessage("Failed to update order status: $orderCode - " . $stmt->error);
+                }
+                $stmt->close();
+            }
         }
     }
 }
@@ -179,6 +206,57 @@ if (empty($orderItems) && !empty($sessionItems)) {
     $orderItems = $sessionItems;
 }
 
+// Sync order items from session if missing
+if (!empty($sessionItems) && empty($orderItems)) {
+    $stmt = $conn->prepare("
+        INSERT INTO order_items (order_id, item_id, quantity, price, total)
+        VALUES (?, ?, ?, ?, ?)
+    ");
+    if ($stmt) {
+        foreach ($sessionItems as $item) {
+            $itemId = $item['item_id'] ?? 0;
+            $quantity = $item['quantity'] ?? 1;
+            $price = $item['price'] ?? 0;
+            $total = $quantity * $price;
+            $stmt->bind_param("siidd", $orderCode, $itemId, $quantity, $price, $total);
+            if ($stmt->execute()) {
+                $logMessage("Inserted order item for order: $orderCode, item_id: $itemId");
+            } else {
+                $logMessage("Failed to insert order item for order: $orderCode - " . $stmt->error);
+            }
+        }
+        $stmt->close();
+        $stmt = $conn->prepare("
+            SELECT oi.item_id, oi.quantity, oi.price, m.item_name, m.photo
+            FROM order_items oi
+            JOIN menu_items m ON oi.item_id = m.id
+            WHERE oi.order_id = ?
+        ");
+        if ($stmt) {
+            $stmt->bind_param("s", $orderCode);
+            $stmt->execute();
+            $orderItems = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+        }
+    }
+}
+
+// Check if order is completed for feedback
+$isOrderCompleted = false;
+if (!empty($orderCode)) {
+    $stmt = $conn->prepare("SELECT status FROM orders WHERE order_id = ? AND customer_id = ?");
+    if ($stmt) {
+        $stmt->bind_param("si", $orderCode, $customerId);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+        $isOrderCompleted = $result && strtolower($result['status']) === 'completed';
+        $stmt->close();
+        $logMessage("Order $orderCode completion status: " . ($isOrderCompleted ? 'completed' : 'not completed'));
+    } else {
+        $logMessage("Prepare failed for order status check: " . $conn->error);
+    }
+}
+
 // Log order details
 $logMessage("Displaying confirmation for order: $orderCode, Customer ID: $customerId");
 $logMessage("Order items count: " . count($orderItems));
@@ -186,6 +264,26 @@ $logMessage("Order items: " . json_encode($orderItems));
 $logMessage("Delivery method: " . ($order['delivery_method'] ?? 'N/A'));
 $logMessage("Delivery address: " . json_encode($order['delivery_address'] ?? null));
 $logMessage("Customer email: $customerEmail");
+$logMessage("Payment details: " . ($order['payment_details'] ?? 'N/A'));
+
+// Base URL for images
+$baseUrl = 'http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/';
+
+// Function to get base64 image
+function getBase64Image($filePath) {
+    global $logMessage;
+    if (file_exists($filePath)) {
+        $type = pathinfo($filePath, PATHINFO_EXTENSION);
+        $data = file_get_contents($filePath);
+        if ($data === false) {
+            $logMessage("Failed to read image file: $filePath");
+            return null;
+        }
+        return 'data:image/' . $type . ';base64,' . base64_encode($data);
+    }
+    $logMessage("Image file not found: $filePath");
+    return null;
+}
 
 // Handle PDF download
 if (isset($_GET['download_invoice']) && !empty($orderCode)) {
@@ -198,7 +296,7 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
         <head>
             <style>
                 body { font-family: Arial, sans-serif; font-size: 12px; margin: 20px; }
-                h1 { color: #f97316; }
+                h1 { color: #ff4757; }
                 table { width: 100%; border-collapse: collapse; margin-top: 20px; }
                 th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
                 th { background-color: #f3f4f6; }
@@ -249,10 +347,13 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
                     <tr><th>Image</th><th>Item</th><th>Quantity</th><th>Price</th><th>Total</th></tr>
                     <?php foreach ($orderItems as $item): ?>
                         <?php
-                        $imageRelativePath = '/Online-Fast-Food/Admin/Manage_Menu_Item/' . ($item['photo'] ?: 'placeholder.jpg');
+                        $imagePath = $item['photo'] ?: 'placeholder.jpg';
+                        $localPath = $_SERVER['DOCUMENT_ROOT'] . '/Online-Fast-Food/Admin/Manage_Menu_Item/' . $imagePath;
+                        $imageSrc = getBase64Image($localPath);
+                        $imageUrl = $imageSrc ?: $baseUrl . rawurlencode($imagePath);
                         ?>
                         <tr>
-                            <td><img src=".<?= htmlspecialchars($imageRelativePath) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>"></td>
+                            <td><img src="<?= htmlspecialchars($imageUrl) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>" style="max-width: 60px; height: auto;"></td>
                             <td><?= htmlspecialchars($item['item_name']) ?></td>
                             <td><?= $item['quantity'] ?></td>
                             <td>RM <?= number_format($item['price'], 2) ?></td>
@@ -281,12 +382,6 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
         $errorMessage = "Unable to generate PDF: " . htmlspecialchars($e->getMessage());
     }
 }
-
-// Generate CSRF token
-if (!isset($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-$csrfToken = $_SESSION['csrf_token'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -304,22 +399,42 @@ $csrfToken = $_SESSION['csrf_token'];
         .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .card-hover:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
         .invoice-section { background-color: white; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px; }
-        .btn-primary { background-color: #f97316; color: white; }
-        .btn-primary:hover { background-color: #ea580c; }
-        .text-primary { color: #f97316; }
-        .text-primary:hover { color: #ea580c; }
         .invoice-table { width: 100%; border-collapse: collapse; }
         .invoice-table th, .invoice-table td { border: 1px solid #e5e7eb; padding: 8px; text-align: left; }
         .invoice-table th { background-color: #f3f4f6; }
         .invoice-table img { max-width: 60px; height: auto; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 10px 20px; border-radius: 8px;
+            font-weight: 500; font-size: 14px; color: white; text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+            cursor: pointer; border: none;
+        }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); opacity: 0.9; }
+        .btn:focus { outline: none; box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.3); }
+        .btn:active { transform: scale(1); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
+        .btn i { margin-right: 6px; font-size: 14px; }
+        .btn-download { background-color: #ff4757; }
+        .btn-download:hover { background-color: #e63946; }
+        .btn-email { background-color: #10b981; }
+        .btn-email:hover { background-color: #059669; }
+        .btn-history { background-color: #8b5cf6; }
+        .btn-history:hover { background-color: #7c3aed; }
+        .btn-cart { background-color: #3b82f6; }
+        .btn-cart:hover { background-color: #2563eb; }
+        .btn-feedback { background-color: #ef4444; }
+        .btn-feedback:hover { background-color: #dc2626; }
+        .text-primary { color: #ff4757; }
+        .text-primary:hover { color: #e63946; }
     </style>
 </head>
 <body class="bg-gray-100">
     <header class="sticky top-0 bg-white shadow z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-primary">Brizo Fast Food Melaka</h1>
-            <a href="../../index.php" class="text-primary hover:text-primary flex items-center">
-                <i class="fas fa-home mr-2"></i> Back to Home
+            <a href="/Online-Fast-Food/customer/menu/cart/cart.php" class="text-primary hover:text-primary flex items-center" aria-label="Return to cart page">
+                <i class="fas fa-shopping-cart mr-2" aria-hidden="true"></i> Back to Cart
             </a>
         </div>
     </header>
@@ -342,12 +457,7 @@ $csrfToken = $_SESSION['csrf_token'];
         <?php endif; ?>
         <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
             <h2 class="text-2xl font-semibold text-gray-800 mb-6">Order Confirmation</h2>
-            <?php if (empty($orderCode) || empty($order)): ?>
-                <p class="text-gray-600">Please select an order from your payment history to view details.</p>
-                <a href="payment_history.php" class="mt-4 px-4 py-2 btn-primary rounded-lg flex items-center inline-flex">
-                    <i class="fas fa-history mr-2"></i> Go to Payment History
-                </a>
-            <?php else: ?>
+            <?php if (!empty($orderCode) && !empty($order)): ?>
                 <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-6 rounded-lg">
                     <p class="text-green-700 text-lg flex items-center">
                         <i class="fas fa-check-circle mr-2"></i> Thank you! Your order has been successfully placed.
@@ -416,7 +526,7 @@ $csrfToken = $_SESSION['csrf_token'];
                                 <?php foreach ($orderItems as $item): ?>
                                     <tr>
                                         <td>
-                                            <img src="/Online-Fast-Food/Admin/Manage_Menu_Item/<?= htmlspecialchars($item['photo'] ?: 'placeholder.jpg') ?>" alt="<?= htmlspecialchars($item['item_name']) ?>" onerror="this.src='/Online-Fast-Food/Admin/Manage_Menu_Item/placeholder.jpg'" style="max-width: 60px; height: auto;">
+                                            <img src="<?= htmlspecialchars($baseUrl . ($item['photo'] ?: 'placeholder.jpg')) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>" onerror="this.src='<?= htmlspecialchars($baseUrl . 'placeholder.jpg') ?>'" style="max-width: 60px; height: auto;">
                                         </td>
                                         <td><?= htmlspecialchars($item['item_name']) ?></td>
                                         <td><?= $item['quantity'] ?></td>
@@ -432,28 +542,37 @@ $csrfToken = $_SESSION['csrf_token'];
                 </div>
 
                 <!-- Actions -->
-                <div class="mt-8 flex justify-end space-x-4 flex-wrap">
-                    <a href="?download_invoice=1&order_id=<?= urlencode($orderCode) ?>" class="px-4 py-2 btn-primary rounded-lg flex items-center m-1">
-                        <i class="fas fa-download mr-2"></i> Download Invoice
+                <div class="mt-8 flex justify-end space-x-3 flex-wrap">
+                    <a href="?download_invoice=1&order_id=<?= urlencode($orderCode) ?>&csrf_token=<?= $csrf_param ?>" class="btn btn-download">
+                        <i class="fas fa-download"></i> Download Invoice
                     </a>
-                    <form action="send_invoice.php" method="POST" class="inline-flex m-1">
+                    <form action="/Online-Fast-Food/payment/brizo-fast-food-payment/send_invoice.php" method="POST" class="inline-flex">
                         <input type="hidden" name="order_code" value="<?= htmlspecialchars($orderCode) ?>">
                         <input type="hidden" name="customer_email" value="<?= htmlspecialchars($customerEmail) ?>">
                         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
-                        <button type="submit" class="px-4 py-2 btn-primary rounded-lg flex items-center">
-                            <i class="fas fa-envelope mr-2"></i> Send Invoice via Email
+                        <button type="submit" class="btn btn-email">
+                            <i class="fas fa-envelope"></i> Send Invoice via Email
                         </button>
                     </form>
-                    <a href="payment_history.php" class="px-4 py-2 btn-primary rounded-lg flex items-center m-1">
-                        <i class="fas fa-history mr-2"></i> View Payment History
+                    <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php?csrf_token=<?= $csrf_param ?>" class="btn btn-history">
+                        <i class="fas fa-history"></i> View Payment History
                     </a>
-                    <a href="../../index.php" class="px-4 py-2 btn-primary rounded-lg flex items-center m-1">
-                        <i class="fas fa-shopping-cart mr-2"></i> Continue Shopping
+                    <a href="/Online-Fast-Food/customer/menu/cart/cart.php" class="btn btn-cart">
+                        <i class="fas fa-cart-arrow-down"></i> Go Back to Cart
                     </a>
-                    <a href="feedback.php?order_id=<?= urlencode($orderCode) ?>" class="px-4 py-2 btn-primary rounded-lg flex items-center m-1">
-                        <i class="fas fa-star mr-2"></i> Provide Feedback
+                    <?php if ($isOrderCompleted): ?>
+                        <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/feedback.php?order_id=<?= urlencode($orderCode) ?>&csrf_token=<?= $csrf_param ?>" class="btn btn-feedback">
+                            <i class="fas fa-star"></i> Provide Feedback
+                        </a>
+                    <?php endif; ?>
+                </div>
+            <?php else: ?>
+                <div class="mt-8 flex justify-end space-x-3">
+                    <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php?csrf_token=<?= $csrf_param ?>" class="btn btn-history">
+                        <i class="fas fa-history"></i> View Payment History
                     </a>
                 </div>
+                <p class="text-gray-600 mt-4">Please select an order from your payment history to view details.</p>
             <?php endif; ?>
         </div>
     </main>

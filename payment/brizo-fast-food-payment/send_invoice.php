@@ -9,12 +9,22 @@ $logMessage = function($message) use ($logFile) {
     file_put_contents($logFile, date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, FILE_APPEND);
 };
 
+// Session timeout (30 minutes)
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > 1800) {
+    session_unset();
+    session_destroy();
+    $logMessage("Session expired for customer_id: " . ($_SESSION['customer_id'] ?? 'unknown'));
+    header("Location: /Online-Fast-Food/login.php?message=" . urlencode("Your session has expired. Please log in again."));
+    exit();
+}
+$_SESSION['last_activity'] = time();
+
 // Check for vendor/autoload.php
-$autoloadPath = dirname(__DIR__, 3) . '/vendor/autoload.php';
+$autoloadPath = dirname(__DIR__, 2) . '/vendor/autoload.php';
 if (!file_exists($autoloadPath)) {
     $logMessage("Autoload file not found at: $autoloadPath");
     if ($debug) {
-        die("Debug: Autoload file not found at: $autoloadPath");
+        die("Debug: Autoload file not found at: $autoloadPath. Run 'composer install' in the project root.");
     }
     header("Location: confirmation.php?email_sent=error&message=System+error:+Dependencies+missing");
     exit();
@@ -37,7 +47,11 @@ if (!class_exists('Dotenv\Dotenv')) {
 
 // Load environment variables
 try {
-    $dotenv = Dotenv::createImmutable(dirname(__DIR__, 3));
+    $dotenv = Dotenv::createImmutable(dirname(__DIR__, 2));
+    $envPath = dirname(__DIR__, 2) . '/.env';
+    var_dump(file_exists($envPath)); // 文件是否存在
+    var_dump(is_readable($envPath)); // 文件是否可读
+    exit;
     $dotenv->load();
 } catch (Exception $e) {
     $logMessage("Failed to load .env file: " . $e->getMessage());
@@ -49,6 +63,8 @@ try {
 if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
     $logMessage("Invalid CSRF token");
     header("Location: confirmation.php?email_sent=error&message=Invalid+CSRF+token");
+    // Regenerate CSRF token after failed attempt
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     exit();
 }
 
@@ -56,8 +72,9 @@ $orderCode = filter_input(INPUT_POST, 'order_code', FILTER_SANITIZE_STRING) ?? '
 $customerEmail = filter_input(INPUT_POST, 'customer_email', FILTER_SANITIZE_EMAIL) ?? '';
 $customerId = (int)($_SESSION['customer_id'] ?? 0);
 
-if (empty($orderCode) || empty($customerEmail) || !$customerId) {
-    $logMessage("Missing order_code, customer_email, or customer_id");
+// Validate inputs
+if (empty($orderCode) || empty($customerEmail) || !$customerId || !filter_var($customerEmail, FILTER_VALIDATE_EMAIL)) {
+    $logMessage("Missing or invalid order_code, customer_email, or customer_id: order_code=$orderCode, email=$customerEmail, customer_id=$customerId");
     header("Location: confirmation.php?email_sent=error&message=Invalid+request");
     exit();
 }
@@ -104,7 +121,7 @@ $stmt->close();
 // Send email
 try {
     $mail = new PHPMailer(true);
-    $mail->SMTPDebug = 2; // Enable verbose debug output
+    $mail->SMTPDebug = $debug ? 2 : 0; // Enable verbose debug output only in debug mode
     $mail->Debugoutput = function($str, $level) use ($logMessage) {
         $logMessage("PHPMailer Debug [$level]: $str");
     };
@@ -114,10 +131,10 @@ try {
     $mail->Username = getenv('SMTP_USERNAME') ?: '';
     $mail->Password = getenv('SMTP_PASSWORD') ?: '';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = getenv('SMTP_PORT') ?: 587;
+    $mail->Port = (int)getenv('SMTP_PORT') ?: 587;
 
     if (empty($mail->Username) || empty($mail->Password)) {
-        $logMessage("SMTP credentials missing");
+        $logMessage("SMTP credentials missing: Username=" . $mail->Username . ", Password=" . (empty($mail->Password) ? 'empty' : 'set'));
         header("Location: confirmation.php?email_sent=error&message=Email+configuration+error");
         exit();
     }
@@ -150,6 +167,8 @@ try {
 
     $mail->send();
     $logMessage("Invoice sent for order: $orderCode to $customerEmail");
+    // Regenerate CSRF token after successful action
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     header("Location: confirmation.php?email_sent=success");
 } catch (Exception $e) {
     $logMessage("Failed to send invoice for order: $orderCode - " . $mail->ErrorInfo);

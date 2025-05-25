@@ -51,6 +51,83 @@ while ($row = $result->fetch_assoc()) {
   <title>🛒 Cart - Brizo Fast Food Melaka</title>
   <link rel="stylesheet" href="cart.css">
   <link rel="stylesheet" href="remove_from_cart.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f8f8f8;
+      font-weight: bold;
+    }
+    .total-row td {
+      font-weight: bold;
+      background-color: #f1f1f1;
+    }
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .qty-btn {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    .qty-btn:hover {
+      background-color: #f0f0f0;
+    }
+    .qty-input {
+      width: 60px;
+      padding: 5px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .qty-input::-webkit-inner-spin-button,
+    .qty-input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .qty-input[type=number] {
+      -moz-appearance: textfield;
+    }
+    .remove-btn {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .remove-btn:hover {
+      background-color: #e60000;
+    }
+    .back-menu {
+      display: inline-block;
+      margin: 10px 5px;
+      padding: 10px 20px;
+      background-color: #ffa751;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    .back-menu:hover {
+      background-color: #ff8c00;
+    }
+  </style>
 </head>
 <body>
 
@@ -88,7 +165,7 @@ while ($row = $result->fetch_assoc()) {
           <td>
             <div class="qty-controls">
               <button class="qty-btn" data-change="-1">-</button>
-              <span class="qty-number"><?= $item['quantity'] ?></span>
+              <input type="number" class="qty-input" value="<?= $item['quantity'] ?>" min="1" max="30" step="1" data-id="<?= $item['item_id'] ?>">
               <button class="qty-btn" data-change="1">+</button>
             </div>
           </td>
@@ -110,8 +187,7 @@ while ($row = $result->fetch_assoc()) {
     </table>
 
     <a href="../menu.php" class="back-menu">⬅️ Continue Shopping</a>
-
-    <a href="../cart/payment.php" class="back-menu">Proceed to Payment ➡️</a>
+    <a href="../../../payment/brizo-fast-food-payment/payment.php" class="back-menu">Proceed to Payment ➡️</a>
   <?php endif; ?>
 </div>
 
@@ -127,73 +203,6 @@ while ($row = $result->fetch_assoc()) {
   </div>
 <?php endif; ?>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const toast = document.querySelector('.ultra-toast.show');
-  if (toast) {
-    setTimeout(() => toast.classList.remove('show'), 2500);
-    setTimeout(() => toast.remove(), 3000);
-  }
-});
-</script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const toast = document.getElementById('toast');
-  if (toast) {
-    toast.classList.add('show');
-    setTimeout(() => toast.remove(), 3000);
-  }
-
-  const showFeedback = (msg = "✅ Cart Updated!") => {
-    const toast = document.getElementById("ultra-toast");
-    toast.querySelector(".toast-text").textContent = msg;
-    toast.classList.add("show");
-    setTimeout(() => toast.classList.remove("show"), 2500);
-  };
-  
-
-  document.querySelectorAll('.qty-btn').forEach(btn => {
-    btn.addEventListener('click', async function () {
-      const row = this.closest('tr');
-      const itemId = row.dataset.id;
-      const change = parseInt(this.dataset.change);
-      const qtyElem = row.querySelector('.qty-number');
-      const price = parseFloat(row.querySelector('.price').dataset.price);
-      let currentQty = parseInt(qtyElem.textContent);
-
-      const newQty = currentQty + change;
-      if (newQty < 1) return;
-
-      const formData = new URLSearchParams();
-      formData.append('item_id', itemId);
-      formData.append('quantity', newQty);
-
-      const res = await fetch('update_cart.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formData.toString()
-      });
-
-      const data = await res.json();
-      if (data.status === 'success') {
-        qtyElem.textContent = newQty;
-        row.querySelector('.subtotal').textContent = (price * newQty).toFixed(2);
-
-        let total = 0;
-        document.querySelectorAll('.subtotal').forEach(td => {
-          total += parseFloat(td.textContent);
-        });
-        document.getElementById('total-amount').textContent = 'RM ' + total.toFixed(2);
-        showFeedback();
-      } else {
-        alert(data.message || 'Failed to update cart.');
-      }
-    });
-  });
-});
-</script>
 <script src="cart.js"></script>
 <?php include '../../menu_icon.php'; ?>
 <?php include '../../footer.php'; ?>

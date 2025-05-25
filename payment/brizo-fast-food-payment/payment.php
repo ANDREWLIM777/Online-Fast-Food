@@ -1,27 +1,27 @@
 <?php
 ob_start();
 session_start();
-require '../db_connect.php';
+require '../../customer/menu/db_connect.php';
 
 // Check database connection
 if ($conn->connect_error) {
     $logMessage("Database connection failed: " . $conn->connect_error);
-    header("Location: ../../error.php?message=Database+connection+failed");
+    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database connection failed"));
     exit();
 }
 
-// Check session timeout (e.g., 30 minutes)
+// Check session timeout (30 minutes)
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > 1800) {
     session_unset();
     session_destroy();
-    header("Location: ../../login.php?message=Session+expired");
+    header("Location: /Online-Fast-Food/login.php?message=" . urlencode("Your session has expired. Please log in again."));
     exit();
 }
 $_SESSION['last_activity'] = time();
 
 // Check if user is logged in
 if (!isset($_SESSION['customer_id'])) {
-    header("Location: ../../login.php");
+    header("Location: /Online-Fast-Food/login.php");
     exit();
 }
 
@@ -69,7 +69,7 @@ $stmt = $conn->prepare("
 ");
 if (!$stmt) {
     $logMessage("Prepare failed for cart fetch: " . $conn->error);
-    header("Location: ../../error.php?message=Database+error");
+    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
     exit();
 }
 $stmt->bind_param("i", $customerId);
@@ -91,7 +91,7 @@ $stmt = $conn->prepare("
 ");
 if (!$stmt) {
     $logMessage("Prepare failed for delivery addresses fetch: " . $conn->error);
-    header("Location: ../../error.php?message=Database+error");
+    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
     exit();
 }
 $stmt->bind_param("i", $customerId);
@@ -111,7 +111,7 @@ $stmt = $conn->prepare("
 ");
 if (!$stmt) {
     $logMessage("Prepare failed for payment methods fetch: " . $conn->error);
-    header("Location: ../../error.php?message=Database+error");
+    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
     exit();
 }
 $stmt->bind_param("i", $customerId);
@@ -770,12 +770,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             'payment_details' => $paymentDetails,
             'delivery_method' => $deliveryMethod,
             'delivery_address' => $deliveryAddress,
-            'timestamp' => date('Y-m-d H:i:s'),
+            'timestamp' => date('Y-m-d H:i:s', strtotime('2025-05-25 19:15:00 +08:00')),
             'items' => $itemsArray
         ];
 
+        $logMessage("Redirecting to confirmation.php with order_id=$orderId");
         ob_end_clean();
-        echo json_encode(['status' => 'success', 'message' => 'Payment Successful', 'order_id' => $orderId]);
+        header("Location: confirmation.php?order_id=" . urlencode($orderId));
         exit();
     } catch (Exception $e) {
         $conn->rollback();
@@ -858,8 +859,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
     <header class="sticky top-0 bg-white shadow z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-primary">Brizo Fast Food Melaka</h1>
-            <a href="cart.php" class="text-primary hover:text-primary flex items-center">
-                <i class="fas fa-arrow-left mr-2"></i> Back to Cart
+            <a href="/Online-Fast-Food/customer/menu/cart/cart.php" class="text-primary hover:text-primary flex items-center" aria-label="Return to cart page">
+                <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> Back to Cart
             </a>
         </div>
     </header>
@@ -872,12 +873,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             <section class="mb-8">
                 <h3 class="text-xl font-medium text-gray-700 mb-4">Cart Items</h3>
                 <?php if (empty($cartItems)): ?>
-                    <p class="text-gray-600">Your cart is empty. <a href="cart.php" class="text-primary hover:text-primary">Add items to your cart</a>.</p>
+                    <p class="text-gray-600">Your cart is empty. <a href="/Online-Fast-Food/customer/menu/cart/cart.php" class="text-primary hover:text-primary">Add items to your cart</a>.</p>
                 <?php else: ?>
                     <div class="space-y-4">
                         <?php foreach ($cartItems as $item): ?>
                             <div class="flex items-center p-4 bg-gray-50 rounded-lg">
-                                <img src="/Online-Fast-Food/Admin/Manage_Menu_Item/<?= htmlspecialchars($item['photo']) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>" class="w-20 h-20 object-cover rounded-lg mr-4" onerror="this.src='/images/placeholder.jpg'">
+                                <img src="/Online-Fast-Food/Admin/Manage_Menu_Item/<?= htmlspecialchars($item['photo']) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>" class="w-20 h-20 object-cover rounded-lg mr-4 lazy" loading="lazy" onerror="this.src='/images/placeholder.jpg'">
                                 <div class="flex-1">
                                     <h4 class="text-lg font-medium text-gray-800"><?= htmlspecialchars($item['item_name']) ?></h4>
                                     <p class="text-gray-600">Quantity: <?= $item['quantity'] ?> | Price: RM <?= number_format($item['price'], 2) ?> each | Total: RM <?= number_format($item['quantity'] * $item['price'], 2) ?></p>
@@ -1444,79 +1445,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
             });
         }
 
-        // Validate entire form for submit button
-        function validateForm() {
-            const selectedMethod = paymentMethodSelect.value;
-            const addressValid = validateAddressFields();
-            const isValid = selectedMethod !== '' && addressValid && <?php echo empty($cartItems) ? 'false' : 'true'; ?>;
-            submitButton.disabled = !isValid;
-        }
-
-        // Handle address field input
-        [newStreetAddress, newCity, newPostalCode].forEach(field => {
-            field.addEventListener('input', validateNewAddressForm);
-        });
-
-        // Handle address selection
-        deliveryAddressSelect.addEventListener('change', () => {
-            if (deliveryAddressSelect.value) {
-                newAddressForm.classList.add('hidden');
-                newStreetAddress.value = '';
-                newCity.value = '';
-                newPostalCode.value = '';
-                setAsDefault.checked = false;
-                saveAddress.checked = true;
-                newStreetAddress.classList.remove('invalid');
-                newCity.classList.remove('invalid');
-                newPostalCode.classList.remove('invalid');
+        // Handle form submission
+        paymentForm.addEventListener('submit', function(e) {
+            const methodType = paymentMethodSelect.options[paymentMethodSelect.selectedIndex].getAttribute('data-method-type');
+            if (!methodType) {
+                e.preventDefault();
+                showMessage('error', 'Please select a payment method');
+                return;
             }
-            validateForm();
-        });
-
-        // Handle payment method selection
-        paymentMethodSelect.addEventListener('change', () => {
-            const selectedOption = paymentMethodSelect.options[paymentMethodSelect.selectedIndex];
-            methodInput.value = selectedOption ? selectedOption.getAttribute('data-method-type') || '' : '';
-            validateForm();
-        });
-
-        // Form submission
-        paymentForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+            methodInput.value = methodType;
             submitButton.disabled = true;
             submitSpinner.style.display = 'inline-block';
-
-            const formData = new FormData(paymentForm);
-            fetch('payment.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    showMessage('success', data.message);
-                    setTimeout(() => {
-                        window.location.href = `confirmation.php?order_id=${encodeURIComponent(data.order_id)}`;
-                    }, 1000);
-                } else {
-                    showMessage('error', data.message);
-                    submitButton.disabled = false;
-                }
-            })
-            .catch(error => {
-                showMessage('error', 'An error occurred while processing payment');
-                submitButton.disabled = false;
-            })
-            .finally(() => {
-                submitSpinner.style.display = 'none';
-            });
         });
 
-        // Initialize form validation
-        validateForm();
+        // Validate form
+        function validateForm() {
+            const deliveryMethod = document.querySelector('input[name="delivery_method"]:checked').value;
+            const paymentMethodId = paymentMethodSelect.value;
+            submitButton.disabled = !validateAddressFields() || !paymentMethodId;
+        }
 
-        // Set initial payment method type
-        paymentMethodSelect.dispatchEvent(new Event('change'));
+        // Initial validation
+        validateForm();
+        deliveryRadios.forEach(radio => radio.addEventListener('change', validateForm));
+        deliveryAddressSelect.addEventListener('change', validateForm);
+        paymentMethodSelect.addEventListener('change', validateForm);
+        newStreetAddress.addEventListener('input', validateNewAddressForm);
+        newCity.addEventListener('input', validateNewAddressForm);
+        newPostalCode.addEventListener('input', validateNewAddressForm);
     </script>
 </body>
 </html>
