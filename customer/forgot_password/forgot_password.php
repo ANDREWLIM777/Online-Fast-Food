@@ -1,118 +1,140 @@
 <?php
-require '../db_connect.php'; // use your actual path
+require_once("../db_connect.php");
 session_start();
-
-$error = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email']);
-
-    $stmt = $conn->prepare("SELECT id FROM customers WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows === 0) {
-        $error = "❌ This email is not registered.";
-    } else {
-        $_SESSION['otp_email'] = $email;
-        header("Location: otp_verify.php"); // or your desired verification step
-        exit;
-    }
+if (isset($_SESSION["login_sess"])) {
+    header("Location: account.php");
+    exit;
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Forgot Password</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    body {
-      background: linear-gradient(to right,rgb(255, 211, 89),rgb(255, 139, 81));
-      color: #eee;
-      font-family: 'Segoe UI', sans-serif;
-      padding: 40px 20px;
-    }
-
-    .container {
-      max-width: 500px;
-      height: auto;
-      margin: auto;
-      background: #1a1a1a;
-      padding: 60px;
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    }
-
-    h2 {
-      color: #c0a23d;
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 6px;
-    }
-
-    input[type="email"] {
-      width: 95%;
-      padding: 12px;
-      background: #2a2a2a;
-      border: 1px solid #444;
-      border-radius: 8px;
-      color: #fff;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 12px;
-      background:rgb(255, 189, 75);
-      color: #000;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-
-    .error {
-      background: #4e1e1e;
-      color: #f88;
-      padding: 10px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-    }
-
-    .back-btn {
-      margin-top: 20px;
-      display: inline-block;
-      color: #c0a23d;
-      text-decoration: none;
-    }
-
-    .back-btn i {
-      margin-right: 6px;
-    }
-    
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forgot Password - Brizo Fast Food</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(to right, #ffe259, #ffa751);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-box {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            animation: fadeIn 0.8s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .form_btn {
+            background: linear-gradient(to right, #ffa751, #ffe259);
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+        .form_btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .form-control {
+            border-radius: 30px;
+            border: 2px solid #ffe259;
+        }
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        .toast {
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Forgot Password?</h2>
-
-    <?php if ($error): ?>
-      <div class="error"><?= htmlspecialchars($error) ?></div>
-    <?php endif; ?>
-
-    <form method="POST">
-      <label>Enter your email</label>
-      <input type="email" name="email" required>
-      <button type="submit" class="btn">Send OTP</button>
-    </form>
-
-    <a href="/Online-Fast-Food/customer/login.php" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Login</a>
-  </div>
+    <div class="login-box text-center">
+        <img src="assets/images/brizo-logo.png" alt="Brizo Fast Food" class="img-fluid logo">
+        <h4 class="mb-4"><i class="fas fa-lock"></i> Forgot Your Password?</h4>
+        <form id="forgotForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+            </div>
+            <button type="submit" class="btn form_btn btn-block">Send OTP</button>
+        </form>
+        <hr>
+        <p>Remembered? <a href="login.php" style="color: #ffa751;">Login</a></p>
+        <p>No account? <a href="signup.php" style="color: #ffa751;">Sign up</a></p>
+    </div>
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#forgotForm').on('submit', function(e) {
+                e.preventDefault();
+                const email = $('input[name=email]').val();
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    showToast("Please enter a valid email.", "error");
+                    return;
+                }
+                const $btn = $('button[type="submit"]');
+                $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Sending...');
+                $.ajax({
+                    url: 'forgot_process.php',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        try {
+                            const res = JSON.parse(response);
+                            showToast(res.message, res.status);
+                            if (res.status === 'success') {
+                                setTimeout(() => {
+                                    window.location.href = 'verify_otp.php?email=' + encodeURIComponent(email);
+                                }, 2000);
+                            }
+                        } catch (e) {
+                            showToast("Invalid server response.", "error");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        showToast("Server error. Try again later.", "error");
+                        console.error("AJAX error:", status, error);
+                    },
+                    complete: function() {
+                        $btn.prop('disabled', false).html('Send OTP');
+                    }
+                });
+            });
+            function showToast(message, type = 'info') {
+                const toast = `
+                    <div class="toast show bg-${type === 'success' ? 'success' : (type === 'error' ? 'danger' : 'secondary')} text-white mb-2" role="alert">
+                        <div class="toast-body"><i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'} mr-2"></i>${message}</div>
+                    </div>`;
+                $('#toastContainer').append(toast);
+                setTimeout(() => $('.toast').fadeOut().remove(), 3000);
+            }
+        });
+    </script>
 </body>
 </html>

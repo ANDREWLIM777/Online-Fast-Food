@@ -23,8 +23,8 @@
 .footer-col h4 {
   margin-bottom: 14px;
   font-size: 1.1rem;
-  color: #ffb84e;
-  border-bottom: 2px solid #ff9900;
+  color: #ff4757;
+  border-bottom: 2px solid #ff8f98;
   display: inline-block;
   padding-bottom: 4px;
 }
@@ -46,7 +46,7 @@
 }
 
 .footer-col ul li a:hover {
-  color: #ffcc70;
+  color: #ff737f;
   text-decoration: underline;
 }
 

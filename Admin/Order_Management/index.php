@@ -1,6 +1,14 @@
 <?php
 require 'db_conn.php';
 session_start();
+
+function getOrdersByStatus($pdo, $status) {
+    $stmt = $pdo->prepare("SELECT * FROM orders WHERE status = ? ORDER BY created_at ASC");
+    $stmt->execute([$status]);
+    return $stmt->fetchAll();
+}
+
+$statuses = ['pending', 'preparing', 'delivering', 'delivered'];
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +36,7 @@ session_start();
             transparent 0px 10px, 
             #f4e3b215 10px 12px,
             transparent 12px 22px);
-    padding: 1.8rem 0;
+    padding: 1.8rem 0 ;
     box-shadow: 0 4px 25px rgba(0,0,0,0.06);
     z-index: 999;
     display: flex;
@@ -148,6 +156,7 @@ session_start();
       color: #eee;
       margin: 0;
       padding: 2rem;
+      padding-top: 120px;
       padding-bottom: 50px;
       position: relative;
     }
@@ -202,7 +211,7 @@ session_start();
     }
 
     .order-container {
-      padding-top: 160px;
+      padding-top: 0px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -346,6 +355,125 @@ session_start();
   letter-spacing: 1px;
 }
 
+.tab-container {
+  width: 100%;
+  position: sticky;
+  top: 120px;
+  z-index: 10;
+  padding: 0.5rem 0;
+  background: linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+  border-bottom: 1px solid #c0a23d55;
+}
+
+.tabs-wrapper {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  gap: 0.3rem;
+}
+
+/* 选项卡按钮 - 更紧凑的设计 */
+.tab-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  background: transparent;
+  border: none;
+  color: #c0a23d;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  opacity: 0.7;
+  min-height: 50px; /* 固定高度 */
+}
+
+.tab-btn i {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  text-shadow: 0 0 5px rgba(192, 162, 61, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* 内容区域增加上边距 */
+.tab-content {
+  padding-top: 20px;
+  display: none;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tab-btn.active {
+  opacity: 1;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+  transform: translateY(-2px);
+}
+
+.tab-btn.active i {
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+  transform: scale(1.1);
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* 不同状态的颜色 */
+.status-pending {
+    background-color: #FFF3CD;
+    color: #856404;
+    border: 1px solid #FFEEBA;
+}
+
+.status-preparing {
+    background-color: #D1ECF1;
+    color: #0C5460;
+    border: 1px solid #BEE5EB;
+}
+
+.status-delivering {
+    background-color: #D4EDDA;
+    color: #155724;
+    border: 1px solid #C3E6CB;
+}
+
+.status-delivered {
+    background-color:rgb(237, 212, 212);
+    color:rgb(209, 48, 48);
+    border: 1px solid rgb(230, 195, 195);
+}
+
   </style>
 </head>
 <body>
@@ -363,40 +491,188 @@ session_start();
 
     </div>
 
+<div class="tab-container">
+  <div class="tabs-wrapper">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab(event, 'pending')">
+        <i class="fas fa-clock"></i>
+        <span>Pending</span>
+        <span class="order-count"><?= count(getOrdersByStatus($pdo, 'pending')) ?></span>
+      </button>
+      <button class="tab-btn" onclick="showTab(event, 'preparing')">
+      <i class="fas fa-hamburger"></i>
+        <span>Preparing</span>
+        <span class="order-count"><?= count(getOrdersByStatus($pdo, 'preparing')) ?></span>
+      </button>
+      <button class="tab-btn" onclick="showTab(event, 'delivering')">
+        <i class="fas fa-motorcycle"></i>
+        <span>Delivering</span>
+        <span class="order-count"><?= count(getOrdersByStatus($pdo, 'delivering')) ?></span>
+      </button>
+      <button class="tab-btn" onclick="showTab(event, 'delivered')">
+        <i class="fas fa-check-circle"></i>
+        <span>Delivered</span>
+        <span class="order-count"><?= count(getOrdersByStatus($pdo, 'delivered')) ?></span>
+      </button>
+    </div>
+    <div class="tab-indicator"></div>
+  </div>
+</div>
 
-<div class="order-container">
-  <?php
-  $orders = $pdo->query("SELECT * FROM orders WHERE status = 'pending' ORDER BY created_at ASC")->fetchAll();
-  foreach ($orders as $order):
-$stmtItems = $pdo->prepare("SELECT oi.item_id, oi.quantity, m.item_name 
-                            FROM order_items oi 
-                            JOIN menu_items m ON oi.item_id = m.id 
-                            WHERE oi.order_id = ?");
-$stmtItems->execute([$order['order_id']]);
-$items = $stmtItems->fetchAll();
-  ?>
-  <div class="order-card">
-    <h3>🧾 Order: <?= htmlspecialchars($order['order_id']) ?></h3>
-    <ul>
-<?php foreach ($items as $i): ?>
-  <li><?= htmlspecialchars($i['item_name']) ?> x <?= $i['quantity'] ?></li>
-<?php endforeach; ?>
-    </ul>
-    <strong>Total: RM <?= number_format($order['total'], 2) ?></strong>
-    <div class="actions">
-<form action="approve_order.php" method="post" class="slide-form">
-  <input type="hidden" name="id" value="<?= $order['id'] ?>">
-  <div class="slide-to-confirm" data-form-id="<?= $order['id'] ?>">
-    <span class="slide-hint">Slide to confirm</span>
-    <div class="slider-button">
-      <i class="fas fa-hourglass-half" style="margin-right: 10px;"></i>
-  Preparing
+<div class="content-container">
+<div id="pending" class="tab-content active">
+  <div class="order-container">
+    <?php
+    $orders = $pdo->query("SELECT * FROM orders WHERE status = 'pending' ORDER BY created_at ASC")->fetchAll();
+    foreach ($orders as $order):
+      $stmtItems = $pdo->prepare("SELECT oi.item_id, oi.quantity, m.item_name 
+                                  FROM order_items oi 
+                                  JOIN menu_items m ON oi.item_id = m.id 
+                                  WHERE oi.order_id = ?");
+      $stmtItems->execute([$order['order_id']]);
+      $items = $stmtItems->fetchAll();
+    ?>
+    <div class="order-card">
+<h3>🧾 Order: <?= htmlspecialchars($order['order_id']) ?> 
+    <span class="status-badge status-<?= htmlspecialchars($order['status']) ?>">
+        <?= ucfirst(htmlspecialchars($order['status'])) ?>
+    </span>
+</h3>
+      <ul>
+      <?php foreach ($items as $i): ?>
+        <li><?= htmlspecialchars($i['item_name']) ?> x <?= $i['quantity'] ?></li>
+      <?php endforeach; ?>
+      </ul>
+      <strong>Total: RM <?= number_format($order['total'], 2) ?></strong>
+      <div class="actions">
+        <form action="approve_order.php" method="post" class="slide-form">
+          <input type="hidden" name="id" value="<?= $order['id'] ?>">
+          <div class="slide-to-confirm" data-form-id="<?= $order['id'] ?>">
+            <span class="slide-hint">Slide to confirm</span>
+            <div class="slider-button">
+              <i class="fas fa-hourglass-half" style="margin-right: 10px;"></i>
+              Preparing
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+    <?php endforeach; ?>
   </div>
-</form>
+</div>
+
+<div id="preparing" class="tab-content active">
+  <div class="order-container">
+    <?php
+    $orders = $pdo->query("SELECT * FROM orders WHERE status = 'preparing' ORDER BY created_at ASC")->fetchAll();
+    foreach ($orders as $order):
+      $stmtItems = $pdo->prepare("SELECT oi.item_id, oi.quantity, m.item_name 
+                                  FROM order_items oi 
+                                  JOIN menu_items m ON oi.item_id = m.id 
+                                  WHERE oi.order_id = ?");
+      $stmtItems->execute([$order['order_id']]);
+      $items = $stmtItems->fetchAll();
+    ?>
+    <div class="order-card">
+<h3>🧾 Order: <?= htmlspecialchars($order['order_id']) ?> 
+    <span class="status-badge status-<?= htmlspecialchars($order['status']) ?>">
+        <?= ucfirst(htmlspecialchars($order['status'])) ?>
+    </span>
+</h3>
+      <ul>
+      <?php foreach ($items as $i): ?>
+        <li><?= htmlspecialchars($i['item_name']) ?> x <?= $i['quantity'] ?></li>
+      <?php endforeach; ?>
+      </ul>
+      <strong>Total: RM <?= number_format($order['total'], 2) ?></strong>
+      <div class="actions">
+        <form action="preparing_order.php" method="post" class="slide-form">
+          <input type="hidden" name="id" value="<?= $order['id'] ?>">
+          <div class="slide-to-confirm" data-form-id="<?= $order['id'] ?>">
+            <span class="slide-hint">Slide to confirm</span>
+            <div class="slider-button">
+              <i class="fas fa-hourglass-half" style="margin-right: 10px;"></i>
+              Delivering
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+    <?php endforeach; ?>
   </div>
-  <?php endforeach; ?>
+</div>
+
+<div id="delivering" class="tab-content active">
+  <div class="order-container">
+    <?php
+    $orders = $pdo->query("SELECT * FROM orders WHERE status = 'delivering' ORDER BY created_at ASC")->fetchAll();
+    foreach ($orders as $order):
+      $stmtItems = $pdo->prepare("SELECT oi.item_id, oi.quantity, m.item_name 
+                                  FROM order_items oi 
+                                  JOIN menu_items m ON oi.item_id = m.id 
+                                  WHERE oi.order_id = ?");
+      $stmtItems->execute([$order['order_id']]);
+      $items = $stmtItems->fetchAll();
+    ?>
+    <div class="order-card">
+  <h3>🧾 Order: <?= htmlspecialchars($order['order_id']) ?> 
+    <span class="status-badge status-<?= htmlspecialchars($order['status']) ?>">
+        <?= ucfirst(htmlspecialchars($order['status'])) ?>
+    </span>
+</h3>
+      <ul>
+      <?php foreach ($items as $i): ?>
+        <li><?= htmlspecialchars($i['item_name']) ?> x <?= $i['quantity'] ?></li>
+      <?php endforeach; ?>
+      </ul>
+      <strong>Total: RM <?= number_format($order['total'], 2) ?></strong>
+      <div class="actions">
+        <form action="delivering_order.php" method="post" class="slide-form">
+          <input type="hidden" name="id" value="<?= $order['id'] ?>">
+          <div class="slide-to-confirm" data-form-id="<?= $order['id'] ?>">
+            <span class="slide-hint">Slide to confirm</span>
+            <div class="slider-button">
+              <i class="fas fa-hourglass-half" style="margin-right: 10px;"></i>
+              Delivered
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <?php endforeach; ?>
+  </div>
+</div>
+
+<div id="delivered" class="tab-content active">
+  <div class="order-container">
+    <?php
+    $orders = $pdo->query("SELECT * FROM orders WHERE status = 'delivered' ORDER BY created_at ASC")->fetchAll();
+    foreach ($orders as $order):
+      $stmtItems = $pdo->prepare("SELECT oi.item_id, oi.quantity, m.item_name 
+                                  FROM order_items oi 
+                                  JOIN menu_items m ON oi.item_id = m.id 
+                                  WHERE oi.order_id = ?");
+      $stmtItems->execute([$order['order_id']]);
+      $items = $stmtItems->fetchAll();
+    ?>
+    <div class="order-card">
+<h3>🧾 Order: <?= htmlspecialchars($order['order_id']) ?> 
+    <span class="status-badge status-<?= htmlspecialchars($order['status']) ?>">
+        <?= ucfirst(htmlspecialchars($order['status'])) ?>
+    </span>
+</h3>
+      <ul>
+      <?php foreach ($items as $i): ?>
+        <li><?= htmlspecialchars($i['item_name']) ?> x <?= $i['quantity'] ?></li>
+      <?php endforeach; ?>
+      </ul>
+      <strong>Total: RM <?= number_format($order['total'], 2) ?></strong>
+    </div>
+    <?php endforeach; ?>
+  </div>
+</div>
+
+</div>
 
  <script>
 document.querySelectorAll('.slide-to-confirm').forEach(slide => {
@@ -435,6 +711,40 @@ document.querySelectorAll('.slide-to-confirm').forEach(slide => {
       slider.style.transform = 'translateX(0)';
     }
   });
+});
+
+
+// 修复的showTab函数
+function showTab(event, tabId) {
+  event.preventDefault();
+  
+  // 移除所有活动状态
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  document.querySelectorAll('.tab-content').forEach(content => {
+    content.classList.remove('active');
+  });
+  
+  // 添加活动状态到当前选项卡
+  event.currentTarget.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+  
+  updateIndicator(tabId);
+}
+
+// 初始化时只显示pending内容
+document.addEventListener('DOMContentLoaded', function() {
+  // 隐藏所有内容
+  document.querySelectorAll('.tab-content').forEach(content => {
+    content.classList.remove('active');
+  });
+  
+  // 只显示pending内容
+  document.getElementById('pending').classList.add('active');
+  
+  updateIndicator();
 });
 
     </script>

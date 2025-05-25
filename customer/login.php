@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
 <!-- ✅ Guest Login Button (Below Login button) -->
 <div class="guest-login">
   <form action="../customer/manage_account/guest/guest_login.php" method="POST">
-    <button type="submit" class="guest-btn">👤 Continue as Guest</button>
+    <button type="submit" class="guest-btn">Continue as Guest</button>
   </form>
 </div>
 

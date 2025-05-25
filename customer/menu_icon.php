@@ -1,6 +1,6 @@
 <!-- Menu Icon -->
 <div class="menu-container">
-    <div class="menu-icon" onclick="toggleMenu()" title="Menu">
+    <div class="menu-icon" onclick="toggleMenu()" title="Menu Icon">
         <span></span>
         <span></span>
         <span></span>
@@ -12,7 +12,7 @@
         <a href="/Online-Fast-Food/customer/payment_history/payment_history.php">Payment History</a>
 
         <?php if (isset($_SESSION['customer_id'])): ?>
-        <a href="#" class="btn-logout-animated">Logout</a>
+        <a href="#" class="btn-logout-animated">Log out</a>
         <?php else: ?>
         <a href="/Online-Fast-Food/customer/login.php" class="btn-login">Login</a>
         <?php endif; ?>
@@ -61,6 +61,10 @@
         transition: all 0.3s ease;
     }
 
+    .menu-icon:hover {
+  background-color: #b92f2f;
+}
+
     .menu-icon span:nth-child(1) { top: 16px; }
     .menu-icon span:nth-child(2) { top: 24px; }
     .menu-icon span:nth-child(3) { top: 32px; }
@@ -82,12 +86,12 @@
         position: absolute;
         top: 62px;
         left: 0;
-        background: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 157, 157, 0.55);
         backdrop-filter: blur(10px);
         border-radius: 12px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         padding: 8px 0;
-        border: 1px solid rgba(255, 255, 255, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.34);
         min-width: 180px;
         transition: all 0.3s ease;
     }

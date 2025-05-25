@@ -136,7 +136,7 @@ body {
 
 .filter-form button {
   padding: 10px 18px;
-  background-color: #d63f3f;
+  background-color: #ff4757;
   color: white;
   border: none;
   border-radius: 8px;
@@ -309,7 +309,7 @@ body {
 }
 
 .menu-info button {
-  background-color: #1a8917;
+  background-color: #ff4757;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -319,7 +319,23 @@ body {
 }
 
 .menu-info button:hover {
-  background-color: #166f14;
+  background-color: #c21321;
+}
+
+.menu-info .sign-in-link {
+  background-color: #ff4757;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+.menu-info .sign-in-link:hover {
+  background-color: #c21321;
 }
 
 .cart-floating-btn {
@@ -344,6 +360,46 @@ body {
   background-color: #e84118;
 }
 
+.login-floating-btn {
+  position: fixed;
+  top: 65px;
+  right: 25px;
+  background-color: #ff4757;
+  color: white;
+  font-size: 14px; 
+  padding: 15px 15px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: background-color 0.2s ease;
+  animation: gentleShake 2.5s ease-in-out infinite; /* Apply the new shaking animation */}
+
+.login-floating-btn:hover {
+  background-color: #b92f2f;
+}
+
+@keyframes gentleShake {
+  0% {
+    transform: rotate(-4deg);
+  }
+  33% {
+    transform: rotate(4deg); /* Tilt slightly to the right */
+  }
+  50% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(4deg); /* Tilt slightly to the left */
+  }
+  100% {
+    transform: rotate(-4deg); /* Back to center */
+  }
+}
+
 .cart-count {
   background-color: #fff;
   color: #ff4757;
@@ -354,6 +410,7 @@ body {
   margin-left: 6px;
   line-height: 1;
 }
+
 
 /* 🔥 Hero Banner Animation */
 .hero-slide {

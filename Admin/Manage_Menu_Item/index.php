@@ -29,11 +29,22 @@ if(!empty($conditions)) {
     $query .= " WHERE " . implode(" AND ", $conditions);
 }
 
-$query .= " ORDER BY relevance DESC, created_at DESC";
+// 修改排序为按名称字母顺序
+$query .= " ORDER BY category ASC, item_name ASC";
 
 $stmt = $pdo->prepare($query);
 $stmt->execute($params);
 $items = $stmt->fetchAll();
+
+// 按首字母分组
+$groupedItems = [];
+foreach ($items as $item) {
+    $firstLetter = strtoupper(substr($item['item_name'], 0, 1));
+    if (!isset($groupedItems[$firstLetter])) {
+        $groupedItems[$firstLetter] = [];
+    }
+    $groupedItems[$firstLetter][] = $item;
+}
 ?>
 
 <!DOCTYPE html>
