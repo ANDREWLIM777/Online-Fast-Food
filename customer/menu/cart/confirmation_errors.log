@@ -1325,3 +1325,69 @@ Autoload file not found at: ../../vendor/autoload.phpAutoload file not found at:
 2025-05-21 17:07:31 - Customer email: andrew@gmail.com
 2025-05-21 17:07:34 - No order_id or last_order for customer_id: 1
 2025-05-21 17:07:42 - No order_id or last_order for customer_id: 1
+2025-05-22 04:44:23 - Displaying confirmation for order: ORD-682E8F8658517, Customer ID: 49
+2025-05-22 04:44:23 - Order items count: 9
+2025-05-22 04:44:23 - Order items: [{"item_id":2,"quantity":4,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":3,"quantity":3,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":5,"quantity":2,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":11,"quantity":3,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"},{"item_id":12,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png"},{"item_id":13,"quantity":2,"price":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png"},{"item_id":6,"quantity":2,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"},{"item_id":7,"quantity":2,"price":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":4,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-22 04:44:23 - Delivery method: delivery
+2025-05-22 04:44:23 - Delivery address: "{\"street_address\":\"123taman makmur\",\"city\":\"johor\",\"postal_code\":\"33333\"}"
+2025-05-22 04:44:23 - Customer email: jinyang@gmail.com
+2025-05-22 04:44:48 - Displaying confirmation for order: ORD-682E8F8658517, Customer ID: 49
+2025-05-22 04:44:48 - Order items count: 9
+2025-05-22 04:44:48 - Order items: [{"item_id":2,"quantity":4,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":3,"quantity":3,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":5,"quantity":2,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":11,"quantity":3,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"},{"item_id":12,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png"},{"item_id":13,"quantity":2,"price":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png"},{"item_id":6,"quantity":2,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"},{"item_id":7,"quantity":2,"price":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":4,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-22 04:44:48 - Delivery method: delivery
+2025-05-22 04:44:48 - Delivery address: "{\"street_address\":\"123taman makmur\",\"city\":\"johor\",\"postal_code\":\"33333\"}"
+2025-05-22 04:44:48 - Customer email: jinyang@gmail.com
+2025-05-22 04:45:02 - Displaying confirmation for order: ORD-682E8F8658517, Customer ID: 49
+2025-05-22 04:45:02 - Order items count: 9
+2025-05-22 04:45:02 - Order items: [{"item_id":2,"quantity":4,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":3,"quantity":3,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":5,"quantity":2,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":11,"quantity":3,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"},{"item_id":12,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png"},{"item_id":13,"quantity":2,"price":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png"},{"item_id":6,"quantity":2,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"},{"item_id":7,"quantity":2,"price":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":4,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-22 04:45:02 - Delivery method: delivery
+2025-05-22 04:45:02 - Delivery address: "{\"street_address\":\"123taman makmur\",\"city\":\"johor\",\"postal_code\":\"33333\"}"
+2025-05-22 04:45:02 - Customer email: jinyang@gmail.com
+2025-05-22 04:45:04 - Displaying confirmation for order: ORD-682E8F8658517, Customer ID: 49
+2025-05-22 04:45:04 - Order items count: 9
+2025-05-22 04:45:04 - Order items: [{"item_id":2,"quantity":4,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":3,"quantity":3,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":5,"quantity":2,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":11,"quantity":3,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"},{"item_id":12,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png"},{"item_id":13,"quantity":2,"price":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png"},{"item_id":6,"quantity":2,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"},{"item_id":7,"quantity":2,"price":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":4,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-22 04:45:04 - Delivery method: delivery
+2025-05-22 04:45:04 - Delivery address: "{\"street_address\":\"123taman makmur\",\"city\":\"johor\",\"postal_code\":\"33333\"}"
+2025-05-22 04:45:04 - Customer email: jinyang@gmail.com
+2025-05-22 04:45:15 - Displaying confirmation for order: ORD-682E8F8658517, Customer ID: 49
+2025-05-22 04:45:15 - Order items count: 9
+2025-05-22 04:45:15 - Order items: [{"item_id":2,"quantity":4,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":3,"quantity":3,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":5,"quantity":2,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":11,"quantity":3,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"},{"item_id":12,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png"},{"item_id":13,"quantity":2,"price":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png"},{"item_id":6,"quantity":2,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"},{"item_id":7,"quantity":2,"price":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":4,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-05-22 04:45:15 - Delivery method: delivery
+2025-05-22 04:45:15 - Delivery address: "{\"street_address\":\"123taman makmur\",\"city\":\"johor\",\"postal_code\":\"33333\"}"
+2025-05-22 04:45:15 - Customer email: jinyang@gmail.com
+2025-05-24 10:30:55 - Displaying confirmation for order: ORD-683183BDA385D, Customer ID: 49
+2025-05-24 10:30:55 - Order items count: 6
+2025-05-24 10:30:55 - Order items: [{"item_id":2,"quantity":4,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":5,"quantity":2,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":6,"quantity":1,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"},{"item_id":9,"quantity":1,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":12,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png"},{"item_id":11,"quantity":1,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]
+2025-05-24 10:30:55 - Delivery method: pickup
+2025-05-24 10:30:55 - Delivery address: ""
+2025-05-24 10:30:55 - Customer email: jinyang@gmail.com
+2025-05-24 10:31:07 - Displaying confirmation for order: ORD-683183BDA385D, Customer ID: 49
+2025-05-24 10:31:07 - Order items count: 6
+2025-05-24 10:31:07 - Order items: [{"item_id":2,"quantity":4,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":5,"quantity":2,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":6,"quantity":1,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"},{"item_id":9,"quantity":1,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":12,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png"},{"item_id":11,"quantity":1,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]
+2025-05-24 10:31:07 - Delivery method: pickup
+2025-05-24 10:31:07 - Delivery address: ""
+2025-05-24 10:31:07 - Customer email: jinyang@gmail.com
+2025-05-24 10:31:43 - Displaying confirmation for order: ORD-683183EED4B9F, Customer ID: 49
+2025-05-24 10:31:43 - Order items count: 5
+2025-05-24 10:31:43 - Order items: [{"item_id":2,"quantity":3,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":6,"quantity":4,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"},{"item_id":9,"quantity":3,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":12,"quantity":3,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png"},{"item_id":11,"quantity":3,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]
+2025-05-24 10:31:43 - Delivery method: delivery
+2025-05-24 10:31:43 - Delivery address: "{\"street_address\":\"123taman makmur\",\"city\":\"johor\",\"postal_code\":\"33333\"}"
+2025-05-24 10:31:43 - Customer email: jinyang@gmail.com
+2025-05-24 10:31:49 - Displaying confirmation for order: ORD-683183EED4B9F, Customer ID: 49
+2025-05-24 10:31:49 - Order items count: 5
+2025-05-24 10:31:49 - Order items: [{"item_id":2,"quantity":3,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":6,"quantity":4,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"},{"item_id":9,"quantity":3,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":12,"quantity":3,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png"},{"item_id":11,"quantity":3,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]
+2025-05-24 10:31:49 - Delivery method: delivery
+2025-05-24 10:31:49 - Delivery address: "{\"street_address\":\"123taman makmur\",\"city\":\"johor\",\"postal_code\":\"33333\"}"
+2025-05-24 10:31:49 - Customer email: jinyang@gmail.com
+2025-05-24 10:32:06 - Displaying confirmation for order: ORD-683184055710E, Customer ID: 49
+2025-05-24 10:32:06 - Order items count: 3
+2025-05-24 10:32:06 - Order items: [{"item_id":4,"quantity":2,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":2,"quantity":2,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":6,"quantity":2,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"}]
+2025-05-24 10:32:06 - Delivery method: delivery
+2025-05-24 10:32:06 - Delivery address: "{\"street_address\":\"123taman makmur\",\"city\":\"johor\",\"postal_code\":\"33333\"}"
+2025-05-24 10:32:06 - Customer email: jinyang@gmail.com
+2025-05-24 10:32:10 - Displaying confirmation for order: ORD-683184055710E, Customer ID: 49
+2025-05-24 10:32:10 - Order items count: 3
+2025-05-24 10:32:10 - Order items: [{"item_id":4,"quantity":2,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":2,"quantity":2,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":6,"quantity":2,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"}]
+2025-05-24 10:32:10 - Delivery method: delivery
+2025-05-24 10:32:10 - Delivery address: "{\"street_address\":\"123taman makmur\",\"city\":\"johor\",\"postal_code\":\"33333\"}"
+2025-05-24 10:32:10 - Customer email: jinyang@gmail.com
