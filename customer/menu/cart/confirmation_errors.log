@@ -1391,3 +1391,51 @@ Autoload file not found at: ../../vendor/autoload.phpAutoload file not found at:
 2025-05-24 10:32:10 - Delivery method: delivery
 2025-05-24 10:32:10 - Delivery address: "{\"street_address\":\"123taman makmur\",\"city\":\"johor\",\"postal_code\":\"33333\"}"
 2025-05-24 10:32:10 - Customer email: jinyang@gmail.com
+2025-05-25 19:13:42 - Displaying confirmation for order: ORD-68334FC5419F9, Customer ID: 49
+2025-05-25 19:13:42 - Order items count: 1
+2025-05-25 19:13:42 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-25 19:13:42 - Delivery method: delivery
+2025-05-25 19:13:42 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-05-25 19:13:42 - Customer email: kai@gmail.com
+2025-05-25 19:14:10 - Displaying confirmation for order: ORD-68334FC5419F9, Customer ID: 49
+2025-05-25 19:14:10 - Order items count: 1
+2025-05-25 19:14:10 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-25 19:14:10 - Delivery method: delivery
+2025-05-25 19:14:10 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-05-25 19:14:10 - Customer email: kai@gmail.com
+2025-05-25 19:14:14 - Displaying confirmation for order: ORD-68334FC5419F9, Customer ID: 49
+2025-05-25 19:14:14 - Order items count: 1
+2025-05-25 19:14:14 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-25 19:14:14 - Delivery method: delivery
+2025-05-25 19:14:14 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-05-25 19:14:14 - Customer email: kai@gmail.com
+2025-05-25 19:14:17 - Displaying confirmation for order: ORD-68334FC5419F9, Customer ID: 49
+2025-05-25 19:14:17 - Order items count: 1
+2025-05-25 19:14:17 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-05-25 19:14:17 - Delivery method: delivery
+2025-05-25 19:14:17 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-05-25 19:14:17 - Customer email: kai@gmail.com
+2025-05-25 19:15:18 - Displaying confirmation for order: ORD-683350251758D, Customer ID: 49
+2025-05-25 19:15:18 - Order items count: 1
+2025-05-25 19:15:18 - Order items: [{"item_id":10,"quantity":1,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]
+2025-05-25 19:15:18 - Delivery method: delivery
+2025-05-25 19:15:18 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-05-25 19:15:18 - Customer email: kai@gmail.com
+2025-05-25 19:15:40 - Displaying confirmation for order: ORD-683350251758D, Customer ID: 49
+2025-05-25 19:15:40 - Order items count: 1
+2025-05-25 19:15:40 - Order items: [{"item_id":10,"quantity":1,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]
+2025-05-25 19:15:40 - Delivery method: delivery
+2025-05-25 19:15:40 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-05-25 19:15:40 - Customer email: kai@gmail.com
+2025-05-25 19:18:00 - Displaying confirmation for order: ORD-683350251758D, Customer ID: 49
+2025-05-25 19:18:00 - Order items count: 1
+2025-05-25 19:18:00 - Order items: [{"item_id":10,"quantity":1,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]
+2025-05-25 19:18:00 - Delivery method: delivery
+2025-05-25 19:18:00 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-05-25 19:18:00 - Customer email: kai@gmail.com
+2025-06-05 12:23:49 - Displaying confirmation for order: ORD-68417034232A0, Customer ID: 49
+2025-06-05 12:23:49 - Order items count: 2
+2025-06-05 12:23:49 - Order items: [{"item_id":1,"quantity":18,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-05 12:23:49 - Delivery method: pickup
+2025-06-05 12:23:49 - Delivery address: ""
+2025-06-05 12:23:49 - Customer email: kai@gmail.com

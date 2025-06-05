@@ -213,9 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['delete_account'])) {
         name="photo" 
         accept="image/jpeg,image/png,image/gif">
       <?php if (!empty($customer['photo'])): ?>
-        <div class="current-photo">
-          Current: <?= htmlspecialchars($customer['photo']) ?>
-        </div>
+        
         <img 
           src="/Online-Fast-Food/Admin/Manage_Customer/upload/<?= htmlspecialchars($customer['photo']) ?>" 
           alt="Current Profile Picture" 

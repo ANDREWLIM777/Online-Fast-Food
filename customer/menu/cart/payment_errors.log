@@ -1273,3 +1273,58 @@
 2025-05-24 10:32:05 - Payment method: online_banking, Payment method ID: 1
 2025-05-24 10:32:05 - Generated order_id: ORD-683184055710E
 2025-05-24 10:32:05 - Payment successful: order_id=ORD-683184055710E
+2025-05-25 19:12:24 - Attempting to add delivery address: street=AA-7,Lorong A-3,Pekan Nenas, city=Johor, postal_code=81500, default=
+2025-05-25 19:12:24 - Delivery address added successfully: ID 1, AA-7,Lorong A-3,Pekan Nenas, Johor, 81500
+2025-05-25 19:12:40 - Attempting to add payment method: method_type=digital_wallet
+2025-05-25 19:12:40 - Adding digital wallet - Wallet Type: tng, Phone Number: 01159887285
+2025-05-25 19:12:40 - Payment method added successfully: ID 1
+2025-05-25 19:12:42 - Received make_payment request: {&#34;csrf_token&#34;:&#34;a8f6b09a4b4028b2af72f5fe9895259c5db0afed2a667d66e551c895e687c18f&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;&#34;,&#34;amount&#34;:&#34;14&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-25 19:12:42 - Received amount: 14, Expected total: 14
+2025-05-25 19:12:42 - Delivery method: delivery, Delivery address ID: 1
+2025-05-25 19:12:42 - Payment method: , Payment method ID: 1
+2025-05-25 19:12:42 - Validation failed: Invalid payment method ()
+2025-05-25 19:12:45 - Received make_payment request: {&#34;csrf_token&#34;:&#34;a8f6b09a4b4028b2af72f5fe9895259c5db0afed2a667d66e551c895e687c18f&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;&#34;,&#34;amount&#34;:&#34;14&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-25 19:12:45 - Received amount: 14, Expected total: 14
+2025-05-25 19:12:45 - Delivery method: delivery, Delivery address ID: 1
+2025-05-25 19:12:45 - Payment method: , Payment method ID: 1
+2025-05-25 19:12:45 - Validation failed: Invalid payment method ()
+2025-05-25 19:12:46 - Received make_payment request: {&#34;csrf_token&#34;:&#34;a8f6b09a4b4028b2af72f5fe9895259c5db0afed2a667d66e551c895e687c18f&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;&#34;,&#34;amount&#34;:&#34;14&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-25 19:12:46 - Received amount: 14, Expected total: 14
+2025-05-25 19:12:46 - Delivery method: delivery, Delivery address ID: 1
+2025-05-25 19:12:46 - Payment method: , Payment method ID: 1
+2025-05-25 19:12:46 - Validation failed: Invalid payment method ()
+2025-05-25 19:12:52 - Received make_payment request: {&#34;csrf_token&#34;:&#34;a8f6b09a4b4028b2af72f5fe9895259c5db0afed2a667d66e551c895e687c18f&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;&#34;,&#34;amount&#34;:&#34;14&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-25 19:12:52 - Received amount: 14, Expected total: 14
+2025-05-25 19:12:52 - Delivery method: delivery, Delivery address ID: 1
+2025-05-25 19:12:52 - Payment method: , Payment method ID: 1
+2025-05-25 19:12:52 - Validation failed: Invalid payment method ()
+2025-05-25 19:13:26 - Attempting to add payment method: method_type=online_banking
+2025-05-25 19:13:26 - Payment method added successfully: ID 2
+2025-05-25 19:13:27 - Received make_payment request: {&#34;csrf_token&#34;:&#34;a8f6b09a4b4028b2af72f5fe9895259c5db0afed2a667d66e551c895e687c18f&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;2&#34;,&#34;method&#34;:&#34;&#34;,&#34;amount&#34;:&#34;14&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-25 19:13:27 - Received amount: 14, Expected total: 14
+2025-05-25 19:13:27 - Delivery method: delivery, Delivery address ID: 1
+2025-05-25 19:13:27 - Payment method: , Payment method ID: 2
+2025-05-25 19:13:27 - Validation failed: Invalid payment method ()
+2025-05-25 19:13:34 - Received make_payment request: {&#34;csrf_token&#34;:&#34;a8f6b09a4b4028b2af72f5fe9895259c5db0afed2a667d66e551c895e687c18f&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;2&#34;,&#34;method&#34;:&#34;&#34;,&#34;amount&#34;:&#34;14&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-25 19:13:34 - Received amount: 14, Expected total: 14
+2025-05-25 19:13:34 - Delivery method: delivery, Delivery address ID: 1
+2025-05-25 19:13:34 - Payment method: , Payment method ID: 2
+2025-05-25 19:13:34 - Validation failed: Invalid payment method ()
+2025-05-25 19:13:41 - Received make_payment request: {&#34;csrf_token&#34;:&#34;a8f6b09a4b4028b2af72f5fe9895259c5db0afed2a667d66e551c895e687c18f&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;14&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-25 19:13:41 - Received amount: 14, Expected total: 14
+2025-05-25 19:13:41 - Delivery method: delivery, Delivery address ID: 1
+2025-05-25 19:13:41 - Payment method: digital_wallet, Payment method ID: 1
+2025-05-25 19:13:41 - Generated order_id: ORD-68334FC5419F9
+2025-05-25 19:13:41 - Payment successful: order_id=ORD-68334FC5419F9
+2025-05-25 19:15:17 - Received make_payment request: {&#34;csrf_token&#34;:&#34;a8f6b09a4b4028b2af72f5fe9895259c5db0afed2a667d66e551c895e687c18f&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;2&#34;,&#34;method&#34;:&#34;online_banking&#34;,&#34;amount&#34;:&#34;5&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-05-25 19:15:17 - Received amount: 5, Expected total: 5
+2025-05-25 19:15:17 - Delivery method: delivery, Delivery address ID: 1
+2025-05-25 19:15:17 - Payment method: online_banking, Payment method ID: 2
+2025-05-25 19:15:17 - Generated order_id: ORD-683350251758D
+2025-05-25 19:15:17 - Payment successful: order_id=ORD-683350251758D
+2025-06-05 12:23:48 - Received make_payment request: {&#34;csrf_token&#34;:&#34;02564d471a0242585ee24dbed9c26400534a6754e2921fb9e9db00dbd7afda25&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;230&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-05 12:23:48 - Received amount: 230, Expected total: 230
+2025-06-05 12:23:48 - Delivery method: pickup, Delivery address ID: 0
+2025-06-05 12:23:48 - Payment method: digital_wallet, Payment method ID: 1
+2025-06-05 12:23:48 - Generated order_id: ORD-68417034232A0
+2025-06-05 12:23:48 - Payment successful: order_id=ORD-68417034232A0

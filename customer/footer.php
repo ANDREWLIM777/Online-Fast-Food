@@ -66,12 +66,13 @@
   </div>
   <ul class="more-links">
     <li><a href="/Online-Fast-Food/customer/home/home.php">Home</a></li>
+    <li><a href="/Online-Fast-Food/customer/orders/orders.php">My Orders</a></li>
 <!-- Add under login form -->
-<a href="/Online-Fast-Food/customer/forgot_password/forgot_password.php" class="forgot-link">Forgot your password?</a>
-    <li><a href="/Online-Fast-Food/payment/保存/payment_history.php">Payment History</a></li>
+    <li><a href="/Online-Fast-Food/customer/menu/cart/payment_history.php">Payment History</a></li>
     <li><a href="/Online-Fast-Food/customer/notification/notification.php">News</a></li>
     <li><a href="/Online-Fast-Food/customer/customer_notification/customer_notification.php">Notification</a></li>
     <li><a href="/Online-Fast-Food/customer/brizo/about_brizo.php">About Us</a></li>
+    <a href="/Online-Fast-Food/customer/change_password/change_password.php" class="forgot-link">Change your password?</a>
     <li><a href="/Online-Fast-Food/Admin/Admin_Account/login.php">Login as Admin</a></li>
   </ul>
 </div>
