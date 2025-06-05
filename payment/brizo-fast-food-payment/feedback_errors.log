@@ -40,3 +40,12 @@
 2025-05-30 03:22:06 - Customer ID from session: 1
 2025-05-30 03:22:06 - Selected order: order_id=ORD-682869E20B9FD, found={"order_id":"ORD-682869E20B9FD","total":"14.00","created_at":"2025-05-17 18:50:10","customer_id":1,"status":"completed"}
 2025-05-30 03:22:06 - Fetched feedback for order ORD-682869E20B9FD: Found
+2025-06-05 17:11:17 - Customer ID from session: 4
+2025-06-05 17:11:17 - Selected order: order_id=ORD-6841B3928D517, found={"order_id":"ORD-6841B3928D517","total":"27.00","created_at":"2025-06-05 23:11:14","customer_id":4,"status":"completed"}
+2025-06-05 17:11:17 - Fetched feedback for order ORD-6841B3928D517: Not found
+2025-06-05 17:11:38 - Customer ID from session: 4
+2025-06-05 17:11:38 - Feedback saved for order: ORD-6841B3928D517, rating: 5
+2025-06-05 17:11:40 - Feedback email failed for order: ORD-6841B3928D517 - SMTP Error: Could not authenticate.
+2025-06-05 17:11:40 - Customer ID from session: 4
+2025-06-05 17:11:40 - Selected order: order_id=ORD-6841B3928D517, found={"order_id":"ORD-6841B3928D517","total":"27.00","created_at":"2025-06-05 23:11:14","customer_id":4,"status":"completed"}
+2025-06-05 17:11:40 - Fetched feedback for order ORD-6841B3928D517: Found

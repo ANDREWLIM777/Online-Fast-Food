@@ -616,3 +616,56 @@
 2025-06-05 15:17:14 - Delivery address: "{\"street_address\":\"4502, Angkasa Nuri\",\"city\":\"Kuala Lumpur\",\"postal_code\":\"50450\"}"
 2025-06-05 15:17:14 - Customer email: andrewbrizo31@gmail.com
 2025-06-05 15:17:14 - Payment details: uob
+2025-06-05 17:07:11 - GET data: {"order_id":"ORD-6841B29F64908"}
+2025-06-05 17:07:11 - SESSION data: {"customer_id":4,"customer_name":"Andrew","last_activity":1749136031,"csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234","last_order":{"order_code":"ORD-6841B29F64908","amount":27,"method":"digital_wallet","payment_details":"01111126183","delivery_method":"delivery","delivery_address":{"street_address":"4502, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"},"timestamp":"2025-05-25 13:15:00","items":[{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]}}
+2025-06-05 17:07:11 - Updated order status to completed: ORD-6841B29F64908
+2025-06-05 17:07:11 - Order ORD-6841B29F64908 completion status: completed
+2025-06-05 17:07:11 - Displaying confirmation for order: ORD-6841B29F64908, Customer ID: 4
+2025-06-05 17:07:11 - Order items count: 2
+2025-06-05 17:07:11 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-05 17:07:11 - Delivery method: delivery
+2025-06-05 17:07:11 - Delivery address: "{\"street_address\":\"4502, Angkasa Nuri\",\"city\":\"Kuala Lumpur\",\"postal_code\":\"50450\"}"
+2025-06-05 17:07:11 - Customer email: andrewbrizo31@gmail.com
+2025-06-05 17:07:11 - Payment details: 01111126183
+2025-06-05 17:07:13 - GET data: {"download_invoice":"1","order_id":"ORD-6841B29F64908","csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234"}
+2025-06-05 17:07:13 - SESSION data: {"customer_id":4,"customer_name":"Andrew","last_activity":1749136031,"csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234"}
+2025-06-05 17:07:13 - Order ORD-6841B29F64908 completion status: completed
+2025-06-05 17:07:13 - Displaying confirmation for order: ORD-6841B29F64908, Customer ID: 4
+2025-06-05 17:07:13 - Order items count: 2
+2025-06-05 17:07:13 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-05 17:07:13 - Delivery method: delivery
+2025-06-05 17:07:13 - Delivery address: "{\"street_address\":\"4502, Angkasa Nuri\",\"city\":\"Kuala Lumpur\",\"postal_code\":\"50450\"}"
+2025-06-05 17:07:13 - Customer email: andrewbrizo31@gmail.com
+2025-06-05 17:07:13 - Payment details: 01111126183
+2025-06-05 17:07:18 - Downloaded invoice for order: ORD-6841B29F64908
+2025-06-05 17:07:29 - GET data: {"email_sent":"success","order_id":"ORD-6841B29F64908","csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234"}
+2025-06-05 17:07:29 - SESSION data: {"customer_id":4,"customer_name":"Andrew","last_activity":1749136044,"csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234"}
+2025-06-05 17:07:29 - Order ORD-6841B29F64908 completion status: completed
+2025-06-05 17:07:29 - Displaying confirmation for order: ORD-6841B29F64908, Customer ID: 4
+2025-06-05 17:07:29 - Order items count: 2
+2025-06-05 17:07:29 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-05 17:07:29 - Delivery method: delivery
+2025-06-05 17:07:29 - Delivery address: "{\"street_address\":\"4502, Angkasa Nuri\",\"city\":\"Kuala Lumpur\",\"postal_code\":\"50450\"}"
+2025-06-05 17:07:29 - Customer email: andrewbrizo31@gmail.com
+2025-06-05 17:07:29 - Payment details: 01111126183
+2025-06-05 17:07:51 - GET data: {"order_id":"ORD-6841B29F64908","csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234"}
+2025-06-05 17:07:51 - SESSION data: {"customer_id":4,"customer_name":"Andrew","last_activity":1749136067,"csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234"}
+2025-06-05 17:07:51 - Order ORD-6841B29F64908 completion status: completed
+2025-06-05 17:07:51 - Displaying confirmation for order: ORD-6841B29F64908, Customer ID: 4
+2025-06-05 17:07:51 - Order items count: 2
+2025-06-05 17:07:51 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-05 17:07:51 - Delivery method: delivery
+2025-06-05 17:07:51 - Delivery address: "{\"street_address\":\"4502, Angkasa Nuri\",\"city\":\"Kuala Lumpur\",\"postal_code\":\"50450\"}"
+2025-06-05 17:07:51 - Customer email: andrewbrizo31@gmail.com
+2025-06-05 17:07:51 - Payment details: 01111126183
+2025-06-05 17:11:14 - GET data: {"order_id":"ORD-6841B3928D517"}
+2025-06-05 17:11:14 - SESSION data: {"customer_id":4,"customer_name":"Andrew","last_activity":1749136274,"csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234","last_order":{"order_code":"ORD-6841B3928D517","amount":27,"method":"digital_wallet","payment_details":"01111126183","delivery_method":"delivery","delivery_address":{"street_address":"4502, Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"},"timestamp":"2025-05-25 13:15:00","items":[{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]}}
+2025-06-05 17:11:14 - Updated order status to completed: ORD-6841B3928D517
+2025-06-05 17:11:14 - Order ORD-6841B3928D517 completion status: completed
+2025-06-05 17:11:14 - Displaying confirmation for order: ORD-6841B3928D517, Customer ID: 4
+2025-06-05 17:11:14 - Order items count: 2
+2025-06-05 17:11:14 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-05 17:11:14 - Delivery method: delivery
+2025-06-05 17:11:14 - Delivery address: "{\"street_address\":\"4502, Angkasa Nuri\",\"city\":\"Kuala Lumpur\",\"postal_code\":\"50450\"}"
+2025-06-05 17:11:14 - Customer email: andrewbrizo31@gmail.com
+2025-06-05 17:11:14 - Payment details: 01111126183
