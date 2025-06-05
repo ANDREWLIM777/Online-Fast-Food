@@ -187,7 +187,11 @@ while ($row = $result->fetch_assoc()) {
     </table>
 
     <a href="../menu.php" class="back-menu">⬅️ Continue Shopping</a>
+<<<<<<< HEAD
+    <a href="../../../payment/brizo-fast-food-payment/payment.php" class="back-menu">Proceed to Payment ➡️</a>
+=======
     <a href="../cart/payment.php" class="back-menu">Proceed to Payment ➡️</a>
+>>>>>>> f9e0761d934b24649077bd1334e3770e17f2ba8d
   <?php endif; ?>
 </div>
 

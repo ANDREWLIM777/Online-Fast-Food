@@ -15,7 +15,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) >
     session_unset();
     session_destroy();
     $logMessage("Session expired for customer_id: " . ($_SESSION['customer_id'] ?? 'unknown'));
-    header("Location: ../../login.php?message=Session+expired");
+    header("Location: /Online-Fast-Food/login.php?message=" . urlencode("Your session has expired. Please log in again."));
     exit();
 }
 $_SESSION['last_activity'] = time();
@@ -23,18 +23,18 @@ $_SESSION['last_activity'] = time();
 // Check database connection
 if ($conn->connect_error) {
     $logMessage("Database connection failed: " . $conn->connect_error);
-    header("Location: ../../error.php?message=Database+connection+failed");
+    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database connection failed."));
     exit();
 }
 
 // Check for vendor/autoload.php
-$autoloadPath = dirname(__DIR__, 3) . '/vendor/autoload.php';
+$autoloadPath = dirname(__DIR__, 2) . '/vendor/autoload.php';
 if (!file_exists($autoloadPath)) {
     $logMessage("Autoload file not found at: $autoloadPath");
     if ($debug) {
         die("Debug: Autoload file not found at: $autoloadPath");
     }
-    header("Location: ../../error.php?message=Required+dependencies+missing");
+    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Required dependencies missing"));
     exit();
 }
 require $autoloadPath;
@@ -45,7 +45,7 @@ use PHPMailer\PHPMailer\Exception;
 // Check if user is logged in
 if (!isset($_SESSION['customer_id'])) {
     $logMessage("No customer_id in session");
-    header("Location: ../../login.php");
+    header("Location: /Online-Fast-Food/login.php");
     exit();
 }
 
@@ -57,6 +57,13 @@ if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 $csrfToken = $_SESSION['csrf_token'];
+
+// Validate CSRF token for GET requests
+if (isset($_GET['csrf_token']) && $_GET['csrf_token'] !== $csrfToken) {
+    $logMessage("Invalid CSRF token for order_id: " . ($_GET['order_id'] ?? 'unknown'));
+    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Invalid CSRF token"));
+    exit();
+}
 
 // Handle feedback submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_feedback'])) {
@@ -75,23 +82,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_feedback'])) {
     // Validate input
     if (empty($orderId) || $rating < 1 || $rating > 5) {
         $logMessage("Invalid input: order_id=$orderId, rating=$rating");
-        header("Location: feedback.php?error=Invalid+order+or+rating&selected_order=" . urlencode($orderId));
+        header("Location: feedback.php?error=Invalid+order+or+rating&order_id=" . urlencode($orderId));
         exit();
     }
 
     // Verify order belongs to customer and is completed
-    $stmt = $conn->prepare("SELECT order_id FROM orders WHERE order_id = ? AND customer_id = ? AND status = 'completed'");
+    $stmt = $conn->prepare("SELECT order_id FROM orders WHERE order_id = ? AND customer_id = ? AND LOWER(status) = 'completed'");
     if (!$stmt) {
         $logMessage("Prepare failed for order validation: " . $conn->error);
-        header("Location: ../../error.php?message=Database+error");
+        header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
         exit();
     }
     $stmt->bind_param("si", $orderId, $customerId);
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows === 0) {
-        $logMessage("Order not found or not completed: $orderId for customer: $customerId");
-        header("Location: feedback.php?error=Order+not+found+or+not+completed&selected_order=" . urlencode($orderId));
+        // Log order details for debugging
+        $stmt = $conn->prepare("SELECT order_id, customer_id, status FROM orders WHERE order_id = ?");
+        $stmt->bind_param("s", $orderId);
+        $stmt->execute();
+        $orderDetails = $stmt->get_result()->fetch_assoc();
+        $logMessage("Order validation failed: order_id=$orderId, customer_id=$customerId, found=" . json_encode($orderDetails));
+        $stmt->close();
+        header("Location: feedback.php?error=Order+not+found+or+not+completed&order_id=" . urlencode($orderId));
         exit();
     }
     $stmt->close();
@@ -100,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_feedback'])) {
     $stmt = $conn->prepare("SELECT id FROM feedback WHERE order_id = ? AND customer_id = ?");
     if (!$stmt) {
         $logMessage("Prepare failed for feedback check: " . $conn->error);
-        header("Location: ../../error.php?message=Database+error");
+        header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
         exit();
     }
     $stmt->bind_param("si", $orderId, $customerId);
@@ -108,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_feedback'])) {
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
         $logMessage("Feedback already exists for order: $orderId");
-        header("Location: feedback.php?error=Feedback+already+submitted+for+this+order&selected_order=" . urlencode($orderId));
+        header("Location: feedback.php?error=Feedback+already+submitted+for+this+order&order_id=" . urlencode($orderId));
         exit();
     }
     $stmt->close();
@@ -120,27 +133,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_feedback'])) {
         $maxSize = 5 * 1024 * 1024; // 5MB
         if (!in_array($evidence['type'], $allowedTypes) || $evidence['size'] > $maxSize) {
             $logMessage("Invalid file type or size for order: $orderId");
-            header("Location: feedback.php?error=Invalid+file+type+or+size+(JPG/PNG,+max+5MB)&selected_order=" . urlencode($orderId));
+            header("Location: feedback.php?error=Invalid+file+type+or+size+(JPG/PNG,+max+5MB)&order_id=" . urlencode($orderId));
             exit();
         }
 
         // Validate image content
         if (!getimagesize($evidence['tmp_name'])) {
             $logMessage("Invalid image content for order: $orderId");
-            header("Location: feedback.php?error=Invalid+image+file&selected_order=" . urlencode($orderId));
+            header("Location: feedback.php?error=Invalid+image+file&order_id=" . urlencode($orderId));
             exit();
         }
 
-        $uploadDir = 'Uploads/Feedback/';
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/Online-Fast-Food/Uploads/Feedback/';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
         $evidencePath = $uploadDir . uniqid() . '_' . basename($evidence['name']);
         if (!move_uploaded_file($evidence['tmp_name'], $evidencePath)) {
             $logMessage("File upload failed for order: $orderId");
-            header("Location: feedback.php?error=File+upload+failed&selected_order=" . urlencode($orderId));
+            header("Location: feedback.php?error=File+upload+failed&order_id=" . urlencode($orderId));
             exit();
         }
+        $evidencePath = '/Online-Fast-Food/Uploads/Feedback/' . basename($evidencePath);
     }
 
     // Save feedback
@@ -150,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_feedback'])) {
     ");
     if (!$stmt) {
         $logMessage("Prepare failed for feedback insert: " . $conn->error);
-        header("Location: ../../error.php?message=Database+error");
+        header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
         exit();
     }
     $stmt->bind_param("siiss", $orderId, $customerId, $rating, $comments, $evidencePath);
@@ -158,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_feedback'])) {
         $logMessage("Feedback saved for order: $orderId, rating: $rating");
     } else {
         $logMessage("Feedback save failed for order: $orderId - " . $stmt->error);
-        header("Location: feedback.php?error=Failed+to+save+feedback&selected_order=" . urlencode($orderId));
+        header("Location: feedback.php?error=Failed+to+save+feedback&order_id=" . urlencode($orderId));
         exit();
     }
     $stmt->close();
@@ -177,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_feedback'])) {
         $mail->setFrom('no-reply@brizofastfood.com', 'Brizo Fast Food');
         $mail->addAddress(getenv('ADMIN_EMAIL') ?: 'admin@brizofastfood.com');
         if ($evidencePath) {
-            $mail->addAttachment($evidencePath);
+            $mail->addAttachment($_SERVER['DOCUMENT_ROOT'] . $evidencePath);
         }
 
         $mail->isHTML(true);
@@ -197,69 +211,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_feedback'])) {
         $logMessage("Feedback email failed for order: $orderId - " . $mail->ErrorInfo);
     }
 
-    header("Location: feedback.php?success=Feedback+submitted+successfully&selected_order=" . urlencode($orderId));
+    header("Location: feedback.php?success=Feedback+submitted+successfully&order_id=" . urlencode($orderId));
     exit();
 }
 
-// Fetch completed orders
-$stmt = $conn->prepare("
-    SELECT order_id, created_at
-    FROM orders
-    WHERE customer_id = ? AND status = 'completed'
-    ORDER BY created_at DESC
-");
-if (!$stmt) {
-    $logMessage("Prepare failed for orders fetch: " . $conn->error);
-    header("Location: ../../error.php?message=Database+error");
-    exit();
-}
-$stmt->bind_param("i", $customerId);
-$stmt->execute();
-$orders = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-$logMessage("Fetched " . count($orders) . " completed orders for customer_id: $customerId");
-$logMessage("Orders: " . json_encode($orders));
-$stmt->close();
-
-// Get selected order
-$selectedOrderId = filter_input(INPUT_POST, 'selected_order', FILTER_SANITIZE_STRING) ?? filter_input(INPUT_GET, 'selected_order', FILTER_SANITIZE_STRING) ?? '';
+// Get order_id from GET
+$orderId = filter_input(INPUT_GET, 'order_id', FILTER_SANITIZE_STRING) ?? '';
 $selectedOrder = null;
-if ($selectedOrderId) {
+$feedback = null;
+
+if ($orderId) {
+    // Validate order
     $stmt = $conn->prepare("
-        SELECT order_id, total, created_at
+        SELECT order_id, total, created_at, customer_id, status
         FROM orders
-        WHERE customer_id = ? AND order_id = ? AND status = 'completed'
+        WHERE customer_id = ? AND order_id = ? AND LOWER(status) = 'completed'
     ");
     if (!$stmt) {
         $logMessage("Prepare failed for selected order: " . $conn->error);
-        header("Location: ../../error.php?message=Database+error");
+        header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
         exit();
     }
-    $stmt->bind_param("is", $customerId, $selectedOrderId);
+    $stmt->bind_param("is", $customerId, $orderId);
     $stmt->execute();
     $selectedOrder = $stmt->get_result()->fetch_assoc();
     $stmt->close();
-    $logMessage("Selected order: " . ($selectedOrder ? $selectedOrderId : 'None'));
+    $logMessage("Selected order: order_id=$orderId, found=" . ($selectedOrder ? json_encode($selectedOrder) : 'None'));
+
+    // Fetch existing feedback
+    if ($selectedOrder) {
+        $stmt = $conn->prepare("
+            SELECT order_id, rating, comments, evidence_path
+            FROM feedback
+            WHERE customer_id = ? AND order_id = ?
+        ");
+        if (!$stmt) {
+            $logMessage("Prepare failed for feedback fetch: " . $conn->error);
+            header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
+            exit();
+        }
+        $stmt->bind_param("is", $customerId, $orderId);
+        $stmt->execute();
+        $feedback = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+        $logMessage("Fetched feedback for order $orderId: " . ($feedback ? 'Found' : 'Not found'));
+    }
 }
 
-// Fetch existing feedback
-$feedback = null;
-if ($selectedOrderId) {
-    $stmt = $conn->prepare("
-        SELECT order_id, rating, comments, evidence_path
-        FROM feedback
-        WHERE customer_id = ? AND order_id = ?
-    ");
-    if (!$stmt) {
-        $logMessage("Prepare failed for feedback fetch: " . $conn->error);
-        header("Location: ../../error.php?message=Database+error");
-        exit();
-    }
-    $stmt->bind_param("is", $customerId, $selectedOrderId);
-    $stmt->execute();
-    $feedback = $stmt->get_result()->fetch_assoc();
-    $stmt->close();
-    $logMessage("Fetched feedback for order $selectedOrderId: " . ($feedback ? 'Found' : 'Not found'));
-}
+// Base URL for images
+$baseUrl = 'http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -276,26 +276,40 @@ if ($selectedOrderId) {
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .card-hover:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
-        .btn-primary { background-color: #f97316; color: white; }
-        .btn-primary:hover { background-color: #ea580c; }
-        .text-primary { color: #f97316; }
-        .text-primary:hover { color: #ea580c; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 12px 24px; margin: 4px; border-radius: 12px;
+            font-weight: 600; color: white; text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer; border: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: #ff4757;
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+            background-color: #e63e4d;
+        }
+        .btn:focus { outline: none; ring: 2px solid rgba(255, 255, 255, 0.5); }
+        .btn:active { transform: translateY(0); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
+        .btn i { margin-right: 8px; }
+        .text-primary { color: #ff4757; }
+        .text-primary:hover { color: #e63e4d; }
+        .star-filled { color: #f59e0b; }
         .star-rating input { display: none; }
         .star-rating label { cursor: pointer; color: #d1d5db; font-size: 1.5rem; }
-        .star-rating input:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: #f97316; }
+        .star-rating input:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: #f59e0b; }
         .order-table { width: 100%; border-collapse: collapse; }
         .order-table th, .order-table td { border: 1px solid #e5e7eb; padding: 8px; text-align: left; }
         .order-table th { background-color: #f3f4f6; }
         .order-table img { max-width: 60px; height: auto; }
-        select { width: 100%; padding: 8px; border: 1px solid #e5e7eb; border-radius: 4px; }
     </style>
 </head>
 <body class="bg-gray-100">
     <header class="sticky top-0 bg-white shadow z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-primary">Brizo Fast Food Melaka</h1>
-            <a href="../../index.php" class="text-primary hover:text-primary flex items-center">
-                <i class="fas fa-home mr-2"></i> Back to Home
+            <a href="/Online-Fast-Food/customer/menu/cart/cart.php" class="text-primary hover:text-primary flex items-center" aria-label="Return to cart page">
+                <i class="fas fa-shopping-cart mr-2"></i> Back to Cart
             </a>
         </div>
     </header>
@@ -318,33 +332,14 @@ if ($selectedOrderId) {
 
         <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
             <h2 class="text-2xl font-semibold text-gray-800 mb-6">Your Feedback</h2>
-            <p class="text-gray-600 mb-4">Select an order to provide feedback.</p>
             <p class="text-gray-600 mb-4">Your Customer ID: <?= htmlspecialchars($customerId) ?></p>
 
-            <!-- Order selection form -->
-            <form action="feedback.php" method="POST" class="mb-6">
-                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
-                <label for="selected_order" class="block text-gray-700 font-medium mb-2">Select Order</label>
-                <div class="flex items-center space-x-2">
-                    <select name="selected_order" id="selected_order" class="flex-1">
-                        <option value="">-- Choose an order --</option>
-                        <?php foreach ($orders as $order): ?>
-                            <option value="<?= htmlspecialchars($order['order_id']) ?>" <?= $selectedOrderId === $order['order_id'] ? 'selected' : '' ?>>
-                                Order #<?= htmlspecialchars($order['order_id']) ?> (<?= date('d M Y, H:i', strtotime($order['created_at'])) ?>)
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                    <button type="submit" class="px-4 py-2 btn-primary rounded-lg flex items-center">
-                        <i class="fas fa-arrow-right mr-2"></i> View Order
-                    </button>
-                </div>
-            </form>
-
-            <?php if (empty($orders)): ?>
-                <p class="text-gray-600">No completed orders found. Only orders marked as 'completed' are eligible for feedback.</p>
-            <?php elseif ($selectedOrder): ?>
+            <?php if (!$orderId): ?>
+                <p class="text-red-600">No order specified. Please access feedback from the order confirmation page.</p>
+            <?php elseif (!$selectedOrder): ?>
+                <p class="text-red-600">Invalid or incomplete order. Only completed orders are eligible for feedback. Order ID: <?= htmlspecialchars($orderId) ?></p>
+            <?php else: ?>
                 <?php
-                $orderId = $selectedOrder['order_id'];
                 // Fetch items
                 $items = [];
                 $stmt = $conn->prepare("
@@ -385,7 +380,7 @@ if ($selectedOrderId) {
                                     <?php foreach ($items as $item): ?>
                                         <tr>
                                             <td>
-                                                <img src="/Online-Fast-Food/Admin/Manage_Menu_Item/<?= htmlspecialchars($item['photo'] ?: 'placeholder.jpg') ?>" alt="<?= htmlspecialchars($item['item_name']) ?>" onerror="this.src='/Online-Fast-Food/Admin/Manage_Menu_Item/placeholder.jpg'" style="max-width: 60px; height: auto;">
+                                                <img src="<?= htmlspecialchars($baseUrl . ($item['photo'] ?: 'placeholder.jpg')) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>" onerror="this.src='<?= htmlspecialchars($baseUrl . 'placeholder.jpg') ?>'" style="max-width: 60px; height: auto;">
                                             </td>
                                             <td><?= htmlspecialchars($item['item_name']) ?></td>
                                             <td><?= $item['quantity'] ?></td>
@@ -403,13 +398,13 @@ if ($selectedOrderId) {
                     <?php if ($hasFeedback): ?>
                         <div class="bg-green-50 p-4 rounded-lg">
                             <h4 class="text-lg font-medium text-green-700 mb-2">Your Feedback</h4>
-                            <p class="text-gray-600"><strong>Rating:</strong> 
+                            <p class="text-gray-600"><strong>Rating:</strong>
                                 <?php for ($i = 1; $i <= 5; $i++): ?>
-                                    <i class="fas fa-star <?= $i <= $feedback['rating'] ? 'text-primary' : 'text-gray-300' ?>"></i>
+                                    <i class="fas fa-star <?= $i <= $feedback['rating'] ? 'star-filled' : 'text-gray-300' ?>"></i>
                                 <?php endfor; ?>
                             </p>
                             <p class="text-gray-600"><strong>Comments:</strong> <?= htmlspecialchars($feedback['comments'] ?: 'None') ?></p>
-                            <p class="text-gray-600"><strong>Evidence:</strong> 
+                            <p class="text-gray-600"><strong>Evidence:</strong>
                                 <?php if ($feedback['evidence_path']): ?>
                                     <a href="<?= htmlspecialchars($feedback['evidence_path']) ?>" target="_blank" class="text-primary hover:text-primary">View Image</a>
                                 <?php else: ?>
@@ -418,34 +413,38 @@ if ($selectedOrderId) {
                             </p>
                         </div>
                     <?php else: ?>
-                        <form action="feedback.php" method="POST" enctype="multipart/form-data" class="space-y-4">
-                            <input type="hidden" name="submit_feedback" value="1">
+                        <form action="feedback.php" method="POST" enctype="multipart/form-data" class="space-y-6">
                             <input type="hidden" name="order_id" value="<?= htmlspecialchars($orderId) ?>">
                             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
                             <div>
-                                <label class="block text-gray-700 font-medium mb-2">Rating</label>
-                                <div class="star-rating flex flex-row-reverse">
+                                <label for="rating" class="block text-gray-700 font-medium mb-2">Rating</label>
+                                <div class="star-rating flex flex-row-reverse justify-end">
                                     <?php for ($i = 5; $i >= 1; $i--): ?>
-                                        <input type="radio" id="star<?= $i ?>_<?= htmlspecialchars($orderId) ?>" name="rating" value="<?= $i ?>" required>
-                                        <label for="star<?= $i ?>_<?= htmlspecialchars($orderId) ?>" class="fas fa-star mx-1"></label>
+                                        <input type="radio" id="star<?= $i ?>" name="rating" value="<?= $i ?>" <?= $i === 5 ? 'required' : '' ?>>
+                                        <label for="star<?= $i ?>" class="fas fa-star mx-1"></label>
                                     <?php endfor; ?>
                                 </div>
                             </div>
                             <div>
-                                <label for="comments_<?= htmlspecialchars($orderId) ?>" class="block text-gray-700 font-medium mb-2">Comments</label>
-                                <textarea id="comments_<?= htmlspecialchars($orderId) ?>" name="comments" rows="4" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Share your thoughts..."></textarea>
+                                <label for="comments" class="block text-gray-700 font-medium mb-2">Comments</label>
+                                <textarea id="comments" name="comments" rows="4" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Share your feedback..."></textarea>
                             </div>
                             <div>
-                                <label for="evidence_<?= htmlspecialchars($orderId) ?>" class="block text-gray-700 font-medium mb-2">Upload Image (JPG/PNG, max 5MB)</label>
-                                <input type="file" id="evidence_<?= htmlspecialchars($orderId) ?>" name="evidence" accept="image/jpeg,image/png" class="w-full border rounded-lg p-2">
+                                <label for="evidence" class="block text-gray-700 font-medium mb-2">Upload Evidence (JPG/PNG, max 5MB)</label>
+                                <input type="file" id="evidence" name="evidence" accept="image/jpeg,image/png" class="w-full border rounded-lg p-2">
                             </div>
-                            <button type="submit" class="px-4 py-2 btn-primary rounded-lg flex items-center">
-                                <i class="fas fa-star mr-2"></i> Submit Feedback
+                            <button type="submit" name="submit_feedback" class="btn">
+                                <i class="fas fa-paper-plane"></i> Submit Feedback
                             </button>
                         </form>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
+            <div class="mt-8 flex justify-end space-x-3">
+                <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php?csrf_token=<?= urlencode($csrfToken) ?>" class="btn">
+                    <i class="fas fa-history"></i> View Payment History
+                </a>
+            </div>
         </div>
     </main>
 </body>
