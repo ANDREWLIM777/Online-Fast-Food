@@ -86,7 +86,7 @@
         position: absolute;
         top: 62px;
         left: 0;
-        background: rgba(255, 157, 157, 0.55);
+        background: rgba(255, 250, 250, 0.63);
         backdrop-filter: blur(10px);
         border-radius: 12px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
@@ -111,7 +111,7 @@
     }
 
     .dropdown-menu a:hover {
-        background: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 157, 157, 0.55);
     }
 
 

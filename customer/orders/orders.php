@@ -44,6 +44,7 @@ while ($order = $ordersResult->fetch_assoc()) {
       margin: 0;
       padding: 0;
     }
+
     .notif-container {
       max-width: 800px;
       margin: 3rem auto;
@@ -52,11 +53,13 @@ while ($order = $ordersResult->fetch_assoc()) {
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
       border-radius: 12px;
     }
+
     h1 {
       text-align: center;
       color: #e17055;
       margin-bottom: 2rem;
     }
+
     .notif-card {
       border-left: 6px solid #ccc;
       padding: 1rem 1.2rem;
@@ -64,60 +67,78 @@ while ($order = $ordersResult->fetch_assoc()) {
       border-radius: 8px;
       background: #fdfdfd;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease;
     }
+
     .notif-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
     }
+
     .notif-header {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.5rem;
     }
+
     .type-tag {
-      padding: 2px 8px;
+      padding: 4px 10px;
       border-radius: 5px;
       font-size: 0.75rem;
       font-weight: bold;
       text-transform: uppercase;
       color: white;
     }
-    .status-pending   { background-color: #e67e22; }
-    .status-completed { background-color: #00b894; }
-    .status-refunded  { background-color: #d63031; }
+
+    .status-pending     { background-color: #f39c12; }
+    .status-preparing   { background-color: #e67e22; }
+    .status-delivering  { background-color: #3498db; }
+    .status-delivered   { background-color: #2ecc71; }
+    .status-completed   { background-color: #27ae60; }
 
     .notif-time {
       font-size: 0.8rem;
       color: #999;
     }
+
     .toggle-items {
       margin-top: 0.4rem;
       color: #0984e3;
       cursor: pointer;
       font-weight: 500;
       font-size: 14px;
+      transition: color 0.2s ease;
     }
+
+    .toggle-items:hover {
+      text-decoration: underline;
+    }
+
     .item-list {
       display: none;
       margin-top: 1rem;
       font-size: 15px;
+      animation: fadeIn 0.3s ease;
     }
+
     .item {
       display: flex;
       justify-content: space-between;
       margin: 0.3rem 0;
     }
+
     .total {
       font-weight: bold;
       font-size: 15px;
       margin-top: 0.6rem;
     }
+
     .empty {
       text-align: center;
       font-style: italic;
       color: #aaa;
     }
+
     .back-link {
       display: inline-block;
       margin-top: 2rem;
@@ -129,9 +150,15 @@ while ($order = $ordersResult->fetch_assoc()) {
       font-weight: bold;
       transition: background 0.3s ease;
     }
+
     .back-link:hover {
       background: #fab1a0;
       color: black;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -181,8 +208,7 @@ while ($order = $ordersResult->fetch_assoc()) {
   }
 </script>
 
-</body>
-</html>
-
 <?php include '../menu_icon.php'; ?>
 <?php include '../footer.php'; ?>
+</body>
+</html>
