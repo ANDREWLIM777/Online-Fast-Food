@@ -22,3 +22,16 @@
 2025-05-25 16:37:56 - Payment history accessed for customer_id: 1, page: 1
 2025-05-25 16:38:21 - Payment history accessed for customer_id: 1, page: 1
 2025-05-25 16:38:45 - Payment history accessed for customer_id: 1, page: 1
+2025-05-30 03:20:25 - Payment history accessed for customer_id: 1, page: 1
+2025-05-30 03:20:30 - Payment history accessed for customer_id: 1, page: 2
+2025-05-30 03:20:33 - Payment history accessed for customer_id: 1, page: 3
+2025-05-30 03:20:35 - Payment history accessed for customer_id: 1, page: 4
+2025-05-30 03:22:07 - Payment history accessed for customer_id: 1, page: 1
+2025-06-01 20:59:11 - No customer_id in session
+2025-06-01 21:00:41 - Payment history accessed for customer_id: 2, page: 1
+2025-06-01 21:29:33 - Payment history accessed for customer_id: 2, page: 1
+2025-06-05 11:05:33 - Payment history accessed for customer_id: 4, page: 1
+2025-06-05 12:08:36 - No customer_id in session
+2025-06-05 12:47:52 - Payment history accessed for customer_id: 4, page: 1
+2025-06-05 13:07:42 - Payment history accessed for customer_id: 4, page: 1
+2025-06-05 13:10:36 - Payment history accessed for customer_id: 4, page: 1

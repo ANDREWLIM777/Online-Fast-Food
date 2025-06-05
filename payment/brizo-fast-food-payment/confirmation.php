@@ -10,6 +10,10 @@ $logMessage = function($message) use ($logFile) {
     file_put_contents($logFile, date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, FILE_APPEND);
 };
 
+// Log incoming request data for debugging
+$logMessage("GET data: " . json_encode($_GET));
+$logMessage("SESSION data: " . json_encode($_SESSION));
+
 // Session timeout (30 minutes)
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > 1800) {
     session_unset();
@@ -108,11 +112,12 @@ if (isset($_GET['order_id'])) {
     } elseif (!is_array($deliveryAddress)) {
         $deliveryAddress = null;
     }
-    $timestamp = $order['timestamp'] ?? date('Y-m-d H:i:s', strtotime('2025-05-25 19:29:00 +08:00'));
+    $timestamp = $order['timestamp'] ?? date('Y-m-d H:i:s');
     $sessionItems = $order['items'] ?? [];
 } else {
     $logMessage("No order_id or last_order for customer_id: $customerId");
-    $errorMessage = "No order selected. Please choose an order from your payment history.";
+    header("Location: /Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php?csrf_token=" . urlencode($csrfToken));
+    exit();
 }
 
 // Validate order code
@@ -154,7 +159,7 @@ if (!empty($orderCode)) {
                 $logMessage("Prepare failed for orders insert: " . $conn->error);
             } else {
                 $total = $order['amount'] ?? 0;
-                $createdAt = $order['timestamp'] ?? date('Y-m-d H:i:s', strtotime('2025-05-25 19:29:00 +08:00'));
+                $createdAt = $order['timestamp'] ?? date('Y-m-d H:i:s');
                 $stmt->bind_param("sids", $orderCode, $customerId, $total, $createdAt);
                 if ($stmt->execute()) {
                     $logMessage("Inserted order into orders: $orderCode");
@@ -310,7 +315,7 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
                 <h1>Invoice #<?= htmlspecialchars($orderCode) ?></h1>
                 <p><strong>Order ID:</strong> <?= htmlspecialchars($orderCode) ?></p>
                 <p><strong>Date:</strong> <?= date('d M Y, H:i', strtotime($order['timestamp'] ?? date('Y-m-d H:i:s'))) ?></p>
-                <p><strong>Total:</strong> RM <?= number_format($order['amount'] ?? 0, 2) ?></p>
+                <p><strong>Total:</strong> RM <?=number_format($order['amount'], 2) ?></p>
                 <p><strong>Delivery Method:</strong> <?= htmlspecialchars($order['delivery_method'] ?? 'pickup') ?></p>
                 <p><strong>Delivery Address:</strong> 
                     <?php
@@ -444,7 +449,7 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
             <div class="mb-6 p-4 rounded-lg <?= $_GET['email_sent'] === 'success' ? 'bg-green-50 border-l-4 border-green-500' : 'bg-red-50 border-l-4 border-red-500' ?>">
                 <p class="<?= $_GET['email_sent'] === 'success' ? 'text-green-700' : 'text-red-700' ?> text-lg flex items-center">
                     <i class="fas <?= $_GET['email_sent'] === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle' ?> mr-2"></i>
-                    <?= $_GET['email_sent'] === 'success' ? 'Invoice successfully sent to your email!' : 'Failed to send invoice: ' . htmlspecialchars($_GET['message'] ?? 'Please try again later.') ?>
+                    <?= $_GET['email_sent'] === 'success' ? 'Invoice successfully sent to your email!' : 'Failed to send invoice: ' . htmlspecialchars($_GET['error'] ?? 'Please try again later.') ?>
                 </p>
             </div>
         <?php endif; ?>

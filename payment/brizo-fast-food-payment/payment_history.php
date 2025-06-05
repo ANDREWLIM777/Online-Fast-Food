@@ -124,24 +124,47 @@ function formatDeliveryAddress($address) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .fade-in { animation: fadeIn 0.3s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
         .table-container { overflow-x: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); }
-        .history-table tr { transition: background-color 0.3s ease, transform 0.2s ease; }
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .history-table th, .history-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: center; /* Center-align content for symmetry */
+        }
+        .history-table th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            width: 12.5%; /* Equal width for 8 columns */
+        }
         .history-table tr:nth-child(even) { background-color: #f9fafb; }
-        .history-table tr:hover { background-color: #f1f5f9; transform: scale(1.01); }
-        .history-table th, .history-table td { padding: 12px 16px; border-bottom: 1px solid #e5e7eb; }
-        .history-table th { background-color: #f3f4f6; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .history-table tr:hover { background-color: #f1f5f9; }
         .btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 10px 20px; border-radius: 8px;
-            font-weight: 500; font-size: 14px; color: white; text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px; /* Uniform button size */
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 14px;
+            color: white;
+            text-decoration: none;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
-            cursor: pointer; border: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+            width: 80px; /* Fixed width for symmetry */
+            height: 36px; /* Fixed height for symmetry */
         }
         .btn-primary { background-color: #ff4757; }
-        .btn-primary:hover { background-color: #e63946; transform: scale(1.05); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        .btn-primary:hover { background-color: #e63946; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
         .text-primary { color: #ff4757; }
         .text-primary:hover { color: #e63946; }
         .pagination span { background-color: #e5e7eb; color: #374151; padding: 8px 16px; border-radius: 8px; font-weight: 500; }
@@ -149,26 +172,27 @@ function formatDeliveryAddress($address) {
             background-color: white;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: box-shadow 0.3s ease, transform 0.2s ease;
+            transition: all 0.3s ease;
         }
         .card:hover {
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
         }
+        .icon { margin-right: 5px; }
     </style>
 </head>
 <body class="bg-gray-100">
     <header class="sticky top-0 bg-white shadow z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-primary">Brizo Fast Food Melaka</h1>
-            <a href="/Online-Fast-Food/customer/menu/cart/cart.php" class="text-primary hover:text-primary flex items-center" aria-label="Return to cart page">
+            <a href="/Online-Fast-Food/customer/menu/cart/cart.php" class="text-primary hover:text-primary flex items-center">
                 <i class="fas fa-shopping-cart mr-2"></i> Back to Cart
             </a>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="card p-6 fade-in">
+        <div class="card p-6">
             <h2 class="text-2xl font-semibold text-gray-800 mb-6">Payment History</h2>
             <p class="text-gray-600 mb-4">Your Customer ID: <?= htmlspecialchars($customerId) ?></p>
 
@@ -176,7 +200,7 @@ function formatDeliveryAddress($address) {
                 <p class="text-gray-600">No payment history found.</p>
             <?php else: ?>
                 <div class="table-container">
-                    <table class="history-table w-full" role="grid" aria-label="Payment history">
+                    <table class="history-table" role="grid" aria-label="Payment history">
                         <thead>
                             <tr>
                                 <th scope="col">Order ID</th>
@@ -190,26 +214,26 @@ function formatDeliveryAddress($address) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($payment_history as $payment): ?>
+                            <?php foreach ($payment_history as $row): ?>
                                 <tr>
-                                    <td><?= htmlspecialchars($payment['order_id']) ?></td>
-                                    <td><?= date('d M Y, H:i', strtotime($payment['date'])) ?></td>
-                                    <td>RM <?= number_format($payment['amount'], 2) ?></td>
-                                    <td class="<?= getStatusColor($payment['status']) ?>">
-                                        <i class="fas fa-circle mr-1 text-xs"></i>
-                                        <?= htmlspecialchars(ucfirst($payment['status'])) ?>
+                                    <td><?= htmlspecialchars($row['order_id']) ?></td>
+                                    <td><?= date('d M Y, H:i:s', strtotime($row['date'] ?? 'now')) ?></td>
+                                    <td>RM <?= number_format($row['amount'], 2) ?></td>
+                                    <td class="<?= getStatusColor($row['status']) ?>">
+                                        <i class="fas fa-circle icon text-xs"></i>
+                                        <?= htmlspecialchars(ucfirst($row['status'])) ?>
                                     </td>
                                     <td>
-                                        <i class="fas <?= $payment['method'] === 'card' ? 'fa-credit-card' : ($payment['method'] === 'online_banking' ? 'fa-university' : 'fa-wallet') ?> mr-1"></i>
-                                        <?= htmlspecialchars(ucfirst($payment['method'])) ?> (<?= htmlspecialchars($payment['payment_details']) ?>)
+                                        <i class="fas <?= ($row['method'] ?? 'unknown') === 'card' ? 'fa-credit-card' : (($row['method'] ?? 'unknown') === 'online_banking' ? 'fa-university' : 'fa-wallet') ?> icon"></i>
+                                        <?= htmlspecialchars(ucfirst($row['method'] ?? 'Unknown')) ?> (<?= htmlspecialchars($row['payment_details'] ?? 'N/A') ?>)
                                     </td>
                                     <td>
-                                        <i class="fas <?= $payment['delivery_method'] === 'delivery' ? 'fa-truck' : 'fa-store' ?> mr-1"></i>
-                                        <?= htmlspecialchars(ucfirst($payment['delivery_method'])) ?>
+                                        <i class="fas <?= ($row['delivery_method'] ?? 'pickup') === 'delivery' ? 'fa-truck' : 'fa-store' ?> icon"></i>
+                                        <?= htmlspecialchars(ucfirst($row['delivery_method'] ?? 'Pickup')) ?>
                                     </td>
-                                    <td><?= formatDeliveryAddress($payment['delivery_address']) ?></td>
+                                    <td><?= formatDeliveryAddress($row['delivery_address'] ?? '') ?></td>
                                     <td>
-                                        <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/confirmation.php?order_id=<?= urlencode($payment['order_id']) ?>&csrf_token=<?= $csrf_param ?>" class="btn btn-primary" aria-label="View order confirmation for order <?= htmlspecialchars($payment['order_id']) ?>">
+                                        <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/confirmation.php?order_id=<?= urlencode($row['order_id']) ?>&csrf_token=<?= $csrf_param ?>" class="btn btn-primary" aria-label="View order confirmation for order <?= htmlspecialchars($row['order_id']) ?>">
                                             <i class="fas fa-eye"></i> View
                                         </a>
                                     </td>
