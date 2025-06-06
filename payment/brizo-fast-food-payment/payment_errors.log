@@ -194,6 +194,7 @@
 2025-06-05 17:11:14 - Generated order_id: ORD-6841B3928D517
 2025-06-05 17:11:14 - Payment successful: order_id=ORD-6841B3928D517
 2025-06-05 17:11:14 - Redirecting to confirmation.php with order_id=ORD-6841B3928D517
+<<<<<<< HEAD
 2025-06-05 17:44:14 - Attempting to add delivery address: street=234df, city=4344sdf, postal_code=23423, default=1
 2025-06-05 17:44:14 - Delivery address added successfully: ID 2, 234df, 4344sdf, 23423
 2025-06-05 17:44:40 - Attempting to add payment method: method_type=card
@@ -446,3 +447,38 @@
 2025-06-05 17:47:19 - Generated order_id: ORD-6841BC07C093F
 2025-06-05 17:47:19 - Payment successful: order_id=ORD-6841BC07C093F
 2025-06-05 17:47:19 - Redirecting to confirmation.php with order_id=ORD-6841BC07C093F
+=======
+2025-06-05 17:29:16 - Received make_payment request: {&#34;csrf_token&#34;:&#34;f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;4&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;22&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-05 17:29:16 - Received amount: 15, Expected total: 15
+2025-06-05 17:29:16 - Delivery method: pickup, Delivery address ID: 4
+2025-06-05 17:29:16 - Payment method: digital_wallet, Payment method ID: 22
+2025-06-05 17:29:16 - Generated order_id: ORD-6841B7CC92901
+2025-06-05 17:29:16 - Payment successful: order_id=ORD-6841B7CC92901
+2025-06-05 17:29:16 - Redirecting to confirmation.php with order_id=ORD-6841B7CC92901
+2025-06-05 18:12:34 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-05 18:12:34 - Delivery address added successfully: ID 1, 123 Main Street, Kuala Lumpur, 50450
+2025-06-05 18:12:43 - Attempting to add payment method: method_type=digital_wallet
+2025-06-05 18:12:43 - Adding digital wallet - Wallet Type: tng, Phone Number: 01111126183
+2025-06-05 18:12:43 - Payment method added successfully: ID 1
+2025-06-05 18:12:45 - Received make_payment request: {&#34;csrf_token&#34;:&#34;f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-05 18:12:45 - Received amount: 15, Expected total: 15
+2025-06-05 18:12:45 - Delivery method: delivery, Delivery address ID: 1
+2025-06-05 18:12:45 - Payment method: digital_wallet, Payment method ID: 1
+2025-06-05 18:12:45 - Generated order_id: ORD-6841C1FD2C1A0
+2025-06-05 18:12:45 - Payment successful: order_id=ORD-6841C1FD2C1A0
+2025-06-05 18:12:45 - Redirecting to confirmation.php with order_id=ORD-6841C1FD2C1A0
+2025-06-05 18:18:06 - Received make_payment request: {&#34;csrf_token&#34;:&#34;f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-05 18:18:06 - Received amount: 15, Expected total: 15
+2025-06-05 18:18:06 - Delivery method: delivery, Delivery address ID: 1
+2025-06-05 18:18:06 - Payment method: digital_wallet, Payment method ID: 1
+2025-06-05 18:18:06 - Generated order_id: ORD-6841C33E8BC14
+2025-06-05 18:18:06 - Payment successful: order_id=ORD-6841C33E8BC14
+2025-06-05 18:18:06 - Redirecting to confirmation.php with order_id=ORD-6841C33E8BC14
+2025-06-05 18:20:42 - Received make_payment request: {&#34;csrf_token&#34;:&#34;f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;14&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-05 18:20:42 - Received amount: 14, Expected total: 14
+2025-06-05 18:20:42 - Delivery method: delivery, Delivery address ID: 1
+2025-06-05 18:20:42 - Payment method: digital_wallet, Payment method ID: 1
+2025-06-05 18:20:42 - Generated order_id: ORD-6841C3DAB95CF
+2025-06-05 18:20:42 - Payment successful: order_id=ORD-6841C3DAB95CF
+2025-06-05 18:20:42 - Redirecting to confirmation.php with order_id=ORD-6841C3DAB95CF
+>>>>>>> 0718e94a0484371a19434cc6c131b58d0306dc42
