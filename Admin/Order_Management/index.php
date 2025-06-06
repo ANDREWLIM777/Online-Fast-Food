@@ -23,7 +23,6 @@ $statuses = ['pending', 'preparing', 'delivering', 'delivered'];
 
 <style>
 
-/* 黄金比例艺术标题 */
 .header {
     left: 0;
     right: 0;   
@@ -52,7 +51,7 @@ $statuses = ['pending', 'preparing', 'delivering', 'delivered'];
 }
 
 .main-title {
-    font-size: 2.1rem;/* 中间尺寸 */
+    font-size: 2.1rem;
     background: linear-gradient(45deg, #c0a23d, #907722);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -77,7 +76,6 @@ $statuses = ['pending', 'preparing', 'delivering', 'delivered'];
     padding: 0 15px;
 }
 
-/* 双装饰线动画 */
 .sub-title::before,
 .sub-title::after {
     content: '';
@@ -109,7 +107,6 @@ $statuses = ['pending', 'preparing', 'delivering', 'delivered'];
     width: 35px;
 }
 
-/* 动态光晕背景 */
 .header::after {
     content: '';
     position: absolute;
@@ -130,7 +127,6 @@ $statuses = ['pending', 'preparing', 'delivering', 'delivered'];
     100% { transform: scale(0.8); opacity: 0.3; }
 }
 
-/* 微光粒子 */
 .header::before {
     content: '';
     position: absolute;
@@ -380,7 +376,6 @@ $statuses = ['pending', 'preparing', 'delivering', 'delivered'];
   gap: 0.3rem;
 }
 
-/* 选项卡按钮 - 更紧凑的设计 */
 .tab-btn {
   flex: 1;
   display: flex;
@@ -398,7 +393,7 @@ $statuses = ['pending', 'preparing', 'delivering', 'delivered'];
   position: relative;
   z-index: 1;
   opacity: 0.7;
-  min-height: 50px; /* 固定高度 */
+  min-height: 50px; 
 }
 
 .tab-btn i {
@@ -408,7 +403,6 @@ $statuses = ['pending', 'preparing', 'delivering', 'delivered'];
   transition: all 0.3s ease;
 }
 
-/* 内容区域增加上边距 */
 .tab-content {
   padding-top: 20px;
   display: none;
@@ -449,7 +443,6 @@ $statuses = ['pending', 'preparing', 'delivering', 'delivered'];
     vertical-align: middle;
 }
 
-/* 不同状态的颜色 */
 .status-pending {
     background-color: #FFF3CD;
     color: #856404;
@@ -674,7 +667,7 @@ $statuses = ['pending', 'preparing', 'delivering', 'delivered'];
 
 </div>
 
- <script>
+<script>
 document.querySelectorAll('.slide-to-confirm').forEach(slide => {
   const slider = slide.querySelector('.slider-button');
   const form = slide.closest('form');
@@ -693,7 +686,7 @@ document.querySelectorAll('.slide-to-confirm').forEach(slide => {
     if (!isDown) return;
     moved = e.clientX - startX;
     if (moved < 0) moved = 0;
-    if (moved > 170) moved = 170; // 滑动最大距离
+    if (moved > 170) moved = 170;
     slider.style.transform = `translateX(${moved}px)`;
   });
 
@@ -713,41 +706,42 @@ document.querySelectorAll('.slide-to-confirm').forEach(slide => {
   });
 });
 
-
-// 修复的showTab函数
 function showTab(event, tabId) {
   event.preventDefault();
-  
-  // 移除所有活动状态
+
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.classList.remove('active');
   });
-  
+
   document.querySelectorAll('.tab-content').forEach(content => {
     content.classList.remove('active');
   });
-  
-  // 添加活动状态到当前选项卡
+
   event.currentTarget.classList.add('active');
   document.getElementById(tabId).classList.add('active');
-  
+
+  localStorage.setItem('activeTab', tabId); 
   updateIndicator(tabId);
 }
 
-// 初始化时只显示pending内容
 document.addEventListener('DOMContentLoaded', function() {
-  // 隐藏所有内容
-  document.querySelectorAll('.tab-content').forEach(content => {
-    content.classList.remove('active');
-  });
-  
-  // 只显示pending内容
-  document.getElementById('pending').classList.add('active');
-  
-  updateIndicator();
+  const savedTab = localStorage.getItem('activeTab') || 'pending';
+
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+  const activeBtn = document.querySelector(`.tab-btn[onclick*="${savedTab}"]`);
+  const activeTab = document.getElementById(savedTab);
+
+  if (activeBtn && activeTab) {
+    activeBtn.classList.add('active');
+    activeTab.classList.add('active');
+  }
+
+  updateIndicator(savedTab);
 });
 
-    </script>
+</script>
 </div>
 
 
@@ -760,7 +754,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <head>
     <meta charset="UTF-8">
     <style>
-        /* åºé¨å¯¼èªå®¹å¨ */
+
         .footer-nav {
             position: fixed;
             bottom: 0;
@@ -774,8 +768,7 @@ document.addEventListener('DOMContentLoaded', function() {
             align-items: center;
             z-index: 1000;
         }
-/*#fffbed; */
-        /* å¯¼èªé¡¹ */
+
         .nav-item {
             display: flex;
             flex-direction: column;
@@ -786,7 +779,6 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: all 0.3s ease;
         }
 
-        /* icon é¢è² */
         .nav-item svg {
             width: 32px;
             height: 32px;
@@ -794,15 +786,13 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: all 0.3s ease;
         }
 
-        /* é»è®¤ææ¬é¢è² */
         .nav-label {
             font-family: 'Segoe UI', sans-serif;
             font-size: 12px;
             color:rgb(255, 220, 93);
             transition: color 0.3s ease;
         }
-/* #636e72;*/
-        /* 🖱️ Hover effect with color */
+
 .nav-item:hover svg {
     stroke: var(--active-color);
 }
@@ -811,7 +801,6 @@ document.addEventListener('DOMContentLoaded', function() {
     color: var(--active-color);
 }
 
-        /* éä¸­ç¶æ */
         .nav-item.active svg {
             stroke: var(--active-color);
         }
@@ -819,13 +808,11 @@ document.addEventListener('DOMContentLoaded', function() {
             color: var(--active-color);
         }
 
-        /* æ¬åææ */
         .nav-item:hover {
             background:rgb(32, 32, 32);
             transform: translateY(-4px);
         }
-/* #fafaf8db; */
-/* Default Bz style */
+
 .bz-text {
     font-size: 35px;
     font-weight: bold;
@@ -848,9 +835,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </head>
 <body>
-    <!-- åºé¨å¯¼èªæ  -->
     <nav class="footer-nav">
-        <!-- Bz èå -->
+
         <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.php">
             <svg viewBox="0 0 50 24">
                 <text x="5" y="18" class="bz-text">Bz</text>
@@ -858,7 +844,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <span class="nav-label">Menu</span>
         </div>
 
-        <!-- æä½³åå·¥ -->
         <div class="nav-item other-item" style="--active-color: #ff9f43;" data-link="../Manage_Account/index.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -869,7 +854,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <span class="nav-label">ALL Staff</span>
         </div>
 
-<!-- è®¢åç®¡çï¼Checklist å¾æ ï¼ -->
 <div class="nav-item other-item" style="--active-color: #27ae60;" data-link="../Order_Management/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="4" y="3" width="16" height="18" rx="2"></rect>
@@ -883,7 +867,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <span class="nav-label">Manage Order</span>
 </div>
 
-<!-- 菜单管理方式 -->
 <div class="nav-item other-item" style="--active-color: #3498db;" data-link="../Manage_Menu_Item/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="3" y="3" width="7" height="7" rx="1" ry="1" />
@@ -894,7 +877,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <span class="nav-label">Menu Manage</span>
 </div>
 
-        <!-- æ´å¤éé¡¹ -->
         <div class="nav-item other-item" style="--active-color: #8e44ad;" data-link="../More/more.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <circle cx="12" cy="12" r="1"></circle>
@@ -953,11 +935,8 @@ if (targetLink) {
     window.location.href = targetLink;
 }
 
-
             }
-    
-
-
+            
             if (bzItem && bzText) {
     bzItem.addEventListener('mouseenter', () => {
         bzText.textContent = 'Brizo';

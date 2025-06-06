@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// 查询通知 + 创建者信息
+// Query notifications + creator information
 $stmt = $pdo->query("
     SELECT n.*, 
            a.name AS creator_name, 
@@ -35,7 +35,6 @@ $isSuperAdmin = ($_SESSION['user_role'] ?? '') === 'superadmin';
             padding: 2rem;
         }
 
-        /* 背景发光环 */
 body::after {
   content: '';
   position: fixed;
@@ -46,10 +45,9 @@ body::after {
   background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
   animation: auraPulse 8s infinite;
   pointer-events: none;
-  z-index: -1; /* ⬅ 放底层 */
+  z-index: -1; 
 }
 
-/* 星尘粒子 */
 body::before {
   content: '';
   position: fixed;
@@ -63,7 +61,7 @@ body::before {
   background-size: 60px 60px;
   animation: stardust 20s linear infinite;
   pointer-events: none;
-  z-index: -2; /* ⬅ 更底层 */
+  z-index: -2; 
 }
 
 @keyframes auraPulse {
@@ -202,7 +200,7 @@ body::before {
 <head>
     <meta charset="UTF-8">
     <style>
-        /* åºé¨å¯¼èªå®¹å¨ */
+
         .footer-nav {
             position: fixed;
             bottom: 0;
@@ -216,8 +214,7 @@ body::before {
             align-items: center;
             z-index: 1000;
         }
-/*#fffbed; */
-        /* å¯¼èªé¡¹ */
+
         .nav-item {
             display: flex;
             flex-direction: column;
@@ -228,7 +225,6 @@ body::before {
             transition: all 0.3s ease;
         }
 
-        /* icon é¢è² */
         .nav-item svg {
             width: 32px;
             height: 32px;
@@ -236,15 +232,13 @@ body::before {
             transition: all 0.3s ease;
         }
 
-        /* é»è®¤ææ¬é¢è² */
         .nav-label {
             font-family: 'Segoe UI', sans-serif;
             font-size: 12px;
             color:rgb(255, 220, 93);
             transition: color 0.3s ease;
         }
-/* #636e72;*/
-        /* 🖱️ Hover effect with color */
+
 .nav-item:hover svg {
     stroke: var(--active-color);
 }
@@ -253,7 +247,6 @@ body::before {
     color: var(--active-color);
 }
 
-        /* éä¸­ç¶æ */
         .nav-item.active svg {
             stroke: var(--active-color);
         }
@@ -261,13 +254,11 @@ body::before {
             color: var(--active-color);
         }
 
-        /* æ¬åææ */
         .nav-item:hover {
             background:rgb(32, 32, 32);
             transform: translateY(-4px);
         }
-/* #fafaf8db; */
-/* Default Bz style */
+
 .bz-text {
     font-size: 35px;
     font-weight: bold;
@@ -290,9 +281,9 @@ body::before {
 
 </head>
 <body>
-    <!-- åºé¨å¯¼èªæ  -->
+
     <nav class="footer-nav">
-        <!-- Bz èå -->
+
         <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../../Main Page/main_page.php">
             <svg viewBox="0 0 50 24">
                 <text x="5" y="18" class="bz-text">Bz</text>
@@ -300,7 +291,6 @@ body::before {
             <span class="nav-label">Menu</span>
         </div>
 
-        <!-- æä½³åå·¥ -->
         <div class="nav-item other-item" style="--active-color: #ff9f43;" data-link="../../Manage_Account/index.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -311,7 +301,7 @@ body::before {
             <span class="nav-label">ALL Staff</span>
         </div>
 
-<!-- è®¢åç®¡çï¼Checklist å¾æ ï¼ -->
+
 <div class="nav-item other-item" style="--active-color: #27ae60;" data-link="../../Order_Management/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="4" y="3" width="16" height="18" rx="2"></rect>
@@ -336,7 +326,6 @@ body::before {
     <span class="nav-label">Menu Manage</span>
 </div>
 
-        <!-- æ´å¤éé¡¹ -->
         <div class="nav-item other-item" style="--active-color: #8e44ad;" data-link="../../More/more.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <circle cx="12" cy="12" r="1"></circle>

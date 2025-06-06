@@ -2,7 +2,7 @@
 require 'db_conn.php';
 session_start();
 
-// 获取订单年份
+// Get the year of the order
 function getYears($pdo) {
     $stmt = $pdo->query("SELECT DISTINCT YEAR(created_at) as year FROM orders ORDER BY year DESC");
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
@@ -11,7 +11,7 @@ function getYears($pdo) {
 $years = getYears($pdo);
 $selectedDate = $_GET['date'] ?? null;
 
-// 查询已完成订单
+// Enquire about completed orders
 if ($selectedDate) {
     $stmt = $pdo->prepare("SELECT o.*, c.fullname FROM orders o 
                            JOIN customers c ON o.customer_id = c.id 
@@ -37,7 +37,6 @@ $orders = $stmt->fetchAll();
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
 
     <style>
-        /* header 样式（来自你提供的代码） */
         .header {
             left: 0;
             right: 0;
@@ -148,7 +147,6 @@ $orders = $stmt->fetchAll();
             100% { background-position: 100px 100px, 0 0; }
         }
 
-        /* 日期查询样式 */
         .date-controls {
             margin-top: 130px;
             margin-left: 50px;
@@ -386,14 +384,14 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const todayBtn = document.getElementById("todayBtn");
 
-// 从 URL 中获取初始日期
+// Get the initial date from the URL
 const urlParams = new URLSearchParams(window.location.search);
 let currentDate = urlParams.get('date') ? new Date(urlParams.get('date')) : new Date();
 
-// 清除时间部分
+// Clear the time portion
 currentDate.setHours(0, 0, 0, 0);
 
-// 工具函数：格式化日期为 yyyy-mm-dd
+// Utility function: formats a date as yyyy-mm-dd.
 function formatDate(date) {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -401,7 +399,7 @@ function formatDate(date) {
     return `${year}-${month}-${day}`;
 }
 
-// 更新顶部显示
+// Update top display
 function updateDateDisplay() {
     const formatted = formatDate(currentDate);
     currentDateSpan.textContent = formatted;
@@ -409,11 +407,11 @@ function updateDateDisplay() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    // 禁用 next 按钮如果今天了
+    // Disable the next button if today's
     nextBtn.disabled = formatDate(currentDate) === formatDate(today);
 }
 
-// 跳转到指定日期
+// Jump to the specified date
 function navigateTo(date) {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -427,7 +425,7 @@ function navigateTo(date) {
     window.location.href = `index.php?date=${target}`;
 }
 
-// 按钮事件处理
+// Button event handling
 prevBtn.addEventListener("click", () => {
     currentDate.setDate(currentDate.getDate() - 1);
     navigateTo(currentDate);
@@ -455,7 +453,7 @@ todayBtn.addEventListener("click", () => {
     navigateTo(currentDate);
 });
 
-// 过滤器（下拉选择）
+// Filter (drop-down selection)
 function filterByDate() {
     const year = document.getElementById('yearFilter').value;
     const month = document.getElementById('monthFilter').value;
@@ -479,7 +477,6 @@ function filterByDate() {
     box.textContent = '⚠️ ' + msg;
     box.classList.add('show');
 
-    // 自动隐藏
     setTimeout(() => {
         box.classList.remove('show');
     }, 3000);
@@ -489,7 +486,7 @@ function filterByDate() {
     navigateTo(selected);
 }
 
-// 初始化显示
+// Initialize the display
 updateDateDisplay();
 </script>
 <div id="messageBox" class="hidden">⚠️ Cannot select a future date.</div>
@@ -501,7 +498,7 @@ updateDateDisplay();
 <head>
     <meta charset="UTF-8">
     <style>
-        /* åºé¨å¯¼èªå®¹å¨ */
+
         .footer-nav {
             position: fixed;
             bottom: 0;
@@ -515,8 +512,7 @@ updateDateDisplay();
             align-items: center;
             z-index: 1000;
         }
-/*#fffbed; */
-        /* å¯¼èªé¡¹ */
+
         .nav-item {
             display: flex;
             flex-direction: column;
@@ -527,7 +523,6 @@ updateDateDisplay();
             transition: all 0.3s ease;
         }
 
-        /* icon é¢è² */
         .nav-item svg {
             width: 32px;
             height: 32px;
@@ -535,14 +530,13 @@ updateDateDisplay();
             transition: all 0.3s ease;
         }
 
-        /* é»è®¤ææ¬é¢è² */
         .nav-label {
             font-family: 'Segoe UI', sans-serif;
             font-size: 12px;
             color:rgb(255, 220, 93);
             transition: color 0.3s ease;
         }
-/* #636e72;*/
+
         /* 🖱️ Hover effect with color */
 .nav-item:hover svg {
     stroke: var(--active-color);
@@ -552,7 +546,6 @@ updateDateDisplay();
     color: var(--active-color);
 }
 
-        /* éä¸­ç¶æ */
         .nav-item.active svg {
             stroke: var(--active-color);
         }
@@ -560,12 +553,11 @@ updateDateDisplay();
             color: var(--active-color);
         }
 
-        /* æ¬åææ */
         .nav-item:hover {
             background:rgb(32, 32, 32);
             transform: translateY(-4px);
         }
-/* #fafaf8db; */
+
 /* Default Bz style */
 .bz-text {
     font-size: 35px;
@@ -589,9 +581,9 @@ updateDateDisplay();
 
 </head>
 <body>
-    <!-- åºé¨å¯¼èªæ  -->
+
     <nav class="footer-nav">
-        <!-- Bz èå -->
+
         <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.php">
             <svg viewBox="0 0 50 24">
                 <text x="5" y="18" class="bz-text">Bz</text>
@@ -599,7 +591,7 @@ updateDateDisplay();
             <span class="nav-label">Menu</span>
         </div>
 
-        <!-- æä½³åå·¥ -->
+ 
         <div class="nav-item other-item" style="--active-color: #ff9f43;" data-link="../Manage_Account/index.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -610,7 +602,6 @@ updateDateDisplay();
             <span class="nav-label">ALL Staff</span>
         </div>
 
-<!-- è®¢åç®¡çï¼Checklist å¾æ ï¼ -->
 <div class="nav-item other-item" style="--active-color: #27ae60;" data-link="../Order_Management/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="4" y="3" width="16" height="18" rx="2"></rect>
@@ -624,7 +615,7 @@ updateDateDisplay();
     <span class="nav-label">Manage Order</span>
 </div>
 
-<!-- 菜单管理方式 -->
+
 <div class="nav-item other-item" style="--active-color: #3498db;" data-link="../Manage_Menu_Item/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="3" y="3" width="7" height="7" rx="1" ry="1" />
@@ -635,7 +626,7 @@ updateDateDisplay();
     <span class="nav-label">Menu Manage</span>
 </div>
 
-        <!-- æ´å¤éé¡¹ -->
+ 
         <div class="nav-item other-item" style="--active-color: #8e44ad;" data-link="../More/more.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <circle cx="12" cy="12" r="1"></circle>

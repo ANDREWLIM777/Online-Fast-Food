@@ -1,4 +1,4 @@
-// 在script.js中添加
+
 function togglePassword() {
     const passwordField = document.getElementById('password');
     const toggleIcon = document.querySelector('.toggle-password');

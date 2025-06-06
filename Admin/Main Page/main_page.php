@@ -2,7 +2,6 @@
 include '../auth.php';
 include '../Admin_Account/db.php';
 
-/*  获取当前用户信息 */
 $user_id = $_SESSION['user_id'];
 $sql = "SELECT * FROM admin WHERE id = ?";
 $stmt = $conn->prepare($sql);
@@ -11,12 +10,10 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
-/* 处理表单提交更新 */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     $age = $_POST['age'];
     $phone = $_POST['phone'];
 
-    // 上传照片处理
     if ($_FILES['photo']['name']) {
         $photo_name = time() . '_' . basename($_FILES['photo']['name']);
         $target = "../Admin_Account/upload/" . $photo_name;
@@ -46,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brizo Melaka FAST-FOOD Admin</title>
     
-    <!-- 公共样式 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -68,7 +64,6 @@ body {
 
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap');
 
-/* 黄金比例艺术标题 */
 .header {
     left: 0;
     right: 0;   
@@ -97,7 +92,7 @@ body {
 }
 
 .main-title {
-    font-size: 2.1rem;/* 中间尺寸 */
+    font-size: 2.1rem;
     background: linear-gradient(45deg, #c0a23d, #907722);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -122,7 +117,6 @@ body {
     padding: 0 15px;
 }
 
-/* 双装饰线动画 */
 .sub-title::before,
 .sub-title::after {
     content: '';
@@ -154,7 +148,6 @@ body {
     width: 35px;
 }
 
-/* 动态光晕背景 */
 .header::after {
     content: '';
     position: absolute;
@@ -175,7 +168,6 @@ body {
     100% { transform: scale(0.8); opacity: 0.3; }
 }
 
-/* 微光粒子 */
 .header::before {
     content: '';
     position: absolute;
@@ -228,48 +220,46 @@ body {
     position: absolute;
     top: 50px;
     right: 0;
-    background: #0c0a10; /* 深黑底色 */
+    background: #0c0a10; 
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(192, 162, 61, 0.15); /* 金色阴影 */
+    box-shadow: 0 4px 15px rgba(192, 162, 61, 0.15); 
     overflow: hidden;
     min-width: 180px;
     font-family: 'Roboto', sans-serif;
-    border: 1px solid #c0a23d55; /* 半透明金色边框 */
-    backdrop-filter: blur(8px); /* 毛玻璃效果 */
+    border: 1px solid #c0a23d55; 
+    backdrop-filter: blur(8px); 
 }
 
 .profile-dropdown a {
     display: block;
     padding: 12px 16px;
-    color: #c0a23d; /* 主金色 */
+    color: #c0a23d; 
     text-decoration: none;
     font-size: 0.95rem;
     transition: background 0.2s;
-    border-bottom: 1px solid #1a1a1a; /* 分隔线 */
+    border-bottom: 1px solid #1a1a1a; 
 }
 
 .profile-dropdown a {
     display: block;
     padding: 12px 16px;
-    color: #c0a23d; /* 主金色 */
+    color: #c0a23d; 
     text-decoration: none;
     font-size: 0.95rem;
     transition: all 0.2s;
-    border-bottom: 1px solid #1a1a1a; /* 分隔线 */
+    border-bottom: 1px solid #1a1a1a; 
 }
 
 .profile-dropdown a:last-child {
     border-bottom: none;
 }
 
-/* 悬停效果 */
 .profile-dropdown a:hover {
-    background: #c0a23d15; /* 浅金底色 */
-    color: #f4e3b2; /* 亮金色 */
-    padding-left: 20px; /* 动态缩进 */
+    background: #c0a23d15; 
+    color: #f4e3b2; 
+    padding-left: 20px;
 }
 
-/* 当前选中状态 */
 .profile-dropdown a.active {
     background: linear-gradient(90deg, #c0a23d20, transparent);
     border-left: 3px solid #c0a23d;
@@ -297,7 +287,6 @@ body {
     opacity: 0.9;
 }
 
-/* 分隔线 */
 .profile-dropdown hr {
     border: none;
     border-top: 1px solid #1a1a1a;
@@ -305,8 +294,6 @@ body {
 }
 
 
-
-        /* 主要内容区域 */
         .dashboard {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -362,7 +349,6 @@ body {
             font-size: 0.6em;
         }
 
-/* 响应式布局调整 */
 .dashboard {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -370,14 +356,12 @@ body {
     padding: 20px;
 }
 
-/* 大屏幕适配 3x2 */
 @media (min-width: 769px) {
     .dashboard {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* 小屏幕适配 1 列 */
 @media (max-width: 768px) {
     .dashboard {
         grid-template-columns: 1fr;
@@ -386,8 +370,6 @@ body {
     </style>
 </head>
 <body>
-    <!-- 导入菜单图标 -->
-    <!--#include virtual="menu_icon.html" -->
 
     <div class="header">
     <div class="profile-container">
@@ -412,8 +394,6 @@ body {
     </div>
 
 
-
-    <!-- 主内容 -->
     <main class="dashboard">
         <div class="card" onclick="location.href='../Manage_Menu_Item/index.php'">
             <i class="fas fa-hamburger card-icon"></i>
@@ -467,7 +447,6 @@ window.onclick = function(event) {
     }
 };
 
-        // 动态卡片交互
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('mouseover', () => {
                 card.style.boxShadow = '0 8px 15px rgba(0,0,0,0.2)';
@@ -516,7 +495,7 @@ window.onclick = function(event) {
         .menu-icon span:nth-child(3) { top: 20px; }
 
         .menu-icon:hover span {
-            background: #eace7c; /* 悬停亮金色 */
+            background: #eace7c;
         }
 
         .menu-icon.active span {
@@ -539,12 +518,12 @@ window.onclick = function(event) {
             position: absolute;
             top: 40px;
             left: 0;
-            background: #0c0a10; /* 深黑背景 */
-            border: 1px solid rgba(192, 162, 61, 0.2); /* 金色边框 */
+            background: #0c0a10; 
+            border: 1px solid rgba(192, 162, 61, 0.2); 
             border-radius: 6px;
             padding: 8px 0;
-            box-shadow: 0 4px 20px rgba(192, 162, 61, 0.1); /* 金色阴影 */
-            backdrop-filter: blur(8px); /* 毛玻璃效果 */
+            box-shadow: 0 4px 20px rgba(192, 162, 61, 0.1);
+            backdrop-filter: blur(8px); 
         }
 
         .dropdown-menu.active {
@@ -556,15 +535,15 @@ window.onclick = function(event) {
             display: block;
             padding: 12px 24px;
             text-decoration: none;
-            color: #c0a23d; /* 主金色 */
+            color: #c0a23d; 
             font-size: 0.95rem;
             transition: all 0.25s ease;
             position: relative;
         }
 
         .dropdown-menu a:hover {
-            background: rgba(192, 162, 61, 0.1); /* 淡金背景 */
-            color: #f4e3b2; /* 亮金色 */
+            background: rgba(192, 162, 61, 0.1); 
+            color: #f4e3b2; 
             padding-left: 28px;
             text-shadow: 0 0 8px rgba(244, 227, 178, 0.3);
         }
@@ -627,7 +606,7 @@ window.onclick = function(event) {
 <head>
     <meta charset="UTF-8">
     <style>
-        /* åºé¨å¯¼èªå®¹å¨ */
+
         .footer-nav {
             position: fixed;
             bottom: 0;
@@ -641,8 +620,7 @@ window.onclick = function(event) {
             align-items: center;
             z-index: 1000;
         }
-/*#fffbed; */
-        /* å¯¼èªé¡¹ */
+
         .nav-item {
             display: flex;
             flex-direction: column;
@@ -653,7 +631,6 @@ window.onclick = function(event) {
             transition: all 0.3s ease;
         }
 
-        /* icon é¢è² */
         .nav-item svg {
             width: 32px;
             height: 32px;
@@ -661,15 +638,13 @@ window.onclick = function(event) {
             transition: all 0.3s ease;
         }
 
-        /* é»è®¤ææ¬é¢è² */
         .nav-label {
             font-family: 'Segoe UI', sans-serif;
             font-size: 12px;
             color:rgb(255, 220, 93);
             transition: color 0.3s ease;
         }
-/* #636e72;*/
-        /* 🖱️ Hover effect with color */
+
 .nav-item:hover svg {
     stroke: var(--active-color);
 }
@@ -678,7 +653,6 @@ window.onclick = function(event) {
     color: var(--active-color);
 }
 
-        /* éä¸­ç¶æ */
         .nav-item.active svg {
             stroke: var(--active-color);
         }
@@ -686,13 +660,11 @@ window.onclick = function(event) {
             color: var(--active-color);
         }
 
-        /* æ¬åææ */
         .nav-item:hover {
             background:rgb(32, 32, 32);
             transform: translateY(-4px);
         }
-/* #fafaf8db; */
-/* Default Bz style */
+
 .bz-text {
     font-size: 35px;
     font-weight: bold;
@@ -715,9 +687,9 @@ window.onclick = function(event) {
 
 </head>
 <body>
-    <!-- åºé¨å¯¼èªæ  -->
+
     <nav class="footer-nav">
-        <!-- Bz èå -->
+
         <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.php">
             <svg viewBox="0 0 50 24">
                 <text x="5" y="18" class="bz-text">Bz</text>
@@ -725,7 +697,6 @@ window.onclick = function(event) {
             <span class="nav-label">Menu</span>
         </div>
 
-        <!-- æä½³åå·¥ -->
         <div class="nav-item other-item" style="--active-color: #ff9f43;" data-link="../Manage_Account/index.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -736,8 +707,6 @@ window.onclick = function(event) {
             <span class="nav-label">ALL Staff</span>
         </div>
 
-
-<!-- è®¢åç®¡çï¼Checklist å¾æ ï¼ -->
 <div class="nav-item other-item" style="--active-color: #27ae60;" data-link="../Order_Management/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="4" y="3" width="16" height="18" rx="2"></rect>
@@ -751,7 +720,6 @@ window.onclick = function(event) {
     <span class="nav-label">Manage Order</span>
 </div>
 
-<!-- 菜单管理方式 -->
 <div class="nav-item other-item" style="--active-color: #3498db;" data-link="../Manage_Menu_Item/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="3" y="3" width="7" height="7" rx="1" ry="1" />
@@ -762,7 +730,6 @@ window.onclick = function(event) {
     <span class="nav-label">Menu Manage</span>
 </div>
 
-        <!-- æ´å¤éé¡¹ -->
         <div class="nav-item other-item" style="--active-color: #8e44ad;" data-link="../More/more.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <circle cx="12" cy="12" r="1"></circle>

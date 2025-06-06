@@ -90,7 +90,6 @@ $admin = $result->fetch_assoc();
 
         
 <div class="form-section">
-    <!-- 第一行：姓名 -->
     <div class="form-group">
         <label>Full Name</label>
         <div class="input-with-icon">
@@ -99,7 +98,6 @@ $admin = $result->fetch_assoc();
         </div>
     </div>
 
-    <!-- 第三行：职位 + 角色 -->
     <div class="form-row">
         <div class="form-group">
             <label>Position</label>
@@ -122,7 +120,6 @@ $admin = $result->fetch_assoc();
         </div>
     </div>
 
-    <!-- 第四行：邮箱 + 电话 -->
     <div class="form-row">
         <div class="form-group">
             <label>Email</label>
@@ -141,7 +138,6 @@ $admin = $result->fetch_assoc();
         </div>
     </div>
 
-    <!-- 密码单独一行 -->
     <div class="form-group">
         <label>New Password</label>
         <div class="input-with-icon password-field">
@@ -152,7 +148,6 @@ $admin = $result->fetch_assoc();
         <small class="form-note">Leave blank to keep current password</small>
     </div>
 
-    <!-- 按钮组 -->
     <div class="form-actions">
         <button type="submit" class="btn save-btn">
             <i class="fas fa-save"></i> Save Changes

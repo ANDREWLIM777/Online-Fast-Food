@@ -11,7 +11,6 @@ if (!$id || !is_numeric($id)) {
     exit();
 }
 
-// 获取客户名或邮箱以确认展示
 $stmt = $conn->prepare("SELECT fullname, email FROM customers WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -23,7 +22,6 @@ if (!$customer) {
     exit();
 }
 
-// 删除操作
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $conn->prepare("DELETE FROM customers WHERE id = ?");
     $stmt->bind_param("i", $id);
