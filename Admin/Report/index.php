@@ -36,7 +36,7 @@
 }
 
 .main-title {
-    font-size: 2.1rem;/* 中间尺寸 */
+    font-size: 2.1rem;
     background: linear-gradient(45deg, #c0a23d, #907722);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -61,7 +61,6 @@
     padding: 0 15px;
 }
 
-/* 双装饰线动画 */
 .sub-title::before,
 .sub-title::after {
     content: '';
@@ -93,7 +92,6 @@
     width: 35px;
 }
 
-/* 动态光晕背景 */
 .header::after {
     content: '';
     position: absolute;
@@ -114,7 +112,6 @@
     100% { transform: scale(0.8); opacity: 0.3; }
 }
 
-/* 微光粒子 */
 .header::before {
     content: '';
     position: absolute;
@@ -175,10 +172,9 @@
   background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
   animation: auraPulse 8s infinite;
   pointer-events: none;
-  z-index: -1; /* ⬅ 放底层 */
+  z-index: -1; 
 }
 
-/* 星尘粒子 */
 body::before {
   content: '';
   position: fixed;
@@ -192,7 +188,7 @@ body::before {
   background-size: 60px 60px;
   animation: stardust 20s linear infinite;
   pointer-events: none;
-  z-index: -2; /* ⬅ 更底层 */
+  z-index: -2; 
 }
 
 @keyframes auraPulse {

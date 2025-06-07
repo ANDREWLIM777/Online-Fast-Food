@@ -36,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <style>
 
-/* 背景发光环 */
 body::after {
   content: '';
   position: fixed;
@@ -47,10 +46,9 @@ body::after {
   background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
   animation: auraPulse 8s infinite;
   pointer-events: none;
-  z-index: -1; /* ⬅ 放底层 */
+  z-index: -1; 
 }
 
-/* 星尘粒子 */
 body::before {
   content: '';
   position: fixed;
@@ -64,7 +62,7 @@ body::before {
   background-size: 60px 60px;
   animation: stardust 20s linear infinite;
   pointer-events: none;
-  z-index: -2; /* ⬅ 更底层 */
+  z-index: -2;
 }
 
 @keyframes auraPulse {
@@ -114,11 +112,11 @@ body::before {
     transform: translateX(-2px);
     color: #907722;
 }
-/* 调整表单容器定位 */
+
 .form-container {
-    position: relative; /* 为绝对定位按钮建立基准 */
-    margin-top: 0px; /* 为按钮留出空间 */
-    padding-top: 20px; /* 防止内容被遮挡 */
+    position: relative; 
+    margin-top: 0px; 
+    padding-top: 20px; 
 }
 
 </style>

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $update->execute([
             $title, 
             $message, 
-            $_SESSION['user_id'],  // 当前编辑者
+            $_SESSION['user_id'], 
             $id
         ]);
         header("Location: index.php");

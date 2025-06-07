@@ -27,10 +27,9 @@ body {
   background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
   animation: auraPulse 8s infinite;
   pointer-events: none;
-  z-index: -1; /* ⬅ 放底层 */
+  z-index: -1; 
 }
 
-/* 星尘粒子 */
 body::before {
   content: '';
   position: fixed;
@@ -44,7 +43,7 @@ body::before {
   background-size: 60px 60px;
   animation: stardust 20s linear infinite;
   pointer-events: none;
-  z-index: -2; /* ⬅ 更底层 */
+  z-index: -2; 
 }
 
 @keyframes auraPulse {
@@ -58,7 +57,6 @@ body::before {
   100% { background-position: 100px 100px, 0 0; }
 }
 
-/* 可用性指示器 */
 .availability {
     position: absolute;
     top: 15px;
@@ -106,48 +104,46 @@ body::before {
     position: absolute;
     top: 50px;
     right: 0;
-    background: #0c0a10; /* 深黑底色 */
+    background: #0c0a10; 
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(192, 162, 61, 0.15); /* 金色阴影 */
+    box-shadow: 0 4px 15px rgba(192, 162, 61, 0.15); 
     overflow: hidden;
     min-width: 180px;
     font-family: 'Roboto', sans-serif;
-    border: 1px solid #c0a23d55; /* 半透明金色边框 */
-    backdrop-filter: blur(8px); /* 毛玻璃效果 */
+    border: 1px solid #c0a23d55; 
+    backdrop-filter: blur(8px); 
 }
 
 .profile-dropdown a {
     display: block;
     padding: 12px 16px;
-    color: #c0a23d; /* 主金色 */
+    color: #c0a23d; 
     text-decoration: none;
     font-size: 0.95rem;
     transition: background 0.2s;
-    border-bottom: 1px solid #1a1a1a; /* 分隔线 */
+    border-bottom: 1px solid #1a1a1a; 
 }
 
 .profile-dropdown a {
     display: block;
     padding: 12px 16px;
-    color: #c0a23d; /* 主金色 */
+    color: #c0a23d; 
     text-decoration: none;
     font-size: 0.95rem;
     transition: all 0.2s;
-    border-bottom: 1px solid #1a1a1a; /* 分隔线 */
+    border-bottom: 1px solid #1a1a1a; 
 }
 
 .profile-dropdown a:last-child {
     border-bottom: none;
 }
 
-/* 悬停效果 */
 .profile-dropdown a:hover {
-    background: #c0a23d15; /* 浅金底色 */
-    color: #f4e3b2; /* 亮金色 */
-    padding-left: 20px; /* 动态缩进 */
+    background: #c0a23d15; 
+    color: #f4e3b2; 
+    padding-left: 20px;
 }
 
-/* 当前选中状态 */
 .profile-dropdown a.active {
     background: linear-gradient(90deg, #c0a23d20, transparent);
     border-left: 3px solid #c0a23d;
@@ -175,7 +171,6 @@ body::before {
     opacity: 0.9;
 }
 
-/* 分隔线 */
 .profile-dropdown hr {
     border: none;
     border-top: 1px solid #1a1a1a;
@@ -187,14 +182,12 @@ body::before {
     color: white;
 }
 
-/* 删除动画 */
 .neo-card.deleting {
     transform: scale(0.8) !important;
     opacity: 0 !important;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 按钮状态反馈 */
 .delete-btn.processing {
     animation: pulse 1.5s infinite;
     pointer-events: none;
@@ -206,7 +199,6 @@ body::before {
     100% { transform: scale(1); }
 }
 
-/* 加载指示器 */
 .search-loading::after {
     content: '';
     position: absolute;
@@ -230,7 +222,6 @@ body::before {
     color: white;
 }
 
-/* 高级按钮样式 */
 .premium-button {
     position: relative;
     overflow: hidden;
@@ -254,7 +245,6 @@ body::before {
     transform: translateX(100%) rotate(45deg);
 }
 
-/* 删除按钮动画 */
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-5px); }
@@ -409,7 +399,6 @@ body::before {
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* 黄金比例艺术标题 */
 .header {
     left: 0;
     right: 0;   
@@ -423,7 +412,6 @@ body::before {
             #f4e3b215 10px 12px,
             transparent 12px 22px);
     padding: 1.8rem 0;
-    /*#f8efce #fffcf5*/
     box-shadow: 0 4px 25px rgba(0,0,0,0.06);
     z-index: 999;
     display: flex;
@@ -439,7 +427,7 @@ body::before {
 }
 
 .main-title {
-    font-size: 2.1rem; /* 中间尺寸 */
+    font-size: 2.1rem; 
     background: linear-gradient(45deg, #c0a23d, #907722);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -464,7 +452,6 @@ body::before {
     padding: 0 15px;
 }
 
-/* 双装饰线动画 */
 .sub-title::before,
 .sub-title::after {
     content: '';
@@ -496,7 +483,6 @@ body::before {
     width: 35px;
 }
 
-/* 动态光晕背景 */
 .header::after {
     content: '';
     position: absolute;
@@ -517,7 +503,6 @@ body::before {
     100% { transform: scale(0.8); opacity: 0.3; }
 }
 
-/* 微光粒子 */
 .header::before {
     content: '';
     position: absolute;
@@ -537,7 +522,6 @@ body::before {
     100% { background-position: 100px 100px, 0 0; }
 }
 
-/* 高级筛选框 */
 .luxury-select {
     width: 280px;
     padding: 1rem 2rem;
@@ -560,7 +544,6 @@ body::before {
     box-shadow: 0 0 15px rgba(144, 119, 34, 0.3);
 }
 
-/* 3D高级按钮 */
 .premium-3d-button {
     position: relative;
     display: inline-flex;
@@ -578,7 +561,7 @@ body::before {
 }
 
 .premium-3d-button span {
-    text-decoration: none !important; /* 避免划线 */
+    text-decoration: none !important; 
 }
 
 .button-content {

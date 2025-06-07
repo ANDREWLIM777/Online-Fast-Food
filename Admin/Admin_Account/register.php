@@ -3,7 +3,7 @@ include 'db.php';
 include '../auth.php';
 check_permission('superadmin');
 
-$error = '';  // 用于提示错误信息
+$error = ''; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
@@ -307,11 +307,10 @@ body::before {
     color: #907722;
 }
 
-/* 调整表单容器定位 */
 .form-container {
-    position: relative; /* 为绝对定位按钮建立基准 */
-    margin-top: 40px; /* 为按钮留出空间 */
-    padding-top: 50px; /* 防止内容被遮挡 */
+    position: relative; 
+    margin-top: 40px; 
+    padding-top: 50px; 
 }
 
         .form-container {
@@ -502,7 +501,7 @@ function togglePassword() {
         .menu-icon span:nth-child(3) { top: 20px; }
 
         .menu-icon:hover span {
-            background: #eace7c; /* 悬停亮金色 */
+            background: #eace7c; 
         }
 
         .menu-icon.active span {
@@ -525,12 +524,12 @@ function togglePassword() {
             position: absolute;
             top: 40px;
             left: 0;
-            background: #0c0a10; /* 深黑背景 */
-            border: 1px solid rgba(192, 162, 61, 0.2); /* 金色边框 */
+            background: #0c0a10; 
+            border: 1px solid rgba(192, 162, 61, 0.2); 
             border-radius: 6px;
             padding: 8px 0;
-            box-shadow: 0 4px 20px rgba(192, 162, 61, 0.1); /* 金色阴影 */
-            backdrop-filter: blur(8px); /* 毛玻璃效果 */
+            box-shadow: 0 4px 20px rgba(192, 162, 61, 0.1); 
+            backdrop-filter: blur(8px); 
         }
 
         .dropdown-menu.active {
@@ -542,15 +541,15 @@ function togglePassword() {
             display: block;
             padding: 12px 24px;
             text-decoration: none;
-            color: #c0a23d; /* 主金色 */
+            color: #c0a23d; 
             font-size: 0.95rem;
             transition: all 0.25s ease;
             position: relative;
         }
 
         .dropdown-menu a:hover {
-            background: rgba(192, 162, 61, 0.1); /* 淡金背景 */
-            color: #f4e3b2; /* 亮金色 */
+            background: rgba(192, 162, 61, 0.1); 
+            color: #f4e3b2; 
             padding-left: 28px;
             text-shadow: 0 0 8px rgba(244, 227, 178, 0.3);
         }

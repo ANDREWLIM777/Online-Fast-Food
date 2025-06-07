@@ -4,7 +4,7 @@ require 'db_conn.php';
 $id = $_GET['id'] ?? null;
 if (!$id) die('Missing order ID.');
 
-// 查询订单和客户资料
+// Enquire about orders and customer information
 $stmt = $pdo->prepare("SELECT o.*, c.fullname, c.email 
                        FROM orders o 
                        LEFT JOIN customers c ON o.customer_id = c.id 
@@ -13,7 +13,7 @@ $stmt->execute([$id]);
 $order = $stmt->fetch();
 if (!$order) die('Order not found.');
 
-// 查询商品明细（order_items + menu_items）
+// Query product details (order_items + menu_items)
 $stmt = $pdo->prepare("
     SELECT oi.item_id, oi.quantity, oi.price, oi.total, m.item_name
     FROM order_items oi

@@ -105,3 +105,6 @@
 2025-06-06 17:50:28 - Customer ID from session: 1
 2025-06-06 17:50:48 - Customer ID from session: 1
 2025-06-06 18:05:01 - Customer ID from session: 1
+2025-06-07 18:11:51 - Customer ID from session: 1
+2025-06-07 18:11:51 - Selected order: order_id=ORD-684464B548CBE, found={"order_id":"ORD-684464B548CBE","total":"27.00","created_at":"2025-06-08 00:11:33","customer_id":1,"status":"completed"}
+2025-06-07 18:11:51 - Fetched feedback for order ORD-684464B548CBE: Not found

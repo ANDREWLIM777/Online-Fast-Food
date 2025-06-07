@@ -239,7 +239,6 @@ table th:nth-child(7) { width: 160px; }     /* Actions */
     font-size: 0.85rem;
 }
 
-/* 编辑页面布局 */
 .profile-edit .form-grid {
     display: grid;
     grid-template-columns: 240px 1fr;
@@ -310,7 +309,6 @@ table th:nth-child(7) { width: 160px; }     /* Actions */
     margin-top: 30px;
 }
 
-/* 查看页面 */
 .profile-view .profile-card {
     background: #1f1f1f;
     border-radius: 12px;
@@ -364,7 +362,6 @@ table th:nth-child(7) { width: 160px; }     /* Actions */
     font-weight: 500;
 }
 
-/* 下拉选择框美化 */
 .styled-select {
     position: relative;
     display: flex;
@@ -394,7 +391,6 @@ table th:nth-child(7) { width: 160px; }     /* Actions */
     color: #c0a23d;
 }
 
-/* 密码显示切换 */
 .password-field {
     position: relative;
 }
@@ -407,8 +403,6 @@ table th:nth-child(7) { width: 160px; }     /* Actions */
 }
 
 
-
-/* ✅ 让眼睛图标不影响输入区点击 */
 .password-field .toggle-password {
     position: absolute;
     right: 15px;
@@ -417,7 +411,7 @@ table th:nth-child(7) { width: 160px; }     /* Actions */
     cursor: pointer;
     color: #888;
     z-index: 3;
-    pointer-events: auto; /* 只响应自身点击 */
+    pointer-events: auto; 
 }
 
 .password-field .toggle-password:hover {
@@ -438,7 +432,6 @@ table th:nth-child(7) { width: 160px; }     /* Actions */
     color: #c0a23d;
 }
 
-/* 响应式设计 */
 @media (max-width: 768px) {
     .form-row,
     .profile-edit .form-grid {
@@ -465,14 +458,12 @@ textarea {
     padding: 10px;
   }
   
-  /* 🟡 让长地址自动换行 */
 .value.multi-line {
     white-space: pre-wrap;
     word-wrap: break-word;
     max-width: 82%;
 }
 
-/* 🟡 City + Postal Grid */
 .address-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -480,17 +471,14 @@ textarea {
     margin-bottom: 0px;
 }
 
-/* 🟡 移除 icon 的 detail-item */
 .detail-item.no-icon {
     padding-left: 20px;
 }
 
-/* 🟡 Address 行拓宽 */
 .detail-item.full-width {
     grid-column: 1 / -1;
 }
 
-/* 🟡 如果需要适配响应式 */
 @media (max-width: 768px) {
     .address-grid {
         grid-template-columns: 1fr;

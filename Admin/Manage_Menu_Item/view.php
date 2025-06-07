@@ -75,7 +75,6 @@ try {
 <head>
     <meta charset="UTF-8">
     <style>
-        /* åºé¨å¯¼èªå®¹å¨ */
         .footer-nav {
             position: fixed;
             bottom: 0;
@@ -90,7 +89,6 @@ try {
             z-index: 1000;
         }
 
-        /* å¯¼èªé¡¹ */
         .nav-item {
             display: flex;
             flex-direction: column;
@@ -101,7 +99,6 @@ try {
             transition: all 0.3s ease;
         }
 
-        /* icon é¢è² */
         .nav-item svg {
             width: 32px;
             height: 32px;
@@ -109,7 +106,6 @@ try {
             transition: all 0.3s ease;
         }
 
-        /* é»è®¤ææ¬é¢è² */
         .nav-label {
             font-family: 'Segoe UI', sans-serif;
             font-size: 12px;
@@ -117,7 +113,6 @@ try {
             transition: color 0.3s ease;
         }
 
-        /* éä¸­ç¶æ */
         .nav-item.active svg {
             stroke: var(--active-color);
         }
@@ -125,13 +120,11 @@ try {
             color: var(--active-color);
         }
 
-        /* æ¬åææ */
         .nav-item:hover {
             background: #f8f9fa;
             transform: translateY(-4px);
         }
 
-        /* Bz å­ä½æ ·å¼ */
         .bz-text {
             font-size: 35px;
             font-weight: bold;
@@ -139,7 +132,6 @@ try {
             transition: all 0.3s ease;
         }
 
-        /* Brizo ç¶æ */
         .bz-item.active .bz-text {
             font-size: 18px;
             fill: var(--active-color);
@@ -147,9 +139,9 @@ try {
     </style>
 </head>
 <body>
-    <!-- åºé¨å¯¼èªæ  -->
+
     <nav class="footer-nav">
-        <!-- Bz èå -->
+
         <div class="nav-item bz-item" style="--active-color: #ff6b6b;"data-link="../Main Page/main_page.html">
             <svg viewBox="0 0 50 24">
                 <text x="5" y="18" class="bz-text">Bz</text>
@@ -157,7 +149,6 @@ try {
             <span class="nav-label">Menu</span>
         </div>
 
-        <!-- æä½³åå·¥ -->
         <div class="nav-item other-item" style="--active-color: #ff9f43;"data-link="fooy.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -168,7 +159,6 @@ try {
             <span class="nav-label">Best Staff</span>
         </div>
 
-<!-- è®¢åç®¡çï¼Checklist å¾æ ï¼ -->
 <div class="nav-item other-item" style="--active-color: #27ae60;" data-link="../Order_Management/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="4" y="3" width="16" height="18" rx="2"></rect>
@@ -181,7 +171,7 @@ try {
     </svg>
     <span class="nav-label">Manage Order</span>
 </div>
-        <!-- èç³»æ¹å¼ -->
+
         <div class="nav-item other-item" style="--active-color: #3498db;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
@@ -189,7 +179,6 @@ try {
             <span class="nav-label">Contact</span>
         </div>
 
-        <!-- æ´å¤éé¡¹ -->
         <div class="nav-item other-item" style="--active-color: #8e44ad;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <circle cx="12" cy="12" r="1"></circle>
@@ -206,26 +195,21 @@ try {
             const bzItem = document.querySelector('.bz-item');
             const bzText = bzItem.querySelector('.bz-text');
     
-            // 统一事件处理函数
             function handleNavigation(event) {
-                event.preventDefault(); // 阻止默认行为
+                event.preventDefault(); 
                 const target = event.currentTarget;
                 
-                // 更新激活状态
                 navItems.forEach(item => item.classList.remove('active'));
                 target.classList.add('active');
                 
-                // 更新Bz文字
                 bzText.textContent = target === bzItem ? 'Brizo' : 'Bz';
                 
-                // 执行页面跳转
                 const targetPage = target.dataset.link;
                 if (targetPage) {
                     window.location.href = targetPage;
                 }
             }
     
-            // 绑定事件监听器
             navItems.forEach(item => {
                 item.addEventListener('click', handleNavigation);
                 item.addEventListener('touchstart', function(e) {
@@ -234,7 +218,6 @@ try {
                 }, { passive: false });
             });
     
-            // 页面加载时自动激活当前项
             const currentPage = window.location.pathname.split('/').pop();
             navItems.forEach(item => {
                 if (item.dataset.link === currentPage) {

@@ -1,9 +1,8 @@
 <?php
-/* 权限控制模块（可 include 到所有页面使用） */
 
 session_start();
 
-// 判断是否登录
+// Determine if you are logged in
 if (!isset($_SESSION['user_email']) || !isset($_SESSION['user_role'])) {
     header("Location: ../Admin_Account/login.php");
     exit();

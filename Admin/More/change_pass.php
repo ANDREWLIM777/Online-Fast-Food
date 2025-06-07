@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $new = $_POST['new_password'];
     $confirm = $_POST['confirm_password'];
 
-    // 取出当前 hash 密码
+    // Fetch the current hash password
     $stmt = $conn->prepare("SELECT password FROM admin WHERE id = ?");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
@@ -47,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       padding: 40px 20px;
     }
 
-    /* 背景发光环 */
 body::after {
   content: '';
   position: fixed;
@@ -58,10 +57,9 @@ body::after {
   background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
   animation: auraPulse 8s infinite;
   pointer-events: none;
-  z-index: -1; /* ⬅ 放底层 */
+  z-index: -1;
 }
 
-/* 星尘粒子 */
 body::before {
   content: '';
   position: fixed;
@@ -75,7 +73,7 @@ body::before {
   background-size: 60px 60px;
   animation: stardust 20s linear infinite;
   pointer-events: none;
-  z-index: -2; /* ⬅ 更底层 */
+  z-index: -2; 
 }
 
 @keyframes auraPulse {

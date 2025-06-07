@@ -21,7 +21,6 @@ if (!$notification) {
     exit();
 }
 
-// 执行删除操作
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $delete = $pdo->prepare("DELETE FROM notifications WHERE id = ?");
     $delete->execute([$id]);

@@ -669,6 +669,10 @@
 2025-06-05 17:11:14 - Delivery address: "{\"street_address\":\"4502, Angkasa Nuri\",\"city\":\"Kuala Lumpur\",\"postal_code\":\"50450\"}"
 2025-06-05 17:11:14 - Customer email: andrewbrizo31@gmail.com
 2025-06-05 17:11:14 - Payment details: 01111126183
+<<<<<<< HEAD
+2025-06-05 17:47:19 - GET data: {"order_id":"ORD-6841BC07C093F"}
+2025-06-05 17:47:19 - SESSION data: {"customer_id":50,"customer_name":"junkai","last_activity":1749138439,"csrf_token":"d7f301c441396f444948c957d1c776d72d038263b2e2c98e4d71f06f4984238c","last_order":{"order_code":"ORD-6841BC07C093F","amount":347,"method":"card","payment_details":"1111","delivery_method":"delivery","delivery_address":{"street_address":"234df","city":"4344sdf","postal_code":"23423"},"timestamp":"2025-05-25 13:15:00","items":[{"item_id":2,"quantity":20,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":6,"quantity":12,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"},{"item_id":9,"quantity":6,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":11,"quantity":1,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]}}
+=======
 2025-06-05 17:29:08 - GET data: {"order_id":"ORD-6841B3928D517"}
 2025-06-05 17:29:08 - SESSION data: {"customer_id":4,"customer_name":"Andrew","last_activity":1749137347,"csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234","user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin"}
 2025-06-05 17:29:08 - Order ORD-6841B3928D517 completion status: completed
@@ -822,6 +826,7 @@
 2025-06-05 18:20:57 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpur\",\"postal_code\":\"50450\"}"
 2025-06-05 18:20:57 - Customer email: unknown@example.com
 2025-06-05 18:20:57 - Payment details: 01111126183
+<<<<<<< HEAD
 2025-06-05 18:28:19 - GET data: {"order_id":"ORD-6841C5A3B8B9D"}
 2025-06-05 18:28:19 - SESSION data: {"customer_id":4,"customer_name":"Andrew","last_activity":1749140899,"csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234","user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","last_order":{"order_code":"ORD-6841C5A3B8B9D","amount":14,"method":"digital_wallet","payment_details":"01111126183","delivery_method":"pickup","delivery_address":null,"timestamp":"2025-05-25 13:15:00","items":[{"item_id":15,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]}}
 2025-06-05 18:28:19 - Updated order status to completed: ORD-6841C5A3B8B9D
@@ -1008,3 +1013,17 @@
 2025-06-07 12:30:56 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
 2025-06-07 12:30:56 - Customer email: andrewbrizo31@gmail.com
 2025-06-07 12:30:56 - Payment details: 01111126183
+=======
+>>>>>>> 0718e94a0484371a19434cc6c131b58d0306dc42
+>>>>>>> 940ef34924d528b5641e14bd935f5cb1a667810d
+2025-06-07 18:11:33 - GET data: {"order_id":"ORD-684464B548CBE"}
+2025-06-07 18:11:33 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749312693,"csrf_token":"43049b8d8cb3e78859f74b67871bc61711e2701dd97f25637755b0fc272ff386","last_order":{"order_code":"ORD-684464B548CBE","amount":27,"method":"digital_wallet","payment_details":"01111126184","delivery_method":"delivery","delivery_address":{"street_address":"123 Main Street","city":"Kuala Lumpura","postal_code":"50450"},"timestamp":"2025-06-07 18:11:33","items":[{"item_id":14,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]}}
+2025-06-07 18:11:34 - Updated order status to completed: ORD-684464B548CBE
+2025-06-07 18:11:34 - Order ORD-684464B548CBE completion status: completed
+2025-06-07 18:11:34 - Displaying confirmation for order: ORD-684464B548CBE, Customer ID: 1
+2025-06-07 18:11:34 - Order items count: 2
+2025-06-07 18:11:34 - Order items: [{"item_id":14,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-07 18:11:34 - Delivery method: delivery
+2025-06-07 18:11:34 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
+2025-06-07 18:11:34 - Customer email: andrewbrizo31@gmail.com
+2025-06-07 18:11:34 - Payment details: 01111126184
