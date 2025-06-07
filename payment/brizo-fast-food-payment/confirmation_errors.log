@@ -670,12 +670,17 @@
 2025-06-05 17:11:14 - Customer email: andrewbrizo31@gmail.com
 2025-06-05 17:11:14 - Payment details: 01111126183
 <<<<<<< HEAD
+<<<<<<< HEAD
 2025-06-05 17:34:30 - GET data: {"order_id":"ORD-6841B906A7CF4"}
 2025-06-05 17:34:30 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749137670,"csrf_token":"2dd52e6c990a77ab26c289bbb9af1fd7819bbde34f8932ea90c4801be1e61b85","last_order":{"order_code":"ORD-6841B906A7CF4","amount":40,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"pickup","delivery_address":null,"timestamp":"2025-05-25 13:15:00","items":[{"item_id":2,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]}}
 2025-06-05 19:17:11 - GET data: {"order_id":"ORD-6841B906A7CF4","csrf_token":"294d42568e176f729ba4bd6281210af1be129cd5c5dbf67da037843518c00f52"}
 2025-06-05 19:17:11 - SESSION data: {"customer_name":"Kai","customer_id":49,"user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","message":"\u2705 Order #0 marked as completed.","last_activity":1749143814,"csrf_token":"294d42568e176f729ba4bd6281210af1be129cd5c5dbf67da037843518c00f52"}
 2025-06-05 19:17:14 - GET data: {"order_id":"ORD-6841B906A7CF4","csrf_token":"294d42568e176f729ba4bd6281210af1be129cd5c5dbf67da037843518c00f52"}
 2025-06-05 19:17:14 - SESSION data: {"customer_name":"Kai","customer_id":49,"user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","message":"\u2705 Order #0 marked as completed.","last_activity":1749143831,"csrf_token":"294d42568e176f729ba4bd6281210af1be129cd5c5dbf67da037843518c00f52"}
+=======
+2025-06-05 17:47:19 - GET data: {"order_id":"ORD-6841BC07C093F"}
+2025-06-05 17:47:19 - SESSION data: {"customer_id":50,"customer_name":"junkai","last_activity":1749138439,"csrf_token":"d7f301c441396f444948c957d1c776d72d038263b2e2c98e4d71f06f4984238c","last_order":{"order_code":"ORD-6841BC07C093F","amount":347,"method":"card","payment_details":"1111","delivery_method":"delivery","delivery_address":{"street_address":"234df","city":"4344sdf","postal_code":"23423"},"timestamp":"2025-05-25 13:15:00","items":[{"item_id":2,"quantity":20,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":6,"quantity":12,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"},{"item_id":9,"quantity":6,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":11,"quantity":1,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]}}
+>>>>>>> 940ef34924d528b5641e14bd935f5cb1a667810d
 =======
 2025-06-05 17:29:08 - GET data: {"order_id":"ORD-6841B3928D517"}
 2025-06-05 17:29:08 - SESSION data: {"customer_id":4,"customer_name":"Andrew","last_activity":1749137347,"csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234","user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin"}

@@ -49,7 +49,7 @@ $reportMonth = DateTime::createFromFormat('Y-m', $selected_month)->format('F Y')
 }
 
 .main-title {
-    font-size: 2.1rem;/* 中间尺寸 */
+    font-size: 2.1rem;
     background: linear-gradient(45deg, #c0a23d, #907722);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -74,7 +74,6 @@ $reportMonth = DateTime::createFromFormat('Y-m', $selected_month)->format('F Y')
     padding: 0 15px;
 }
 
-/* 双装饰线动画 */
 .sub-title::before,
 .sub-title::after {
     content: '';
@@ -106,7 +105,6 @@ $reportMonth = DateTime::createFromFormat('Y-m', $selected_month)->format('F Y')
     width: 35px;
 }
 
-/* 动态光晕背景 */
 .header::after {
     content: '';
     position: absolute;
@@ -127,7 +125,6 @@ $reportMonth = DateTime::createFromFormat('Y-m', $selected_month)->format('F Y')
     100% { transform: scale(0.8); opacity: 0.3; }
 }
 
-/* 微光粒子 */
 .header::before {
     content: '';
     position: absolute;
@@ -208,7 +205,6 @@ $reportMonth = DateTime::createFromFormat('Y-m', $selected_month)->format('F Y')
   z-index: -1; /* ⬅ 放底层 */
 }
 
-/* 星尘粒子 */
 body::before {
   content: '';
   position: fixed;
@@ -222,7 +218,7 @@ body::before {
   background-size: 60px 60px;
   animation: stardust 20s linear infinite;
   pointer-events: none;
-  z-index: -2; /* ⬅ 更底层 */
+  z-index: -2; 
 }
 
 @keyframes auraPulse {
@@ -281,7 +277,6 @@ body::before {
     box-shadow: 0 4px 12px rgba(192, 162, 61, 0.3);
 }
 
-/* 自定义下拉箭头 */
 .date-selector input[type="month"]::-webkit-calendar-picker-indicator {
     filter: invert(0.8);
     padding: 4px;
@@ -336,7 +331,7 @@ body::before {
     .header a,
     .header button,
     .title-group {
-        display: none !important; /* 打印时隐藏导航和按钮 */
+        display: none !important; 
     }
 
     canvas {
@@ -354,20 +349,17 @@ body::before {
 <body data-month="<?= $selected_month ?>">
 
   <div class="header">
-    <!-- 左侧按钮 -->
     <div style="position: absolute; left: 2rem; top: 50%; transform: translateY(-50%);">
         <a href="../Main Page/main_page.php" class="back-btn">
             <i class="fas fa-house"></i> Back To Main Page
         </a>
     </div>
 
-    <!-- 中间标题 -->
     <div class="title-group">
         <div class="main-title">BRIZO MELAKA</div>
         <div class="sub-title">Profit Analysis Page</div>
     </div>
 
-    <!-- 右侧按钮 -->
     <div style="position: absolute; right: 2rem; top: 50%; transform: translateY(-50%); display: flex; gap: 10px;">
         <button onclick="window.location.href='expense_input.php'" class="back-btn">Input Expenses</button>
         <button onclick="generatePDF()" class="back-btn"><i class="fas fa-file-pdf"></i> Export PDF</button>
@@ -376,7 +368,7 @@ body::before {
 </div>
 
 <div class="container" style="padding-top: 110px;">
-        <!-- Month Selector -->
+
         <form method="GET" class="date-selector">
     <input type="month" 
            name="month" 
@@ -511,23 +503,20 @@ body::before {
 
 function generatePDF() {
         const sourceElement = document.querySelector('.container');
-        const reportMonth = '<?= $reportMonth ?>'; // 使用格式化后的月份
+        const reportMonth = '<?= $reportMonth ?>'; 
         const currentDate = new Date();
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const formattedDate = currentDate.toLocaleDateString('en-US', options);
 
-        // 克隆容器
         const clone = sourceElement.cloneNode(true);
         clone.style.paddingTop = '0';
 
-        // 添加标题
   const dateInfo = document.createElement('p');
 dateInfo.textContent = `Generated on ${formattedDate}`;
 dateInfo.style.textAlign = 'center';
 dateInfo.style.marginBottom = '1rem';
 clone.insertBefore(dateInfo, clone.firstChild);
 
-        // 替换图表 canvas 为 img
         const canvasIds = ['expenseChart', 'profitChart'];
         canvasIds.forEach(id => {
             const canvas = document.getElementById(id);
@@ -544,10 +533,8 @@ clone.insertBefore(dateInfo, clone.firstChild);
             }
         });
 
-        // 移除不需要导出的元素
         clone.querySelectorAll('.date-selector').forEach(el => el.remove());
 
-        // 放入隐藏容器
         const tempContainer = document.createElement('div');
         tempContainer.style.position = 'absolute';
         tempContainer.style.left = '-9999px';

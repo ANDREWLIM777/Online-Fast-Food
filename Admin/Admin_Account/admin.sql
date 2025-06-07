@@ -21,6 +21,6 @@ VALUES (
   '0123456789',
   'superadmin',
   'jinyang@brizo.com',
-  '$2b$12$F8q00EQR6Bjz6El9TFFlWuiw6wyjvQWLS1Di/SiPY.mD28hh0Kw8i',/*jy8848*/
+  '$2b$12$F8q00EQR6Bjz6El9TFFlWuiw6wyjvQWLS1Di/SiPY.mD28hh0Kw8i',
   'default.jpg'
 );

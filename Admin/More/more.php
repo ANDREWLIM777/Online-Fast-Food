@@ -26,7 +26,6 @@ include '../Admin_Account/db.php';
       line-height: 1.6;
     }
 
-/* 黄金比例艺术标题 */
 .header {
     left: 0;
     right: 0;   
@@ -55,7 +54,7 @@ include '../Admin_Account/db.php';
 }
 
 .main-title {
-    font-size: 2.1rem;/* 中间尺寸 */
+    font-size: 2.1rem;
     background: linear-gradient(45deg, #c0a23d, #907722);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -80,7 +79,6 @@ include '../Admin_Account/db.php';
     padding: 0 15px;
 }
 
-/* 双装饰线动画 */
 .sub-title::before,
 .sub-title::after {
     content: '';
@@ -112,7 +110,6 @@ include '../Admin_Account/db.php';
     width: 35px;
 }
 
-/* 动态光晕背景 */
 .header::after {
     content: '';
     position: absolute;
@@ -133,7 +130,6 @@ include '../Admin_Account/db.php';
     100% { transform: scale(0.8); opacity: 0.3; }
 }
 
-/* 微光粒子 */
 .header::before {
     content: '';
     position: absolute;
@@ -157,19 +153,19 @@ include '../Admin_Account/db.php';
 .more-container {
   max-width: 1200px;
   margin: 2rem auto;
-  padding: 0 2rem; /* 增加顶部 padding 来避开 fixed header */
+  padding: 0 2rem; 
 }
 
 .more-container-top {
   max-width: 1200px;
   margin: 2rem auto;
-  padding: 100px 2rem 0 2rem; /* 增加顶部 padding 来避开 fixed header */
+  padding: 100px 2rem 0 2rem; 
 }
 
 .more-container-down {
   max-width: 1200px;
   margin: 2rem auto;
-  padding: 0 2rem 40px; /* 增加顶部 padding 来避开 fixed header */
+  padding: 0 2rem 40px; 
 }
 
     .more-item {
@@ -318,48 +314,46 @@ include '../Admin_Account/db.php';
     position: absolute;
     top: 50px;
     right: 0;
-    background: #0c0a10; /* 深黑底色 */
+    background: #0c0a10; 
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(192, 162, 61, 0.15); /* 金色阴影 */
+    box-shadow: 0 4px 15px rgba(192, 162, 61, 0.15); 
     overflow: hidden;
     min-width: 180px;
     font-family: 'Roboto', sans-serif;
-    border: 1px solid #c0a23d55; /* 半透明金色边框 */
-    backdrop-filter: blur(8px); /* 毛玻璃效果 */
+    border: 1px solid #c0a23d55; 
+    backdrop-filter: blur(8px); 
 }
 
 .profile-dropdown a {
     display: block;
     padding: 12px 16px;
-    color: #c0a23d; /* 主金色 */
+    color: #c0a23d; 
     text-decoration: none;
     font-size: 0.95rem;
     transition: background 0.2s;
-    border-bottom: 1px solid #1a1a1a; /* 分隔线 */
+    border-bottom: 1px solid #1a1a1a; 
 }
 
 .profile-dropdown a {
     display: block;
     padding: 12px 16px;
-    color: #c0a23d; /* 主金色 */
+    color: #c0a23d; 
     text-decoration: none;
     font-size: 0.95rem;
     transition: all 0.2s;
-    border-bottom: 1px solid #1a1a1a; /* 分隔线 */
+    border-bottom: 1px solid #1a1a1a; 
 }
 
 .profile-dropdown a:last-child {
     border-bottom: none;
 }
 
-/* 悬停效果 */
 .profile-dropdown a:hover {
-    background: #c0a23d15; /* 浅金底色 */
-    color: #f4e3b2; /* 亮金色 */
-    padding-left: 20px; /* 动态缩进 */
+    background: #c0a23d15; 
+    color: #f4e3b2; 
+    padding-left: 20px; 
 }
 
-/* 当前选中状态 */
 .profile-dropdown a.active {
     background: linear-gradient(90deg, #c0a23d20, transparent);
     border-left: 3px solid #c0a23d;
@@ -387,7 +381,6 @@ include '../Admin_Account/db.php';
     opacity: 0.9;
 }
 
-/* 分隔线 */
 .profile-dropdown hr {
     border: none;
     border-top: 1px solid #1a1a1a;
@@ -482,7 +475,6 @@ function toggleProfile() {
     dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
 }
 
-// 点击其他区域时关闭 dropdown
 window.onclick = function(event) {
     const profileContainer = document.querySelector('.profile-container');
     const dropdown = document.getElementById("profileDropdown");
@@ -502,7 +494,7 @@ window.onclick = function(event) {
 <head>
     <meta charset="UTF-8">
     <style>
-        /* åºé¨å¯¼èªå®¹å¨ */
+
         .footer-nav {
             position: fixed;
             bottom: 0;
@@ -516,8 +508,7 @@ window.onclick = function(event) {
             align-items: center;
             z-index: 1000;
         }
-/*#fffbed; */
-        /* å¯¼èªé¡¹ */
+
         .nav-item {
             display: flex;
             flex-direction: column;
@@ -528,7 +519,6 @@ window.onclick = function(event) {
             transition: all 0.3s ease;
         }
 
-        /* icon é¢è² */
         .nav-item svg {
             width: 32px;
             height: 32px;
@@ -536,15 +526,13 @@ window.onclick = function(event) {
             transition: all 0.3s ease;
         }
 
-        /* é»è®¤ææ¬é¢è² */
         .nav-label {
             font-family: 'Segoe UI', sans-serif;
             font-size: 12px;
             color:rgb(255, 220, 93);
             transition: color 0.3s ease;
         }
-/* #636e72;*/
-        /* 🖱️ Hover effect with color */
+
 .nav-item:hover svg {
     stroke: var(--active-color);
 }
@@ -553,7 +541,6 @@ window.onclick = function(event) {
     color: var(--active-color);
 }
 
-        /* éä¸­ç¶æ */
         .nav-item.active svg {
             stroke: var(--active-color);
         }
@@ -561,13 +548,11 @@ window.onclick = function(event) {
             color: var(--active-color);
         }
 
-        /* æ¬åææ */
         .nav-item:hover {
             background:rgb(32, 32, 32);
             transform: translateY(-4px);
         }
-/* #fafaf8db; */
-/* Default Bz style */
+
 .bz-text {
     font-size: 35px;
     font-weight: bold;
@@ -590,9 +575,9 @@ window.onclick = function(event) {
 
 </head>
 <body>
-    <!-- åºé¨å¯¼èªæ  -->
+
     <nav class="footer-nav">
-        <!-- Bz èå -->
+
         <div class="nav-item bz-item" style="--active-color: #ff6b6b;" data-link="../Main Page/main_page.php">
             <svg viewBox="0 0 50 24">
                 <text x="5" y="18" class="bz-text">Bz</text>
@@ -600,7 +585,6 @@ window.onclick = function(event) {
             <span class="nav-label">Menu</span>
         </div>
 
-        <!-- æä½³åå·¥ -->
         <div class="nav-item other-item" style="--active-color: #ff9f43;" data-link="../Manage_Account/index.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -611,7 +595,7 @@ window.onclick = function(event) {
             <span class="nav-label">ALL Staff</span>
         </div>
 
-<!-- è®¢åç®¡çï¼Checklist å¾æ ï¼ -->
+
 <div class="nav-item other-item" style="--active-color: #27ae60;" data-link="../Order_Management/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="4" y="3" width="16" height="18" rx="2"></rect>
@@ -625,7 +609,6 @@ window.onclick = function(event) {
     <span class="nav-label">Manage Order</span>
 </div>
 
-<!-- 菜单管理方式 -->
 <div class="nav-item other-item" style="--active-color: #3498db;" data-link="../Manage_Menu_Item/index.php">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <rect x="3" y="3" width="7" height="7" rx="1" ry="1" />
@@ -636,7 +619,6 @@ window.onclick = function(event) {
     <span class="nav-label">Menu Manage</span>
 </div>
 
-        <!-- æ´å¤éé¡¹ -->
         <div class="nav-item other-item" style="--active-color: #8e44ad;" data-link="../More/more.php">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <circle cx="12" cy="12" r="1"></circle>
@@ -755,7 +737,7 @@ if (targetLink) {
         .menu-icon span:nth-child(3) { top: 20px; }
 
         .menu-icon:hover span {
-            background: #eace7c; /* 悬停亮金色 */
+            background: #eace7c; 
         }
 
         .menu-icon.active span {
@@ -778,12 +760,12 @@ if (targetLink) {
             position: absolute;
             top: 40px;
             left: 0;
-            background: #0c0a10; /* 深黑背景 */
-            border: 1px solid rgba(192, 162, 61, 0.2); /* 金色边框 */
+            background: #0c0a10; 
+            border: 1px solid rgba(192, 162, 61, 0.2);
             border-radius: 6px;
             padding: 8px 0;
-            box-shadow: 0 4px 20px rgba(192, 162, 61, 0.1); /* 金色阴影 */
-            backdrop-filter: blur(8px); /* 毛玻璃效果 */
+            box-shadow: 0 4px 20px rgba(192, 162, 61, 0.1); 
+            backdrop-filter: blur(8px); 
         }
 
         .dropdown-menu.active {
@@ -795,15 +777,15 @@ if (targetLink) {
             display: block;
             padding: 12px 24px;
             text-decoration: none;
-            color: #c0a23d; /* 主金色 */
+            color: #c0a23d;
             font-size: 0.95rem;
             transition: all 0.25s ease;
             position: relative;
         }
 
         .dropdown-menu a:hover {
-            background: rgba(192, 162, 61, 0.1); /* 淡金背景 */
-            color: #f4e3b2; /* 亮金色 */
+            background: rgba(192, 162, 61, 0.1);
+            color: #f4e3b2;
             padding-left: 28px;
             text-shadow: 0 0 8px rgba(244, 227, 178, 0.3);
         }

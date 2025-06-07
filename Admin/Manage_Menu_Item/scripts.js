@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 实时搜索防抖
+   // Real-time search for stabilization
     let searchTimeout;
     const searchInput = document.getElementById('searchInput');
     const categoryFilter = document.getElementById('categoryFilter');
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
 
-    // 搜索功能
+ // Search function
     const performSearch = () => {
         const searchValue = searchInput ? searchInput.value.trim() : '';
         const params = new URLSearchParams({
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         
-        // 只有在有变化时才执行搜索
+        // Perform a search only if there is a change
         if (window.location.search !== params.toString()) {
             window.location.search = params.toString();
         }
@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
         categoryFilter.addEventListener('change', performSearch);
     }
 
-    // 使用事件委托处理动态元素
+    // Use event delegates to handle dynamic elements
     cardGrid.addEventListener('click', async (e) => {
-        // 处理删除按钮点击
+        // Handle delete button clicks
         if (e.target.closest('.delete-btn')) {
             e.preventDefault();
             const deleteBtn = e.target.closest('.delete-btn');
@@ -74,15 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         throw new Error(data.error || 'Failed to delete item');
                     }
 
-                    // 添加删除动画类
                     card.classList.add('deleting');
                     
-                    // 等待动画完成
                     await new Promise(resolve => {
                         card.addEventListener('transitionend', resolve, { once: true });
                     });
-                    
-                    // 从DOM移除
+
                     card.remove();
 
                     await Swal.fire({
@@ -107,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 添加卡片悬停效果
+    // Add a card hover effect
     cardGrid.addEventListener('mouseover', (e) => {
         const card = e.target.closest('.neo-card');
         if (card) {

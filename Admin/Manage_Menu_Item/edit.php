@@ -3,7 +3,6 @@ require_once 'db_connect.php';
 include '../auth_menu.php';
 check_permission('superadmin');
 
-// 重定向如果没有ID
 if (!isset($_GET['id'])) {
     header("Location: index.php");
     exit();
@@ -22,12 +21,12 @@ try {
     die("Error loading item: " . $e->getMessage());
 }
 
-// 处理表单提交
+// Processing form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $error = null;
     $requiredFields = ['category', 'item_name', 'price'];
     
-    // 服务器端验证
+    // Server-side validation
     foreach ($requiredFields as $field) {
         if (empty($_POST[$field])) {
             $error = "All fields marked with * must be completed!";
@@ -35,19 +34,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     
-    // 验证分类有效性
+// Verify classification validity
     $allowedCategories = ['burger', 'chicken', 'drink', 'snacks', 'meal'];
     if (!isset($error) && !in_array($_POST['category'], $allowedCategories)) {
         $error = "Invalid categorization options";
     }
     
-    // 验证价格格式
+ // Validate the price format
     if (!isset($error) && !is_numeric($_POST['price'])) {
         $error = "Prices must be valid numbers";
     }
 
-    // 文件上传处理
-    $photoPath = $item['photo']; // 保留原有照片
+   // File upload processing
+    $photoPath = $item['photo']; 
     if (!isset($error) && isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
         $fileType = mime_content_type($_FILES['photo']['tmp_name']);
@@ -62,12 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!move_uploaded_file($_FILES['photo']['tmp_name'], $destination)) {
                 $error = "Photo upload failed";
             } else {
-                $photoPath = $destination; // 更新为新照片路径
+                $photoPath = $destination;
             }
         }
     }
 
-    // 数据库更新
+    // Database update
     if (!isset($error)) {
         try {
             $stmt = $pdo->prepare("UPDATE menu_items SET
@@ -106,7 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Edit Item</title>
 <style>
-    /* 黑金系列 Brizo */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap');
 
@@ -128,7 +126,6 @@ body {
     color: var(--text-light);
 }
 
-    /* 背景发光环 */
     body::after {
   content: '';
   position: fixed;
@@ -139,10 +136,9 @@ body {
   background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
   animation: auraPulse 8s infinite;
   pointer-events: none;
-  z-index: -1; /* ⬅ 放底层 */
+  z-index: -1;
 }
 
-/* 星尘粒子 */
 body::before {
   content: '';
   position: fixed;
@@ -156,7 +152,7 @@ body::before {
   background-size: 60px 60px;
   animation: stardust 20s linear infinite;
   pointer-events: none;
-  z-index: -2; /* ⬅ 更底层 */
+  z-index: -2; 
 }
 
 @keyframes auraPulse {
@@ -313,7 +309,6 @@ img {
 
         <div class="form-container">
             <form method="post" enctype="multipart/form-data">
-                <!-- 原有表单结构保持不变 -->
                 <div class="form-group">
                     <label>Category *</label>
                     <select name="category" required>

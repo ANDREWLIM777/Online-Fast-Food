@@ -46,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
     <style>
-        /* 黑金系列 Brizo */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;500&display=swap');
 
@@ -68,7 +67,6 @@ body {
     color: var(--text-light);
 }
 
-    /* 背景发光环 */
     body::after {
   content: '';
   position: fixed;
@@ -79,10 +77,9 @@ body {
   background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
   animation: auraPulse 8s infinite;
   pointer-events: none;
-  z-index: -1; /* ⬅ 放底层 */
+  z-index: -1; 
 }
 
-/* 星尘粒子 */
 body::before {
   content: '';
   position: fixed;
@@ -96,7 +93,7 @@ body::before {
   background-size: 60px 60px;
   animation: stardust 20s linear infinite;
   pointer-events: none;
-  z-index: -2; /* ⬅ 更底层 */
+  z-index: -2;
 }
 
 @keyframes auraPulse {

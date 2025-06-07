@@ -195,6 +195,7 @@
 2025-06-05 17:11:14 - Payment successful: order_id=ORD-6841B3928D517
 2025-06-05 17:11:14 - Redirecting to confirmation.php with order_id=ORD-6841B3928D517
 <<<<<<< HEAD
+<<<<<<< HEAD
 2025-06-05 17:34:30 - Received make_payment request: {&#34;csrf_token&#34;:&#34;2dd52e6c990a77ab26c289bbb9af1fd7819bbde34f8932ea90c4801be1e61b85&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;40&#34;,&#34;make_payment&#34;:&#34;1&#34;}
 2025-06-05 17:34:30 - Received amount: 40, Expected total: 40
 2025-06-05 17:34:30 - Delivery method: pickup, Delivery address ID: 0
@@ -204,6 +205,260 @@
 2025-06-05 17:34:30 - Redirecting to confirmation.php with order_id=ORD-6841B906A7CF4
 2025-06-05 17:34:56 - Received make_payment request: {&#34;csrf_token&#34;:&#34;2dd52e6c990a77ab26c289bbb9af1fd7819bbde34f8932ea90c4801be1e61b85&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;40&#34;,&#34;make_payment&#34;:&#34;1&#34;}
 2025-06-05 17:34:56 - Validation failed: Cart is empty for customer_id=49
+=======
+2025-06-05 17:44:14 - Attempting to add delivery address: street=234df, city=4344sdf, postal_code=23423, default=1
+2025-06-05 17:44:14 - Delivery address added successfully: ID 2, 234df, 4344sdf, 23423
+2025-06-05 17:44:40 - Attempting to add payment method: method_type=card
+2025-06-05 17:44:40 - Adding card - Number: **** **** **** 2342, Expiry: 33/23, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:44:40 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:44:40 - Attempting to add payment method: method_type=card
+2025-06-05 17:44:40 - Adding card - Number: **** **** **** 2342, Expiry: 33/23, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:44:40 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:44:41 - Attempting to add payment method: method_type=card
+2025-06-05 17:44:41 - Adding card - Number: **** **** **** 2342, Expiry: 33/23, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:44:41 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:44:41 - Attempting to add payment method: method_type=card
+2025-06-05 17:44:41 - Adding card - Number: **** **** **** 2342, Expiry: 33/23, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:44:41 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:44:41 - Attempting to add payment method: method_type=card
+2025-06-05 17:44:41 - Adding card - Number: **** **** **** 2342, Expiry: 33/23, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:44:41 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:05 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:05 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:05 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:07 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:07 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:07 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:09 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:09 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:09 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:09 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:09 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:09 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:09 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:09 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:09 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:09 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:09 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:09 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:09 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:09 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:09 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:09 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:09 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:09 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:09 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:09 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:09 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:10 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:10 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:10 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:10 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:10 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:10 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:10 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:10 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:10 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:11 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:11 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:11 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:11 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:11 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:11 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:11 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:11 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:11 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:12 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:12 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:12 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:12 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:12 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:12 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:12 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:12 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:12 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:12 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:12 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:12 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:12 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:12 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:12 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:13 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:13 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:13 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:13 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:13 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:13 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:13 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:13 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:13 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:13 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:13 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:13 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:13 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:13 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:13 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:13 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:13 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:13 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:14 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:14 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:14 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:14 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:14 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:14 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:17 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:17 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:17 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:17 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:17 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:17 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:17 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:17 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:17 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:18 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:18 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:18 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:18 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:18 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:18 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:18 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:18 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:18 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:18 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:18 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:18 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:18 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:18 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:18 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:18 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:18 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:18 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:19 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:19 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:19 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:19 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:19 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:19 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:19 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:19 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:19 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:19 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:19 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:19 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:19 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:19 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:19 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:19 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:19 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:19 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:20 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:20 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:20 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:20 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:20 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:20 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:20 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:20 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:20 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:20 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:20 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:20 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:20 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:20 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:20 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:20 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:20 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:20 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:20 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:20 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:20 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:21 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:21 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:21 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:21 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:21 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: amex
+2025-06-05 17:45:21 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:26 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:26 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:26 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:26 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:26 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:26 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:26 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:26 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:26 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:28 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:28 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:28 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:29 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:29 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:29 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:29 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:29 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:29 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:29 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:29 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:29 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:29 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:29 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:29 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:30 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:30 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:30 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:30 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:30 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:30 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:30 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:30 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:30 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:30 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:30 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:30 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:30 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:30 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:30 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:30 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:30 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:30 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:31 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:31 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:31 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:31 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:31 - Adding card - Number: **** **** **** 2342, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:31 - Card number failed Luhn check: 2342342342342342
+2025-06-05 17:45:48 - Attempting to add payment method: method_type=card
+2025-06-05 17:45:48 - Adding card - Number: **** **** **** 4412, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:45:48 - Card number failed Luhn check: 4411112131444412
+2025-06-05 17:46:49 - Attempting to add payment method: method_type=card
+2025-06-05 17:46:49 - Adding card - Number: **** **** **** 1111, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:46:49 - Expired card: 3/21
+2025-06-05 17:46:50 - Attempting to add payment method: method_type=card
+2025-06-05 17:46:50 - Adding card - Number: **** **** **** 1111, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:46:50 - Expired card: 3/21
+2025-06-05 17:46:50 - Attempting to add payment method: method_type=card
+2025-06-05 17:46:50 - Adding card - Number: **** **** **** 1111, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:46:50 - Expired card: 3/21
+2025-06-05 17:46:50 - Attempting to add payment method: method_type=card
+2025-06-05 17:46:50 - Adding card - Number: **** **** **** 1111, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:46:50 - Expired card: 3/21
+2025-06-05 17:46:50 - Attempting to add payment method: method_type=card
+2025-06-05 17:46:50 - Adding card - Number: **** **** **** 1111, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:46:50 - Expired card: 3/21
+2025-06-05 17:46:51 - Attempting to add payment method: method_type=card
+2025-06-05 17:46:51 - Adding card - Number: **** **** **** 1111, Expiry: 03/21, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:46:51 - Expired card: 3/21
+2025-06-05 17:47:13 - Attempting to add payment method: method_type=card
+2025-06-05 17:47:13 - Adding card - Number: **** **** **** 1111, Expiry: 03/30, Name: sdfsdfsdf, Type: visa
+2025-06-05 17:47:13 - Payment method added successfully: ID 2
+2025-06-05 17:47:19 - Received make_payment request: {&#34;csrf_token&#34;:&#34;d7f301c441396f444948c957d1c776d72d038263b2e2c98e4d71f06f4984238c&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;2&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;347&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-05 17:47:19 - Received amount: 347, Expected total: 347
+2025-06-05 17:47:19 - Delivery method: delivery, Delivery address ID: 2
+2025-06-05 17:47:19 - Payment method: card, Payment method ID: 2
+2025-06-05 17:47:19 - Generated order_id: ORD-6841BC07C093F
+2025-06-05 17:47:19 - Payment successful: order_id=ORD-6841BC07C093F
+2025-06-05 17:47:19 - Redirecting to confirmation.php with order_id=ORD-6841BC07C093F
+>>>>>>> 940ef34924d528b5641e14bd935f5cb1a667810d
 =======
 2025-06-05 17:29:16 - Received make_payment request: {&#34;csrf_token&#34;:&#34;f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;4&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;22&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
 2025-06-05 17:29:16 - Received amount: 15, Expected total: 15

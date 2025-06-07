@@ -51,13 +51,12 @@ $check->execute();
 $result = $check->get_result();
 
 if ($result->num_rows > 0) {
-    // 如果邮箱重复，回传错误
     $_SESSION['error'] = 'Email address is already in use by another admin.';
     header("Location: edit.php?id=" . $id);
     exit;
 }
 
-// 检查是否有其他管理员使用了这个电话号码
+// Check to see if any other administrators are using this phone number
 $checkPhone = $conn->prepare("SELECT id FROM admin WHERE phone = ? AND id != ?");
 $checkPhone->bind_param("si", $phone, $id);
 $checkPhone->execute();

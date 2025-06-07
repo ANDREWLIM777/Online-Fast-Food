@@ -83,10 +83,9 @@ $current_data = $stmt->fetch();
   background: radial-gradient(circle at 50% 50%, rgba(244, 227, 178, 0.07) 0%, transparent 70%);
   animation: auraPulse 8s infinite;
   pointer-events: none;
-  z-index: -1; /* ⬅ 放底层 */
+  z-index: -1;
 }
 
-/* 星尘粒子 */
 body::before {
   content: '';
   position: fixed;
@@ -100,7 +99,7 @@ body::before {
   background-size: 60px 60px;
   animation: stardust 20s linear infinite;
   pointer-events: none;
-  z-index: -2; /* ⬅ 更底层 */
+  z-index: -2;
 }
 
 @keyframes auraPulse {
@@ -176,7 +175,6 @@ body::before {
     font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
-/* 通用输入框样式 */
 .input-group input {
     width: 100%;
     padding: 12px 15px;
@@ -189,7 +187,6 @@ body::before {
     transition: all 0.3s ease;
 }
 
-/* 金额输入框特殊样式 */
 .input-group.currency-input input {
     padding-left: 50px;
     text-align: right;
@@ -205,10 +202,9 @@ body::before {
     color: rgba(192, 162, 61, 0.8);
     font-weight: 700;
     font-size: 1.1rem;
-    z-index: 2; /* 添加层级 */
+    z-index: 2;
 }
 
-/* 月份选择器特殊处理 */
 .input-group.month-selector::before {
     content: none;
 }
@@ -219,7 +215,6 @@ body::before {
     box-shadow: 0 0 15px rgba(192, 162, 61, 0.25);
 }
 
-        /* 月份选择器特殊样式 */
         .month-selector {
             padding: 0 1rem;
             margin-bottom: 2rem;
@@ -237,7 +232,6 @@ body::before {
             transition: all 0.3s ease;
         }
 
-        /* 费用输入框样式 */
         .currency-input {
             width: 100%;
             padding: 12px 12px 12px 45px;
@@ -345,7 +339,6 @@ button.submit-btn:hover i {
     transform: scale(1.1) rotate(-5deg);
 }
 
-/* 加载动画 */
 button.submit-btn.loading::after {
     content: '';
     position: absolute;
@@ -420,7 +413,7 @@ document.querySelector('input[name="month"]').addEventListener('change', functio
     }
 });
 
-        // 实时总计计算
+        // Real-time totals
         document.querySelectorAll('input[type="number"]').forEach(input => {
             input.addEventListener('input', updateTotal);
         });
@@ -433,7 +426,7 @@ document.querySelector('input[name="month"]').addEventListener('change', functio
             document.getElementById('total-display').textContent = `Total: RM ${total.toFixed(2)}`;
         }
         
-        // 初始化计算
+    // Initialization calculations
         updateTotal();
     </script>
 </body>
