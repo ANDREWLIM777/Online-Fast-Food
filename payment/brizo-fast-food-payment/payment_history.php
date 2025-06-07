@@ -62,7 +62,11 @@ if (!$stmt) {
     exit();
 }
 $stmt->bind_param("i", $customerId);
-$stmt->execute();
+if (!$stmt->execute()) {
+    $logMessage("Execute failed for count: " . $stmt->error);
+    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
+    exit();
+}
 $total_records = $stmt->get_result()->fetch_assoc()['total'];
 $stmt->close();
 
@@ -81,7 +85,11 @@ if (!$stmt) {
     exit();
 }
 $stmt->bind_param("iii", $customerId, $records_per_page, $offset);
-$stmt->execute();
+if (!$stmt->execute()) {
+    $logMessage("Execute failed for payment history: " . $stmt->error);
+    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
+    exit();
+}
 $payment_history = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
@@ -93,7 +101,6 @@ function getStatusColor($status) {
     switch (strtolower($status)) {
         case 'completed': return 'text-green-600';
         case 'pending': return 'text-yellow-600';
-        case 'failed': return 'text-red-600';
         case 'refunded': return 'text-blue-600';
         default: return 'text-gray-600';
     }
@@ -135,14 +142,14 @@ function formatDeliveryAddress($address) {
         .history-table th, .history-table td {
             padding: 12px 16px;
             border-bottom: 1px solid #e5e7eb;
-            text-align: center; /* Center-align content for symmetry */
+            text-align: center;
         }
         .history-table th {
             background-color: #f3f4f6;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            width: 12.5%; /* Equal width for 8 columns */
+            width: 12.5%;
         }
         .history-table tr:nth-child(even) { background-color: #f9fafb; }
         .history-table tr:hover { background-color: #f1f5f9; }
@@ -150,7 +157,7 @@ function formatDeliveryAddress($address) {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 8px 12px; /* Uniform button size */
+            padding: 8px 12px;
             border-radius: 4px;
             font-weight: 500;
             font-size: 14px;
@@ -160,8 +167,8 @@ function formatDeliveryAddress($address) {
             transition: background-color 0.3s ease;
             cursor: pointer;
             border: none;
-            width: 80px; /* Fixed width for symmetry */
-            height: 36px; /* Fixed height for symmetry */
+            width: 80px;
+            height: 36px;
         }
         .btn-primary { background-color: #ff4757; }
         .btn-primary:hover { background-color: #e63946; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
@@ -194,7 +201,7 @@ function formatDeliveryAddress($address) {
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="card p-6">
             <h2 class="text-2xl font-semibold text-gray-800 mb-6">Payment History</h2>
-            <p class="text-gray-600 mb-4">Your Customer ID: <?= htmlspecialchars($customerId) ?></p>
+            <p class="text-gray-600 mb-4">Customer ID: <?= htmlspecialchars($customerId) ?></p>
 
             <?php if (empty($payment_history)): ?>
                 <p class="text-gray-600">No payment history found.</p>
@@ -221,7 +228,7 @@ function formatDeliveryAddress($address) {
                                     <td>RM <?= number_format($row['amount'], 2) ?></td>
                                     <td class="<?= getStatusColor($row['status']) ?>">
                                         <i class="fas fa-circle icon text-xs"></i>
-                                        <?= htmlspecialchars(ucfirst($row['status'])) ?>
+                                        <?= htmlspecialchars(ucfirst(strtolower($row['status']))) ?>
                                     </td>
                                     <td>
                                         <i class="fas <?= ($row['method'] ?? 'unknown') === 'card' ? 'fa-credit-card' : (($row['method'] ?? 'unknown') === 'online_banking' ? 'fa-university' : 'fa-wallet') ?> icon"></i>

@@ -822,3 +822,189 @@
 2025-06-05 18:20:57 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpur\",\"postal_code\":\"50450\"}"
 2025-06-05 18:20:57 - Customer email: unknown@example.com
 2025-06-05 18:20:57 - Payment details: 01111126183
+2025-06-05 18:28:19 - GET data: {"order_id":"ORD-6841C5A3B8B9D"}
+2025-06-05 18:28:19 - SESSION data: {"customer_id":4,"customer_name":"Andrew","last_activity":1749140899,"csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234","user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","last_order":{"order_code":"ORD-6841C5A3B8B9D","amount":14,"method":"digital_wallet","payment_details":"01111126183","delivery_method":"pickup","delivery_address":null,"timestamp":"2025-05-25 13:15:00","items":[{"item_id":15,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]}}
+2025-06-05 18:28:19 - Updated order status to completed: ORD-6841C5A3B8B9D
+2025-06-05 18:28:19 - Order ORD-6841C5A3B8B9D completion status: completed
+2025-06-05 18:28:19 - Displaying confirmation for order: ORD-6841C5A3B8B9D, Customer ID: 4
+2025-06-05 18:28:19 - Order items count: 1
+2025-06-05 18:28:19 - Order items: [{"item_id":15,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-05 18:28:19 - Delivery method: pickup
+2025-06-05 18:28:19 - Delivery address: ""
+2025-06-05 18:28:19 - Customer email: unknown@example.com
+2025-06-05 18:28:19 - Payment details: 01111126183
+2025-06-05 18:28:22 - GET data: {"download_invoice":"1","order_id":"ORD-6841C5A3B8B9D","csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234"}
+2025-06-05 18:28:22 - SESSION data: {"customer_id":4,"customer_name":"Andrew","last_activity":1749140899,"csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234","user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin"}
+2025-06-05 18:28:22 - Order ORD-6841C5A3B8B9D completion status: completed
+2025-06-05 18:28:22 - Displaying confirmation for order: ORD-6841C5A3B8B9D, Customer ID: 4
+2025-06-05 18:28:22 - Order items count: 1
+2025-06-05 18:28:22 - Order items: [{"item_id":15,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-05 18:28:22 - Delivery method: pickup
+2025-06-05 18:28:22 - Delivery address: ""
+2025-06-05 18:28:22 - Customer email: unknown@example.com
+2025-06-05 18:28:22 - Payment details: 01111126183
+2025-06-05 18:28:22 - Downloaded invoice for order: ORD-6841C5A3B8B9D
+2025-06-05 18:32:12 - GET data: {"order_id":"ORD-6841C68C789AB"}
+2025-06-05 18:32:12 - SESSION data: {"customer_id":4,"customer_name":"Andrew","last_activity":1749141132,"csrf_token":"f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234","user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","last_order":{"order_code":"ORD-6841C68C789AB","amount":15,"method":"digital_wallet","payment_details":"01111126183","delivery_method":"pickup","delivery_address":null,"timestamp":"2025-05-25 13:15:00","items":[{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]}}
+2025-06-05 18:32:12 - Updated order status to completed: ORD-6841C68C789AB
+2025-06-05 18:32:12 - Order ORD-6841C68C789AB completion status: completed
+2025-06-05 18:32:12 - Displaying confirmation for order: ORD-6841C68C789AB, Customer ID: 4
+2025-06-05 18:32:12 - Order items count: 1
+2025-06-05 18:32:12 - Order items: [{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-05 18:32:12 - Delivery method: pickup
+2025-06-05 18:32:12 - Delivery address: ""
+2025-06-05 18:32:12 - Customer email: unknown@example.com
+2025-06-05 18:32:12 - Payment details: 01111126183
+2025-06-06 17:25:26 - GET data: {"order_id":"ORD-68430866C0D7D"}
+2025-06-06 17:25:26 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749223526,"csrf_token":"b64afa601631624fc321fdfb92a6655d7700ab9b192ae2314f5be8cb206dfaba","last_order":{"order_code":"ORD-68430866C0D7D","amount":45,"method":"digital_wallet","payment_details":"0111112618311","delivery_method":"pickup","delivery_address":null,"timestamp":"2025-05-25 13:15:00","items":[{"item_id":16,"quantity":3,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]}}
+2025-06-06 17:25:27 - Updated order status to completed: ORD-68430866C0D7D
+2025-06-06 17:25:27 - Order ORD-68430866C0D7D completion status: completed
+2025-06-06 17:25:27 - Displaying confirmation for order: ORD-68430866C0D7D, Customer ID: 1
+2025-06-06 17:25:27 - Order items count: 1
+2025-06-06 17:25:27 - Order items: [{"item_id":16,"quantity":3,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-06 17:25:27 - Delivery method: pickup
+2025-06-06 17:25:27 - Delivery address: ""
+2025-06-06 17:25:27 - Customer email: andrewbrizo31@gmail.com
+2025-06-06 17:25:27 - Payment details: 0111112618311
+2025-06-06 17:35:25 - GET data: {"order_id":"ORD-68430866C0D7D"}
+2025-06-06 17:35:25 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749223731,"csrf_token":"b64afa601631624fc321fdfb92a6655d7700ab9b192ae2314f5be8cb206dfaba"}
+2025-06-06 17:35:25 - Order ORD-68430866C0D7D completion status: completed
+2025-06-06 17:35:25 - Displaying confirmation for order: ORD-68430866C0D7D, Customer ID: 1
+2025-06-06 17:35:25 - Order items count: 1
+2025-06-06 17:35:25 - Order items: [{"item_id":16,"quantity":3,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-06 17:35:25 - Delivery method: pickup
+2025-06-06 17:35:25 - Delivery address: ""
+2025-06-06 17:35:25 - Customer email: andrewbrizo31@gmail.com
+2025-06-06 17:35:25 - Payment details: 0111112618311
+2025-06-06 17:36:06 - GET data: {"order_id":"ORD-68430AE6C33B4"}
+2025-06-06 17:36:06 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749224166,"csrf_token":"b64afa601631624fc321fdfb92a6655d7700ab9b192ae2314f5be8cb206dfaba","last_order":{"order_code":"ORD-68430AE6C33B4","amount":15,"method":"digital_wallet","payment_details":"0111112618311","delivery_method":"pickup","delivery_address":null,"timestamp":"2025-05-25 13:15:00","items":[{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]}}
+2025-06-06 17:36:06 - Updated order status to completed: ORD-68430AE6C33B4
+2025-06-06 17:36:06 - Order ORD-68430AE6C33B4 completion status: completed
+2025-06-06 17:36:06 - Displaying confirmation for order: ORD-68430AE6C33B4, Customer ID: 1
+2025-06-06 17:36:06 - Order items count: 1
+2025-06-06 17:36:06 - Order items: [{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-06 17:36:06 - Delivery method: pickup
+2025-06-06 17:36:06 - Delivery address: ""
+2025-06-06 17:36:06 - Customer email: andrewbrizo31@gmail.com
+2025-06-06 17:36:06 - Payment details: 0111112618311
+2025-06-06 17:36:11 - GET data: {"download_invoice":"1","order_id":"ORD-68430AE6C33B4","csrf_token":"b64afa601631624fc321fdfb92a6655d7700ab9b192ae2314f5be8cb206dfaba"}
+2025-06-06 17:36:11 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749224166,"csrf_token":"b64afa601631624fc321fdfb92a6655d7700ab9b192ae2314f5be8cb206dfaba"}
+2025-06-06 17:36:11 - Order ORD-68430AE6C33B4 completion status: completed
+2025-06-06 17:36:11 - Displaying confirmation for order: ORD-68430AE6C33B4, Customer ID: 1
+2025-06-06 17:36:11 - Order items count: 1
+2025-06-06 17:36:11 - Order items: [{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-06 17:36:11 - Delivery method: pickup
+2025-06-06 17:36:11 - Delivery address: ""
+2025-06-06 17:36:11 - Customer email: andrewbrizo31@gmail.com
+2025-06-06 17:36:11 - Payment details: 0111112618311
+2025-06-06 17:36:16 - Downloaded invoice for order: ORD-68430AE6C33B4
+2025-06-06 17:40:31 - GET data: {"order_id":"ORD-68430AE6C33B4"}
+2025-06-06 17:40:31 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749224247,"csrf_token":"b64afa601631624fc321fdfb92a6655d7700ab9b192ae2314f5be8cb206dfaba"}
+2025-06-06 17:40:31 - Order ORD-68430AE6C33B4 completion status: completed
+2025-06-06 17:40:31 - Displaying confirmation for order: ORD-68430AE6C33B4, Customer ID: 1
+2025-06-06 17:40:31 - Order items count: 1
+2025-06-06 17:40:31 - Order items: [{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-06 17:40:31 - Delivery method: pickup
+2025-06-06 17:40:31 - Delivery address: ""
+2025-06-06 17:40:31 - Customer email: andrewbrizo31@gmail.com
+2025-06-06 17:40:31 - Payment details: 0111112618311
+2025-06-06 17:45:47 - GET data: {"order_id":"ORD-68430AE6C33B4"}
+2025-06-06 17:45:47 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749224544,"csrf_token":"b64afa601631624fc321fdfb92a6655d7700ab9b192ae2314f5be8cb206dfaba"}
+2025-06-06 17:45:47 - Order ORD-68430AE6C33B4 completion status: completed
+2025-06-06 17:45:47 - Displaying confirmation for order: ORD-68430AE6C33B4, Customer ID: 1
+2025-06-06 17:45:47 - Order items count: 1
+2025-06-06 17:45:47 - Order items: [{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-06 17:45:47 - Delivery method: pickup
+2025-06-06 17:45:47 - Delivery address: ""
+2025-06-06 17:45:47 - Customer email: andrewbrizo31@gmail.com
+2025-06-06 17:45:47 - Payment details: 0111112618311
+2025-06-06 17:50:31 - GET data: []
+2025-06-06 17:50:31 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749225028,"csrf_token":"b64afa601631624fc321fdfb92a6655d7700ab9b192ae2314f5be8cb206dfaba"}
+2025-06-06 17:50:31 - No order_id or last_order for customer_id: 1
+2025-06-06 17:50:54 - GET data: {"order_id":"ORD-68430AE6C33B4","csrf_token":"b64afa601631624fc321fdfb92a6655d7700ab9b192ae2314f5be8cb206dfaba"}
+2025-06-06 17:50:54 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749225052,"csrf_token":"b64afa601631624fc321fdfb92a6655d7700ab9b192ae2314f5be8cb206dfaba"}
+2025-06-06 17:50:54 - Order ORD-68430AE6C33B4 completion status: completed
+2025-06-06 17:50:54 - Displaying confirmation for order: ORD-68430AE6C33B4, Customer ID: 1
+2025-06-06 17:50:54 - Order items count: 1
+2025-06-06 17:50:54 - Order items: [{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-06 17:50:54 - Delivery method: pickup
+2025-06-06 17:50:54 - Delivery address: ""
+2025-06-06 17:50:54 - Customer email: andrewbrizo31@gmail.com
+2025-06-06 17:50:54 - Payment details: 0111112618311
+2025-06-07 11:00:59 - GET data: {"order_id":"ORD-6843FFCAEBC36"}
+2025-06-07 11:00:59 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749286858,"csrf_token":"1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca","last_order":{"order_code":"ORD-6843FFCAEBC36","amount":15,"method":"digital_wallet","payment_details":"0111112618311","delivery_method":"pickup","delivery_address":null,"timestamp":"2025-05-25 13:15:00","items":[{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]}}
+2025-06-07 11:00:59 - Updated order status to completed: ORD-6843FFCAEBC36
+2025-06-07 11:00:59 - Order ORD-6843FFCAEBC36 completion status: completed
+2025-06-07 11:00:59 - Displaying confirmation for order: ORD-6843FFCAEBC36, Customer ID: 1
+2025-06-07 11:00:59 - Order items count: 1
+2025-06-07 11:00:59 - Order items: [{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-07 11:00:59 - Delivery method: pickup
+2025-06-07 11:00:59 - Delivery address: ""
+2025-06-07 11:00:59 - Customer email: andrewbrizo31@gmail.com
+2025-06-07 11:00:59 - Payment details: 0111112618311
+2025-06-07 11:02:40 - GET data: {"download_invoice":"1","order_id":"ORD-6843FFCAEBC36","csrf_token":"1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca"}
+2025-06-07 11:02:40 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749286859,"csrf_token":"1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca"}
+2025-06-07 11:02:40 - Order ORD-6843FFCAEBC36 completion status: completed
+2025-06-07 11:02:40 - Displaying confirmation for order: ORD-6843FFCAEBC36, Customer ID: 1
+2025-06-07 11:02:40 - Order items count: 1
+2025-06-07 11:02:40 - Order items: [{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-07 11:02:40 - Delivery method: pickup
+2025-06-07 11:02:40 - Delivery address: ""
+2025-06-07 11:02:40 - Customer email: andrewbrizo31@gmail.com
+2025-06-07 11:02:40 - Payment details: 0111112618311
+2025-06-07 11:02:48 - Downloaded invoice for order: ORD-6843FFCAEBC36
+2025-06-07 11:37:07 - GET data: {"order_id":"ORD-68440843AF6F6"}
+2025-06-07 11:37:07 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749289027,"csrf_token":"1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca","last_order":{"order_code":"ORD-68440843AF6F6","amount":15,"method":"digital_wallet","payment_details":"01111126183","delivery_method":"delivery","delivery_address":{"street_address":"123 Main Street","city":"Kuala Lumpura","postal_code":"50450"},"timestamp":"2025-05-25 13:15:00","items":[{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]}}
+2025-06-07 11:37:07 - Updated order status to completed: ORD-68440843AF6F6
+2025-06-07 11:37:07 - Order ORD-68440843AF6F6 completion status: completed
+2025-06-07 11:37:07 - Displaying confirmation for order: ORD-68440843AF6F6, Customer ID: 1
+2025-06-07 11:37:07 - Order items count: 1
+2025-06-07 11:37:07 - Order items: [{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-07 11:37:07 - Delivery method: delivery
+2025-06-07 11:37:07 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
+2025-06-07 11:37:07 - Customer email: andrewbrizo31@gmail.com
+2025-06-07 11:37:07 - Payment details: 01111126183
+2025-06-07 11:56:42 - GET data: {"order_id":"ORD-68440CDA3CD25"}
+2025-06-07 11:56:42 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749290202,"csrf_token":"1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca","last_order":{"order_code":"ORD-68440CDA3CD25","amount":15,"method":"digital_wallet","payment_details":"01111126184","delivery_method":"delivery","delivery_address":{"street_address":"123 Main Street","city":"Kuala Lumpura","postal_code":"50450"},"timestamp":"2025-05-25 13:15:00","items":[{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]}}
+2025-06-07 11:56:42 - Updated order status to completed: ORD-68440CDA3CD25
+2025-06-07 11:56:42 - Order ORD-68440CDA3CD25 completion status: completed
+2025-06-07 11:56:42 - Displaying confirmation for order: ORD-68440CDA3CD25, Customer ID: 1
+2025-06-07 11:56:42 - Order items count: 1
+2025-06-07 11:56:42 - Order items: [{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-07 11:56:42 - Delivery method: delivery
+2025-06-07 11:56:42 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
+2025-06-07 11:56:42 - Customer email: andrewbrizo31@gmail.com
+2025-06-07 11:56:42 - Payment details: 01111126184
+2025-06-07 12:13:50 - GET data: {"order_id":"ORD-684410DEC9A59"}
+2025-06-07 12:13:50 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749291230,"csrf_token":"1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca","last_order":{"order_code":"ORD-684410DEC9A59","amount":15,"method":"digital_wallet","payment_details":"01111126185","delivery_method":"delivery","delivery_address":{"street_address":"123 Main Street","city":"Kuala Lumpura","postal_code":"50450"},"timestamp":"2025-06-07 12:13:50","items":[{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]}}
+2025-06-07 12:13:50 - Updated order status to completed: ORD-684410DEC9A59
+2025-06-07 12:13:50 - Order ORD-684410DEC9A59 completion status: completed
+2025-06-07 12:13:50 - Displaying confirmation for order: ORD-684410DEC9A59, Customer ID: 1
+2025-06-07 12:13:50 - Order items count: 1
+2025-06-07 12:13:50 - Order items: [{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-07 12:13:50 - Delivery method: delivery
+2025-06-07 12:13:50 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
+2025-06-07 12:13:50 - Customer email: andrewbrizo31@gmail.com
+2025-06-07 12:13:50 - Payment details: 01111126185
+2025-06-07 12:20:09 - GET data: {"order_id":"ORD-6844125927072"}
+2025-06-07 12:20:09 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749291609,"csrf_token":"1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca","last_order":{"order_code":"ORD-6844125927072","amount":15,"method":"card","payment_details":"1111","delivery_method":"delivery","delivery_address":{"street_address":"123 Main Street","city":"Kuala Lumpura","postal_code":"50450"},"timestamp":"2025-06-07 12:20:09","items":[{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]}}
+2025-06-07 12:20:09 - Updated order status to completed: ORD-6844125927072
+2025-06-07 12:20:09 - Order ORD-6844125927072 completion status: completed
+2025-06-07 12:20:09 - Displaying confirmation for order: ORD-6844125927072, Customer ID: 1
+2025-06-07 12:20:09 - Order items count: 1
+2025-06-07 12:20:09 - Order items: [{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-07 12:20:09 - Delivery method: delivery
+2025-06-07 12:20:09 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
+2025-06-07 12:20:09 - Customer email: andrewbrizo31@gmail.com
+2025-06-07 12:20:09 - Payment details: 1111
+2025-06-07 12:30:56 - GET data: {"order_id":"ORD-684414E0CFE07"}
+2025-06-07 12:30:56 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749292256,"csrf_token":"1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca","last_order":{"order_code":"ORD-684414E0CFE07","amount":27,"method":"digital_wallet","payment_details":"01111126183","delivery_method":"delivery","delivery_address":{"street_address":"123 Main Street","city":"Kuala Lumpura","postal_code":"50450"},"timestamp":"2025-06-07 12:30:56","items":[{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":14,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]}}
+2025-06-07 12:30:56 - Updated order status to completed: ORD-684414E0CFE07
+2025-06-07 12:30:56 - Order ORD-684414E0CFE07 completion status: completed
+2025-06-07 12:30:56 - Displaying confirmation for order: ORD-684414E0CFE07, Customer ID: 1
+2025-06-07 12:30:56 - Order items count: 2
+2025-06-07 12:30:56 - Order items: [{"item_id":16,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":14,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-07 12:30:56 - Delivery method: delivery
+2025-06-07 12:30:56 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
+2025-06-07 12:30:56 - Customer email: andrewbrizo31@gmail.com
+2025-06-07 12:30:56 - Payment details: 01111126183
