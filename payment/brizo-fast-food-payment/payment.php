@@ -27,13 +27,13 @@ if (!isset($_SESSION['customer_id'])) {
 
 $customerId = (int)$_SESSION['customer_id'];
 
-// CSRF token generation
+// Generate CSRF token if not set
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 $csrfToken = $_SESSION['csrf_token'];
 
-// Log function
+// Log function for errors and debugging
 $logFile = 'payment_errors.log';
 $logMessage = function($message) use ($logFile) {
     $message = filter_var($message, FILTER_SANITIZE_STRING);
@@ -655,7 +655,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_payment'])) {
         $orderId = 'ORD-' . strtoupper(uniqid());
         $logMessage("Generated order_id: $orderId");
 
-        // Save to orders table
+        // Save to orders table with 'pending' status
         $stmt = $conn->prepare("
             INSERT INTO orders (order_id, customer_id, total, status)
             VALUES (?, ?, ?, 'pending')

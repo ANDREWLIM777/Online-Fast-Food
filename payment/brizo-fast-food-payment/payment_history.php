@@ -55,7 +55,13 @@ $records_per_page = 10;
 $page = max(1, isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1);
 $offset = ($page - 1) * $records_per_page;
 
-$stmt = $conn->prepare("SELECT COUNT(*) as total FROM payment_history WHERE customer_id = ?");
+// Count total records
+$stmt = $conn->prepare("
+    SELECT COUNT(*) as total 
+    FROM payment_history ph
+    INNER JOIN orders o ON ph.order_id = o.order_id
+    WHERE ph.customer_id = ?
+");
 if (!$stmt) {
     $logMessage("Prepare failed for count: " . $conn->error);
     header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
@@ -72,11 +78,13 @@ $stmt->close();
 
 $total_pages = ceil($total_records / $records_per_page);
 
+// Fetch payment history with status from orders table
 $stmt = $conn->prepare("
-    SELECT order_id, date, amount, status, method, payment_details, delivery_method, delivery_address
-    FROM payment_history
-    WHERE customer_id = ?
-    ORDER BY date DESC
+    SELECT ph.order_id, ph.date, ph.amount, o.status, ph.method, ph.payment_details, ph.delivery_method, ph.delivery_address
+    FROM payment_history ph
+    INNER JOIN orders o ON ph.order_id = o.order_id
+    WHERE ph.customer_id = ?
+    ORDER BY ph.date DESC
     LIMIT ? OFFSET ?
 ");
 if (!$stmt) {
@@ -101,7 +109,9 @@ function getStatusColor($status) {
     switch (strtolower($status)) {
         case 'completed': return 'text-green-600';
         case 'pending': return 'text-yellow-600';
-        case 'refunded': return 'text-blue-600';
+        case 'preparing': return 'text-orange-600';
+        case 'delivering': return 'text-blue-600';
+        case 'delivered': return 'text-purple-600';
         default: return 'text-gray-600';
     }
 }
@@ -125,7 +135,7 @@ function formatDeliveryAddress($address) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment History - Brizo Fast Food Melaka</title>
+    <title>Payment History - Brizo Fast Food Mel Lilliput</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -191,7 +201,7 @@ function formatDeliveryAddress($address) {
 <body class="bg-gray-100">
     <header class="sticky top-0 bg-white shadow z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-primary">Brizo Fast Food Melaka</h1>
+            <h1 class="text-2xl font-bold text-primary">Brizo Fast Food Lilliput</h1>
             <a href="/Online-Fast-Food/customer/menu/cart/cart.php" class="text-primary hover:text-primary flex items-center">
                 <i class="fas fa-shopping-cart mr-2"></i> Back to Cart
             </a>
