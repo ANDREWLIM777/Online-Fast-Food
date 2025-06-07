@@ -68,7 +68,7 @@
     <li><a href="/Online-Fast-Food/customer/home/home.php">Home</a></li>
     <li><a href="/Online-Fast-Food/customer/orders/orders.php">My Orders</a></li>
 <!-- Add under login form -->
-    <li><a href="/Online-Fast-Food/customer/menu/cart/payment_history.php">Payment History</a></li>
+    <li><a href="/Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php">Payment History</a></li>
     <li><a href="/Online-Fast-Food/customer/notification/notification.php">News</a></li>
     <li><a href="/Online-Fast-Food/customer/customer_notification/customer_notification.php">Notification</a></li>
     <li><a href="/Online-Fast-Food/customer/brizo/about_brizo.php">About Us</a></li>

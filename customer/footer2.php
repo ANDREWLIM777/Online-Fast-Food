@@ -13,8 +13,8 @@
     <div class="footer-col">
       <h4>Support</h4>
       <ul>
-        <li><a href="../orders/orders.php">My Orders</a></li>
-        <li><a href="#">Feedback</a></li>
+        <li><a href="/Online-Fast-Food/customer/orders/orders.php">My Orders</a></li>
+        <li><a href="/Online-Fast-Food/payment/brizo-fast-food-payment/feedback.php">Feedback</a></li>
       </ul>
     </div>
 

@@ -20,12 +20,12 @@ $notifications = $result->fetch_all(MYSQLI_ASSOC);
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>📣 Notifications - Brizo Fast Food Melaka</title>
+  <title>📣 News - Brizo Fast Food Melaka</title>
   <link rel="stylesheet" href="notification.css">
 </head>
 <body>
   <div class="notification-container">
-    <h1>📣 Announcements & Notifications</h1>
+    <h1>📣 What's News?</h1>
 
     <?php if (empty($notifications)): ?>
       <p>No notifications to show.</p>
@@ -50,8 +50,9 @@ $notifications = $result->fetch_all(MYSQLI_ASSOC);
       </ul>
     <?php endif; ?>
 
-    <a href="/Online-Fast-Food/customer/menu/menu.php" class="back-menu">⬅️ Back</a>
+    <a href="/Online-Fast-Food/customer/menu/menu.php" class="back-menu">Back</a>
   </div>
-  
+  <?php include '../menu_icon.php'; ?>
+  <?php include '../footer.php'; ?>
 </body>
 </html>
