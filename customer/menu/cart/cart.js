@@ -58,8 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
           showToast("Quantity of foods can't be less than 1");
           return;
         }
-        if (newQty > 20) {
-          showToast("Quantity of foods can't be more than 20");
+        if (newQty > 30) {
+          showToast("Quantity of foods can't be more than 30");
           return;
         }
 
@@ -109,8 +109,8 @@ document.addEventListener("DOMContentLoaded", () => {
           showToast("Quantity of foods can't be less than 1");
           newQty = 1;
           this.value = newQty;
-        } else if (newQty > 20) {
-          showToast("Quantity of foods can't be more than 20");
+        } else if (newQty > 30) {
+          showToast("Quantity of foods can't be more than 30");
           newQty = 20;
           this.value = newQty;
         }
@@ -152,8 +152,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (this.value < 1) {
           this.value = 1;
         }
-        if (this.value > 20) {
-          this.value = 20;
+        if (this.value > 30) {
+          this.value = 30;
         }
       });
     });

@@ -17,12 +17,12 @@
 
   <nav>
     <a href="/Online-Fast-Food/customer/menu/menu.php">Menu</a>
-    <a href="orders.php">My Orders</a>
+    <a href="/Online-Fast-Food/customer/login.php">My Orders</a>
     <a href="/Online-Fast-Food/customer/menu/cart/cart.php">Cart</a>
     <?php if (isset($_SESSION['customer_id'])): ?>
-      <a href="/Online-Fast-Food/customer/login.php" class="btn-logout">Logout</a>
+      <a href="../login.php" class="btn-logout">Logout</a>
     <?php else: ?>
-      <a href="/Online-Fast-Food/customer/login.php" class="btn-login">Login</a>
+      <a href="../login.php" class="btn-login">Login</a>
     <?php endif; ?>
   </nav>
 </header>

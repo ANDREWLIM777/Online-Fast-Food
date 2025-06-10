@@ -7,7 +7,7 @@ require '../../db_connect.php'; // Database connection
 $autoloadPath = dirname(__DIR__, 2) . '/vendor/autoload.php';
 if (!file_exists($autoloadPath)) {
     file_put_contents(__DIR__ . '/send_invoice_errors.log', date('Y-m-d H:i:s') . ' - Composer autoloader not found at: ' . $autoloadPath . PHP_EOL, FILE_APPEND);
-    die("Debug: Autoload file not found at: $autoloadPath");
+    die("Error: Autoload file not found at: $autoloadPath");
 }
 require $autoloadPath;
 
@@ -23,7 +23,7 @@ $logMessage = function($message) use ($logFile) {
     file_put_contents($logFile, date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, FILE_APPEND);
 };
 
-// Initialize PHPMailer after autoloader
+// Initialize PHPMailer
 $mail = new PHPMailer(true);
 
 // Log POST data for debugging
@@ -53,7 +53,7 @@ if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_tok
     exit();
 }
 
-// Environment configuration
+// Load environment variables
 $envPath = dirname(__DIR__, 2);
 try {
     $envFile = $envPath . '/.env';
@@ -71,20 +71,20 @@ try {
     }
     $logMessage("Environment loaded successfully");
 } catch (Exception $e) {
-    $logMessage("CONFIGURATION ERROR: " . $e->getMessage() . " in " . $e->getFile() . " on line " . $e->getLine());
+    $logMessage("CONFIGURATION ERROR: " . $e->getMessage());
     header("Location: /Online-Fast-Food/error.php?message=" . urlencode("System configuration error. Please contact support."));
     exit();
 }
 
 // Order processing
-$orderCode = filter_input(INPUT_POST, 'order_code', FILTER_SANITIZE_STRING) ?? '';
+$orderId = filter_input(INPUT_POST, 'order_id', FILTER_SANITIZE_STRING) ?? '';
 $customerEmail = filter_input(INPUT_POST, 'customer_email', FILTER_SANITIZE_EMAIL) ?? '';
 $customerId = (int)$_SESSION['customer_id'];
 
 // Validate input
 $errors = [];
-if (empty($orderCode)) {
-    $errors[] = "Order code is required";
+if (empty($orderId)) {
+    $errors[] = "Order ID is required";
 }
 if (empty($customerEmail)) {
     $errors[] = "Customer email is required";
@@ -95,8 +95,8 @@ if (!$customerId) {
     $errors[] = "User not authenticated";
 }
 if (!empty($errors)) {
-    $logMessage("Invalid request: " . implode(", ", $errors) . " (order_code=$orderCode, customer_email=$customerEmail, customer_id=$customerId)");
-    header("Location: confirmation.php?error=" . urlencode("No order selected. Please choose an order from your payment history.") . "&order_id=" . urlencode($orderCode) . "&csrf_token=" . urlencode($_SESSION['csrf_token']));
+    $logMessage("Invalid request: " . implode(", ", $errors) . " (order_id=$orderId, customer_email=$customerEmail, customer_id=$customerId)");
+    header("Location: confirmation.php?error=" . urlencode("Invalid request: " . implode(", ", $errors)) . "&order_id=" . urlencode($orderId) . "&csrf_token=" . urlencode($_SESSION['csrf_token']));
     exit();
 }
 
@@ -110,19 +110,19 @@ try {
     if (!$stmt) {
         throw new Exception("Prepare failed for payment_history: " . $conn->error);
     }
-    $stmt->bind_param("si", $orderCode, $customerId);
+    $stmt->bind_param("si", $orderId, $customerId);
     $stmt->execute();
     $order = $stmt->get_result()->fetch_assoc();
     $stmt->close();
 
     if (!$order) {
-        $logMessage("Order not found: $orderCode for customer_id: $customerId");
-        header("Location: confirmation.php?error=" . urlencode("Order not found. Please select a valid order.") . "&order_id=" . urlencode($orderCode) . "&csrf_token=" . urlencode($_SESSION['csrf_token']));
+        $logMessage("Order not found: $orderId for customer_id: $customerId");
+        header("Location: confirmation.php?error=" . urlencode("Order not found. Please select a valid order.") . "&order_id=" . urlencode($orderId) . "&csrf_token=" . urlencode($_SESSION['csrf_token']));
         exit();
     }
 
     $stmt = $conn->prepare("
-        SELECT oi.item_id, oi.quantity, oi.price, m.item_name, m.photo
+        SELECT oi.item_id, oi.quantity, oi.price, oi.total, m.item_name, m.photo
         FROM order_items oi
         JOIN menu_items m ON oi.item_id = m.id
         WHERE oi.order_id = ?
@@ -130,19 +130,19 @@ try {
     if (!$stmt) {
         throw new Exception("Prepare failed for order_items: " . $conn->error);
     }
-    $stmt->bind_param("s", $orderCode);
+    $stmt->bind_param("s", $orderId);
     $stmt->execute();
     $items = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
 
     if (empty($items)) {
-        $logMessage("No items found for order: $orderCode");
-        header("Location: confirmation.php?error=" . urlencode("No items found for this order.") . "&order_id=" . urlencode($orderCode) . "&csrf_token=" . urlencode($_SESSION['csrf_token']));
+        $logMessage("No items found for order: $orderId");
+        header("Location: confirmation.php?error=" . urlencode("No items found for this order.") . "&order_id=" . urlencode($orderId) . "&csrf_token=" . urlencode($_SESSION['csrf_token']));
         exit();
     }
 } catch (Exception $e) {
     $logMessage("DATABASE ERROR: " . $e->getMessage());
-    header("Location: confirmation.php?error=" . urlencode("Database error: " . $e->getMessage()) . "&order_id=" . urlencode($orderCode) . "&csrf_token=" . urlencode($_SESSION['csrf_token']));
+    header("Location: confirmation.php?error=" . urlencode("Database error: " . $e->getMessage()) . "&order_id=" . urlencode($orderId) . "&csrf_token=" . urlencode($_SESSION['csrf_token']));
     exit();
 }
 
@@ -160,47 +160,59 @@ try {
     $mail->Password = $_ENV['SMTP_PASSWORD'];
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = (int)$_ENV['SMTP_PORT'];
+    $mail->Timeout = 10; // Set timeout to prevent hanging
+    $mail->SMTPOptions = [
+        'ssl' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true,
+        ],
+    ];
 
     $mail->setFrom($_ENV['SMTP_FROM_EMAIL'], $_ENV['SMTP_FROM_NAME']);
     $mail->addAddress($customerEmail);
-    $mail->Subject = 'Your Order Invoice #' . htmlspecialchars($orderCode);
+    $mail->Subject = 'Your Order Invoice #' . htmlspecialchars($orderId);
     $mail->isHTML(true);
 
-    // Embed logo
+    // Embed logo (optional)
     $logoPath = dirname(__DIR__, 2) . '/assets/images/logo.png';
     $logoCid = '';
     if (file_exists($logoPath)) {
         $logoCid = 'logo_cid';
-        $mail->addEmbeddedImage($logoPath, $logoCid);
+        $mail->addEmbeddedImage($logoPath, $logoCid, 'logo.png');
         $logMessage("Logo embedded successfully: $logoPath");
     } else {
         $logMessage("Logo file not found: $logoPath");
     }
 
-    // Embed item images
+    // Embed item images (optional, with fallback)
     $itemCids = [];
-    $baseImagePath = dirname(__DIR__, 2) . '/Admin/Manage_Menu_Item/';
-    foreach ($items as $item) {
-        if (!empty($item['photo']) && file_exists($baseImagePath . $item['photo'])) {
+    $baseImagePath = dirname(__DIR__, 2) . '/Admin/Manage_Menu_Item/uploads/';
+    foreach ($items as &$item) {
+        $photo = basename($item['photo'] ?? 'placeholder.jpg');
+        $imagePath = $baseImagePath . $photo;
+        if (file_exists($imagePath)) {
             $itemCid = "item_{$item['item_id']}_cid";
-            $mail->addEmbeddedImage($baseImagePath . $item['photo'], $itemCid);
+            $mail->addEmbeddedImage($imagePath, $itemCid, $photo);
             $itemCids[$item['item_id']] = $itemCid;
-            $logMessage("Item image embedded successfully: " . $baseImagePath . $item['photo']);
+            $logMessage("Item image embedded successfully: $imagePath");
         } else {
-            $logMessage("Item image not found for item {$item['item_id']}: " . ($item['photo'] ?? 'No photo path'));
+            $logMessage("Item image not found: $imagePath for item {$item['item_id']}");
+            $item['photo'] = null; // Fallback to no image
         }
     }
+    unset($item);
 
     $mail->Body = buildEmailContent($order, $items, $logoCid, $itemCids);
     $mail->AltBody = buildPlainTextContent($order, $items);
 
     $mail->send();
-    $logMessage("Email sent successfully to: $customerEmail for order: $orderCode");
-    header("Location: confirmation.php?email_sent=success&order_id=" . urlencode($orderCode) . "&csrf_token=" . urlencode($_SESSION['csrf_token']));
+    $logMessage("Email sent successfully to: $customerEmail for order: $orderId");
+    header("Location: confirmation.php?email_sent=success&order_id=" . urlencode($orderId) . "&csrf_token=" . urlencode($_SESSION['csrf_token']));
     exit();
 } catch (Exception $e) {
     $logMessage("EMAIL SEND FAILED: " . $e->getMessage());
-    header("Location: confirmation.php?error=" . urlencode("Failed to send email: " . $e->getMessage()) . "&order_id=" . urlencode($orderCode) . "&csrf_token=" . urlencode($_SESSION['csrf_token']));
+    header("Location: confirmation.php?error=" . urlencode("Failed to send email: " . $e->getMessage()) . "&order_id=" . urlencode($orderId) . "&csrf_token=" . urlencode($_SESSION['csrf_token']));
     exit();
 }
 
@@ -209,7 +221,7 @@ try {
  */
 function buildEmailContent($order, $items, $logoCid = '', $itemCids = []) {
     $orderId = htmlspecialchars($order['order_id']);
-    $orderDate = htmlspecialchars($order['timestamp']);
+    $orderDate = htmlspecialchars(date('d M Y, H:i', strtotime($order['timestamp'])));
     $orderTotal = number_format($order['amount'], 2);
 
     $deliveryInfo = '';
@@ -229,8 +241,8 @@ function buildEmailContent($order, $items, $logoCid = '', $itemCids = []) {
         $itemName = htmlspecialchars($item['item_name']);
         $quantity = htmlspecialchars($item['quantity']);
         $price = number_format($item['price'], 2);
-        $total = number_format($item['quantity'] * $item['price'], 2);
-        $imageHtml = isset($itemCids[$item['item_id']]) ? "<td><img src='cid:{$itemCids[$item['item_id']]}' alt='{$itemName}' style='max-width: 100px;'></td>" : '<td>No image</td>';
+        $total = number_format($item['total'] ?? ($item['quantity'] * $item['price']), 2);
+        $imageHtml = isset($itemCids[$item['item_id']]) ? "<td><img src='cid:{$itemCids[$item['item_id']]}' alt='$itemName' style='max-width: 60px; height: auto;'></td>" : '<td>No image</td>';
         $itemsHtml .= "<tr>
             $imageHtml
             <td>$itemName</td>
@@ -240,45 +252,54 @@ function buildEmailContent($order, $items, $logoCid = '', $itemCids = []) {
         </tr>";
     }
 
-    $logoHtml = !empty($logoCid) ? "<img src='cid:$logoCid' alt='Logo' style='max-width: 150px;'>" : '';
+    $logoHtml = !empty($logoCid) ? "<img src='cid:$logoCid' alt='Brizo Fast Food Logo' style='max-width: 150px; margin-bottom: 20px;'>" : '';
 
     return <<<HTML
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background: #ff4757; color: white; padding: 20px; text-align: center; }
+        .header { background: #ff4757; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+        .header h1 { margin: 0; font-size: 24px; }
+        .content { background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 0 0 8px 8px; }
         table { width: 100%; border-collapse: collapse; margin: 15px 0; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-        img { max-width: 100px; height: auto; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        img { max-width: 60px; height: auto; }
+        .footer { margin-top: 20px; text-align: center; color: #666; font-size: 12px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Order Confirmation</h1>
             $logoHtml
+            <h1>Order Confirmation</h1>
         </div>
-        <p><strong>Order ID:</strong> $orderId</p>
-        <p><strong>Date:</strong> $orderDate</p>
-        <p><strong>Total:</strong> RM $orderTotal</p>
-        <h3>Delivery Information</h3>
-        $deliveryInfo
-        <h3>Order Items</h3>
-        <table>
-            <tr>
-                <th>Image</th>
-                <th>Item</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-            </tr>
-            $itemsHtml
-        </table>
-        <p>Thank you for your order!</p>
+        <div class="content">
+            <p><strong>Order ID:</strong> $orderId</p>
+            <p><strong>Date:</strong> $orderDate</p>
+            <p><strong>Total:</strong> RM $orderTotal</p>
+            <h3 style="font-size: 18px; margin-top: 20px;">Delivery Information</h3>
+            $deliveryInfo
+            <h3 style="font-size: 18px; margin-top: 20px;">Order Items</h3>
+            <table>
+                <tr>
+                    <th>Image</th>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+                $itemsHtml
+            </table>
+            <p>Thank you for choosing Brizo Fast Food Melaka!</p>
+        </div>
+        <div class="footer">
+            <p>Brizo Fast Food Melaka | Contact: support@brizofastfood.com</p>
+        </div>
     </div>
 </body>
 </html>
@@ -290,7 +311,7 @@ HTML;
  */
 function buildPlainTextContent($order, $items) {
     $orderId = htmlspecialchars($order['order_id']);
-    $orderDate = htmlspecialchars($order['timestamp']);
+    $orderDate = date('Y-m-d H:i:s', strtotime($order['timestamp']));
     $orderTotal = number_format($order['amount'], 2);
 
     $deliveryInfo = "Delivery Method: Pick Up\n";
@@ -308,11 +329,11 @@ function buildPlainTextContent($order, $items) {
         $itemName = htmlspecialchars($item['item_name']);
         $quantity = htmlspecialchars($item['quantity']);
         $price = number_format($item['price'], 2);
-        $total = number_format($item['quantity'] * $item['price'], 2);
-        $itemsText .= "$itemName - Quantity: $quantity, Price: RM $price, Total: RM $total\n";
+        $total = number_format($item['total'] ?? ($item['quantity'] * $item['price']), 2);
+        $itemsText .= "$itemName\nQuantity: $quantity\nPrice: RM $price\nTotal: RM $total\n\n";
     }
 
-    return <<<TEXT
+    return <<<TXT
 Order Confirmation
 
 Order ID: $orderId
@@ -323,9 +344,10 @@ Delivery Information:
 $deliveryInfo
 
 $itemsText
+Thank you for choosing Brizo Fast Food Melaka!
 
-Thank you for your order!
-TEXT;
+Contact: support@brizofastfood.com
+TXT;
 }
 
 ob_end_flush();
