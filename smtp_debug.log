@@ -1,0 +1,1108 @@
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-7482b083908sm6825648b3a.76 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-7482b083908sm6825648b3a.76 - gsmtp
+
+SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-7482b083908sm6825648b3a.76 - gsmtp
+
+SMTP Error: Could not authenticate.
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d2e1a72fcca58-7482b083908sm6825648b3a.76 - gsmtp
+
+SMTP Error: Could not authenticate.
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-236035068absm65513975ad.232 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d9443c01a7336-236035068absm65513975ad.232 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d9443c01a7336-236035068absm65513975ad.232 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d9443c01a7336-236035068absm65513975ad.232 - gsmtp
+
+CLIENT -> SERVER: Date: Tue, 10 Jun 2025 09:49:31 +0200
+
+CLIENT -> SERVER: To: andrewbrizo31@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Test Email
+
+CLIENT -> SERVER: Message-ID: <p3oKOcmXVW6ZfrPLHAucz86ttEOft3RXP948OqpGA@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: <h3>Test Email</h3><p>This is a test email.</p>
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1749541777 d9443c01a7336-236035068absm65513975ad.232 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-236035068absm65513975ad.232 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-7482b0e9c3csm6852625b3a.153 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d2e1a72fcca58-7482b0e9c3csm6852625b3a.153 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d2e1a72fcca58-7482b0e9c3csm6852625b3a.153 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d2e1a72fcca58-7482b0e9c3csm6852625b3a.153 - gsmtp
+
+CLIENT -> SERVER: Date: Tue, 10 Jun 2025 15:50:12 +0800
+
+CLIENT -> SERVER: To: andrewbrizo31@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Your OTP for Password Reset
+
+CLIENT -> SERVER: Message-ID: <Zsof0KLAeixz5lfYyiH4m0C37MmHRbxiORD3q9YoNc@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER:            <h3>Brizo Fast Food - Password Reset</h3>
+
+CLIENT -> SERVER:            <p>Your OTP for password reset is: <strong>655840</strong></p>
+
+CLIENT -> SERVER:            <p>This OTP is valid for 5 minutes.</p>
+
+CLIENT -> SERVER:            <p>If you did not request this, please ignore this email.</p>
+
+CLIENT -> SERVER:        
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1749541817 d2e1a72fcca58-7482b0e9c3csm6852625b3a.153 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d2e1a72fcca58-7482b0e9c3csm6852625b3a.153 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-7482b084cb4sm7111007b3a.91 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d2e1a72fcca58-7482b084cb4sm7111007b3a.91 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<womeiming41@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d2e1a72fcca58-7482b084cb4sm7111007b3a.91 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d2e1a72fcca58-7482b084cb4sm7111007b3a.91 - gsmtp
+
+CLIENT -> SERVER: Date: Tue, 10 Jun 2025 09:51:10 +0200
+
+CLIENT -> SERVER: To: womeiming41@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Test Email
+
+CLIENT -> SERVER: Message-ID: <RVmIUH8DURW8Dlg1K0mCoeHeVwa5qgSlrM9OjRrPYc@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: <h3>Test Email</h3><p>This is a test email.</p>
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1749541874 d2e1a72fcca58-7482b084cb4sm7111007b3a.91 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d2e1a72fcca58-7482b084cb4sm7111007b3a.91 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-7482af383b0sm6857399b3a.22 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d2e1a72fcca58-7482af383b0sm6857399b3a.22 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d2e1a72fcca58-7482af383b0sm6857399b3a.22 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d2e1a72fcca58-7482af383b0sm6857399b3a.22 - gsmtp
+
+CLIENT -> SERVER: Date: Tue, 10 Jun 2025 15:53:37 +0800
+
+CLIENT -> SERVER: To: andrewbrizo31@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Your OTP for Password Reset
+
+CLIENT -> SERVER: Message-ID: <jeT2P4ZjApLc8MIprtlYqxBR5q1fmMMdwVlUIILwI@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER:         <h3>Brizo Fast Food - Password Reset</h3>
+
+CLIENT -> SERVER:         <p>Your OTP for password reset is: <strong>987935</strong></p>
+
+CLIENT -> SERVER:         <p>This OTP is valid for 5 minutes.</p>
+
+CLIENT -> SERVER:         <p>If you did not request this, please ignore this email.</p>
+
+CLIENT -> SERVER:     
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1749542022 d2e1a72fcca58-7482af383b0sm6857399b3a.22 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d2e1a72fcca58-7482af383b0sm6857399b3a.22 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-236034065f9sm65976225ad.183 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d9443c01a7336-236034065f9sm65976225ad.183 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d9443c01a7336-236034065f9sm65976225ad.183 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d9443c01a7336-236034065f9sm65976225ad.183 - gsmtp
+
+CLIENT -> SERVER: Date: Tue, 10 Jun 2025 15:53:43 +0800
+
+CLIENT -> SERVER: To: andrewbrizo31@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Your OTP for Password Reset
+
+CLIENT -> SERVER: Message-ID: <mzBjywu0b3cJptvP8yktO751LPE5JhJaXCll8V94ac@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER:         <h3>Brizo Fast Food - Password Reset</h3>
+
+CLIENT -> SERVER:         <p>Your OTP for password reset is: <strong>820737</strong></p>
+
+CLIENT -> SERVER:         <p>This OTP is valid for 5 minutes.</p>
+
+CLIENT -> SERVER:         <p>If you did not request this, please ignore this email.</p>
+
+CLIENT -> SERVER:     
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1749542028 d9443c01a7336-236034065f9sm65976225ad.183 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-236034065f9sm65976225ad.183 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-236032fe704sm65497235ad.138 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d9443c01a7336-236032fe704sm65497235ad.138 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d9443c01a7336-236032fe704sm65497235ad.138 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d9443c01a7336-236032fe704sm65497235ad.138 - gsmtp
+
+CLIENT -> SERVER: Date: Tue, 10 Jun 2025 15:54:15 +0800
+
+CLIENT -> SERVER: To: andrewbrizo31@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Your OTP for Password Reset
+
+CLIENT -> SERVER: Message-ID: <5A572bkbPJhgk55taMdx7boF5OUw8Saz0zzYH2Ng@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER:         <h3>Brizo Fast Food - Password Reset</h3>
+
+CLIENT -> SERVER:         <p>Your OTP for password reset is: <strong>801339</strong></p>
+
+CLIENT -> SERVER:         <p>This OTP is valid for 5 minutes.</p>
+
+CLIENT -> SERVER:         <p>If you did not request this, please ignore this email.</p>
+
+CLIENT -> SERVER:     
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1749542060 d9443c01a7336-236032fe704sm65497235ad.138 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-236032fe704sm65497235ad.138 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-2360340505asm65789555ad.144 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d9443c01a7336-2360340505asm65789555ad.144 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d9443c01a7336-2360340505asm65789555ad.144 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d9443c01a7336-2360340505asm65789555ad.144 - gsmtp
+
+CLIENT -> SERVER: Date: Tue, 10 Jun 2025 16:03:39 +0800
+
+CLIENT -> SERVER: To: andrewbrizo31@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Your OTP for Password Reset
+
+CLIENT -> SERVER: Message-ID: <hzh5eA4ILpjVKVDtr1yQ2UKBdsW57vYyVE5Ui7AeDc@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER:            <h3>Brizo Fast Food - Password Reset</h3>
+
+CLIENT -> SERVER:            <p>Your OTP for password reset is: <strong>707218</strong></p>
+
+CLIENT -> SERVER:            <p>This OTP is valid for 5 minutes.</p>
+
+CLIENT -> SERVER:            <p>If you did not request this, please ignore this email.</p>
+
+CLIENT -> SERVER:        
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1749542623 d9443c01a7336-2360340505asm65789555ad.144 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-2360340505asm65789555ad.144 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-23603507281sm66050335ad.240 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d9443c01a7336-23603507281sm66050335ad.240 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d9443c01a7336-23603507281sm66050335ad.240 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d9443c01a7336-23603507281sm66050335ad.240 - gsmtp
+
+CLIENT -> SERVER: Date: Tue, 10 Jun 2025 16:06:09 +0800
+
+CLIENT -> SERVER: To: andrewbrizo31@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Your OTP for Password Reset
+
+CLIENT -> SERVER: Message-ID: <7mTGooXkCBDVgT98pEBxBASMLDwZiPzJJNjkZzUhqk@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER:            <h3>Brizo Fast Food - Password Reset</h3>
+
+CLIENT -> SERVER:            <p>Your OTP for password reset is: <strong>159971</strong></p>
+
+CLIENT -> SERVER:            <p>This OTP is valid for 5 minutes.</p>
+
+CLIENT -> SERVER:            <p>If you did not request this, please ignore this email.</p>
+
+CLIENT -> SERVER:        
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1749542774 d9443c01a7336-23603507281sm66050335ad.240 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-23603507281sm66050335ad.240 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 98e67ed59e1d1-3134b5a1d06sm7447762a91.17 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK 98e67ed59e1d1-3134b5a1d06sm7447762a91.17 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK 98e67ed59e1d1-3134b5a1d06sm7447762a91.17 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead 98e67ed59e1d1-3134b5a1d06sm7447762a91.17 - gsmtp
+
+CLIENT -> SERVER: Date: Tue, 10 Jun 2025 16:09:01 +0800
+
+CLIENT -> SERVER: To: andrewbrizo31@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Your OTP for Password Reset
+
+CLIENT -> SERVER: Message-ID: <P25Yw5iuDvhki2FoakkTez0haOjVVtVoUREtET9U@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER:            <h3>Brizo Fast Food - Password Reset</h3>
+
+CLIENT -> SERVER:            <p>Your OTP for password reset is: <strong>470744</strong></p>
+
+CLIENT -> SERVER:            <p>This OTP is valid for 5 minutes.</p>
+
+CLIENT -> SERVER:            <p>If you did not request this, please ignore this email.</p>
+
+CLIENT -> SERVER:        
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1749542946 98e67ed59e1d1-3134b5a1d06sm7447762a91.17 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection 98e67ed59e1d1-3134b5a1d06sm7447762a91.17 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-23603077f2csm66141555ad.36 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d9443c01a7336-23603077f2csm66141555ad.36 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d9443c01a7336-23603077f2csm66141555ad.36 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d9443c01a7336-23603077f2csm66141555ad.36 - gsmtp
+
+CLIENT -> SERVER: Date: Tue, 10 Jun 2025 16:12:17 +0800
+
+CLIENT -> SERVER: To: andrewbrizo31@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Your OTP for Password Reset
+
+CLIENT -> SERVER: Message-ID: <0rpKWwRIMGLem7Nukvgk2J7HqGj5v2EIt3XClU3bbo@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER:            <h3>Brizo Fast Food - Password Reset</h3>
+
+CLIENT -> SERVER:            <p>Your OTP for password reset is: <strong>468106</strong></p>
+
+CLIENT -> SERVER:            <p>This OTP is valid for 5 minutes.</p>
+
+CLIENT -> SERVER:            <p>If you did not request this, please ignore this email.</p>
+
+CLIENT -> SERVER:        
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1749543141 d9443c01a7336-23603077f2csm66141555ad.36 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-23603077f2csm66141555ad.36 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-236032fc7cdsm66062665ad.108 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d9443c01a7336-236032fc7cdsm66062665ad.108 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d9443c01a7336-236032fc7cdsm66062665ad.108 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d9443c01a7336-236032fc7cdsm66062665ad.108 - gsmtp
+
+CLIENT -> SERVER: Date: Tue, 10 Jun 2025 16:14:03 +0800
+
+CLIENT -> SERVER: To: andrewbrizo31@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Your OTP for Password Reset
+
+CLIENT -> SERVER: Message-ID: <96zrhqPm8jKK5kKlhbBdCeq2vXusrTRZKAr9p5Qm68@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER:            <h3>Brizo Fast Food - Password Reset</h3>
+
+CLIENT -> SERVER:            <p>Your OTP for password reset is: <strong>377300</strong></p>
+
+CLIENT -> SERVER:            <p>This OTP is valid for 5 minutes.</p>
+
+CLIENT -> SERVER:            <p>If you did not request this, please ignore this email.</p>
+
+CLIENT -> SERVER:        
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1749543248 d9443c01a7336-236032fc7cdsm66062665ad.108 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-236032fc7cdsm66062665ad.108 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-236034051b5sm66225185ad.153 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:6c13:cce8:da96:b1f1:dffd]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d9443c01a7336-236034051b5sm66225185ad.153 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d9443c01a7336-236034051b5sm66225185ad.153 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d9443c01a7336-236034051b5sm66225185ad.153 - gsmtp
+
+CLIENT -> SERVER: Date: Tue, 10 Jun 2025 16:15:14 +0800
+
+CLIENT -> SERVER: To: andrewbrizo31@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Your OTP for Password Reset
+
+CLIENT -> SERVER: Message-ID: <WAnzbnrzclUjJXanASD4w2ufGQRqwZn9YxmmhZFicY@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER:            <h3>Brizo Fast Food - Password Reset</h3>
+
+CLIENT -> SERVER:            <p>Your OTP for password reset is: <strong>208152</strong></p>
+
+CLIENT -> SERVER:            <p>This OTP is valid for 5 minutes.</p>
+
+CLIENT -> SERVER:            <p>If you did not request this, please ignore this email.</p>
+
+CLIENT -> SERVER:        
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1749543319 d9443c01a7336-236034051b5sm66225185ad.153 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-236034051b5sm66225185ad.153 - gsmtp
+

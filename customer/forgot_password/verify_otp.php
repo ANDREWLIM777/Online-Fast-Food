@@ -1,16 +1,43 @@
 <?php
 require_once("../db_connect.php");
 session_start();
-if (isset($_SESSION["login_sess"])) {
-    header("Location: account.php");
-    exit;
-}
-$email = $_GET['email'] ?? '';
-if (empty($email)) {
-    header("Location: forgot_password.php");
-    exit;
+
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = filter_var($_GET['email'], FILTER_SANITIZE_EMAIL);
+    $otp = filter_var($_POST['otp'], FILTER_SANITIZE_STRING);
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Invalid email format";
+    } else {
+        $query = "SELECT * FROM otp_verification WHERE email = ? AND otp = ? AND expires_at > NOW()";
+        $stmt = $conn->prepare($query);
+        if ($stmt === false) {
+            $error = "Database error: " . $conn->error;
+        } else {
+            $stmt->bind_param("ss", $email, $otp);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                $_SESSION['reset_email'] = $email;
+                $delete_query = "DELETE FROM otp_verification WHERE email = ?";
+                $delete_stmt = $conn->prepare($delete_query);
+                $delete_stmt->bind_param("s", $email);
+                $delete_stmt->execute();
+                $delete_stmt->close();
+                header("Location: reset_password.php");
+                exit;
+            } else {
+                $error = "Invalid or expired OTP";
+            }
+            $stmt->close();
+        }
+    }
+    $conn->close();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,19 +86,9 @@ if (empty($email)) {
             border-radius: 30px;
             border: 2px solid #ffe259;
         }
-        .toast-container {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-        }
-        .toast {
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        .logo {
-            max-width: 150px;
-            margin-bottom: 20px;
+        .error {
+            color: red;
+            font-size: 0.9em;
         }
     </style>
 </head>
@@ -79,65 +96,18 @@ if (empty($email)) {
     <div class="login-box text-center">
         <img src="assets/images/brizo-logo.png" alt="Brizo Fast Food" class="img-fluid logo">
         <h4 class="mb-4"><i class="fas fa-key"></i> Enter OTP</h4>
-        <form id="otpForm">
+        <?php if ($error) { ?>
+            <p class="error"><?php echo htmlspecialchars($error); ?></php>
+        <?php } ?>
+        <form method="POST">
             <div class="form-group">
                 <label for="otp">OTP</label>
-                <input type="text" name="otp" id="otp" class="form-control" placeholder="Enter 6-digit OTP" required maxlength="6" pattern="\d{6}">
-                <input type="hidden" name="email" value="<?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?>">
+                <input type="text" name="otp" id="otp" class="form-control" placeholder="Enter OTP" required>
             </div>
             <button type="submit" class="btn form_btn btn-block">Verify OTP</button>
         </form>
-        <p class="mt-3"><a href="forgot_password.php" style="color: #ffa751;">Resend OTP</a></p>
+        <hr>
+        <p><a href="forgot_password.php" style="color: #ffa751;">Resend OTP</a></p>
     </div>
-    <div class="toast-container" id="toastContainer"></div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#otpForm').on('submit', function(e) {
-                e.preventDefault();
-                const otp = $('input[name=otp]').val();
-                if (!/^\d{6}$/.test(otp)) {
-                    showToast("Please enter a valid 6-digit OTP.", "error");
-                    return;
-                }
-                const $btn = $('button[type="submit"]');
-                $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Verifying...');
-                $.ajax({
-                    url: 'verify_otp_process.php',
-                    type: 'POST',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        try {
-                            const res = JSON.parse(response);
-                            showToast(res.message, res.status);
-                            if (res.status === 'success') {
-                                setTimeout(() => {
-                                    window.location.href = 'reset_password.php?email=' + encodeURIComponent($('input[name=email]').val());
-                                }, 2000);
-                            }
-                        } catch (e) {
-                            showToast("Invalid server response.", "error");
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        showToast("Server error. Try again later.", "error");
-                        console.error("AJAX error:", status, error);
-                    },
-                    complete: function() {
-                        $btn.prop('disabled', false).html('Verify OTP');
-                    }
-                });
-            });
-            function showToast(message, type = 'info') {
-                const toast = `
-                    <div class="toast show bg-${type === 'success' ? 'success' : (type === 'error' ? 'danger' : 'secondary')} text-white mb-2" role="alert">
-                        <div class="toast-body"><i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'} mr-2"></i>${message}</div>
-                    </div>`;
-                $('#toastContainer').append(toast);
-                setTimeout(() => $('.toast').fadeOut().remove(), 3000);
-            }
-        });
-    </script>
 </body>
 </html>

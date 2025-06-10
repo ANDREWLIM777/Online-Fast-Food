@@ -136,3 +136,15 @@
 2025-06-07 20:11:05 - Fetched feedback for order ORD-684414E0CFE07: Not found
 2025-06-07 20:12:00 - Customer ID from session: 1
 2025-06-07 20:12:00 - Selected order: order_id=ORD-68446CFD3AF42, found=None
+2025-06-07 20:32:02 - Customer ID from session: 1
+2025-06-07 20:32:02 - Selected order: order_id=ORD-6844858D0D039, found=None
+2025-06-07 20:32:25 - Customer ID from session: 1
+2025-06-07 20:32:25 - Selected order: order_id=ORD-6844858D0D039, found=None
+2025-06-07 20:32:31 - Customer ID from session: 1
+2025-06-07 20:32:31 - Selected order: order_id=ORD-6844688A7CCC8, found={"order_id":"ORD-6844688A7CCC8","total":"42.00","created_at":"2025-06-08 00:27:54","customer_id":1,"status":"completed"}
+2025-06-07 20:32:31 - Fetched feedback for order ORD-6844688A7CCC8: Not found
+2025-06-07 20:32:49 - Customer ID from session: 1
+2025-06-07 20:32:49 - Selected order: order_id=ORD-684410DEC9A59, found={"order_id":"ORD-684410DEC9A59","total":"15.00","created_at":"2025-06-07 18:13:50","customer_id":1,"status":"completed"}
+2025-06-07 20:32:49 - Fetched feedback for order ORD-684410DEC9A59: Not found
+2025-06-07 20:33:28 - Customer ID from session: 1
+2025-06-07 20:33:28 - Selected order: order_id=ORD-6844858D0D039, found=None

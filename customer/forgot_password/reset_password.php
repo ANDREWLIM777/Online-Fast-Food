@@ -1,23 +1,71 @@
 <?php
-require_once('../db_connect.php');
+require_once("../db_connect.php");
 session_start();
-if (isset($_SESSION["login_sess"])) {
-    header("Location: account.php");
+
+// Initialize variables
+$error = '';
+$success = '';
+
+// CSRF token generation
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+// Validate session email
+if (!isset($_SESSION['reset_email']) || !filter_var($_SESSION['reset_email'], FILTER_VALIDATE_EMAIL)) {
+    header("Location: ../forgot_password.php");
     exit;
 }
-$email = $_GET['email'] ?? '';
-if (empty($email)) {
-    header("Location: forgot_password.php");
-    exit;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Validate CSRF token
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        $error = "Invalid CSRF token. Please try again.";
+    } else {
+        $password = $_POST['password'] ?? '';
+        $confirm_password = $_POST['confirm_password'] ?? '';
+
+        // Password validation
+        if (strlen($password) < 8) {
+            $error = "Password must be at least 8 characters long";
+        } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/", $password)) {
+            $error = "Password must contain at least one uppercase letter, one lowercase letter, and one number";
+        } elseif ($password !== $confirm_password) {
+            $error = "Passwords do not match";
+        } else {
+            $email = $_SESSION['reset_email'];
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            // Update password in database
+            $query = "UPDATE customers SET password = ? WHERE email = ?";
+            $stmt = $conn->prepare($query);
+            if ($stmt === false) {
+                $error = "Database error: " . $conn->error;
+            } else {
+                $stmt->bind_param("ss", $hashed_password, $email);
+                if ($stmt->execute()) {
+                    $success = "Password reset successfully. You can now <a href='/Online-Fast-Food/customer/login.php'>log in</a>.";
+                    // Clear session variables
+                    unset($_SESSION['reset_email']);
+                    unset($_SESSION['csrf_token']);
+                } else {
+                    $error = "Failed to reset password: " . $stmt->error;
+                }
+                $stmt->close();
+            }
+        }
+    }
 }
+$conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Reset Password - Brizo Fast Food</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -59,94 +107,35 @@ if (empty($email)) {
             border-radius: 30px;
             border: 2px solid #ffe259;
         }
-        .toast-container {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-        }
-        .toast {
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        .logo {
-            max-width: 150px;
-            margin-bottom: 20px;
-        }
+        .error { color: red; font-size: 0.9em; }
+        .success { color: green; font-size: 0.9em; }
     </style>
 </head>
 <body>
     <div class="login-box text-center">
-        <img src="assets/images/brizo-logo.png" alt="Brizo Fast Food" class="img-fluid logo">
-        <h4 class="mb-4"><i class="fas fa-lock"></i> Reset Password</h4>
-        <form id="resetForm">
+        <img src="/Online-Fast-Food/assets/images/brizo-logo.png" alt="Brizo Fast Food" class="img-fluid logo">
+        <h4 class="mb-4"><i class="fas fa-lock"></i> Reset Your Password</h4>
+        <?php if ($error) { ?>
+            <p class="error"><?php echo htmlspecialchars($error); ?></p>
+        <?php } ?>
+        <?php if ($success) { ?>
+            <p class="success"><?php echo $success; ?></p>
+        <?php } else { ?>
+        <form method="POST">
+            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
             <div class="form-group">
                 <label for="password">New Password</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Enter new password" required minlength="8">
+                <input type="password" name="password" id="password" class="form-control" placeholder="Enter new password" required>
             </div>
             <div class="form-group">
                 <label for="confirm_password">Confirm Password</label>
-                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password" required minlength="8">
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password" required>
             </div>
-            <input type="hidden" name="email" value="<?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?>">
             <button type="submit" class="btn form_btn btn-block">Reset Password</button>
         </form>
-        <p class="mt-3"><a href="login.php" style="color: #ffa751;">Back to Login</a></p>
+        <?php } ?>
+        <hr>
+        <p><a href="/Online-Fast-Food/customer/login.php" style="color: #ffa751;">Back to Login</a></p>
     </div>
-    <div class="toast-container" id="toastContainer"></div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#resetForm').on('submit', function(e) {
-                e.preventDefault();
-                const password = $('input[name=password]').val();
-                const confirm = $('input[name=confirm_password]').val();
-                if (password.length < 8) {
-                    showToast("Password must be at least 8 characters.", "error");
-                    return;
-                }
-                if (password !== confirm) {
-                    showToast("Passwords do not match.", "error");
-                    return;
-                }
-                const $btn = $('button[type="submit"]');
-                $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Resetting...');
-                $.ajax({
-                    url: 'reset_process.php',
-                    type: 'POST',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        try {
-                            const res = JSON.parse(response);
-                            showToast(res.message, res.status);
-                            if (res.status === 'success') {
-                                setTimeout(() => {
-                                    window.location.href = 'login.php';
-                                }, 2000);
-                            }
-                        } catch (e) {
-                            showToast("Invalid server response.", "error");
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        showToast("Server error. Try again later.", "error");
-                        console.error("AJAX error:", status, error);
-                    },
-                    complete: function() {
-                        $btn.prop('disabled', false).html('Reset Password');
-                    }
-                });
-            });
-            function showToast(message, type = 'info') {
-                const toast = `
-                    <div class="toast show bg-${type === 'success' ? 'success' : (type === 'error' ? 'danger' : 'secondary')} text-white mb-2" role="alert">
-                        <div class="toast-body"><i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'} mr-2"></i>${message}</div>
-                    </div>`;
-                $('#toastContainer').append(toast);
-                setTimeout(() => $('.toast').fadeOut().remove(), 3000);
-            }
-        });
-    </script>
 </body>
 </html>
