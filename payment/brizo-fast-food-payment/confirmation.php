@@ -1,51 +1,62 @@
 <?php
 ob_start();
 session_start();
-require '../db_connect.php';
 
-// Debug mode
+// Define and verify database connection file path
+$dbPath = '../db_connect.php';
+$absoluteDbPath = realpath(dirname(__FILE__) . '/' . $dbPath);
+if (!file_exists($absoluteDbPath)) {
+    $dbPath = $_SERVER['DOCUMENT_ROOT'] . '/Online-Fast-Food/db_connect.php';
+    $absoluteDbPath = realpath($dbPath);
+    if (!file_exists($absoluteDbPath)) {
+        die("Error: Database connection file not found at: $absoluteDbPath or DOCUMENT_ROOT fallback");
+    }
+}
+require $dbPath;
+
+// Enable debug mode for detailed logging
 $debug = true;
-$logFile = 'confirmation_errors.log';
+$logFile = 'confirmation_logs.log';
 $logMessage = function($message) use ($logFile) {
     file_put_contents($logFile, date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, FILE_APPEND);
 };
 
-// Log incoming request data for debugging
+// Log incoming request data
 $logMessage("GET data: " . json_encode($_GET));
 $logMessage("SESSION data: " . json_encode($_SESSION));
 
-// Session timeout (30 minutes)
+// Check session timeout (30 minutes)
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > 1800) {
     session_unset();
     session_destroy();
     $logMessage("Session expired for customer_id: " . ($_SESSION['customer_id'] ?? 'unknown'));
-    header("Location: /Online-Fast-Food/login.php?message=" . urlencode("Your session has expired. Please log in again."));
+    header("Location: /Online-Fast-Food/login.php?error=" . urlencode("Your session has expired. Please log in again."));
     exit();
 }
 $_SESSION['last_activity'] = time();
 
-// Check database connection
+// Verify database connection
 if ($conn->connect_error) {
     $logMessage("Database connection failed: " . $conn->connect_error);
-    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database connection failed"));
+    header("Location: /Online-Fast-Food/error.php?error=" . urlencode("Database connection failed"));
     exit();
 }
 
-// Check for vendor/autoload.php
+// Check for vendor/autoload.php for Dompdf
 $autoloadPath = dirname(__DIR__, 2) . '/vendor/autoload.php';
 if (!file_exists($autoloadPath)) {
     $logMessage("Autoload file not found at: $autoloadPath");
     if ($debug) {
         die("Debug: Autoload file not found at: $autoloadPath");
     }
-    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Required dependencies missing"));
+    header("Location: /Online-Fast-Food/error.php?error=" . urlencode("Required dependencies missing"));
     exit();
 }
-require $autoloadPath;
+require_once $autoloadPath;
 
 use Dompdf\Dompdf;
 
-// Check if user is logged in
+// Ensure user is logged in
 if (!isset($_SESSION['customer_id'])) {
     $logMessage("No customer_id in session");
     header("Location: /Online-Fast-Food/login.php");
@@ -59,21 +70,22 @@ if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 $csrfToken = $_SESSION['csrf_token'];
-$csrf_param = urlencode($csrfToken);
+$csrfParam = urlencode($csrfToken);
 
 // Validate CSRF token for GET requests
 if (isset($_GET['csrf_token']) && $_GET['csrf_token'] !== $csrfToken) {
     $logMessage("Invalid CSRF token for order_id: " . ($_GET['order_id'] ?? 'unknown'));
-    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Invalid CSRF token"));
+    header("Location: /Online-Fast-Food/error.php?error=" . urlencode("Invalid CSRF token"));
     exit();
 }
 
-// Handle order_id from GET or session
+// Initialize order variables
 $orderCode = '';
 $order = [];
 $sessionItems = [];
 $errorMessage = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : '';
 
+// Retrieve order_id from GET or session
 if (isset($_GET['order_id'])) {
     $orderCode = filter_input(INPUT_GET, 'order_id', FILTER_SANITIZE_STRING);
     $stmt = $conn->prepare("
@@ -82,8 +94,8 @@ if (isset($_GET['order_id'])) {
         WHERE ph.order_id = ? AND ph.customer_id = ?
     ");
     if (!$stmt) {
-        $logMessage("Prepare failed for payment_history: " . $conn->error);
-        header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
+        $logMessage("Prepare failed for payment_history query: " . $conn->error);
+        header("Location: /Online-Fast-Food/error.php?error=" . urlencode("Database error"));
         exit();
     }
     $stmt->bind_param("si", $orderCode, $customerId);
@@ -98,10 +110,6 @@ if (isset($_GET['order_id'])) {
 } elseif (isset($_SESSION['last_order'])) {
     $order = $_SESSION['last_order'];
     $orderCode = $order['order_code'] ?? '';
-    $amount = $order['amount'] ?? 0;
-    $method = $order['method'] ?? 'unknown';
-    $paymentDetails = $order['payment_details'] ?? 'N/A';
-    $deliveryMethod = $order['delivery_method'] ?? 'pickup';
     $deliveryAddress = $order['delivery_address'] ?? null;
     if (is_string($deliveryAddress)) {
         $deliveryAddress = json_decode($deliveryAddress, true);
@@ -112,11 +120,11 @@ if (isset($_GET['order_id'])) {
     } elseif (!is_array($deliveryAddress)) {
         $deliveryAddress = null;
     }
-    $timestamp = $order['timestamp'] ?? date('Y-m-d H:i:s');
+    $order['delivery_address'] = $deliveryAddress;
     $sessionItems = $order['items'] ?? [];
 } else {
     $logMessage("No order_id or last_order for customer_id: $customerId");
-    header("Location: /Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php?csrf_token=" . urlencode($csrfToken));
+    header("Location: /Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php?csrf_token=$csrfParam");
     exit();
 }
 
@@ -129,8 +137,8 @@ if (empty($orderCode) && empty($errorMessage)) {
 // Fetch customer email
 $stmt = $conn->prepare("SELECT email FROM customers WHERE id = ?");
 if (!$stmt) {
-    $logMessage("Prepare failed for customer email: " . $conn->error);
-    header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database error"));
+    $logMessage("Prepare failed for customer email query: " . $conn->error);
+    header("Location: /Online-Fast-Food/error.php?error=" . urlencode("Database error"));
     exit();
 }
 $stmt->bind_param("i", $customerId);
@@ -139,7 +147,7 @@ $customer = $stmt->get_result()->fetch_assoc();
 $customerEmail = $customer['email'] ?? 'unknown@example.com';
 $stmt->close();
 
-// Sync order to orders table
+// Sync order to orders table with 'pending' status
 if (!empty($orderCode)) {
     $stmt = $conn->prepare("SELECT order_id, status FROM orders WHERE order_id = ? AND customer_id = ?");
     if (!$stmt) {
@@ -153,7 +161,7 @@ if (!empty($orderCode)) {
         if (!$existingOrder) {
             $stmt = $conn->prepare("
                 INSERT INTO orders (order_id, customer_id, total, status, created_at)
-                VALUES (?, ?, ?, 'completed', ?)
+                VALUES (?, ?, ?, 'pending', ?)
             ");
             if (!$stmt) {
                 $logMessage("Prepare failed for orders insert: " . $conn->error);
@@ -162,25 +170,14 @@ if (!empty($orderCode)) {
                 $createdAt = $order['timestamp'] ?? date('Y-m-d H:i:s');
                 $stmt->bind_param("sids", $orderCode, $customerId, $total, $createdAt);
                 if ($stmt->execute()) {
-                    $logMessage("Inserted order into orders: $orderCode");
+                    $logMessage("Inserted new order: $orderCode with status 'pending' for customer_id: $customerId");
                 } else {
-                    $logMessage("Failed to insert order into orders: $orderCode - " . $stmt->error);
+                    $logMessage("Failed to insert order: $orderCode - " . $stmt->error);
                 }
                 $stmt->close();
             }
-        } elseif ($existingOrder['status'] !== 'completed') {
-            $stmt = $conn->prepare("UPDATE orders SET status = 'completed' WHERE order_id = ? AND customer_id = ?");
-            if (!$stmt) {
-                $logMessage("Prepare failed for orders update: " . $conn->error);
-            } else {
-                $stmt->bind_param("si", $orderCode, $customerId);
-                if ($stmt->execute()) {
-                    $logMessage("Updated order status to completed: $orderCode");
-                } else {
-                    $logMessage("Failed to update order status: $orderCode - " . $stmt->error);
-                }
-                $stmt->close();
-            }
+        } else {
+            $logMessage("Order $orderCode already exists with status: " . $existingOrder['status']);
         }
     }
 }
@@ -189,26 +186,35 @@ if (!empty($orderCode)) {
 $orderItems = [];
 if (!empty($orderCode)) {
     $stmt = $conn->prepare("
-        SELECT oi.item_id, oi.quantity, oi.price, m.item_name, m.photo
+        SELECT oi.item_id, oi.quantity, oi.price, oi.total, m.item_name, m.photo
         FROM order_items oi
         JOIN menu_items m ON oi.item_id = m.id
         WHERE oi.order_id = ?
     ");
     if (!$stmt) {
-        $logMessage("Prepare failed for order items: " . $conn->error);
+        $logMessage("Prepare failed for order_items query: " . $conn->error);
         $errorMessage = "Database error while fetching order items.";
     } else {
         $stmt->bind_param("s", $orderCode);
         $stmt->execute();
-        $orderItems = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result = $stmt->get_result();
+        while ($row = $result->fetch_assoc()) {
+            $row['photo'] = $row['photo'] ?: 'placeholder.jpg';
+            $orderItems[] = $row;
+            $logMessage("Fetched item: " . $row['item_name'] . ", image: " . $row['photo']);
+        }
         $stmt->close();
     }
 }
 
-// Fallback to session items
+// Fallback to session items if database query fails
 if (empty($orderItems) && !empty($sessionItems)) {
     $logMessage("No order items in database, using session items for order: $orderCode");
-    $orderItems = $sessionItems;
+    foreach ($sessionItems as $item) {
+        $item['photo'] = $item['photo'] ?: 'placeholder.jpg';
+        $orderItems[] = $item;
+        $logMessage("Session item: " . $item['item_name'] . ", image: " . $item['photo']);
+    }
 }
 
 // Sync order items from session if missing
@@ -232,7 +238,7 @@ if (!empty($sessionItems) && empty($orderItems)) {
         }
         $stmt->close();
         $stmt = $conn->prepare("
-            SELECT oi.item_id, oi.quantity, oi.price, m.item_name, m.photo
+            SELECT oi.item_id, oi.quantity, oi.price, oi.total, m.item_name, m.photo
             FROM order_items oi
             JOIN menu_items m ON oi.item_id = m.id
             WHERE oi.order_id = ?
@@ -240,13 +246,18 @@ if (!empty($sessionItems) && empty($orderItems)) {
         if ($stmt) {
             $stmt->bind_param("s", $orderCode);
             $stmt->execute();
-            $orderItems = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            $result = $stmt->get_result();
+            while ($row = $result->fetch_assoc()) {
+                $row['photo'] = $row['photo'] ?: 'placeholder.jpg';
+                $orderItems[] = $row;
+                $logMessage("Fetched item after sync: " . $row['item_name'] . ", image: " . $row['photo']);
+            }
             $stmt->close();
         }
     }
 }
 
-// Check if order is completed for feedback
+// Check if order allows feedback
 $isOrderCompleted = false;
 if (!empty($orderCode)) {
     $stmt = $conn->prepare("SELECT status FROM orders WHERE order_id = ? AND customer_id = ?");
@@ -254,9 +265,9 @@ if (!empty($orderCode)) {
         $stmt->bind_param("si", $orderCode, $customerId);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
-        $isOrderCompleted = $result && strtolower($result['status']) === 'completed';
+        $isOrderCompleted = $result && in_array(strtolower($result['status']), ['pending', 'completed']);
+        $logMessage("Order $orderCode feedback eligibility: " . ($isOrderCompleted ? 'eligible' : 'not eligible'));
         $stmt->close();
-        $logMessage("Order $orderCode completion status: " . ($isOrderCompleted ? 'completed' : 'not completed'));
     } else {
         $logMessage("Prepare failed for order status check: " . $conn->error);
     }
@@ -272,22 +283,36 @@ $logMessage("Customer email: $customerEmail");
 $logMessage("Payment details: " . ($order['payment_details'] ?? 'N/A'));
 
 // Base URL for images
-$baseUrl = 'http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/';
+$baseUrl = 'http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/';
 
-// Function to get base64 image
-function getBase64Image($filePath) {
-    global $logMessage;
-    if (file_exists($filePath)) {
-        $type = pathinfo($filePath, PATHINFO_EXTENSION);
-        $data = file_get_contents($filePath);
+// Function to get base64 image for PDF
+function getBase64Image($filePath, $logMessage) {
+    $absolutePath = realpath($_SERVER['DOCUMENT_ROOT'] . '/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/' . basename($filePath));
+    if ($absolutePath && file_exists($absolutePath)) {
+        $type = pathinfo($absolutePath, PATHINFO_EXTENSION);
+        $data = file_get_contents($absolutePath);
         if ($data === false) {
-            $logMessage("Failed to read image file: $filePath");
+            $logMessage("Failed to read image file: $absolutePath");
             return null;
         }
+        $logMessage("Loaded image file: $absolutePath for PDF");
         return 'data:image/' . $type . ';base64,' . base64_encode($data);
     }
-    $logMessage("Image file not found: $filePath");
+    $logMessage("Image file not found: $absolutePath");
     return null;
+}
+
+// Function to check if image URL is accessible
+function checkImageUrl($url, $logMessage) {
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_NOBODY, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    $logMessage("Checked image URL: $url, HTTP code: $httpCode");
+    return $httpCode === 200;
 }
 
 // Handle PDF download
@@ -297,8 +322,10 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
         ob_start();
         ?>
         <!DOCTYPE html>
-        <html>
+        <html lang="en">
         <head>
+            <meta charset="UTF-8">
+            <title>Invoice Receipt</title>
             <style>
                 body { font-family: Arial, sans-serif; font-size: 12px; margin: 20px; }
                 h1 { color: #ff4757; }
@@ -312,18 +339,15 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
         </head>
         <body>
             <div class="header">
-                <h1>Invoice #<?= htmlspecialchars($orderCode) ?></h1>
-                <p><strong>Order ID:</strong> <?= htmlspecialchars($orderCode) ?></p>
-                <p><strong>Date:</strong> <?= date('d M Y, H:i', strtotime($order['timestamp'] ?? date('Y-m-d H:i:s'))) ?></p>
-                <p><strong>Total:</strong> RM <?=number_format($order['amount'], 2) ?></p>
-                <p><strong>Delivery Method:</strong> <?= htmlspecialchars($order['delivery_method'] ?? 'pickup') ?></p>
+                <h1>Invoice #<?php echo htmlspecialchars($orderCode); ?></h1>
+                <p><strong>Order ID:</strong> <?php echo htmlspecialchars($orderCode); ?></p>
+                <p><strong>Date:</strong> <?php echo date('d M Y, H:i', strtotime($order['timestamp'] ?? date('Y-m-d H:i:s'))); ?></p>
+                <p><strong>Total:</strong> RM <?php echo number_format($order['amount'] ?? 0, 2); ?></p>
+                <p><strong>Delivery Method:</strong> <?php echo htmlspecialchars($order['delivery_method'] ?? 'pickup'); ?></p>
                 <p><strong>Delivery Address:</strong> 
                     <?php
                     $deliveryAddress = $order['delivery_address'] ?? null;
                     if ($deliveryAddress && $order['delivery_method'] === 'delivery') {
-                        if (is_string($deliveryAddress)) {
-                            $deliveryAddress = json_decode($deliveryAddress, true);
-                        }
                         if (is_array($deliveryAddress)) {
                             $addressParts = [];
                             if (!empty($deliveryAddress['street_address'])) {
@@ -344,7 +368,7 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
                     }
                     ?>
                 </p>
-                <p><strong>Customer Email:</strong> <?= htmlspecialchars($customerEmail) ?></p>
+                <p><strong>Customer Email:</strong> <?php echo htmlspecialchars($customerEmail); ?></p>
             </div>
             <h3>Items Ordered</h3>
             <?php if (!empty($orderItems)): ?>
@@ -352,17 +376,21 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
                     <tr><th>Image</th><th>Item</th><th>Quantity</th><th>Price</th><th>Total</th></tr>
                     <?php foreach ($orderItems as $item): ?>
                         <?php
-                        $imagePath = $item['photo'] ?: 'placeholder.jpg';
-                        $localPath = $_SERVER['DOCUMENT_ROOT'] . '/Online-Fast-Food/Admin/Manage_Menu_Item/' . $imagePath;
-                        $imageSrc = getBase64Image($localPath);
-                        $imageUrl = $imageSrc ?: $baseUrl . rawurlencode($imagePath);
+                        $imagePath = basename($item['photo']) ?: 'placeholder.jpg';
+                        $localPath = $_SERVER['DOCUMENT_ROOT'] . '/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/' . $imagePath;
+                        $imageSrc = getBase64Image($imagePath, $logMessage);
+                        $imageUrl = $imageSrc ?: ($baseUrl . rawurlencode($imagePath));
+                        if (!$imageSrc) {
+                            checkImageUrl($baseUrl . $imagePath, $logMessage);
+                        }
+                        $logMessage("PDF image URL for {$item['item_name']}: $imageUrl (Local path: $localPath)");
                         ?>
                         <tr>
-                            <td><img src="<?= htmlspecialchars($imageUrl) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>" style="max-width: 60px; height: auto;"></td>
-                            <td><?= htmlspecialchars($item['item_name']) ?></td>
-                            <td><?= $item['quantity'] ?></td>
-                            <td>RM <?= number_format($item['price'], 2) ?></td>
-                            <td>RM <?= number_format($item['quantity'] * $item['price'], 2) ?></td>
+                            <td><img src="<?php echo htmlspecialchars($imageUrl); ?>" alt="<?php echo htmlspecialchars($item['item_name']); ?>" style="max-width: 60px; height: auto;"></td>
+                            <td><?php echo htmlspecialchars($item['item_name']); ?></td>
+                            <td><?php echo $item['quantity']; ?></td>
+                            <td>RM <?php echo number_format($item['price'], 2); ?></td>
+                            <td>RM <?php echo number_format($item['total'] ?? ($item['quantity'] * $item['price']), 2); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
@@ -370,7 +398,7 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
                 <p>No items found for this order.</p>
             <?php endif; ?>
             <div class="footer">
-                <p>Thank you for choosing Brizo Fast Food Melaka!</p>
+                <p>Thank you for choosing Brizo Fast Food!</p>
             </div>
         </body>
         </html>
@@ -384,7 +412,7 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
         exit();
     } catch (Exception $e) {
         $logMessage("PDF generation failed for order: $orderCode - " . $e->getMessage());
-        $errorMessage = "Unable to generate PDF: " . htmlspecialchars($e->getMessage());
+        $errorMessage = "Failed to generate PDF: " . htmlspecialchars($e->getMessage());
     }
 }
 ?>
@@ -401,16 +429,16 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
         body { font-family: 'Inter', sans-serif; }
         .fade-in { animation: fadeIn 0.3s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .card-hover:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
-        .invoice-section { background-color: white; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px; }
+        .invoice-section { background-color: white; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
         .invoice-table { width: 100%; border-collapse: collapse; }
         .invoice-table th, .invoice-table td { border: 1px solid #e5e7eb; padding: 8px; text-align: left; }
         .invoice-table th { background-color: #f3f4f6; }
         .invoice-table img { max-width: 60px; height: auto; }
         .btn {
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 10px 20px; border-radius: 8px;
+            padding: 10px 20px; border-radius: 10px;
             font-weight: 500; font-size: 14px; color: white; text-decoration: none;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
@@ -446,17 +474,17 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <?php if (isset($_GET['email_sent'])): ?>
-            <div class="mb-6 p-4 rounded-lg <?= $_GET['email_sent'] === 'success' ? 'bg-green-50 border-l-4 border-green-500' : 'bg-red-50 border-l-4 border-red-500' ?>">
-                <p class="<?= $_GET['email_sent'] === 'success' ? 'text-green-700' : 'text-red-700' ?> text-lg flex items-center">
-                    <i class="fas <?= $_GET['email_sent'] === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle' ?> mr-2"></i>
-                    <?= $_GET['email_sent'] === 'success' ? 'Invoice successfully sent to your email!' : 'Failed to send invoice: ' . htmlspecialchars($_GET['error'] ?? 'Please try again later.') ?>
+            <div class="mb-6 p-4 rounded-lg <?php echo $_GET['email_sent'] === 'success' ? 'bg-green-50 border-l-4 border-green-500' : 'bg-red-50 border-l-4 border-red-500'; ?>">
+                <p class="<?php echo $_GET['email_sent'] === 'success' ? 'text-green-700' : 'text-red-700'; ?> text-lg flex items-center">
+                    <i class="fas <?php echo $_GET['email_sent'] === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'; ?> mr-2"></i>
+                    <?php echo $_GET['email_sent'] === 'success' ? 'Invoice successfully sent to your email!' : 'Failed to send invoice: ' . htmlspecialchars($_GET['error'] ?? 'Please try again later.'); ?>
                 </p>
             </div>
         <?php endif; ?>
         <?php if ($errorMessage): ?>
             <div class="mb-6 p-4 bg-red-50 border-l-4 border-red-500">
                 <p class="text-red-700 text-lg flex items-center">
-                    <i class="fas fa-exclamation-circle mr-2"></i> <?= $errorMessage ?>
+                    <i class="fas fa-exclamation-circle mr-2"></i> <?php echo $errorMessage; ?>
                 </p>
             </div>
         <?php endif; ?>
@@ -471,26 +499,23 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
 
                 <!-- Invoice Section -->
                 <div id="invoice-section" class="invoice-section" role="region" aria-labelledby="invoice-heading">
-                    <h3 id="invoice-heading" class="text-xl font-medium text-gray-700 mb-4">Invoice #<?= htmlspecialchars($orderCode) ?></h3>
+                    <h3 id="invoice-heading" class="text-xl font-medium text-gray-700 mb-4">Invoice #<?php echo htmlspecialchars($orderCode); ?></h3>
                     <div class="bg-gray-50 p-6 rounded-lg mb-4">
-                        <p class="text-gray-600"><strong>Order ID:</strong> <?= htmlspecialchars($orderCode) ?></p>
-                        <p class="text-gray-600"><strong>Date:</strong> <?= date('d M Y, H:i', strtotime($order['timestamp'] ?? date('Y-m-d H:i:s'))) ?></p>
-                        <p class="text-gray-600"><strong>Total:</strong> RM <?= number_format($order['amount'] ?? 0, 2) ?></p>
+                        <p class="text-gray-600"><strong>Order ID:</strong> <?php echo htmlspecialchars($orderCode); ?></p>
+                        <p class="text-gray-600"><strong>Date:</strong> <?php echo date('d M Y, H:i', strtotime($order['timestamp'] ?? date('Y-m-d H:i:s'))); ?></p>
+                        <p class="text-gray-600"><strong>Total:</strong> RM <?php echo number_format($order['amount'] ?? 0, 2); ?></p>
                         <p class="text-gray-600"><strong>Payment Method:</strong> 
-                            <i class="fas <?= ($order['method'] ?? 'unknown') === 'card' ? 'fa-credit-card' : (($order['method'] ?? 'unknown') === 'online_banking' ? 'fa-university' : 'fa-wallet') ?> mr-1"></i>
-                            <?= ucfirst(htmlspecialchars($order['method'] ?? 'unknown')) ?> (<?= htmlspecialchars($order['payment_details'] ?? 'N/A') ?>)
+                            <i class="fas <?php echo ($order['method'] ?? 'unknown') === 'card' ? 'fa-credit-card' : (($order['method'] ?? 'unknown') === 'online_banking' ? 'fa-university' : 'fa-wallet'); ?> mr-1"></i>
+                            <?php echo ucfirst(htmlspecialchars($order['method'] ?? 'unknown')); ?> (<?php echo htmlspecialchars($order['payment_details'] ?? 'N/A'); ?>)
                         </p>
                         <p class="text-gray-600"><strong>Delivery Method:</strong> 
-                            <i class="fas <?= ($order['delivery_method'] ?? 'pickup') === 'delivery' ? 'fa-truck' : 'fa-store' ?> mr-1"></i>
-                            <?= ucfirst(htmlspecialchars($order['delivery_method'] ?? 'pickup')) ?>
+                            <i class="fas <?php echo ($order['delivery_method'] ?? 'pickup') === 'delivery' ? 'fa-truck' : 'fa-store'; ?> mr-1"></i>
+                            <?php echo ucfirst(htmlspecialchars($order['delivery_method'] ?? 'pickup')); ?>
                         </p>
                         <p class="text-gray-600"><strong>Delivery Address:</strong> 
                             <?php
                             $deliveryAddress = $order['delivery_address'] ?? null;
                             if ($deliveryAddress && ($order['delivery_method'] ?? 'pickup') === 'delivery') {
-                                if (is_string($deliveryAddress)) {
-                                    $deliveryAddress = json_decode($deliveryAddress, true);
-                                }
                                 if (is_array($deliveryAddress)) {
                                     $addressParts = [];
                                     if (!empty($deliveryAddress['street_address'])) {
@@ -511,17 +536,17 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
                             }
                             ?>
                         </p>
-                        <p class="text-gray-600"><strong>Customer Email:</strong> <?= htmlspecialchars($customerEmail) ?></p>
+                        <p class="text-gray-600"><strong>Customer Email:</strong> <?php echo htmlspecialchars($customerEmail); ?></p>
                     </div>
 
                     <!-- Order Items -->
-                    <h3 class="text-xl font-medium text-gray-700 mb-4">Items Ordered</h3>
+                    <h3 class="text-lg font-medium text-gray-700 mb-4">Items Ordered</h3>
                     <?php if (!empty($orderItems)): ?>
                         <table class="invoice-table" role="grid" aria-label="Order items">
                             <thead>
                                 <tr>
                                     <th scope="col">Image</th>
-                                    <th scope="col">Item</th>
+                                    <th scope="col">Item Name</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Total</th>
@@ -529,14 +554,20 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
                             </thead>
                             <tbody>
                                 <?php foreach ($orderItems as $item): ?>
+                                    <?php
+                                    $imagePath = basename($item['photo']) ?: 'placeholder.jpg';
+                                    $imageUrl = $baseUrl . rawurlencode($imagePath);
+                                    checkImageUrl($imageUrl, $logMessage);
+                                    $logMessage("Web image URL for {$item['item_name']}: $imageUrl");
+                                    ?>
                                     <tr>
                                         <td>
-                                            <img src="<?= htmlspecialchars($baseUrl . ($item['photo'] ?: 'placeholder.jpg')) ?>" alt="<?= htmlspecialchars($item['item_name']) ?>" onerror="this.src='<?= htmlspecialchars($baseUrl . 'placeholder.jpg') ?>'" style="max-width: 60px; height: auto;">
+                                            <img src="<?php echo htmlspecialchars($imageUrl); ?>" alt="<?php echo htmlspecialchars($item['item_name']); ?>" onerror="this.src='<?php echo htmlspecialchars($baseUrl . 'placeholder.jpg'); ?>'; console.error('Image failed to load: $imageUrl')" style="max-width: 60px; height: auto;">
                                         </td>
-                                        <td><?= htmlspecialchars($item['item_name']) ?></td>
-                                        <td><?= $item['quantity'] ?></td>
-                                        <td>RM <?= number_format($item['price'], 2) ?></td>
-                                        <td>RM <?= number_format($item['quantity'] * $item['price'], 2) ?></td>
+                                        <td><?php echo htmlspecialchars($item['item_name']); ?></td>
+                                        <td><?php echo $item['quantity']; ?></td>
+                                        <td>RM <?php echo number_format($item['price'], 2); ?></td>
+                                        <td>RM <?php echo number_format($item['total'] ?? ($item['quantity'] * $item['price']), 2); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -548,32 +579,32 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
 
                 <!-- Actions -->
                 <div class="mt-8 flex justify-end space-x-3 flex-wrap">
-                    <a href="?download_invoice=1&order_id=<?= urlencode($orderCode) ?>&csrf_token=<?= $csrf_param ?>" class="btn btn-download">
+                    <a href="?download_invoice=1&order_id=<?php echo urlencode($orderCode); ?>&csrf_token=<?php echo $csrfParam; ?>" class="btn btn-download mr-2">
                         <i class="fas fa-download"></i> Download Invoice
                     </a>
                     <form action="/Online-Fast-Food/payment/brizo-fast-food-payment/send_invoice.php" method="POST" class="inline-flex">
-                        <input type="hidden" name="order_code" value="<?= htmlspecialchars($orderCode) ?>">
-                        <input type="hidden" name="customer_email" value="<?= htmlspecialchars($customerEmail) ?>">
-                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
+                        <input type="hidden" name="order_id" value="<?php echo htmlspecialchars($orderCode); ?>">
+                        <input type="hidden" name="customer_email" value="<?php echo htmlspecialchars($customerEmail); ?>">
+                        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                         <button type="submit" class="btn btn-email">
                             <i class="fas fa-envelope"></i> Send Invoice via Email
                         </button>
                     </form>
-                    <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php?csrf_token=<?= $csrf_param ?>" class="btn btn-history">
+                    <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php?csrf_token=<?php echo $csrfParam; ?>" class="btn btn-history">
                         <i class="fas fa-history"></i> View Payment History
                     </a>
                     <a href="/Online-Fast-Food/customer/menu/cart/cart.php" class="btn btn-cart">
                         <i class="fas fa-cart-arrow-down"></i> Go Back to Cart
                     </a>
                     <?php if ($isOrderCompleted): ?>
-                        <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/feedback.php?order_id=<?= urlencode($orderCode) ?>&csrf_token=<?= $csrf_param ?>" class="btn btn-feedback">
+                        <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/feedback.php?order_id=<?php echo urlencode($orderCode); ?>&csrf_token=<?php echo $csrfParam; ?>" class="btn btn-feedback">
                             <i class="fas fa-star"></i> Provide Feedback
                         </a>
                     <?php endif; ?>
                 </div>
             <?php else: ?>
-                <div class="mt-8 flex justify-end space-x-3">
-                    <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php?csrf_token=<?= $csrf_param ?>" class="btn btn-history">
+                <div class="mt-8 flex justify-end space-x-3 flex-wrap">
+                    <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php?csrf_token=<?php echo $csrfParam; ?>" class="btn btn-history">
                         <i class="fas fa-history"></i> View Payment History
                     </a>
                 </div>
@@ -584,7 +615,7 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
 </body>
 </html>
 <?php
-// Clear last_order session only if order is valid
+// Clear last_order session if order is valid
 if (!empty($orderCode)) {
     unset($_SESSION['last_order']);
 }

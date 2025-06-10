@@ -493,7 +493,397 @@
 2025-06-05 18:20:42 - Generated order_id: ORD-6841C3DAB95CF
 2025-06-05 18:20:42 - Payment successful: order_id=ORD-6841C3DAB95CF
 2025-06-05 18:20:42 - Redirecting to confirmation.php with order_id=ORD-6841C3DAB95CF
+<<<<<<< HEAD
+2025-06-05 18:28:19 - Received make_payment request: {&#34;csrf_token&#34;:&#34;f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;14&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-05 18:28:19 - Received amount: 14, Expected total: 14
+2025-06-05 18:28:19 - Delivery method: pickup, Delivery address ID: 1
+2025-06-05 18:28:19 - Payment method: digital_wallet, Payment method ID: 1
+2025-06-05 18:28:19 - Generated order_id: ORD-6841C5A3B8B9D
+2025-06-05 18:28:19 - Payment successful: order_id=ORD-6841C5A3B8B9D
+2025-06-05 18:28:19 - Redirecting to confirmation.php with order_id=ORD-6841C5A3B8B9D
+2025-06-05 18:32:12 - Received make_payment request: {&#34;csrf_token&#34;:&#34;f07c2da2e2cece6797c5b130e863bcc90b94b7f6ac4766eafbe4c0df05c4b234&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;1&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-05 18:32:12 - Received amount: 15, Expected total: 15
+2025-06-05 18:32:12 - Delivery method: pickup, Delivery address ID: 1
+2025-06-05 18:32:12 - Payment method: digital_wallet, Payment method ID: 1
+2025-06-05 18:32:12 - Generated order_id: ORD-6841C68C789AB
+2025-06-05 18:32:12 - Payment successful: order_id=ORD-6841C68C789AB
+2025-06-05 18:32:12 - Redirecting to confirmation.php with order_id=ORD-6841C68C789AB
+2025-06-06 03:17:11 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-06 03:17:11 - Delivery address added successfully: ID 2, 123 Main Street, Kuala Lumpur, 50450
+2025-06-06 03:17:21 - Attempting to add payment method: method_type=digital_wallet
+2025-06-06 03:17:21 - Adding digital wallet - Wallet Type: tng, Phone Number: 0111112618311
+2025-06-06 03:17:21 - Payment method added successfully: ID 2
+2025-06-06 03:17:37 - Attempting to add payment method: method_type=digital_wallet
+2025-06-06 03:17:37 - Adding digital wallet - Wallet Type: tng, Phone Number: 4154964189498
+2025-06-06 03:17:37 - Payment method added successfully: ID 3
+2025-06-06 03:17:56 - Attempting to add payment method: method_type=card
+2025-06-06 03:17:56 - Adding card - Number: **** **** **** 1651, Expiry: 45/86, Name: asdfafd, Type: visa
+2025-06-06 03:17:56 - Expired card: 45/86
+2025-06-06 03:17:58 - Attempting to add payment method: method_type=card
+2025-06-06 03:17:58 - Adding card - Number: **** **** **** 1651, Expiry: 45/86, Name: asdfafd, Type: visa
+2025-06-06 03:17:58 - Expired card: 45/86
+2025-06-06 03:17:58 - Attempting to add payment method: method_type=card
+2025-06-06 03:17:58 - Adding card - Number: **** **** **** 1651, Expiry: 45/86, Name: asdfafd, Type: visa
+2025-06-06 03:17:58 - Expired card: 45/86
+2025-06-06 03:17:58 - Attempting to add payment method: method_type=card
+2025-06-06 03:17:58 - Adding card - Number: **** **** **** 1651, Expiry: 45/86, Name: asdfafd, Type: visa
+2025-06-06 03:17:58 - Expired card: 45/86
+2025-06-06 03:17:58 - Attempting to add payment method: method_type=card
+2025-06-06 03:17:58 - Adding card - Number: **** **** **** 1651, Expiry: 45/86, Name: asdfafd, Type: visa
+2025-06-06 03:17:58 - Expired card: 45/86
+2025-06-06 03:17:58 - Attempting to add payment method: method_type=card
+2025-06-06 03:17:58 - Adding card - Number: **** **** **** 1651, Expiry: 45/86, Name: asdfafd, Type: visa
+2025-06-06 03:17:58 - Expired card: 45/86
+2025-06-06 03:17:59 - Attempting to add payment method: method_type=card
+2025-06-06 03:17:59 - Adding card - Number: **** **** **** 1651, Expiry: 45/86, Name: asdfafd, Type: visa
+2025-06-06 03:17:59 - Expired card: 45/86
+2025-06-06 03:18:12 - Attempting to add payment method: method_type=card
+2025-06-06 03:18:12 - Adding card - Number: **** **** **** 1111, Expiry: 01/30, Name: asdfafd, Type: visa
+2025-06-06 03:18:12 - Payment method added successfully: ID 4
+2025-06-06 03:19:43 - Attempting to add delivery address: street=Angkasa Nuri, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-06 03:19:43 - Delivery address added successfully: ID 3, Angkasa Nuri, Kuala Lumpur, 50450
+2025-06-06 03:20:07 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:07 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:07 - Expired card: 58/85
+2025-06-06 03:20:09 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:09 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:09 - Expired card: 58/85
+2025-06-06 03:20:10 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:10 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:10 - Expired card: 58/85
+2025-06-06 03:20:10 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:10 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:10 - Expired card: 58/85
+2025-06-06 03:20:10 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:10 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:10 - Expired card: 58/85
+2025-06-06 03:20:10 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:10 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:10 - Expired card: 58/85
+2025-06-06 03:20:10 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:10 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:10 - Expired card: 58/85
+2025-06-06 03:20:11 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:11 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:11 - Expired card: 58/85
+2025-06-06 03:20:11 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:11 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:11 - Expired card: 58/85
+2025-06-06 03:20:12 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:12 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:12 - Expired card: 58/85
+2025-06-06 03:20:12 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:12 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:12 - Expired card: 58/85
+2025-06-06 03:20:12 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:12 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:12 - Expired card: 58/85
+2025-06-06 03:20:13 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:13 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:13 - Expired card: 58/85
+2025-06-06 03:20:13 - Attempting to add payment method: method_type=card
+2025-06-06 03:20:13 - Adding card - Number: **** **** **** 4984, Expiry: 58/85, Name: aa, Type: visa
+2025-06-06 03:20:13 - Expired card: 58/85
+2025-06-06 04:31:30 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-06 04:31:30 - Duplicate delivery address detected for customer_id=1
+2025-06-06 04:32:07 - Attempting to add payment method: method_type=digital_wallet
+2025-06-06 04:32:07 - Adding digital wallet - Wallet Type: tng, Phone Number: 01111126183
+2025-06-06 04:32:07 - Payment method added successfully: ID 5
+2025-06-06 04:32:20 - Attempting to add payment method: method_type=digital_wallet
+2025-06-06 04:32:20 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-06 04:32:21 - Attempting to add payment method: method_type=digital_wallet
+2025-06-06 04:32:21 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-06 04:32:21 - Attempting to add payment method: method_type=digital_wallet
+2025-06-06 04:32:21 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-06 04:34:19 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-06 04:34:19 - Duplicate delivery address detected for customer_id=1
+2025-06-06 04:34:25 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-06 04:34:25 - Duplicate delivery address detected for customer_id=1
+2025-06-06 04:34:42 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpura, postal_code=50450, default=
+2025-06-06 04:34:42 - Delivery address added successfully: ID 4, 123 Main Street, Kuala Lumpura, 50450
+2025-06-06 04:36:25 - Attempting to add payment method: method_type=online_banking
+2025-06-06 04:36:25 - Payment method added successfully: ID 6
+2025-06-06 04:37:34 - Attempting to add payment method: method_type=card
+2025-06-06 04:37:34 - Adding card - Number: **** **** **** 1113, Expiry: 66/66, Name: asfsdfafads, Type: visa
+2025-06-06 04:37:34 - Card number failed Luhn check: 4111111111111113
+2025-06-06 04:37:41 - Attempting to add payment method: method_type=card
+2025-06-06 04:37:41 - Adding card - Number: **** **** **** 1113, Expiry: 05/31, Name: asfsdfafads, Type: visa
+2025-06-06 04:37:41 - Card number failed Luhn check: 4111111111111113
+2025-06-06 04:37:48 - Attempting to add payment method: method_type=card
+2025-06-06 04:37:48 - Adding card - Number: **** **** **** 1111, Expiry: 66/66, Name: asfsdfafads, Type: visa
+2025-06-06 04:37:48 - Expired card: 66/66
+2025-06-06 04:37:49 - Attempting to add payment method: method_type=card
+2025-06-06 04:37:49 - Adding card - Number: **** **** **** 1111, Expiry: 66/66, Name: asfsdfafads, Type: visa
+2025-06-06 04:37:49 - Expired card: 66/66
+2025-06-06 04:37:49 - Attempting to add payment method: method_type=card
+2025-06-06 04:37:49 - Adding card - Number: **** **** **** 1111, Expiry: 66/66, Name: asfsdfafads, Type: visa
+2025-06-06 04:37:49 - Expired card: 66/66
+2025-06-06 04:37:50 - Attempting to add payment method: method_type=card
+2025-06-06 04:37:50 - Adding card - Number: **** **** **** 1111, Expiry: 66/66, Name: asfsdfafads, Type: visa
+2025-06-06 04:37:50 - Expired card: 66/66
+2025-06-06 04:37:55 - Attempting to add payment method: method_type=card
+2025-06-06 04:37:55 - Adding card - Number: **** **** **** 1111, Expiry: 05/30, Name: asfsdfafads, Type: visa
+2025-06-06 04:37:55 - Payment method added successfully: ID 7
+2025-06-06 17:25:26 - Received make_payment request: {&#34;csrf_token&#34;:&#34;b64afa601631624fc321fdfb92a6655d7700ab9b192ae2314f5be8cb206dfaba&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;3&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;2&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;45&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-06 17:25:26 - Received amount: 45, Expected total: 45
+2025-06-06 17:25:26 - Delivery method: pickup, Delivery address ID: 3
+2025-06-06 17:25:26 - Payment method: digital_wallet, Payment method ID: 2
+2025-06-06 17:25:26 - Generated order_id: ORD-68430866C0D7D
+2025-06-06 17:25:26 - Payment successful: order_id=ORD-68430866C0D7D
+2025-06-06 17:25:26 - Redirecting to confirmation.php with order_id=ORD-68430866C0D7D
+2025-06-06 17:36:06 - Received make_payment request: {&#34;csrf_token&#34;:&#34;b64afa601631624fc321fdfb92a6655d7700ab9b192ae2314f5be8cb206dfaba&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;3&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;2&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-06 17:36:06 - Received amount: 15, Expected total: 15
+2025-06-06 17:36:06 - Delivery method: pickup, Delivery address ID: 3
+2025-06-06 17:36:06 - Payment method: digital_wallet, Payment method ID: 2
+2025-06-06 17:36:06 - Generated order_id: ORD-68430AE6C33B4
+2025-06-06 17:36:06 - Payment successful: order_id=ORD-68430AE6C33B4
+2025-06-06 17:36:06 - Redirecting to confirmation.php with order_id=ORD-68430AE6C33B4
+2025-06-07 11:00:58 - Received make_payment request: {&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;3&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;2&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-07 11:00:58 - Received amount: 15, Expected total: 15
+2025-06-07 11:00:58 - Delivery method: pickup, Delivery address ID: 3
+2025-06-07 11:00:58 - Payment method: digital_wallet, Payment method ID: 2
+2025-06-07 11:00:58 - Generated order_id: ORD-6843FFCAEBC36
+2025-06-07 11:00:58 - Payment successful: order_id=ORD-6843FFCAEBC36
+2025-06-07 11:00:58 - Redirecting to confirmation.php with order_id=ORD-6843FFCAEBC36
+2025-06-07 11:24:22 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-07 11:24:22 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:24:26 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-07 11:24:26 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:24:27 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-07 11:24:27 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:24:27 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-07 11:24:27 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:24:27 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-07 11:24:27 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:24:27 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-07 11:24:27 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:24:28 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-07 11:24:28 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:24:28 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-07 11:24:28 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:24:28 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-07 11:24:28 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:24:28 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-07 11:24:28 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:24:28 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=1
+2025-06-07 11:24:28 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:25:09 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:09 - Adding card - Number: **** **** **** 4242, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:09 - Expired card: 30/30
+2025-06-07 11:25:11 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:11 - Adding card - Number: **** **** **** 4242, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:11 - Expired card: 30/30
+2025-06-07 11:25:12 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:12 - Adding card - Number: **** **** **** 4242, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:12 - Expired card: 30/30
+2025-06-07 11:25:12 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:12 - Adding card - Number: **** **** **** 4242, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:12 - Expired card: 30/30
+2025-06-07 11:25:12 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:12 - Adding card - Number: **** **** **** 4242, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:12 - Expired card: 30/30
+2025-06-07 11:25:12 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:12 - Adding card - Number: **** **** **** 4242, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:12 - Expired card: 30/30
+2025-06-07 11:25:13 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:13 - Adding card - Number: **** **** **** 4242, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:13 - Expired card: 30/30
+2025-06-07 11:25:13 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:13 - Adding card - Number: **** **** **** 4242, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:13 - Expired card: 30/30
+2025-06-07 11:25:14 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:14 - Adding card - Number: **** **** **** 4242, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:14 - Expired card: 30/30
+2025-06-07 11:25:14 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:14 - Adding card - Number: **** **** **** 4242, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:14 - Expired card: 30/30
+2025-06-07 11:25:20 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:20 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:20 - Expired card: 30/30
+2025-06-07 11:25:21 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:21 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:21 - Expired card: 30/30
+2025-06-07 11:25:21 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:21 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:21 - Expired card: 30/30
+2025-06-07 11:25:21 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:21 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:21 - Expired card: 30/30
+2025-06-07 11:25:28 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:28 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:28 - Expired card: 30/30
+2025-06-07 11:25:29 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:29 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:29 - Expired card: 30/30
+2025-06-07 11:25:29 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:29 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:29 - Expired card: 30/30
+2025-06-07 11:25:29 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:29 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:29 - Expired card: 30/30
+2025-06-07 11:25:29 - Attempting to add payment method: method_type=card
+2025-06-07 11:25:29 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: fsdasf, Type: visa
+2025-06-07 11:25:29 - Expired card: 30/30
+2025-06-07 11:27:48 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:27:48 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:27:48 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:27:48 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:27:49 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:27:49 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:27:49 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:27:49 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:27:50 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:27:50 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:27:50 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:27:50 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:27:50 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:27:50 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:27:50 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:27:50 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:27:51 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:27:51 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:27:51 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:27:51 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:27:51 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:27:51 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:27:51 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:27:51 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:35:59 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=
+2025-06-07 11:35:59 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:36:00 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=
+2025-06-07 11:36:00 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:36:00 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450, default=
+2025-06-07 11:36:00 - Duplicate delivery address detected for customer_id=1
+2025-06-07 11:36:31 - Attempting to add payment method: method_type=card
+2025-06-07 11:36:31 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: Andrew, Type: visa
+2025-06-07 11:36:31 - Expired card: 30/30
+2025-06-07 11:36:31 - Attempting to add payment method: method_type=card
+2025-06-07 11:36:31 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: Andrew, Type: visa
+2025-06-07 11:36:31 - Expired card: 30/30
+2025-06-07 11:36:31 - Attempting to add payment method: method_type=card
+2025-06-07 11:36:31 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: Andrew, Type: visa
+2025-06-07 11:36:31 - Expired card: 30/30
+2025-06-07 11:36:32 - Attempting to add payment method: method_type=card
+2025-06-07 11:36:32 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: Andrew, Type: visa
+2025-06-07 11:36:32 - Expired card: 30/30
+2025-06-07 11:36:32 - Attempting to add payment method: method_type=card
+2025-06-07 11:36:32 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: Andrew, Type: visa
+2025-06-07 11:36:32 - Expired card: 30/30
+2025-06-07 11:36:32 - Attempting to add payment method: method_type=card
+2025-06-07 11:36:32 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: Andrew, Type: visa
+2025-06-07 11:36:32 - Expired card: 30/30
+2025-06-07 11:36:32 - Attempting to add payment method: method_type=card
+2025-06-07 11:36:32 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: Andrew, Type: visa
+2025-06-07 11:36:32 - Expired card: 30/30
+2025-06-07 11:36:33 - Attempting to add payment method: method_type=card
+2025-06-07 11:36:33 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: Andrew, Type: visa
+2025-06-07 11:36:33 - Expired card: 30/30
+2025-06-07 11:36:33 - Attempting to add payment method: method_type=card
+2025-06-07 11:36:33 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: Andrew, Type: visa
+2025-06-07 11:36:33 - Expired card: 30/30
+2025-06-07 11:36:33 - Attempting to add payment method: method_type=card
+2025-06-07 11:36:33 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: Andrew, Type: visa
+2025-06-07 11:36:33 - Expired card: 30/30
+2025-06-07 11:36:33 - Attempting to add payment method: method_type=card
+2025-06-07 11:36:33 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: Andrew, Type: visa
+2025-06-07 11:36:33 - Expired card: 30/30
+2025-06-07 11:36:47 - Attempting to add payment method: method_type=online_banking
+2025-06-07 11:36:47 - Payment method added successfully: ID 8
+2025-06-07 11:36:57 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:36:57 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:36:57 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:36:57 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:36:57 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:36:57 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:36:58 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:36:58 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:36:58 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:36:58 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:37:07 - Received make_payment request: {&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;4&#34;,&#34;delivery_street_address&#34;:&#34;123 Main Street&#34;,&#34;delivery_city&#34;:&#34;Kuala Lumpur&#34;,&#34;delivery_postal_code&#34;:&#34;50450&#34;,&#34;payment_method_id&#34;:&#34;5&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;tng&#34;,&#34;phone_number&#34;:&#34;01111126183&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-07 11:37:07 - Received amount: 15, Expected total: 15
+2025-06-07 11:37:07 - Delivery method: delivery, Delivery address ID: 4
+2025-06-07 11:37:07 - Payment method: digital_wallet, Payment method ID: 5
+2025-06-07 11:37:07 - Generated order_id: ORD-68440843AF6F6
+2025-06-07 11:37:07 - Payment successful: order_id=ORD-68440843AF6F6
+2025-06-07 11:37:07 - Redirecting to confirmation.php with order_id=ORD-68440843AF6F6
+2025-06-07 11:55:23 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:55:23 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:55:28 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:55:28 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 11:56:36 - Attempting to add payment method: method_type=digital_wallet
+2025-06-07 11:56:36 - Adding digital wallet - Wallet Type: tng, Phone Number: 01111126184
+2025-06-07 11:56:36 - Payment method added successfully: ID 9
+2025-06-07 11:56:42 - Received make_payment request: {&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;4&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;9&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-07 11:56:42 - Received amount: 15, Expected total: 15
+2025-06-07 11:56:42 - Delivery method: delivery, Delivery address ID: 4
+2025-06-07 11:56:42 - Payment method: digital_wallet, Payment method ID: 9
+2025-06-07 11:56:42 - Generated order_id: ORD-68440CDA3CD25
+2025-06-07 11:56:42 - Payment successful: order_id=ORD-68440CDA3CD25
+2025-06-07 11:56:42 - Redirecting to confirmation.php with order_id=ORD-68440CDA3CD25
+2025-06-07 12:07:26 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450
+2025-06-07 12:07:26 - Duplicate delivery address detected for customer_id=1
+2025-06-07 12:07:36 - Attempting to add payment method: method_type=digital_wallet, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;digital_wallet&#34;,&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;wallet_type&#34;:&#34;tng&#34;,&#34;phone_number&#34;:&#34;01111126183&#34;}
+2025-06-07 12:07:36 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 12:07:55 - Attempting to add payment method: method_type=card, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;card&#34;,&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;card_type&#34;:&#34;visa&#34;,&#34;card_number&#34;:&#34;4111111111111111&#34;,&#34;expiry_date&#34;:&#34;30\/30&#34;,&#34;cvv&#34;:&#34;740&#34;,&#34;card_name&#34;:&#34;Andrew&#34;}
+2025-06-07 12:07:55 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: Andrew, Type: visa
+2025-06-07 12:07:55 - Expired card: 30/30
+2025-06-07 12:07:59 - Attempting to add payment method: method_type=card, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;card&#34;,&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;card_type&#34;:&#34;visa&#34;,&#34;card_number&#34;:&#34;4111111111111111&#34;,&#34;expiry_date&#34;:&#34;30\/30&#34;,&#34;cvv&#34;:&#34;740&#34;,&#34;card_name&#34;:&#34;Andrew&#34;}
+2025-06-07 12:07:59 - Adding card - Number: **** **** **** 1111, Expiry: 30/30, Name: Andrew, Type: visa
+2025-06-07 12:07:59 - Expired card: 30/30
+2025-06-07 12:08:10 - Attempting to add payment method: method_type=card, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;card&#34;,&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;card_type&#34;:&#34;visa&#34;,&#34;card_number&#34;:&#34;4111111111111111&#34;,&#34;expiry_date&#34;:&#34;05\/30&#34;,&#34;cvv&#34;:&#34;740&#34;,&#34;card_name&#34;:&#34;Andrew&#34;}
+2025-06-07 12:08:10 - Duplicate payment method detected for customer_id=1, method_type=card
+2025-06-07 12:08:30 - Attempting to add payment method: method_type=card, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;card&#34;,&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;card_type&#34;:&#34;visa&#34;,&#34;card_number&#34;:&#34;4242424242424242&#34;,&#34;expiry_date&#34;:&#34;05\/30&#34;,&#34;cvv&#34;:&#34;740&#34;,&#34;card_name&#34;:&#34;Andrew&#34;}
+2025-06-07 12:08:30 - Adding card - Number: **** **** **** 4242, Expiry: 05/30, Name: Andrew, Type: visa
+2025-06-07 12:08:30 - Payment method added successfully: ID 10, method_type=card
+2025-06-07 12:13:40 - Attempting to add payment method: method_type=digital_wallet, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;digital_wallet&#34;,&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;wallet_type&#34;:&#34;tng&#34;,&#34;phone_number&#34;:&#34;01111126183&#34;}
+2025-06-07 12:13:40 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 12:13:45 - Attempting to add payment method: method_type=digital_wallet, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;digital_wallet&#34;,&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;wallet_type&#34;:&#34;tng&#34;,&#34;phone_number&#34;:&#34;01111126185&#34;}
+2025-06-07 12:13:45 - Adding digital wallet - Wallet Type: tng, Phone Number: 01111126185
+2025-06-07 12:13:45 - Payment method added successfully: ID 11, method_type=digital_wallet
+2025-06-07 12:13:50 - Received make_payment request: {&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;4&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;11&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-07 12:13:50 - Received amount: 15, Expected total: 15
+2025-06-07 12:13:50 - Delivery method: delivery, Delivery address ID: 4
+2025-06-07 12:13:50 - Payment method: digital_wallet, Payment method ID: 11
+2025-06-07 12:13:50 - Generated order_id: ORD-684410DEC9A59
+2025-06-07 12:13:50 - Payment successful: order_id=ORD-684410DEC9A59
+2025-06-07 12:13:50 - Redirecting to confirmation.php with order_id=ORD-684410DEC9A59
+2025-06-07 12:20:09 - Received make_payment request: {&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;4&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;7&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-07 12:20:09 - Received amount: 15, Expected total: 15
+2025-06-07 12:20:09 - Delivery method: delivery, Delivery address ID: 4
+2025-06-07 12:20:09 - Payment method: card, Payment method ID: 7
+2025-06-07 12:20:09 - Generated order_id: ORD-6844125927072
+2025-06-07 12:20:09 - Payment successful: order_id=ORD-6844125927072
+2025-06-07 12:20:09 - Redirecting to confirmation.php with order_id=ORD-6844125927072
+2025-06-07 12:30:26 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450
+2025-06-07 12:30:26 - Duplicate delivery address detected for customer_id=1
+2025-06-07 12:30:46 - Attempting to add payment method: method_type=digital_wallet, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;digital_wallet&#34;,&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;wallet_type&#34;:&#34;tng&#34;,&#34;phone_number&#34;:&#34;01111126183&#34;}
+2025-06-07 12:30:46 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 12:30:46 - Attempting to add payment method: method_type=digital_wallet, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;digital_wallet&#34;,&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;wallet_type&#34;:&#34;tng&#34;,&#34;phone_number&#34;:&#34;01111126183&#34;}
+2025-06-07 12:30:46 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 12:30:46 - Attempting to add payment method: method_type=digital_wallet, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;digital_wallet&#34;,&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;wallet_type&#34;:&#34;tng&#34;,&#34;phone_number&#34;:&#34;01111126183&#34;}
+2025-06-07 12:30:46 - Duplicate payment method detected for customer_id=1, method_type=digital_wallet
+2025-06-07 12:30:51 - Attempting to add payment method: method_type=digital_wallet, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;digital_wallet&#34;,&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;wallet_type&#34;:&#34;grabpay&#34;,&#34;phone_number&#34;:&#34;01111126183&#34;}
+2025-06-07 12:30:51 - Adding digital wallet - Wallet Type: grabpay, Phone Number: 01111126183
+2025-06-07 12:30:51 - Payment method added successfully: ID 12, method_type=digital_wallet
+2025-06-07 12:30:56 - Received make_payment request: {&#34;csrf_token&#34;:&#34;1aac93c7620fb78c4b3e9050c739cc6db6694accd133aafc6490444e04962cca&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;4&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;12&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;27&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-07 12:30:56 - Received amount: 27, Expected total: 27
+2025-06-07 12:30:56 - Delivery method: delivery, Delivery address ID: 4
+2025-06-07 12:30:56 - Payment method: digital_wallet, Payment method ID: 12
+2025-06-07 12:30:56 - Generated order_id: ORD-684414E0CFE07
+2025-06-07 12:30:56 - Payment successful: order_id=ORD-684414E0CFE07
+2025-06-07 12:30:56 - Redirecting to confirmation.php with order_id=ORD-684414E0CFE07
+=======
 >>>>>>> 0718e94a0484371a19434cc6c131b58d0306dc42
+<<<<<<< HEAD
+>>>>>>> 940ef34924d528b5641e14bd935f5cb1a667810d
+2025-06-07 18:11:33 - Received make_payment request: {&#34;csrf_token&#34;:&#34;43049b8d8cb3e78859f74b67871bc61711e2701dd97f25637755b0fc272ff386&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;4&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;9&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;27&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-07 18:11:33 - Received amount: 27, Expected total: 27
+2025-06-07 18:11:33 - Delivery method: delivery, Delivery address ID: 4
+2025-06-07 18:11:33 - Payment method: digital_wallet, Payment method ID: 9
+2025-06-07 18:11:33 - Generated order_id: ORD-684464B548CBE
+2025-06-07 18:11:33 - Payment successful: order_id=ORD-684464B548CBE
+2025-06-07 18:11:33 - Redirecting to confirmation.php with order_id=ORD-684464B548CBE
+=======
 2025-06-07 17:47:51 - Received make_payment request: {&#34;csrf_token&#34;:&#34;c342b8a680554a01c62a272892ddec5acf8dd5f4761b6c6955840144e93765e7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;148.5&#34;,&#34;make_payment&#34;:&#34;1&#34;}
 2025-06-07 17:47:51 - Received amount: 148.5, Expected total: 148.5
 2025-06-07 17:47:51 - Delivery method: pickup, Delivery address ID: 0
@@ -519,6 +909,7 @@
 2025-06-07 17:50:23 - Generated order_id: ORD-68445FBFB75FB
 2025-06-07 17:50:23 - Payment successful: order_id=ORD-68445FBFB75FB
 2025-06-07 17:50:23 - Redirecting to confirmation.php with order_id=ORD-68445FBFB75FB
+<<<<<<< HEAD
 2025-06-07 18:00:43 - Received make_payment request: {&#34;csrf_token&#34;:&#34;c342b8a680554a01c62a272892ddec5acf8dd5f4761b6c6955840144e93765e7&#34;,&#34;delivery_method&#34;:&#34;pickup&#34;,&#34;delivery_address_id&#34;:&#34;&#34;,&#34;delivery_street_address&#34;:&#34;&#34;,&#34;delivery_city&#34;:&#34;&#34;,&#34;delivery_postal_code&#34;:&#34;&#34;,&#34;save_address&#34;:&#34;1&#34;,&#34;payment_method_id&#34;:&#34;1&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;40&#34;,&#34;make_payment&#34;:&#34;1&#34;}
 2025-06-07 18:00:43 - Received amount: 40, Expected total: 40
 2025-06-07 18:00:43 - Delivery method: pickup, Delivery address ID: 0
@@ -533,3 +924,34 @@
 2025-06-07 18:26:14 - Generated order_id: ORD-68446826344A4
 2025-06-07 18:26:14 - Payment successful: order_id=ORD-68446826344A4
 2025-06-07 18:26:14 - Redirecting to confirmation.php with order_id=ORD-68446826344A4
+=======
+>>>>>>> 162b60ee650c06b2f7bfa97f2086c16c3967efb4
+2025-06-07 18:27:54 - Received make_payment request: {&#34;csrf_token&#34;:&#34;43049b8d8cb3e78859f74b67871bc61711e2701dd97f25637755b0fc272ff386&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;4&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;2&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;42&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-07 18:27:54 - Received amount: 42, Expected total: 42
+2025-06-07 18:27:54 - Delivery method: delivery, Delivery address ID: 4
+2025-06-07 18:27:54 - Payment method: digital_wallet, Payment method ID: 2
+2025-06-07 18:27:54 - Generated order_id: ORD-6844688A7CCC8
+2025-06-07 18:27:54 - Payment successful: order_id=ORD-6844688A7CCC8
+2025-06-07 18:27:54 - Redirecting to confirmation.php with order_id=ORD-6844688A7CCC8
+2025-06-07 18:46:53 - Received make_payment request: {&#34;csrf_token&#34;:&#34;43049b8d8cb3e78859f74b67871bc61711e2701dd97f25637755b0fc272ff386&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;4&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;4&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-07 18:46:53 - Received amount: 15, Expected total: 15
+2025-06-07 18:46:53 - Delivery method: delivery, Delivery address ID: 4
+2025-06-07 18:46:53 - Payment method: card, Payment method ID: 4
+2025-06-07 18:46:53 - Generated order_id: ORD-68446CFD3AF42
+2025-06-07 18:46:53 - Payment successful: order_id=ORD-68446CFD3AF42
+2025-06-07 18:46:53 - Redirecting to confirmation.php with order_id=ORD-68446CFD3AF42
+2025-06-07 18:51:58 - Received make_payment request: {&#34;csrf_token&#34;:&#34;43049b8d8cb3e78859f74b67871bc61711e2701dd97f25637755b0fc272ff386&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;3&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;2&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-07 18:51:58 - Received amount: 15, Expected total: 15
+2025-06-07 18:51:58 - Delivery method: delivery, Delivery address ID: 3
+2025-06-07 18:51:58 - Payment method: digital_wallet, Payment method ID: 2
+2025-06-07 18:51:58 - Generated order_id: ORD-68446E2E54099
+2025-06-07 18:51:58 - Payment successful: order_id=ORD-68446E2E54099
+2025-06-07 18:51:58 - Redirecting to confirmation.php with order_id=ORD-68446E2E54099
+2025-06-07 19:55:21 - Received make_payment request: {&#34;csrf_token&#34;:&#34;43049b8d8cb3e78859f74b67871bc61711e2701dd97f25637755b0fc272ff386&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;4&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;10&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-07 19:55:21 - Received amount: 15, Expected total: 15
+2025-06-07 19:55:21 - Delivery method: delivery, Delivery address ID: 4
+2025-06-07 19:55:21 - Payment method: card, Payment method ID: 10
+2025-06-07 19:55:21 - Generated order_id: ORD-68447D093EAB5
+2025-06-07 19:55:21 - Payment successful: order_id=ORD-68447D093EAB5
+2025-06-07 19:55:21 - Redirecting to confirmation.php with order_id=ORD-68447D093EAB5
+>>>>>>> 71bc74ef7dc4dd70c6bb6d9429ec585d0c364253
