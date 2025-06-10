@@ -5,6 +5,14 @@ require '../db_connect.php';
 // (Optional) Block guests or non-admins if needed
 // if (!isset($_SESSION['admin_id'])) { header("Location: login.php"); exit(); }
 
+// 🔒 Block guests
+if (!isset($_SESSION['customer_id']) || !empty($_SESSION['is_guest'])) {
+  header("Location: ../login.php");
+  exit();
+}
+
+$customerId = $_SESSION['customer_id'];
+
 $query = "
   SELECT n.*, a1.name AS created_by_name, a2.name AS reposted_by_name
   FROM notifications n

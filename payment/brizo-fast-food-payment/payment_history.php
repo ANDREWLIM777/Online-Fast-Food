@@ -15,7 +15,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) >
     session_unset();
     session_destroy();
     $logMessage("Session expired for customer_id: " . ($_SESSION['customer_id'] ?? 'unknown'));
-    header("Location: /Online-Fast-Food/login.php?message=" . urlencode("Your session has expired. Please log in again."));
+    header("Location: /Online-Fast-Food/customer/login.php?message=" . urlencode("Your session has expired. Please log in again."));
     exit();
 }
 $_SESSION['last_activity'] = time();
@@ -30,7 +30,7 @@ if ($conn->connect_error) {
 // Check if user is logged in
 if (!isset($_SESSION['customer_id'])) {
     $logMessage("No customer_id in session");
-    header("Location: /Online-Fast-Food/login.php");
+    header("Location: /Online-Fast-Food/customer/login.php");
     exit();
 }
 
