@@ -104,7 +104,9 @@ if (isset($_SESSION["login_sess"])) {
                     url: 'forgot_process.php',
                     type: 'POST',
                     data: $(this).serialize(),
+                    dataType: 'text', // Force text response to inspect raw data
                     success: function(response) {
+                        console.log('Raw response:', response);
                         try {
                             const res = JSON.parse(response);
                             showToast(res.message, res.status);
@@ -114,12 +116,13 @@ if (isset($_SESSION["login_sess"])) {
                                 }, 2000);
                             }
                         } catch (e) {
-                            showToast("Invalid server response.", "error");
+                            console.error('JSON parse error:', e.message, 'Response:', response);
+                            showToast("Invalid server response: " + response, "error");
                         }
                     },
                     error: function(xhr, status, error) {
-                        showToast("Server error. Try again later.", "error");
-                        console.error("AJAX error:", status, error);
+                        console.error('AJAX error:', status, error, 'Response:', xhr.responseText);
+                        showToast("Server error: " + xhr.responseText, "error");
                     },
                     complete: function() {
                         $btn.prop('disabled', false).html('Send OTP');

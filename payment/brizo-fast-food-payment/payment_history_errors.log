@@ -91,5 +91,20 @@
 2025-06-07 20:12:01 - Payment history accessed for customer_id: 1, page: 1
 2025-06-07 20:12:01 - Payment history accessed for customer_id: 1, page: 1
 2025-06-07 20:12:07 - Payment history accessed for customer_id: 1, page: 1
+<<<<<<< HEAD
+2025-06-07 20:31:52 - Payment history accessed for customer_id: 1, page: 1
+2025-06-07 20:32:06 - Payment history accessed for customer_id: 1, page: 1
+2025-06-07 20:32:28 - Payment history accessed for customer_id: 1, page: 1
+2025-06-07 20:32:40 - Payment history accessed for customer_id: 1, page: 1
+2025-06-07 20:32:44 - Payment history accessed for customer_id: 1, page: 1
+2025-06-07 20:33:00 - Payment history accessed for customer_id: 1, page: 1
+2025-06-07 20:33:21 - Payment history accessed for customer_id: 1, page: 1
+2025-06-07 20:33:23 - Payment history accessed for customer_id: 1, page: 1
+2025-06-07 20:33:34 - Payment history accessed for customer_id: 1, page: 1
+=======
 >>>>>>> 71bc74ef7dc4dd70c6bb6d9429ec585d0c364253
+<<<<<<< HEAD
 2025-06-10 05:29:59 - Payment history accessed for customer_id: 50, page: 1
+=======
+>>>>>>> 30a61dcc4359ec225770ead12553d292eb8ba716
+>>>>>>> 263e93359a799f2a7b7d6dadbcd311c855f96361
