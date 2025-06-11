@@ -136,3 +136,5 @@
 2025-06-07 20:11:05 - Fetched feedback for order ORD-684414E0CFE07: Not found
 2025-06-07 20:12:00 - Customer ID from session: 1
 2025-06-07 20:12:00 - Selected order: order_id=ORD-68446CFD3AF42, found=None
+2025-06-10 05:30:06 - Customer ID from session: 50
+2025-06-10 05:30:06 - Selected order: order_id=ORD-6847A31464242, found=None

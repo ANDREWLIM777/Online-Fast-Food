@@ -955,3 +955,42 @@
 2025-06-07 19:55:21 - Payment successful: order_id=ORD-68447D093EAB5
 2025-06-07 19:55:21 - Redirecting to confirmation.php with order_id=ORD-68447D093EAB5
 >>>>>>> 71bc74ef7dc4dd70c6bb6d9429ec585d0c364253
+2025-06-10 05:02:23 - Attempting to add delivery address: street=AA-7,Lorong A-3,Pekan Nenas, city=Johor, postal_code=81500
+2025-06-10 05:02:23 - Delivery address added successfully: ID 2, AA-7,Lorong A-3,Pekan Nenas, Johor, 81500
+2025-06-10 05:02:39 - Attempting to add payment method: method_type=online_banking, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;online_banking&#34;,&#34;csrf_token&#34;:&#34;9bbe06e5abd0775f19718c46d74a6d600898d0d3364fbd25d666f39abf519c10&#34;,&#34;bank_name&#34;:&#34;cimbclicks&#34;}
+2025-06-10 05:02:39 - Payment method added successfully: ID 3, method_type=online_banking
+2025-06-10 05:03:16 - Received make_payment request: {&#34;csrf_token&#34;:&#34;9bbe06e5abd0775f19718c46d74a6d600898d0d3364fbd25d666f39abf519c10&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;online_banking&#34;,&#34;amount&#34;:&#34;28&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-10 05:03:16 - Received amount: 28, Expected total: 28
+2025-06-10 05:03:16 - Delivery method: delivery, Delivery address ID: 2
+2025-06-10 05:03:16 - Payment method: online_banking, Payment method ID: 3
+2025-06-10 05:03:16 - Generated order_id: ORD-6847A074A6365
+2025-06-10 05:03:16 - Payment successful: order_id=ORD-6847A074A6365
+2025-06-10 05:03:16 - Redirecting to confirmation.php with order_id=ORD-6847A074A6365
+2025-06-10 05:07:41 - Received make_payment request: {&#34;csrf_token&#34;:&#34;9bbe06e5abd0775f19718c46d74a6d600898d0d3364fbd25d666f39abf519c10&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;online_banking&#34;,&#34;amount&#34;:&#34;28&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-10 05:07:41 - Received amount: 28, Expected total: 28
+2025-06-10 05:07:41 - Delivery method: delivery, Delivery address ID: 2
+2025-06-10 05:07:41 - Payment method: online_banking, Payment method ID: 3
+2025-06-10 05:07:41 - Generated order_id: ORD-6847A17DE953C
+2025-06-10 05:07:41 - Payment successful: order_id=ORD-6847A17DE953C
+2025-06-10 05:07:41 - Redirecting to confirmation.php with order_id=ORD-6847A17DE953C
+2025-06-10 05:10:38 - Received make_payment request: {&#34;csrf_token&#34;:&#34;9bbe06e5abd0775f19718c46d74a6d600898d0d3364fbd25d666f39abf519c10&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;online_banking&#34;,&#34;amount&#34;:&#34;5&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-10 05:10:38 - Received amount: 5, Expected total: 5
+2025-06-10 05:10:38 - Delivery method: delivery, Delivery address ID: 2
+2025-06-10 05:10:38 - Payment method: online_banking, Payment method ID: 3
+2025-06-10 05:10:38 - Generated order_id: ORD-6847A22EE34CB
+2025-06-10 05:10:38 - Payment successful: order_id=ORD-6847A22EE34CB
+2025-06-10 05:10:38 - Redirecting to confirmation.php with order_id=ORD-6847A22EE34CB
+2025-06-10 05:11:38 - Received make_payment request: {&#34;csrf_token&#34;:&#34;9bbe06e5abd0775f19718c46d74a6d600898d0d3364fbd25d666f39abf519c10&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;online_banking&#34;,&#34;amount&#34;:&#34;7.5&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-10 05:11:38 - Received amount: 7.5, Expected total: 7.5
+2025-06-10 05:11:38 - Delivery method: delivery, Delivery address ID: 2
+2025-06-10 05:11:38 - Payment method: online_banking, Payment method ID: 3
+2025-06-10 05:11:38 - Generated order_id: ORD-6847A26A148E2
+2025-06-10 05:11:38 - Payment successful: order_id=ORD-6847A26A148E2
+2025-06-10 05:11:38 - Redirecting to confirmation.php with order_id=ORD-6847A26A148E2
+2025-06-10 05:14:28 - Received make_payment request: {&#34;csrf_token&#34;:&#34;9bbe06e5abd0775f19718c46d74a6d600898d0d3364fbd25d666f39abf519c10&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;3&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;online_banking&#34;,&#34;amount&#34;:&#34;12&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-10 05:14:28 - Received amount: 12, Expected total: 12
+2025-06-10 05:14:28 - Delivery method: delivery, Delivery address ID: 2
+2025-06-10 05:14:28 - Payment method: online_banking, Payment method ID: 3
+2025-06-10 05:14:28 - Generated order_id: ORD-6847A31464242
+2025-06-10 05:14:28 - Payment successful: order_id=ORD-6847A31464242
+2025-06-10 05:14:28 - Redirecting to confirmation.php with order_id=ORD-6847A31464242
