@@ -83,8 +83,8 @@ if (isset($_SESSION["login_sess"])) {
             <button type="submit" class="btn form_btn btn-block">Send OTP</button>
         </form>
         <hr>
-        <p>Remembered? <a href="login.php" style="color: #ffa751;">Login</a></p>
-        <p>No account? <a href="signup.php" style="color: #ffa751;">Sign up</a></p>
+        <p>Remembered? <a href="/Online-Fast-Food/customer/login.php" style="color: #ffa751;">Login</a></p>
+        <p>No account? <a href="/Online-Fast-Food/customer/register.php" style="color: #ffa751;">Sign up</a></p>
     </div>
     <div class="toast-container" id="toastContainer"></div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
