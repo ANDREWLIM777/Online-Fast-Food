@@ -54,9 +54,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <?php if ($success): ?><div class="success"><?= $success ?></div><?php endif; ?>
     <form method="POST">
       <label>New Password</label>
-      <input type="password" name="new_password" required><br><br>
+        <input type="password" name="new_password" id="newPassword"
+       required onkeydown="return event.key !== ' '"
+       oninput="this.value = this.value.replace(/\s/g, '')"
+       onpaste="return false"><br><br>
+       
       <label>Confirm Password</label>
-      <input type="password" name="confirm_password" required><br><br>
+      <input type="password" name="confirm_password" id="confirmPassword"
+       required onkeydown="return event.key !== ' '"
+       oninput="this.value = this.value.replace(/\s/g, '')"
+       onpaste="return false"><br><br>
       <button class="btn">Save Password</button>
     </form>
     <a href="change_pass.php" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Change Password</a>

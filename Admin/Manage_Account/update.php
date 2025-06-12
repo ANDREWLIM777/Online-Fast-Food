@@ -56,6 +56,20 @@ if ($result->num_rows > 0) {
     exit;
 }
 
+if (!empty($password)) {
+    if (preg_match('/\s/', $password)) {
+        $_SESSION['error'] = 'Password cannot contain spaces.';
+        header("Location: edit.php?id=$id");
+        exit;
+    }
+
+    $hashed = password_hash($password, PASSWORD_BCRYPT);
+    $sql = "UPDATE admin 
+            SET photo='$new_photo', name='$name', 
+                position='$position', phone='$phone', role='$role', email='$email', password='$hashed'
+            WHERE id=$id";
+}
+
 // Check to see if any other administrators are using this phone number
 $checkPhone = $conn->prepare("SELECT id FROM admin WHERE phone = ? AND id != ?");
 $checkPhone->bind_param("si", $phone, $id);
