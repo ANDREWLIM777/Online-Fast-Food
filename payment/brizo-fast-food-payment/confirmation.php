@@ -265,7 +265,7 @@ if (!empty($orderCode)) {
         $stmt->bind_param("si", $orderCode, $customerId);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
-        $isOrderCompleted = $result && in_array(strtolower($result['status']), ['pending', 'completed']);
+        $isOrderCompleted = $result && strtolower($result['status']) === 'completed';
         $logMessage("Order $orderCode feedback eligibility: " . ($isOrderCompleted ? 'eligible' : 'not eligible'));
         $stmt->close();
     } else {

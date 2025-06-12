@@ -117,3 +117,7 @@
 =======
 >>>>>>> 263e93359a799f2a7b7d6dadbcd311c855f96361
 >>>>>>> 8cce54755ea27c54fb063f23cd515d446b6626b1
+2025-06-12 15:17:21 - No customer_id in session
+2025-06-12 15:17:44 - Payment history accessed for customer_id: 1, page: 1
+2025-06-12 15:17:47 - Payment history accessed for customer_id: 1, page: 2
+2025-06-12 15:18:03 - Payment history accessed for customer_id: 1, page: 1
