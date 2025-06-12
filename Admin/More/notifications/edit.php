@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Edit Notification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body { background: #0f0f0f; color: #eee; font-family: sans-serif; padding: 2rem; }
         .form-container { background: #1c1c1c; padding: 2rem; border-radius: 10px; max-width: 600px; margin: auto; }
@@ -71,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <a class="back-btn" href="index.php"><i class="fas fa-arrow-left"></i> Back to Announcement</a>
 
     <div class="form-container">
-        <h2>✏️ Edit Announcement</h2>
+        <h2><i class="fas fa-edit"></i> Edit Announcement</h2>
         <?php if (isset($error)): ?><div class="error"><?= htmlspecialchars($error) ?></div><?php endif; ?>
         <form method="post">
             <input type="text" name="title" value="<?= htmlspecialchars($notification['title']) ?>" required>
