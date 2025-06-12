@@ -2,43 +2,58 @@
 session_start();
 require 'db_connect.php';
 
+$email = '';
+$password = '';
+$errorCode = '';
+
+// Process form
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
     $email = trim($_POST['email'] ?? '');
     $password = trim($_POST['password'] ?? '');
 
+    // Preserve for repopulating
+    $_SESSION['old_email'] = $email;
+
     if (empty($email) || empty($password)) {
-        header("Location: login.php?error=empty_fields");
-        exit();
-    }
-
-    $stmt = $conn->prepare("SELECT id, fullname, password FROM customers WHERE email = ?");
-    if (!$stmt) {
-        die("Database error: " . $conn->error);
-    }
-
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows === 1) {
-        $stmt->bind_result($id, $fullname, $hashedPassword);
-        $stmt->fetch();
-
-        if (password_verify($password, $hashedPassword)) {
-            $_SESSION['customer_id'] = $id;
-            $_SESSION['customer_name'] = $fullname;
-            unset($_SESSION['is_guest']); // ✅ Important: remove guest if login real account
-            header("Location: ../customer/menu/menu.php");
-            exit();
-        } else {
-            header("Location: login.php?error=wrong_password");
-            exit();
-        }
+        $errorCode = 'empty_fields';
     } else {
-        header("Location: login.php?error=email_not_found");
+        $stmt = $conn->prepare("SELECT id, fullname, password FROM customers WHERE email = ?");
+        if ($stmt) {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if ($stmt->num_rows === 1) {
+                $stmt->bind_result($id, $fullname, $hashedPassword);
+                $stmt->fetch();
+
+                if (password_verify($password, $hashedPassword)) {
+                    $_SESSION['customer_id'] = $id;
+                    $_SESSION['customer_name'] = $fullname;
+                    unset($_SESSION['is_guest']);
+                    unset($_SESSION['old_email']);
+                    header("Location: ../customer/menu/menu.php");
+                    exit();
+                } else {
+                    $errorCode = 'wrong_password';
+                }
+            } else {
+                $errorCode = 'email_not_found';
+            }
+        } else {
+            $errorCode = 'stmt_error';
+        }
+    }
+
+    // Redirect back with error
+    if ($errorCode !== '') {
+        header("Location: login.php?error=$errorCode");
         exit();
     }
 }
+
+// Repopulate email if available
+$oldEmail = $_SESSION['old_email'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
       case 'empty_fields': echo "Please fill in all fields."; break;
       case 'email_not_found': echo "Email not found. Try registering."; break;
       case 'wrong_password': echo "Incorrect password. Please try again."; break;
-      default: echo "Something went wrong.";
+      default: echo "Something went wrong. Please try again.";
     }
   ?>
 </div>
@@ -79,12 +94,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
 
 <form action="login.php" method="POST">
   <label for="email">Email Address</label>
-  <input type="email" id="email" name="email" placeholder="e.g. brizo@email.com" required>
+  <input type="email" id="email" name="email" required placeholder="e.g. brizo@email.com"
+         value="<?= htmlspecialchars($oldEmail) ?>">
 
   <div class="form-group password-group">
     <label for="password">Password</label>
     <div class="password-wrapper">
-      <input type="password" id="password" name="password" placeholder="••••••••" required>
+      <input type="password" id="password" name="password" required placeholder="••••••••">
       <span id="togglePassword" class="eye-icon">👁️</span>
     </div>
   </div>
@@ -92,18 +108,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
   <button type="submit">🍟 Login</button>
 </form>
 
-<!-- ✅ Guest Login Button (Below Login button) -->
 <div class="guest-login">
   <form action="../customer/manage_account/guest/guest_login.php" method="POST">
     <button type="submit" class="guest-btn">Continue as Guest</button>
   </form>
 </div>
 
-<!-- Add under login form -->
 <a href="/Online-Fast-Food/customer/forgot_password/forgot_password.php" class="forgot-link">Forgot your password?</a>
 
-
-<!-- ✅ Register link -->
 <p>Don't have an account? <a href="register.php">Register here</a></p>
 
 <div class="admin-login-link">
@@ -113,6 +125,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
 
 </div>
 
-<script src="login.js"></script>
+<script>
+  const toggle = document.getElementById('togglePassword');
+  const pwd = document.getElementById('password');
+
+  toggle.addEventListener('click', () => {
+    const type = pwd.type === 'password' ? 'text' : 'password';
+    pwd.type = type;
+    toggle.textContent = type === 'password' ? '👁️' : '🙈';
+  });
+</script>
 </body>
 </html>

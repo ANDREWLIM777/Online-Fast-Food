@@ -14,6 +14,7 @@ if (isset($_SESSION['customer_id']) && !$isGuest) {
     $stmt->fetch();
     $stmt->close();
 }
+
 // 🔔 Get unread customer notifications count
 $unreadNotif = 0;
 if (isset($_SESSION['customer_id']) && !$isGuest) {
@@ -29,7 +30,7 @@ $search = trim($_GET['search'] ?? '');
 $category = trim($_GET['category'] ?? '');
 
 $params = [];
-$sql = "SELECT id, category, item_name, description, price, promotion, photo FROM menu_items WHERE is_available = 1";
+$sql = "SELECT id, category, item_name, description, price, photo FROM menu_items WHERE is_available = 1";
 
 if (!empty($category)) {
     $sql .= " AND category = ?";
@@ -132,10 +133,6 @@ while ($row = $result->fetch_assoc()) {
             <div class="menu-info">
               <h3><?= htmlspecialchars($item['item_name']) ?></h3>
               <p class="price">RM <?= number_format($item['price'], 2) ?></p>
-
-              <?php if (!empty($item['promotion'])): ?>
-                <p class="promo-tag">🔥 <?= htmlspecialchars($item['promotion']) ?></p>
-              <?php endif; ?>
 
               <?php if ($isGuest): ?>
                 <a href="/Online-Fast-Food/customer/login.php" class="sign-in-link">Sign in to start ordering!</a>

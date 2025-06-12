@@ -702,7 +702,188 @@
 2025-06-11 02:29:47 - Payment details: 01159887285
 2025-06-11 02:29:47 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
 2025-06-11 02:29:47 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+<<<<<<< HEAD
+2025-06-11 02:36:49 - GET data: {"order_id":"ORD-6848CDFAE95E8"}
+2025-06-11 02:36:49 - SESSION data: []
+2025-06-11 02:36:49 - No customer_id in session
+2025-06-11 18:40:12 - GET data: {"order_id":"ORD-6848CDFAE95E8","csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:40:12 - SESSION data: {"customer_name":"Kai","customer_id":49,"user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","last_activity":1749660007,"csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:40:12 - Order ORD-6848CDFAE95E8 already exists with status: pending
+2025-06-11 18:40:12 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-11 18:40:12 - Order ORD-6848CDFAE95E8 feedback eligibility: eligible
+2025-06-11 18:40:12 - Displaying confirmation for order: ORD-6848CDFAE95E8, Customer ID: 49
+2025-06-11 18:40:12 - Order items count: 1
+2025-06-11 18:40:12 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-11 18:40:12 - Delivery method: delivery
+2025-06-11 18:40:12 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-11 18:40:12 - Customer email: kai@gmail.com
+2025-06-11 18:40:12 - Payment details: 01159887285
+2025-06-11 18:40:13 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-11 18:40:13 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-11 18:48:56 - GET data: {"order_id":"ORD-68445F51245C2","csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:48:56 - SESSION data: {"customer_name":"Kai","customer_id":49,"user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","last_activity":1749660533,"csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:48:56 - Order ORD-68445F51245C2 already exists with status: pending
+2025-06-11 18:48:56 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-11 18:48:56 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-11 18:48:56 - Order ORD-68445F51245C2 feedback eligibility: eligible
+2025-06-11 18:48:56 - Displaying confirmation for order: ORD-68445F51245C2, Customer ID: 49
+2025-06-11 18:48:56 - Order items count: 2
+2025-06-11 18:48:56 - Order items: [{"item_id":1,"quantity":2,"price":"12.00","total":"24.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-11 18:48:56 - Delivery method: delivery
+2025-06-11 18:48:56 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-11 18:48:56 - Customer email: kai@gmail.com
+2025-06-11 18:48:56 - Payment details: 01159887285
+2025-06-11 18:48:56 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-11 18:48:56 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-11 18:48:56 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-11 18:48:56 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-11 18:50:09 - GET data: {"order_id":"ORD-6848CDFAE95E8","csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:50:09 - SESSION data: {"customer_name":"Kai","customer_id":49,"user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","last_activity":1749660607,"csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:50:09 - Order ORD-6848CDFAE95E8 already exists with status: pending
+2025-06-11 18:50:09 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-11 18:50:09 - Order ORD-6848CDFAE95E8 feedback eligibility: eligible
+2025-06-11 18:50:09 - Displaying confirmation for order: ORD-6848CDFAE95E8, Customer ID: 49
+2025-06-11 18:50:09 - Order items count: 1
+2025-06-11 18:50:09 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-11 18:50:09 - Delivery method: delivery
+2025-06-11 18:50:09 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-11 18:50:09 - Customer email: kai@gmail.com
+2025-06-11 18:50:09 - Payment details: 01159887285
+2025-06-11 18:50:09 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-11 18:50:09 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-11 18:50:55 - GET data: {"order_id":"ORD-68445FBFB75FB","csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:50:55 - SESSION data: {"customer_name":"Kai","customer_id":49,"user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","last_activity":1749660651,"csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:50:55 - Order ORD-68445FBFB75FB already exists with status: pending
+2025-06-11 18:50:55 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-11 18:50:55 - Fetched item: Korean Fried Chicken, image: uploads/67f73cd7566e5.jpg
+2025-06-11 18:50:55 - Order ORD-68445FBFB75FB feedback eligibility: eligible
+2025-06-11 18:50:55 - Displaying confirmation for order: ORD-68445FBFB75FB, Customer ID: 49
+2025-06-11 18:50:55 - Order items count: 2
+2025-06-11 18:50:55 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":4,"quantity":1,"price":"7.50","total":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"}]
+2025-06-11 18:50:55 - Delivery method: pickup
+2025-06-11 18:50:55 - Delivery address: ""
+2025-06-11 18:50:55 - Customer email: kai@gmail.com
+2025-06-11 18:50:55 - Payment details: 01159887285
+2025-06-11 18:50:55 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-11 18:50:55 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-11 18:50:55 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg, HTTP code: 200
+2025-06-11 18:50:55 - Web image URL for Korean Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-06-11 18:51:42 - GET data: {"order_id":"ORD-68417034232A0","csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:51:42 - SESSION data: {"customer_name":"Kai","customer_id":49,"user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","last_activity":1749660691,"csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:51:42 - Order ORD-68417034232A0 already exists with status: completed
+2025-06-11 18:51:42 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-11 18:51:42 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-11 18:51:42 - Order ORD-68417034232A0 feedback eligibility: eligible
+2025-06-11 18:51:42 - Displaying confirmation for order: ORD-68417034232A0, Customer ID: 49
+2025-06-11 18:51:42 - Order items count: 2
+2025-06-11 18:51:42 - Order items: [{"item_id":1,"quantity":18,"price":"12.00","total":"216.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-11 18:51:42 - Delivery method: pickup
+2025-06-11 18:51:42 - Delivery address: ""
+2025-06-11 18:51:42 - Customer email: kai@gmail.com
+2025-06-11 18:51:42 - Payment details: 01159887285
+2025-06-11 18:51:42 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-11 18:51:42 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-11 18:51:42 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-11 18:51:42 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-11 18:53:58 - GET data: {"order_id":"ORD-6849B4A5F40C7"}
+2025-06-11 18:53:58 - SESSION data: {"customer_name":"Kai","customer_id":49,"user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","last_activity":1749660837,"csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275","last_order":{"order_code":"ORD-6849B4A5F40C7","amount":14,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-11 18:53:58","items":[{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]}}
+2025-06-11 18:53:58 - Order ORD-6849B4A5F40C7 already exists with status: pending
+2025-06-11 18:53:58 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-11 18:53:58 - Order ORD-6849B4A5F40C7 feedback eligibility: eligible
+2025-06-11 18:53:58 - Displaying confirmation for order: ORD-6849B4A5F40C7, Customer ID: 49
+2025-06-11 18:53:58 - Order items count: 1
+2025-06-11 18:53:58 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-11 18:53:58 - Delivery method: delivery
+2025-06-11 18:53:58 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-11 18:53:58 - Customer email: kai@gmail.com
+2025-06-11 18:53:58 - Payment details: 01159887285
+2025-06-11 18:53:58 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-11 18:53:58 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-11 18:55:01 - GET data: {"order_id":"ORD-6841B906A7CF4","csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:55:01 - SESSION data: {"customer_name":"Kai","customer_id":49,"user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","last_activity":1749660895,"csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:55:01 - Order ORD-6841B906A7CF4 already exists with status: completed
+2025-06-11 18:55:01 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-11 18:55:01 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-11 18:55:01 - Order ORD-6841B906A7CF4 feedback eligibility: eligible
+2025-06-11 18:55:01 - Displaying confirmation for order: ORD-6841B906A7CF4, Customer ID: 49
+2025-06-11 18:55:01 - Order items count: 2
+2025-06-11 18:55:01 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-11 18:55:01 - Delivery method: pickup
+2025-06-11 18:55:01 - Delivery address: ""
+2025-06-11 18:55:01 - Customer email: kai@gmail.com
+2025-06-11 18:55:01 - Payment details: 01159887285
+2025-06-11 18:55:01 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-11 18:55:01 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-11 18:55:01 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-11 18:55:01 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-11 18:55:10 - GET data: {"order_id":"ORD-6849B4A5F40C7","csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:55:10 - SESSION data: {"customer_name":"Kai","customer_id":49,"user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","last_activity":1749660908,"csrf_token":"703c2a55e7d8712a634a7a8171296faef00a557ab1c9680499f63655d3e6d275"}
+2025-06-11 18:55:10 - Order ORD-6849B4A5F40C7 already exists with status: pending
+2025-06-11 18:55:10 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-11 18:55:10 - Order ORD-6849B4A5F40C7 feedback eligibility: eligible
+2025-06-11 18:55:10 - Displaying confirmation for order: ORD-6849B4A5F40C7, Customer ID: 49
+2025-06-11 18:55:10 - Order items count: 1
+2025-06-11 18:55:10 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-11 18:55:10 - Delivery method: delivery
+2025-06-11 18:55:10 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-11 18:55:10 - Customer email: kai@gmail.com
+2025-06-11 18:55:10 - Payment details: 01159887285
+2025-06-11 18:55:10 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-11 18:55:10 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-11 18:58:16 - GET data: {"order_id":"ORD-6841B906A7CF4","csrf_token":"1eb93ab73580afc36c7369978d50c00fc7d55a71f23da69663b4633ad2d84827"}
+2025-06-11 18:58:16 - SESSION data: {"customer_name":"Kai","last_activity":1749661094,"customer_id":49,"csrf_token":"1eb93ab73580afc36c7369978d50c00fc7d55a71f23da69663b4633ad2d84827"}
+2025-06-11 18:58:16 - Order ORD-6841B906A7CF4 already exists with status: completed
+2025-06-11 18:58:16 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-11 18:58:16 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-11 18:58:16 - Order ORD-6841B906A7CF4 feedback eligibility: eligible
+2025-06-11 18:58:16 - Displaying confirmation for order: ORD-6841B906A7CF4, Customer ID: 49
+2025-06-11 18:58:16 - Order items count: 2
+2025-06-11 18:58:16 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-11 18:58:16 - Delivery method: pickup
+2025-06-11 18:58:16 - Delivery address: ""
+2025-06-11 18:58:16 - Customer email: kai@gmail.com
+2025-06-11 18:58:16 - Payment details: 01159887285
+2025-06-11 18:58:16 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-11 18:58:16 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-11 18:58:16 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-11 18:58:16 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-11 18:58:53 - GET data: {"order_id":"ORD-6841B906A7CF4","csrf_token":"1eb93ab73580afc36c7369978d50c00fc7d55a71f23da69663b4633ad2d84827"}
+2025-06-11 18:58:53 - SESSION data: {"customer_name":"Kai","last_activity":1749661130,"customer_id":49,"csrf_token":"1eb93ab73580afc36c7369978d50c00fc7d55a71f23da69663b4633ad2d84827"}
+2025-06-11 18:58:53 - Order ORD-6841B906A7CF4 already exists with status: completed
+2025-06-11 18:58:53 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-11 18:58:53 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-11 18:58:53 - Order ORD-6841B906A7CF4 feedback eligibility: eligible
+2025-06-11 18:58:53 - Displaying confirmation for order: ORD-6841B906A7CF4, Customer ID: 49
+2025-06-11 18:58:53 - Order items count: 2
+2025-06-11 18:58:53 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-11 18:58:53 - Delivery method: pickup
+2025-06-11 18:58:53 - Delivery address: ""
+2025-06-11 18:58:53 - Customer email: kai@gmail.com
+2025-06-11 18:58:53 - Payment details: 01159887285
+2025-06-11 18:58:53 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-11 18:58:53 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-11 18:58:53 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-11 18:58:53 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-11 18:58:59 - GET data: {"order_id":"ORD-68417034232A0","csrf_token":"1eb93ab73580afc36c7369978d50c00fc7d55a71f23da69663b4633ad2d84827"}
+2025-06-11 18:58:59 - SESSION data: {"customer_name":"Kai","last_activity":1749661137,"customer_id":49,"csrf_token":"1eb93ab73580afc36c7369978d50c00fc7d55a71f23da69663b4633ad2d84827"}
+2025-06-11 18:58:59 - Order ORD-68417034232A0 already exists with status: completed
+2025-06-11 18:58:59 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-11 18:58:59 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-11 18:58:59 - Order ORD-68417034232A0 feedback eligibility: eligible
+2025-06-11 18:58:59 - Displaying confirmation for order: ORD-68417034232A0, Customer ID: 49
+2025-06-11 18:58:59 - Order items count: 2
+2025-06-11 18:58:59 - Order items: [{"item_id":1,"quantity":18,"price":"12.00","total":"216.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-11 18:58:59 - Delivery method: pickup
+2025-06-11 18:58:59 - Delivery address: ""
+2025-06-11 18:58:59 - Customer email: kai@gmail.com
+2025-06-11 18:58:59 - Payment details: 01159887285
+2025-06-11 18:58:59 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-11 18:58:59 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-11 18:58:59 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-11 18:58:59 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+=======
 >>>>>>> 8cce54755ea27c54fb063f23cd515d446b6626b1
+<<<<<<< HEAD
 2025-06-12 15:17:39 - GET data: {"order_id":"ORD-684AD3734B36A"}
 2025-06-12 15:17:39 - SESSION data: {"last_activity":1749734259,"customer_id":1,"customer_name":"Andrew","csrf_token":"12c0d57b77c8cbe927d0cbfa9da0479091409ccd0142cde2962f32fcfca0ea30","last_order":{"order_code":"ORD-684AD3734B36A","amount":58,"method":"card","payment_details":"1111","delivery_method":"delivery","delivery_address":{"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"},"timestamp":"2025-06-12 15:17:39","items":[{"item_id":12,"quantity":1,"price":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png"}]}}
 2025-06-12 15:17:40 - Order ORD-684AD3734B36A already exists with status: pending
@@ -778,3 +959,6 @@
 2025-06-12 15:18:24 - Payment details: 1111
 2025-06-12 15:18:24 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png, HTTP code: 200
 2025-06-12 15:18:24 - Web image URL for Crispy Whole Chicken Set: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png
+=======
+>>>>>>> daec884892d3eefc4f7ed19d4a4ab7a1c0120981
+>>>>>>> a355176055edcf5264335195aa4bdbaa9f4f7871
