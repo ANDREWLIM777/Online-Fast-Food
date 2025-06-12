@@ -73,7 +73,7 @@ if (isset($_SESSION["login_sess"])) {
 </head>
 <body>
     <div class="login-box text-center">
-        <img src="assets/images/brizo-logo.png" alt="Brizo Fast Food" class="img-fluid logo">
+        <img src="/Online-Fast-Food/customer/logo.png" alt="Brizo Fast Food" class="img-fluid logo">
         <h4 class="mb-4"><i class="fas fa-lock"></i> Forgot Your Password?</h4>
         <form id="forgotForm">
             <div class="form-group">

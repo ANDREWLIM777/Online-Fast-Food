@@ -70,15 +70,13 @@ while ($row = $result->fetch_assoc()) {
   <div>Welcome to Brizo Fast Food Melaka</div>
 </div>
 
-<!-- 🔔 Notification Bell -->
-<a href="/Online-Fast-Food/customer/customer_notification/customer_notification.php" class="notification-bell">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="bell-icon">
-    <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 0 0-5-5.917V4a1 1 0 1 0-2 0v1.083A6 6 0 0 0 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 1 1-6 0v-1h6z"/>
+<!-- my orders-floating -->
+<a href="/Online-Fast-Food/customer/orders/orders.php" class="notification-bell">
+  <svg xmlns="http://www.w3.org/2000/svg" class="orders-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 8h14l-1.5 12h-11L5 8zm2 0V6a5 5 0 0110 0v2" />
   </svg>
-  <?php if ($unreadNotif > 0): ?>
-    <span class="notif-count"><?= $unreadNotif ?></span>
-  <?php endif; ?>
 </a>
+
 
 <!-- 🛒 Floating Cart Icon (for logged-in users) -->
 <?php if (!$isGuest): ?>
