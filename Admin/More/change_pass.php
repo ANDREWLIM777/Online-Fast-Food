@@ -19,10 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->fetch();
     $stmt->close();
 
-    if (!password_verify($current, $hashed)) {
-        $error = "❌ Current password is incorrect.";
-    } elseif ($new !== $confirm) {
-        $error = "❌ New passwords do not match.";
+
+if (preg_match('/\s/', $new)) {
+    $error = "❌ New password cannot contain spaces.";
+} elseif (!password_verify($current, $hashed)) {
+    $error = "❌ Current password is incorrect.";
+} elseif ($new !== $confirm) {
+    $error = "❌ New passwords do not match.";
+
     } else {
         $new_hashed = password_hash($new, PASSWORD_BCRYPT);
         $update = $conn->prepare("UPDATE admin SET password = ? WHERE id = ?");
@@ -31,6 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $success = "✅ Password successfully updated.";
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -261,7 +267,10 @@ body::before {
     <div class="form-group">
   <label>Current Password</label>
   <div class="password-wrapper">
-    <input type="password" name="current_password" id="currentPassword" required>
+    <input type="password" name="current_password" id="currentPassword"
+       required onkeydown="return event.key !== ' '"
+       oninput="this.value = this.value.replace(/\s/g, '')"
+       onpaste="return false">
     <i class="fas fa-eye-slash toggle-password" onclick="togglePassword('currentPassword', this)"></i>
   </div>
 </div>
@@ -269,7 +278,10 @@ body::before {
 <div class="form-group">
   <label>New Password</label>
   <div class="password-wrapper">
-    <input type="password" name="new_password" id="newPassword" required>
+   <input type="password" name="new_password" id="newPassword"
+       required onkeydown="return event.key !== ' '"
+       oninput="this.value = this.value.replace(/\s/g, '')"
+       onpaste="return false">
     <i class="fas fa-eye-slash toggle-password" onclick="togglePassword('newPassword', this)"></i>
   </div>
 </div>
@@ -277,7 +289,10 @@ body::before {
 <div class="form-group">
   <label>Confirm New Password</label>
   <div class="password-wrapper">
-    <input type="password" name="confirm_password" id="confirmPassword" required>
+   <input type="password" name="confirm_password" id="confirmPassword"
+       required onkeydown="return event.key !== ' '"
+       oninput="this.value = this.value.replace(/\s/g, '')"
+       onpaste="return false">
     <i class="fas fa-eye-slash toggle-password" onclick="togglePassword('confirmPassword', this)"></i>
   </div>
 </div>

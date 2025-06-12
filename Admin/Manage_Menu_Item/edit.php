@@ -21,6 +21,14 @@ try {
     die("Error loading item: " . $e->getMessage());
 }
 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $price = $_POST["price"];
+
+    if ($price < 0) {
+        $error = "Price cannot be negative.";
+    }
+}
+
 // Processing form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $error = null;
@@ -75,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 description = :desc,
                 price = :price,
                 is_available = :available,
-                promotion = :promotion,
+
                 photo = :photo
                 WHERE id = :id");
             
@@ -85,7 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':desc' => htmlspecialchars($_POST['description'] ?? ''),
                 ':price' => filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
                 ':available' => isset($_POST['is_available']) ? 1 : 0,
-                ':promotion' => $_POST['promotion'] ?? null,
                 ':photo' => $photoPath,
                 ':id' => $_GET['id']
             ]);
@@ -334,16 +341,11 @@ img {
 
                 <div class="form-group">
                     <label>Price *</label>
-                    <input type="number" step="0.01" name="price" value="<?= $item['price'] ?>" required>
+                    <input type="number" step="0.01" name="price" min="0" value="<?= $item['price'] ?>" required>
                 </div>
 
                 <div class="form-group">
                     <label><input type="checkbox" name="is_available" <?= $item['is_available'] ? 'checked' : '' ?>> Available</label>
-                </div>
-
-                <div class="form-group">
-                    <label>Promotion Text</label>
-                    <input type="text" name="promotion" value="<?= htmlspecialchars($item['promotion']) ?>">
                 </div>
 
                 <?php if (!empty($item['photo'])): ?>

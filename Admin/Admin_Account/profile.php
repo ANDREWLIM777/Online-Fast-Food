@@ -1,7 +1,9 @@
 <?php
 include '../auth.php';
 include 'db.php';
+
 $user_id = $_SESSION['user_id'];
+
 $sql = "SELECT * FROM admin WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
@@ -10,22 +12,39 @@ $user = $stmt->get_result()->fetch_assoc();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $phone = $_POST['phone'];
+    $error = '';
 
-    if ($_FILES['photo']['name']) {
-        $photo = time() . '_' . $_FILES['photo']['name'];
-        move_uploaded_file($_FILES['photo']['tmp_name'], "upload/" . $photo);
-        $update = $conn->prepare("UPDATE admin SET age=?, phone=?, photo=? WHERE id=?");
-        $update->bind_param("issi", $age, $phone, $photo, $user_id);
-    } else {
-        $update = $conn->prepare("UPDATE admin SET age=?, phone=? WHERE id=?");
-        $update->bind_param("isi", $age, $phone, $user_id);
+    if (!preg_match('/^\d{7,13}$/', $phone)) {
+        $error = "Phone number must be between 7 and 13 digits.";
     }
 
-    if ($update->execute()) {
-        echo "<script>alert('Profile updated.'); window.location.href='../Main Page/main_page.php';</script>";
+    if (!$error) {
+        if (!empty($_FILES['photo']['name'])) {
+            $photo = time() . '_' . basename($_FILES['photo']['name']);
+            move_uploaded_file($_FILES['photo']['tmp_name'], "upload/" . $photo);
+
+            $update = $conn->prepare("UPDATE admin SET phone = ?, photo = ? WHERE id = ?");
+            $update->bind_param("ssi", $phone, $photo, $user_id);
+        } else {
+            $update = $conn->prepare("UPDATE admin SET phone = ? WHERE id = ?");
+            $update->bind_param("si", $phone, $user_id);
+        }
+
+        if ($update->execute()) {
+            echo "<script>alert('Profile updated successfully.'); window.location.href='../Main Page/main_page.php';</script>";
+            exit;
+        } else {
+            $error = "Failed to update profile.";
+        }
+    }
+
+    if ($error) {
+        echo "<script>alert('$error'); window.history.back();</script>";
+        exit;
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -132,23 +151,23 @@ body::before {
     </a>
     <h2>Edit Profile</h2>
     <form method="POST" enctype="multipart/form-data">
-        <label>Full Name</label>
-        <input type="text" value="<?php echo $user['name']; ?>" disabled>
+    <label>Full Name</label>
+    <input type="text" value="<?= htmlspecialchars($user['name']) ?>" disabled>
 
-        <label>Email</label>
-        <input type="text" value="<?php echo $user['email']; ?>" disabled>
+    <label>Email</label>
+    <input type="text" value="<?= htmlspecialchars($user['email']) ?>" disabled>
 
-        <label>Role</label>
-        <input type="text" value="<?php echo $user['role']; ?>" disabled>
+    <label>Role</label>
+    <input type="text" value="<?= htmlspecialchars($user['role']) ?>" disabled>
 
-        <label>Phone</label>
-        <input type="text" name="phone" value="<?php echo $user['phone']; ?>" required>
+    <label>Phone</label>
+    <input type="text" name="phone" pattern="\d{7,13}" title="Enter 7 to 13 digits only" value="<?= htmlspecialchars($user['phone']) ?>" required>
 
-        <label>Change Photo</label>
-        <input type="file" name="photo" accept="image/*">
+    <label>Change Photo</label>
+    <input type="file" name="photo" accept="image/*">
 
-        <button type="submit">Update</button>
-    </form>
+    <button type="submit">Update</button>
+</form>
 </div>
 </body>
 </html>

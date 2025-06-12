@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <a class="back-btn" href="index.php"><i class="fas fa-arrow-left"></i> Back to Announcement</a>
 
 <div class="container">
-    <h2>⚠️ Confirm Deletion</h2>
+    <h2><i class="fas fa-exclamation-triangle"></i> Confirm Deletion</h2>
     <p>Are you sure you want to delete this notification?</p>
     <p><strong><?= htmlspecialchars($notification['title']) ?></strong></p>
 
