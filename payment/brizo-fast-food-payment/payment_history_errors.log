@@ -103,4 +103,44 @@
 2025-06-07 20:33:34 - Payment history accessed for customer_id: 1, page: 1
 =======
 >>>>>>> 71bc74ef7dc4dd70c6bb6d9429ec585d0c364253
+<<<<<<< HEAD
+2025-06-10 05:29:59 - Payment history accessed for customer_id: 50, page: 1
+=======
 >>>>>>> 30a61dcc4359ec225770ead12553d292eb8ba716
+<<<<<<< HEAD
+2025-06-12 06:59:11 - No customer_id in session
+2025-06-12 07:00:10 - Payment history accessed for customer_id: 1, page: 1
+2025-06-12 07:08:15 - Payment history accessed for customer_id: 1, page: 1
+2025-06-12 07:09:21 - Payment history accessed for customer_id: 1, page: 1
+2025-06-12 07:09:26 - Payment history accessed for customer_id: 1, page: 2
+2025-06-12 07:09:28 - Payment history accessed for customer_id: 1, page: 1
+=======
+>>>>>>> 263e93359a799f2a7b7d6dadbcd311c855f96361
+<<<<<<< HEAD
+2025-06-11 18:40:07 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 18:40:26 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 18:42:03 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 18:48:53 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 18:50:07 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 18:50:51 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 18:51:31 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 18:54:55 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 18:55:08 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 18:58:14 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 18:58:50 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 18:58:57 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 18:59:50 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 18:59:54 - Payment history accessed for customer_id: 49, page: 2
+2025-06-11 18:59:56 - Payment history accessed for customer_id: 49, page: 1
+2025-06-11 19:00:14 - Payment history accessed for customer_id: 49, page: 1
+2025-06-12 11:01:36 - Payment history accessed for customer_id: 49, page: 1
+=======
+>>>>>>> 8cce54755ea27c54fb063f23cd515d446b6626b1
+<<<<<<< HEAD
+2025-06-12 15:17:21 - No customer_id in session
+2025-06-12 15:17:44 - Payment history accessed for customer_id: 1, page: 1
+2025-06-12 15:17:47 - Payment history accessed for customer_id: 1, page: 2
+2025-06-12 15:18:03 - Payment history accessed for customer_id: 1, page: 1
+=======
+>>>>>>> daec884892d3eefc4f7ed19d4a4ab7a1c0120981
+>>>>>>> a355176055edcf5264335195aa4bdbaa9f4f7871

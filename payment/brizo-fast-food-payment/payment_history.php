@@ -3,7 +3,7 @@ ob_start();
 session_start();
 require '../db_connect.php';
 
-// Debug mode
+// Enable debug mode
 $debug = true;
 $logFile = 'payment_history_errors.log';
 $logMessage = function($message) use ($logFile) {
@@ -20,14 +20,14 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) >
 }
 $_SESSION['last_activity'] = time();
 
-// Check database connection
+// Verify database connection
 if ($conn->connect_error) {
     $logMessage("Database connection failed: " . $conn->connect_error);
     header("Location: /Online-Fast-Food/error.php?message=" . urlencode("Database connection failed"));
     exit();
 }
 
-// Check if user is logged in
+// Ensure user is logged in
 if (!isset($_SESSION['customer_id'])) {
     $logMessage("No customer_id in session");
     header("Location: /Online-Fast-Food/customer/login.php");
@@ -101,19 +101,13 @@ if (!$stmt->execute()) {
 $payment_history = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
-// Log access
+// Log page access
 $logMessage("Payment history accessed for customer_id: $customerId, page: $page");
 
 // Function to get status color
 function getStatusColor($status) {
-    switch (strtolower($status)) {
-        case 'completed': return 'text-green-600';
-        case 'pending': return 'text-yellow-600';
-        case 'preparing': return 'text-orange-600';
-        case 'delivering': return 'text-blue-600';
-        case 'delivered': return 'text-purple-600';
-        default: return 'text-gray-600';
-    }
+    // Always return green for "Complete" display
+    return 'text-green-600';
 }
 
 // Function to format delivery address
@@ -135,7 +129,7 @@ function formatDeliveryAddress($address) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment History - Brizo Fast Food Mel Lilliput</title>
+    <title>Payment History - Brizo Fast Food Melaka</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -201,7 +195,7 @@ function formatDeliveryAddress($address) {
 <body class="bg-gray-100">
     <header class="sticky top-0 bg-white shadow z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-primary">Brizo Fast Food Lilliput</h1>
+            <h1 class="text-2xl font-bold text-primary">Brizo Fast Food Melaka</h1>
             <a href="/Online-Fast-Food/customer/menu/cart/cart.php" class="text-primary hover:text-primary flex items-center">
                 <i class="fas fa-shopping-cart mr-2"></i> Back to Cart
             </a>
@@ -238,7 +232,7 @@ function formatDeliveryAddress($address) {
                                     <td>RM <?= number_format($row['amount'], 2) ?></td>
                                     <td class="<?= getStatusColor($row['status']) ?>">
                                         <i class="fas fa-circle icon text-xs"></i>
-                                        <?= htmlspecialchars(ucfirst(strtolower($row['status']))) ?>
+                                        Complete
                                     </td>
                                     <td>
                                         <i class="fas <?= ($row['method'] ?? 'unknown') === 'card' ? 'fa-credit-card' : (($row['method'] ?? 'unknown') === 'online_banking' ? 'fa-university' : 'fa-wallet') ?> icon"></i>

@@ -10,6 +10,7 @@ if (!$customerId) {
 
 $error = '';
 $success = '';
+$old = $new = $confirm = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $old = $_POST['old_password'];
@@ -27,6 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "❌ Old password is incorrect.";
     } elseif (strlen($new) < 8) {
         $error = "⚠️ New password must be at least 8 characters.";
+    } elseif (!preg_match('/[A-Z]/', $new)) {
+        $error = "⚠️ Password must include at least one uppercase letter.";
+    } elseif (!preg_match('/[a-z]/', $new)) {
+        $error = "⚠️ Password must include at least one lowercase letter.";
+    } elseif (!preg_match('/[\W_]/', $new)) {
+        $error = "⚠️ Password must include at least one special character.";
     } elseif ($new !== $confirm) {
         $error = "❌ New passwords do not match.";
     } else {
@@ -36,12 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $update->execute();
 
         $success = "✅ Password updated successfully.";
+        $old = $new = $confirm = ''; // Clear inputs after success
     }
 }
 ?>
-
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Change Password</title>
@@ -166,13 +173,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST" novalidate>
       <label for="old_password">Current Password</label>
       <div class="input-group">
-        <input type="password" name="old_password" id="old_password" required>
+        <input type="password" name="old_password" id="old_password" required value="<?= htmlspecialchars($old) ?>">
         <span class="toggle-visibility" onclick="togglePassword('old_password', this)">👁️</span>
       </div>
 
       <label for="new_password">New Password</label>
       <div class="input-group">
-        <input type="password" name="new_password" id="new_password" required oninput="updateStrength('new_password', 'strengthFill1', 'strengthText1')">
+        <input type="password" name="new_password" id="new_password" required 
+               value="<?= htmlspecialchars($new) ?>" 
+               oninput="updateStrength('new_password', 'strengthFill1', 'strengthText1')">
         <span class="toggle-visibility" onclick="togglePassword('new_password', this)">👁️</span>
       </div>
       <div class="strength-bar"><div id="strengthFill1" class="strength-fill"></div></div>
@@ -181,6 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <label for="confirm_password">Confirm Password</label>
       <div class="input-group">
         <input type="password" name="confirm_password" id="confirm_password" required 
+               value="<?= htmlspecialchars($confirm) ?>"
                oninput="updateStrength('confirm_password', 'strengthFill2', 'strengthText2'); checkMatch()"
                onkeyup="checkMatch()">
         <span class="toggle-visibility" onclick="togglePassword('confirm_password', this)">👁️</span>
@@ -248,8 +258,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         matchBox.style.color = '#e74c3c';
       }
     }
+
+    // Run strength + match checks on page load if values are pre-filled
+    window.addEventListener('DOMContentLoaded', () => {
+      updateStrength('new_password', 'strengthFill1', 'strengthText1');
+      updateStrength('confirm_password', 'strengthFill2', 'strengthText2');
+      checkMatch();
+    });
   </script>
+
   <?php include '../menu_icon.php'; ?>
-<?php include '../footer.php'; ?>
+  <?php include '../footer.php'; ?>
 </body>
 </html>

@@ -136,6 +136,10 @@
 2025-06-07 20:11:05 - Fetched feedback for order ORD-684414E0CFE07: Not found
 2025-06-07 20:12:00 - Customer ID from session: 1
 2025-06-07 20:12:00 - Selected order: order_id=ORD-68446CFD3AF42, found=None
+<<<<<<< HEAD
+2025-06-10 05:30:06 - Customer ID from session: 50
+2025-06-10 05:30:06 - Selected order: order_id=ORD-6847A31464242, found=None
+=======
 2025-06-07 20:32:02 - Customer ID from session: 1
 2025-06-07 20:32:02 - Selected order: order_id=ORD-6844858D0D039, found=None
 2025-06-07 20:32:25 - Customer ID from session: 1
@@ -148,3 +152,44 @@
 2025-06-07 20:32:49 - Fetched feedback for order ORD-684410DEC9A59: Not found
 2025-06-07 20:33:28 - Customer ID from session: 1
 2025-06-07 20:33:28 - Selected order: order_id=ORD-6844858D0D039, found=None
+>>>>>>> 263e93359a799f2a7b7d6dadbcd311c855f96361
+2025-06-11 18:54:51 - Customer ID from session: 49
+2025-06-11 18:54:51 - Selected order: order_id=ORD-6849B4A5F40C7, found=None
+2025-06-11 18:55:03 - Customer ID from session: 49
+2025-06-11 18:55:03 - Selected order: order_id=ORD-6841B906A7CF4, found={"order_id":"ORD-6841B906A7CF4","total":"40.00","created_at":"2025-06-05 23:34:30","customer_id":49,"status":"completed"}
+2025-06-11 18:55:03 - Fetched feedback for order ORD-6841B906A7CF4: Not found
+2025-06-11 18:55:12 - Customer ID from session: 49
+2025-06-11 18:55:12 - Selected order: order_id=ORD-6849B4A5F40C7, found=None
+2025-06-11 18:57:26 - No customer_id in session
+2025-06-11 18:57:37 - No customer_id in session
+2025-06-11 18:57:44 - No customer_id in session
+2025-06-11 18:58:10 - Customer ID from session: 49
+2025-06-11 18:58:18 - Customer ID from session: 49
+2025-06-11 18:58:18 - Selected order: order_id=ORD-6841B906A7CF4, found={"order_id":"ORD-6841B906A7CF4","total":"40.00","created_at":"2025-06-05 23:34:30","customer_id":49,"status":"completed"}
+2025-06-11 18:58:18 - Fetched feedback for order ORD-6841B906A7CF4: Not found
+2025-06-11 18:58:42 - Customer ID from session: 49
+2025-06-11 18:58:42 - Feedback saved for order: ORD-6841B906A7CF4, rating: 5
+2025-06-11 18:58:45 - Feedback email failed for order: ORD-6841B906A7CF4 - SMTP Error: Could not authenticate.
+2025-06-11 18:58:45 - Customer ID from session: 49
+2025-06-11 18:58:45 - Selected order: order_id=ORD-6841B906A7CF4, found={"order_id":"ORD-6841B906A7CF4","total":"40.00","created_at":"2025-06-05 23:34:30","customer_id":49,"status":"completed"}
+2025-06-11 18:58:45 - Fetched feedback for order ORD-6841B906A7CF4: Found
+2025-06-11 18:58:55 - Customer ID from session: 49
+2025-06-11 18:58:55 - Selected order: order_id=ORD-6841B906A7CF4, found={"order_id":"ORD-6841B906A7CF4","total":"40.00","created_at":"2025-06-05 23:34:30","customer_id":49,"status":"completed"}
+2025-06-11 18:58:55 - Fetched feedback for order ORD-6841B906A7CF4: Found
+2025-06-11 18:59:00 - Customer ID from session: 49
+2025-06-11 18:59:00 - Selected order: order_id=ORD-68417034232A0, found={"order_id":"ORD-68417034232A0","total":"230.00","created_at":"2025-06-05 18:23:48","customer_id":49,"status":"completed"}
+2025-06-11 18:59:00 - Fetched feedback for order ORD-68417034232A0: Not found
+2025-06-11 18:59:16 - Customer ID from session: 49
+2025-06-11 18:59:16 - Invalid file type or size for order: ORD-68417034232A0
+2025-06-11 18:59:16 - Customer ID from session: 49
+2025-06-11 18:59:16 - Selected order: order_id=ORD-68417034232A0, found={"order_id":"ORD-68417034232A0","total":"230.00","created_at":"2025-06-05 18:23:48","customer_id":49,"status":"completed"}
+2025-06-11 18:59:16 - Fetched feedback for order ORD-68417034232A0: Not found
+2025-06-11 18:59:35 - Customer ID from session: 49
+2025-06-11 18:59:35 - Feedback saved for order: ORD-68417034232A0, rating: 1
+2025-06-11 18:59:36 - Feedback email failed for order: ORD-68417034232A0 - SMTP Error: Could not authenticate.
+2025-06-11 18:59:36 - Customer ID from session: 49
+2025-06-11 18:59:36 - Feedback already exists for order: ORD-68417034232A0
+2025-06-11 18:59:36 - Customer ID from session: 49
+2025-06-11 18:59:36 - Selected order: order_id=ORD-68417034232A0, found={"order_id":"ORD-68417034232A0","total":"230.00","created_at":"2025-06-05 18:23:48","customer_id":49,"status":"completed"}
+2025-06-11 18:59:36 - Fetched feedback for order ORD-68417034232A0: Found
+2025-06-11 19:00:03 - Customer ID from session: 49

@@ -233,7 +233,12 @@ while ($order = $ordersResult->fetch_assoc()) {
 <body>
 
 <div class="notif-container">
-  <h1>🧾 Your Orders</h1>
+  <h1>Your Orders</h1>
+
+  <label style="display: block; margin-bottom: 1.5rem;">
+  <input type="checkbox" id="hideCompletedCheckbox" onchange="toggleCompletedOrders()" />
+  Hide Completed Orders
+</label>
 
   <?php if (empty($orders)): ?>
     <p class="empty">You haven’t made any orders yet.</p>
@@ -251,7 +256,7 @@ while ($order = $ordersResult->fetch_assoc()) {
           </div>
 
           <div class="total">Total: RM <?= number_format($order['total'], 2) ?></div>
-          <div class="toggle-items" onclick="toggleItems(this)">📦 View Items</div>
+          <div class="toggle-items" onclick="toggleItems(this)">View Items</div>
           <div class="item-list">
             <?php foreach ($order['items'] as $item): ?>
               <div class="item">
@@ -281,11 +286,20 @@ while ($order = $ordersResult->fetch_assoc()) {
 </div>
 
 <script>
+  //hide completed orders
+      function toggleCompletedOrders() {
+  const hide = document.getElementById('hideCompletedCheckbox').checked;
+  const completedCards = document.querySelectorAll('.status-completed');
+  completedCards.forEach(card => {
+    card.style.display = hide ? 'none' : 'flex';
+  });
+}
+
   function toggleItems(el) {
     const box = el.nextElementSibling;
     const show = box.style.display !== 'block';
     box.style.display = show ? 'block' : 'none';
-    el.textContent = show ? '🔽 Hide Items' : '📦 View Items';
+    el.textContent = show ? 'Hide Items' : 'View Items';
   }
 
   // Show notification with animation if URL has ?completed=1
@@ -294,6 +308,7 @@ while ($order = $ordersResult->fetch_assoc()) {
     if (urlParams.get('completed') === '1') {
       const notif = document.getElementById('orderCompletedNotif');
       notif.style.display = 'block';
+
 
       // Play fadeIn animation
       notif.style.animation = 'fadeInNotif 0.4s forwards';
@@ -310,7 +325,7 @@ while ($order = $ordersResult->fetch_assoc()) {
             window.history.replaceState(null, '', cleanUrl);
           }
         }, { once: true });
-      }, 3000);
+      }, 4000);
     }
   });
 </script>
