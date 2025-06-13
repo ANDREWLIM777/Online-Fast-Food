@@ -1511,3 +1511,17 @@
 =======
 >>>>>>> 709274061a2206c4f6851875963355554b1acb01
 >>>>>>> 1ba2aa7cf0e015e2f1c87a9383174fc0e56364d9
+2025-06-14 00:50:42 - GET data: {"order_id":"ORD-684CAB4264F79"}
+2025-06-14 00:50:42 - SESSION data: {"user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","customer_id":1,"customer_name":"Andrew","last_activity":1749855042,"csrf_token":"9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0","last_order":{"order_code":"ORD-684CAB4264F79","amount":28,"method":"digital_wallet","payment_details":"01111126184","delivery_method":"delivery","delivery_address":{"street_address":"123 Taman Maju Jaya","city":"Johor Bahru","postal_code":"81301"},"timestamp":"2025-06-14 00:50:42","items":[{"item_id":2,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]}}
+2025-06-14 00:50:43 - Order ORD-684CAB4264F79 already exists with status: pending
+2025-06-14 00:50:43 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-14 00:50:43 - Order ORD-684CAB4264F79 feedback eligibility: not eligible
+2025-06-14 00:50:43 - Displaying confirmation for order: ORD-684CAB4264F79, Customer ID: 1
+2025-06-14 00:50:43 - Order items count: 1
+2025-06-14 00:50:43 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-14 00:50:43 - Delivery method: delivery
+2025-06-14 00:50:43 - Delivery address: "{\"street_address\":\"123 Taman Maju Jaya\",\"city\":\"Johor Bahru\",\"postal_code\":\"81301\"}"
+2025-06-14 00:50:43 - Customer email: andrewbrizo31@gmail.com
+2025-06-14 00:50:43 - Payment details: 01111126184
+2025-06-14 00:50:43 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-14 00:50:43 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg

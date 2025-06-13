@@ -1,0 +1,98 @@
+2025-06-13 23:56:25 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0
+2025-06-14 00:01:01 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0
+2025-06-14 00:01:06 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0
+2025-06-14 00:01:06 - Delete request: {&#34;delete_delivery_address&#34;:&#34;1&#34;,&#34;address_id&#34;:&#34;4&#34;,&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;}
+2025-06-14 00:01:06 - Delete address ID: 4
+2025-06-14 00:01:06 - Deleted address ID: 4
+2025-06-14 00:01:10 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0
+2025-06-14 00:01:10 - Add request: {&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;,&#34;street_address&#34;:&#34;123 Taman Maju Jaya&#34;,&#34;city&#34;:&#34;Johor Bahru&#34;,&#34;postal_code&#34;:&#34;81300&#34;,&#34;add_delivery_address&#34;:&#34;1&#34;}
+2025-06-14 00:01:10 - Add data: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:01:10 - Added address ID: 5
+2025-06-14 00:02:24 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0
+2025-06-14 00:03:29 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0
+2025-06-14 00:13:23 - db_connect.php not found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../../customer/menu/db_connect.php
+2025-06-14 00:13:23 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0, Document Root: C:/xampp/apache/bin/htdocs
+2025-06-14 00:13:29 - db_connect.php not found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../../customer/menu/db_connect.php
+2025-06-14 00:13:29 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0, Document Root: C:/xampp/apache/bin/htdocs
+2025-06-14 00:13:29 - Delete request: {&#34;delete_delivery_address&#34;:&#34;1&#34;,&#34;address_id&#34;:&#34;5&#34;,&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;}
+2025-06-14 00:13:29 - Delete address ID: 5
+2025-06-14 00:13:29 - Deleted address ID: 5
+2025-06-14 00:13:33 - db_connect.php not found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../../customer/menu/db_connect.php
+2025-06-14 00:13:33 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0, Document Root: C:/xampp/apache/bin/htdocs
+2025-06-14 00:13:33 - Add request: {&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;,&#34;street_address&#34;:&#34;123 Taman Maju Jaya&#34;,&#34;city&#34;:&#34;Johor Bahru&#34;,&#34;postal_code&#34;:&#34;81300&#34;,&#34;add_delivery_address&#34;:&#34;1&#34;}
+2025-06-14 00:13:33 - Add data: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:13:33 - Added address ID: 6
+2025-06-14 00:16:33 - db_connect.php not found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../../customer/menu/db_connect.php
+2025-06-14 00:16:33 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0, Document Root: C:/xampp/apache/bin/htdocs
+2025-06-14 00:19:29 - db_connect.php not found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../../customer/menu/db_connect.php
+2025-06-14 00:19:29 - db_connect.php found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../db_connect.php
+2025-06-14 00:19:29 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0, Document Root: C:/xampp/apache/bin/htdocs
+2025-06-14 00:19:36 - db_connect.php not found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../../customer/menu/db_connect.php
+2025-06-14 00:19:36 - db_connect.php found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../db_connect.php
+2025-06-14 00:19:36 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0, Document Root: C:/xampp/apache/bin/htdocs
+2025-06-14 00:19:36 - Delete request: {&#34;delete_delivery_address&#34;:&#34;1&#34;,&#34;address_id&#34;:&#34;6&#34;,&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;}
+2025-06-14 00:19:36 - Delete address ID: 6
+2025-06-14 00:19:36 - Deleted address ID: 6
+2025-06-14 00:19:40 - db_connect.php not found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../../customer/menu/db_connect.php
+2025-06-14 00:19:40 - db_connect.php found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../db_connect.php
+2025-06-14 00:19:40 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0, Document Root: C:/xampp/apache/bin/htdocs
+2025-06-14 00:19:40 - Add request: {&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;,&#34;street_address&#34;:&#34;123 Taman Maju Jaya&#34;,&#34;city&#34;:&#34;Johor Bahru&#34;,&#34;postal_code&#34;:&#34;81300&#34;,&#34;add_delivery_address&#34;:&#34;1&#34;}
+2025-06-14 00:19:40 - Add data: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:19:40 - Added address ID: 7
+2025-06-14 00:26:20 - db_connect.php not found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../../customer/menu/db_connect.php
+2025-06-14 00:26:20 - db_connect.php found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../db_connect.php
+2025-06-14 00:26:20 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0, Document Root: C:/xampp/apache/bin/htdocs
+2025-06-14 00:38:38 - db_connect.php not found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../../customer/menu/db_connect.php
+2025-06-14 00:38:38 - Found db_connect.php at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../db_connect.php
+2025-06-14 00:38:38 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0
+2025-06-14 00:38:49 - db_connect.php not found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../../customer/menu/db_connect.php
+2025-06-14 00:38:49 - Found db_connect.php at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../db_connect.php
+2025-06-14 00:38:49 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0
+2025-06-14 00:38:49 - Delete request: {&#34;delete_delivery_address&#34;:&#34;1&#34;,&#34;address_id&#34;:&#34;7&#34;,&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;}
+2025-06-14 00:38:49 - Delete address ID: 7
+2025-06-14 00:38:49 - Delete exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#39;49 FROM delivery_addresses WHERE id = ? AND customer_id = ?&#39; at line 1
+2025-06-14 00:39:02 - db_connect.php not found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../../customer/menu/db_connect.php
+2025-06-14 00:39:02 - Found db_connect.php at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../db_connect.php
+2025-06-14 00:39:02 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0
+2025-06-14 00:39:02 - Add request: {&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;,&#34;street_address&#34;:&#34;123 Taman Maju Jaya&#34;,&#34;city&#34;:&#34;Johor Bahru&#34;,&#34;postal_code&#34;:&#34;81300&#34;,&#34;add_delivery_address&#34;:&#34;1&#34;}
+2025-06-14 00:39:02 - Add data: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300, IsDefault=0
+2025-06-14 00:39:02 - Added address ID: 8
+2025-06-14 00:39:27 - db_connect.php not found at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../../customer/menu/db_connect.php
+2025-06-14 00:39:27 - Found db_connect.php at: C:\xampp\apache\bin\htdocs\Online-Fast-Food\payment\brizo-fast-food-payment/../../db_connect.php
+2025-06-14 00:39:27 - Customer ID: 1, CSRF Token: 9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0
+2025-06-14 00:45:32 - Delete request: {&#34;delete_delivery_address&#34;:&#34;1&#34;,&#34;address_id&#34;:&#34;8&#34;,&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;}
+2025-06-14 00:45:32 - Delete address ID: 8
+2025-06-14 00:45:32 - Deleted address ID: 8
+2025-06-14 00:45:34 - Delete request: {&#34;delete_delivery_address&#34;:&#34;1&#34;,&#34;address_id&#34;:&#34;7&#34;,&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;}
+2025-06-14 00:45:34 - Delete address ID: 7
+2025-06-14 00:45:34 - Deleted address ID: 7
+2025-06-14 00:49:53 - Add request: {&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;,&#34;street_address&#34;:&#34;123 Taman Maju Jaya&#34;,&#34;city&#34;:&#34;Johor Bahru&#34;,&#34;postal_code&#34;:&#34;81300&#34;,&#34;add_delivery_address&#34;:&#34;1&#34;}
+2025-06-14 00:49:53 - Add data: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:49:53 - Added address ID: 9
+2025-06-14 00:49:57 - Delete request: {&#34;delete_delivery_address&#34;:&#34;1&#34;,&#34;address_id&#34;:&#34;9&#34;,&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;}
+2025-06-14 00:49:57 - Delete address ID: 9
+2025-06-14 00:49:57 - Deleted address ID: 9
+2025-06-14 00:50:06 - Add request: {&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;,&#34;street_address&#34;:&#34;123 Taman Maju Jaya&#34;,&#34;city&#34;:&#34;Johor Bahru&#34;,&#34;postal_code&#34;:&#34;81300&#34;,&#34;add_delivery_address&#34;:&#34;1&#34;}
+2025-06-14 00:50:06 - Add data: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:50:06 - Added address ID: 10
+2025-06-14 00:50:09 - Add request: {&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;,&#34;street_address&#34;:&#34;123 Taman Maju Jaya&#34;,&#34;city&#34;:&#34;Johor Bahru&#34;,&#34;postal_code&#34;:&#34;81300&#34;,&#34;add_delivery_address&#34;:&#34;1&#34;}
+2025-06-14 00:50:09 - Add data: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:50:09 - Duplicate address detected: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:50:09 - Add request: {&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;,&#34;street_address&#34;:&#34;123 Taman Maju Jaya&#34;,&#34;city&#34;:&#34;Johor Bahru&#34;,&#34;postal_code&#34;:&#34;81300&#34;,&#34;add_delivery_address&#34;:&#34;1&#34;}
+2025-06-14 00:50:09 - Add data: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:50:09 - Duplicate address detected: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:50:09 - Add request: {&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;,&#34;street_address&#34;:&#34;123 Taman Maju Jaya&#34;,&#34;city&#34;:&#34;Johor Bahru&#34;,&#34;postal_code&#34;:&#34;81300&#34;,&#34;add_delivery_address&#34;:&#34;1&#34;}
+2025-06-14 00:50:09 - Add data: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:50:09 - Duplicate address detected: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:50:11 - Add request: {&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;,&#34;street_address&#34;:&#34;123 Taman Maju Jaya&#34;,&#34;city&#34;:&#34;Johor Bahru&#34;,&#34;postal_code&#34;:&#34;81300&#34;,&#34;add_delivery_address&#34;:&#34;1&#34;}
+2025-06-14 00:50:11 - Add data: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:50:11 - Duplicate address detected: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:50:12 - Add request: {&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;,&#34;street_address&#34;:&#34;123 Taman Maju Jaya&#34;,&#34;city&#34;:&#34;Johor Bahru&#34;,&#34;postal_code&#34;:&#34;81300&#34;,&#34;add_delivery_address&#34;:&#34;1&#34;}
+2025-06-14 00:50:12 - Add data: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:50:12 - Duplicate address detected: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:50:17 - Add request: {&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;,&#34;street_address&#34;:&#34;123 Taman Maju Jaya&#34;,&#34;city&#34;:&#34;Johor Bahru&#34;,&#34;postal_code&#34;:&#34;81300&#34;,&#34;add_delivery_address&#34;:&#34;1&#34;}
+2025-06-14 00:50:17 - Add data: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:50:17 - Duplicate address detected: Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81300
+2025-06-14 00:50:29 - Edit request: {&#34;csrf_token&#34;:&#34;9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0&#34;,&#34;address_id&#34;:&#34;10&#34;,&#34;street_address&#34;:&#34;123 Taman Maju Jaya&#34;,&#34;city&#34;:&#34;Johor Bahru&#34;,&#34;postal_code&#34;:&#34;81301&#34;,&#34;edit_delivery_address&#34;:&#34;1&#34;}
+2025-06-14 00:50:29 - Edit data: Address ID=10, Street=123 Taman Maju Jaya, City=Johor Bahru, Postal=81301
+2025-06-14 00:50:29 - Updated address ID: 10
