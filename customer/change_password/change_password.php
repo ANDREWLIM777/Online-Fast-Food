@@ -26,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!password_verify($old, $hashed)) {
         $error = "❌ Old password is incorrect.";
+    } elseif (password_verify($new, $hashed)) {
+        $error = "⚠️ New password must be different from the old password.";
     } elseif (strlen($new) < 8) {
         $error = "⚠️ New password must be at least 8 characters.";
     } elseif (!preg_match('/[A-Z]/', $new)) {
@@ -231,7 +233,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       if (strength === 1) { color = '#e74c3c'; label = 'Weak'; }
       else if (strength === 2) { color = '#e67e22'; label = 'Fair'; }
       else if (strength === 3) { color = '#f1c40f'; label = 'Good'; }
-      else if (strength >= 4) { color = '#2ecc71'; label = 'Strong'; }
+      else if (strength === 4) { color = '#2ecc71'; label = 'Strong'; }
+      else if (strength >= 5) { color = '#2ecc71'; label = 'Perfect'; }
+
 
       fill.style.width = width + '%';
       fill.style.backgroundColor = color;
@@ -251,10 +255,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       }
 
       if (pwd === confirm) {
-        matchBox.textContent = '✅ Passwords match';
+        matchBox.textContent = 'Passwords match';
         matchBox.style.color = '#2ecc71';
       } else {
-        matchBox.textContent = '❌ Passwords do not match';
+        matchBox.textContent = 'Passwords do not match';
         matchBox.style.color = '#e74c3c';
       }
     }

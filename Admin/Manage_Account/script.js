@@ -14,4 +14,15 @@ function togglePassword() {
     }
 }
 
+function noSpace(input) {
+    input.value = input.value.replace(/\s/g, '');
+}
+
+document.querySelector('form').addEventListener('submit', function(e) {
+    const phone = document.querySelector('input[name="phone"]').value;
+    if (!/^\d{7,11}$/.test(phone)) {
+        alert('Phone number must be 7 to 11 digits only.');
+        e.preventDefault();
+    }
+});
 

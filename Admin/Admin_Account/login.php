@@ -13,6 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
+        if (preg_match('/\s/', $password)) {
+    $_SESSION['login_error'] = "Password cannot contain spaces.";
+    header("Location: login.php");
+    exit();
+}
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
@@ -132,7 +137,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label>Password</label>
 <div style="position: relative;">
-    <input type="password" name="password" id="passwordField" required style="padding-right: 10px;">
+    <input type="password" name="password" id="passwordField" required
+       style="padding-right: 10px;"
+       onkeydown="return event.key !== ' '"
+       oninput="this.value = this.value.replace(/\s/g, '')"
+       onpaste="return false">
     <span onclick="togglePassword()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #c0a23d;">
         <i id="eyeIcon" class="fas fa-eye-slash"></i>
     </span>

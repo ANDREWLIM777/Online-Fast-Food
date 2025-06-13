@@ -107,18 +107,26 @@ $admin = $result->fetch_assoc();
             </div>
         </div>
 
-        <div class="form-group">
-            <label>Role</label>
-            <div class="styled-select">
-                <i class="fas fa-shield-alt"></i>
-                <select name="role" required>
-                    <option value="admin" <?= $admin['role'] == 'admin' ? 'selected' : '' ?>>Admin</option>
-                    <option value="superadmin" <?= $admin['role'] == 'superadmin' ? 'selected' : '' ?>>Super Admin</option>
-                </select>
-                <div class="select-arrow"></div>
-            </div>
+  <div class="form-group">
+    <label>Role</label>
+    <?php if ($admin['role'] === 'superadmin'): ?>
+        <div class="input-with-icon">
+            <i class="fas fa-shield-alt"></i>
+            <input type="text" value="superadmin" disabled>
+            <input type="hidden" name="role" value="superadmin">
         </div>
-    </div>
+        <small class="form-note">Super Admin role cannot be changed</small>
+    <?php else: ?>
+        <div class="styled-select">
+            <i class="fas fa-shield-alt"></i>
+            <select name="role" required>
+                <option value="admin" <?= $admin['role'] == 'admin' ? 'selected' : '' ?>>Admin</option>
+                <option value="superadmin" <?= $admin['role'] == 'superadmin' ? 'selected' : '' ?>>Super Admin</option>
+            </select>
+            <div class="select-arrow"></div>
+        </div>
+    <?php endif; ?>
+</div>
 
     <div class="form-row">
         <div class="form-group">
@@ -133,16 +141,25 @@ $admin = $result->fetch_assoc();
             <label>Phone</label>
             <div class="input-with-icon">
                 <i class="fas fa-phone"></i>
-                <input type="text" name="phone" value="<?= htmlspecialchars($admin['phone']) ?>" required>
+              <input type="text" name="phone"
+       value="<?= htmlspecialchars($admin['phone']) ?>"
+       pattern="\d{7,11}" maxlength="11"
+       title="Phone number must be 7 to 11 digits"
+       oninput="this.value = this.value.replace(/\D/g, '')"
+       required>
             </div>
         </div>
-    </div>
+</div>
+
 
     <div class="form-group">
         <label>New Password</label>
         <div class="input-with-icon password-field">
-
-            <input type="password" name="password" id="password" placeholder="••••••••">
+            <input type="password" name="password" id="password"
+       placeholder="••••••••"
+       onkeydown="return event.key !== ' '"
+       oninput="this.value = this.value.replace(/\s/g, '')"
+       onpaste="return false">
             <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
         </div>
         <small class="form-note">Leave blank to keep current password</small>
@@ -160,6 +177,7 @@ $admin = $result->fetch_assoc();
         </div>
     </form>
 </div>
-<script src="script.js"></script>
+<script src="script.js">
+</script>
 </body>
 </html>

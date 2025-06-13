@@ -38,7 +38,7 @@
 <section class="features">
   <div class="feature">
     <h2>🍔 Premium Quality</h2>
-    <p>Only the best ingredients — hand-picked and chef-approved.</p>
+    <p>Only the best ingredients — hand-picked and chef-approv  ed.</p>
   </div>
   <div class="feature">
     <h2>⚡ Ultra Fast Delivery</h2>

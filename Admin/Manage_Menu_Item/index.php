@@ -126,9 +126,7 @@ foreach ($items as $item) {
                         <div class="price-row">
                             <div class="price-bubble">
                                 $<?= number_format($item['price'], 2) ?>
-                                <?php if($item['promotion']): ?>
-                                <span class="promo-flag"><?= htmlspecialchars($item['promotion']) ?></span>
-                                <?php endif; ?>
+                               
                             </div>
                             <div class="action-buttons">
                                 <a href="edit.php?id=<?= $item['id'] ?>" class="icon-btn edit-btn">

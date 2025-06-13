@@ -11,7 +11,7 @@ if (!$id || !is_numeric($id)) {
     exit();
 }
 
-$stmt = $conn->prepare("SELECT name, email FROM admin WHERE id = ?");
+$stmt = $conn->prepare("SELECT name, email, role FROM admin WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -23,12 +23,19 @@ if (!$admin) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($admin['role'] === 'superadmin') {
+        echo "<script>alert('You cannot delete a superadmin account.'); window.location.href='index.php';</script>";
+        exit();
+    }
+
     $stmt = $conn->prepare("DELETE FROM admin WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     header("Location: index.php?msg=deleted");
     exit();
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -92,8 +99,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <a class="back-btn" href="index.php"><i class="fas fa-arrow-left"></i> Back to Admins</a>
 
+<?php if ($admin['role'] === 'superadmin'): ?>
+    <p style="color: #f88; font-weight: bold;">This user is a superadmin and cannot be deleted.</p>
+<?php endif; ?>
+
 <div class="container">
-    <h2>🗑️ Confirm Delete</h2>
+    <h2><i class="fas fa-trash"></i> Confirm Delete</h2>
     <p>Are you sure you want to delete<br>
         <strong><?= htmlspecialchars($admin['name']) ?> (<?= htmlspecialchars($admin['email']) ?>)</strong>?
     </p>
@@ -101,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST">
         <div class="btn-group">
             <a href="index.php" class="btn btn-cancel">Cancel</a>
-            <button type="submit" class="btn btn-delete">Delete</button>
+            <button type="submit" class="btn btn-delete" <?= $admin['role'] === 'superadmin' ? 'disabled' : '' ?>>Delete</button>
         </div>
     </form>
 </div>

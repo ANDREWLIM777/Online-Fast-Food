@@ -961,7 +961,419 @@
 2025-06-12 15:18:24 - Web image URL for Crispy Whole Chicken Set: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png
 =======
 >>>>>>> daec884892d3eefc4f7ed19d4a4ab7a1c0120981
+<<<<<<< HEAD
+2025-06-12 11:02:45 - GET data: {"order_id":"ORD-684A97B4D7E49"}
+2025-06-12 11:02:45 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749718964,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b","last_order":{"order_code":"ORD-684A97B4D7E49","amount":14.5,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-12 11:02:44","items":[{"item_id":4,"quantity":1,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":5,"quantity":1,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"}]}}
+2025-06-12 11:02:45 - Order ORD-684A97B4D7E49 already exists with status: pending
+2025-06-12 11:02:45 - Fetched item: Korean Fried Chicken, image: uploads/67f73cd7566e5.jpg
+2025-06-12 11:02:45 - Fetched item: Buttermilk Fried Chicken, image: uploads/67f889fd4887d.png
+2025-06-12 11:02:45 - Order ORD-684A97B4D7E49 feedback eligibility: eligible
+2025-06-12 11:02:45 - Displaying confirmation for order: ORD-684A97B4D7E49, Customer ID: 49
+2025-06-12 11:02:45 - Order items count: 2
+2025-06-12 11:02:45 - Order items: [{"item_id":4,"quantity":1,"price":"7.50","total":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":5,"quantity":1,"price":"7.00","total":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"}]
+2025-06-12 11:02:45 - Delivery method: delivery
+2025-06-12 11:02:45 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 11:02:45 - Customer email: kai@gmail.com
+2025-06-12 11:02:45 - Payment details: 01159887285
+2025-06-12 11:02:45 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg, HTTP code: 200
+2025-06-12 11:02:45 - Web image URL for Korean Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-06-12 11:02:45 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f889fd4887d.png, HTTP code: 200
+2025-06-12 11:02:45 - Web image URL for Buttermilk Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f889fd4887d.png
+2025-06-12 11:06:06 - GET data: {"order_id":"ORD-684A987EA060D"}
+2025-06-12 11:06:06 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749719166,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b","last_order":{"order_code":"ORD-684A987EA060D","amount":28,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-12 11:06:06","items":[{"item_id":2,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]}}
+2025-06-12 11:06:06 - Order ORD-684A987EA060D already exists with status: pending
+2025-06-12 11:06:06 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:06:06 - Order ORD-684A987EA060D feedback eligibility: eligible
+2025-06-12 11:06:06 - Displaying confirmation for order: ORD-684A987EA060D, Customer ID: 49
+2025-06-12 11:06:06 - Order items count: 1
+2025-06-12 11:06:06 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-12 11:06:06 - Delivery method: delivery
+2025-06-12 11:06:06 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 11:06:06 - Customer email: kai@gmail.com
+2025-06-12 11:06:06 - Payment details: 01159887285
+2025-06-12 11:06:06 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:06:06 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:22:40 - GET data: {"order_id":"ORD-684A987EA060D","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:22:40 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720146,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:22:40 - Order ORD-684A987EA060D already exists with status: pending
+2025-06-12 11:22:40 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:22:40 - Order ORD-684A987EA060D feedback eligibility: eligible
+2025-06-12 11:22:40 - Displaying confirmation for order: ORD-684A987EA060D, Customer ID: 49
+2025-06-12 11:22:40 - Order items count: 1
+2025-06-12 11:22:40 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-12 11:22:40 - Delivery method: delivery
+2025-06-12 11:22:40 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 11:22:40 - Customer email: kai@gmail.com
+2025-06-12 11:22:40 - Payment details: 01159887285
+2025-06-12 11:22:40 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:22:40 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:22:46 - GET data: {"order_id":"ORD-6841B906A7CF4","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:22:46 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720160,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:22:46 - Order ORD-6841B906A7CF4 already exists with status: completed
+2025-06-12 11:22:46 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:22:46 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-12 11:22:46 - Order ORD-6841B906A7CF4 feedback eligibility: eligible
+2025-06-12 11:22:46 - Displaying confirmation for order: ORD-6841B906A7CF4, Customer ID: 49
+2025-06-12 11:22:46 - Order items count: 2
+2025-06-12 11:22:46 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-12 11:22:46 - Delivery method: pickup
+2025-06-12 11:22:46 - Delivery address: ""
+2025-06-12 11:22:46 - Customer email: kai@gmail.com
+2025-06-12 11:22:46 - Payment details: 01159887285
+2025-06-12 11:22:46 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:22:46 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:22:46 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-12 11:22:46 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-12 11:22:55 - GET data: {"order_id":"ORD-6841B906A7CF4","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:22:55 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720172,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:22:55 - Order ORD-6841B906A7CF4 already exists with status: completed
+2025-06-12 11:22:55 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:22:55 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-12 11:22:55 - Order ORD-6841B906A7CF4 feedback eligibility: eligible
+2025-06-12 11:22:55 - Displaying confirmation for order: ORD-6841B906A7CF4, Customer ID: 49
+2025-06-12 11:22:55 - Order items count: 2
+2025-06-12 11:22:55 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-12 11:22:55 - Delivery method: pickup
+2025-06-12 11:22:55 - Delivery address: ""
+2025-06-12 11:22:55 - Customer email: kai@gmail.com
+2025-06-12 11:22:55 - Payment details: 01159887285
+2025-06-12 11:22:55 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:22:55 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:22:55 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-12 11:22:55 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-12 11:26:40 - GET data: {"order_id":"ORD-684A987EA060D","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:26:40 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720398,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:26:40 - Order ORD-684A987EA060D already exists with status: pending
+2025-06-12 11:26:40 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:26:40 - Order ORD-684A987EA060D feedback eligibility: eligible
+2025-06-12 11:26:40 - Displaying confirmation for order: ORD-684A987EA060D, Customer ID: 49
+2025-06-12 11:26:40 - Order items count: 1
+2025-06-12 11:26:40 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-12 11:26:40 - Delivery method: delivery
+2025-06-12 11:26:40 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 11:26:40 - Customer email: kai@gmail.com
+2025-06-12 11:26:40 - Payment details: 01159887285
+2025-06-12 11:26:40 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:26:40 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:26:46 - GET data: {"order_id":"ORD-6848CDFAE95E8","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:26:46 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720405,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:26:46 - Order ORD-6848CDFAE95E8 already exists with status: pending
+2025-06-12 11:26:46 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-12 11:26:46 - Order ORD-6848CDFAE95E8 feedback eligibility: eligible
+2025-06-12 11:26:46 - Displaying confirmation for order: ORD-6848CDFAE95E8, Customer ID: 49
+2025-06-12 11:26:46 - Order items count: 1
+2025-06-12 11:26:46 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-12 11:26:46 - Delivery method: delivery
+2025-06-12 11:26:46 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 11:26:46 - Customer email: kai@gmail.com
+2025-06-12 11:26:46 - Payment details: 01159887285
+2025-06-12 11:26:46 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-12 11:26:46 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-12 11:27:24 - GET data: {"order_id":"ORD-68445FBFB75FB","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:27:24 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720435,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:27:24 - Order ORD-68445FBFB75FB already exists with status: pending
+2025-06-12 11:27:24 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:27:24 - Fetched item: Korean Fried Chicken, image: uploads/67f73cd7566e5.jpg
+2025-06-12 11:27:24 - Order ORD-68445FBFB75FB feedback eligibility: eligible
+2025-06-12 11:27:24 - Displaying confirmation for order: ORD-68445FBFB75FB, Customer ID: 49
+2025-06-12 11:27:24 - Order items count: 2
+2025-06-12 11:27:24 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":4,"quantity":1,"price":"7.50","total":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"}]
+2025-06-12 11:27:24 - Delivery method: pickup
+2025-06-12 11:27:24 - Delivery address: ""
+2025-06-12 11:27:24 - Customer email: kai@gmail.com
+2025-06-12 11:27:24 - Payment details: 01159887285
+2025-06-12 11:27:24 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:27:24 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:27:24 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg, HTTP code: 200
+2025-06-12 11:27:24 - Web image URL for Korean Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-06-12 11:27:42 - GET data: {"order_id":"ORD-6841B906A7CF4","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:27:42 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720460,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:27:42 - Order ORD-6841B906A7CF4 already exists with status: completed
+2025-06-12 11:27:42 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:27:42 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-12 11:27:42 - Order ORD-6841B906A7CF4 feedback eligibility: eligible
+2025-06-12 11:27:42 - Displaying confirmation for order: ORD-6841B906A7CF4, Customer ID: 49
+2025-06-12 11:27:42 - Order items count: 2
+2025-06-12 11:27:42 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-12 11:27:42 - Delivery method: pickup
+2025-06-12 11:27:42 - Delivery address: ""
+2025-06-12 11:27:42 - Customer email: kai@gmail.com
+2025-06-12 11:27:42 - Payment details: 01159887285
+2025-06-12 11:27:42 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:27:42 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:27:42 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-12 11:27:42 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-12 11:27:47 - GET data: {"order_id":"ORD-68445F276A3F2","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:27:47 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720465,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:27:47 - Order ORD-68445F276A3F2 already exists with status: preparing
+2025-06-12 11:27:47 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:27:47 - Fetched item: Korean Fried Chicken, image: uploads/67f73cd7566e5.jpg
+2025-06-12 11:27:47 - Fetched item: Iced Lemon Tea, image: uploads/67f88981a15cb.png
+2025-06-12 11:27:47 - Fetched item: Crispy Whole Chicken Set, image: uploads/67f88b846c275.png
+2025-06-12 11:27:47 - Order ORD-68445F276A3F2 feedback eligibility: not eligible
+2025-06-12 11:27:47 - Displaying confirmation for order: ORD-68445F276A3F2, Customer ID: 49
+2025-06-12 11:27:47 - Order items count: 4
+2025-06-12 11:27:47 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":4,"quantity":9,"price":"7.50","total":"67.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":8,"quantity":3,"price":"3.00","total":"9.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":12,"quantity":1,"price":"58.00","total":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png"}]
+2025-06-12 11:27:47 - Delivery method: pickup
+2025-06-12 11:27:47 - Delivery address: ""
+2025-06-12 11:27:47 - Customer email: kai@gmail.com
+2025-06-12 11:27:47 - Payment details: 01159887285
+2025-06-12 11:27:47 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:27:47 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:27:47 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg, HTTP code: 200
+2025-06-12 11:27:47 - Web image URL for Korean Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-06-12 11:27:47 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png, HTTP code: 200
+2025-06-12 11:27:47 - Web image URL for Iced Lemon Tea: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-06-12 11:27:47 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png, HTTP code: 200
+2025-06-12 11:27:47 - Web image URL for Crispy Whole Chicken Set: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png
+2025-06-12 11:28:40 - GET data: {"order_id":"ORD-6848CDFAE95E8","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:28:40 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720518,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:28:40 - Order ORD-6848CDFAE95E8 already exists with status: pending
+2025-06-12 11:28:40 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-12 11:28:40 - Order ORD-6848CDFAE95E8 feedback eligibility: eligible
+2025-06-12 11:28:40 - Displaying confirmation for order: ORD-6848CDFAE95E8, Customer ID: 49
+2025-06-12 11:28:40 - Order items count: 1
+2025-06-12 11:28:40 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-12 11:28:40 - Delivery method: delivery
+2025-06-12 11:28:40 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 11:28:40 - Customer email: kai@gmail.com
+2025-06-12 11:28:40 - Payment details: 01159887285
+2025-06-12 11:28:40 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-12 11:28:40 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-12 11:28:44 - GET data: {"order_id":"ORD-68445F51245C2","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:28:44 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720523,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:28:44 - Order ORD-68445F51245C2 already exists with status: preparing
+2025-06-12 11:28:44 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-12 11:28:44 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:28:44 - Order ORD-68445F51245C2 feedback eligibility: not eligible
+2025-06-12 11:28:44 - Displaying confirmation for order: ORD-68445F51245C2, Customer ID: 49
+2025-06-12 11:28:44 - Order items count: 2
+2025-06-12 11:28:44 - Order items: [{"item_id":1,"quantity":2,"price":"12.00","total":"24.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-12 11:28:44 - Delivery method: delivery
+2025-06-12 11:28:44 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 11:28:44 - Customer email: kai@gmail.com
+2025-06-12 11:28:44 - Payment details: 01159887285
+2025-06-12 11:28:44 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-12 11:28:44 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-12 11:28:44 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:28:44 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:28:48 - GET data: {"order_id":"ORD-68445F276A3F2","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:28:48 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720527,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:28:48 - Order ORD-68445F276A3F2 already exists with status: preparing
+2025-06-12 11:28:48 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:28:48 - Fetched item: Korean Fried Chicken, image: uploads/67f73cd7566e5.jpg
+2025-06-12 11:28:48 - Fetched item: Iced Lemon Tea, image: uploads/67f88981a15cb.png
+2025-06-12 11:28:48 - Fetched item: Crispy Whole Chicken Set, image: uploads/67f88b846c275.png
+2025-06-12 11:28:48 - Order ORD-68445F276A3F2 feedback eligibility: not eligible
+2025-06-12 11:28:48 - Displaying confirmation for order: ORD-68445F276A3F2, Customer ID: 49
+2025-06-12 11:28:48 - Order items count: 4
+2025-06-12 11:28:48 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":4,"quantity":9,"price":"7.50","total":"67.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":8,"quantity":3,"price":"3.00","total":"9.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":12,"quantity":1,"price":"58.00","total":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png"}]
+2025-06-12 11:28:48 - Delivery method: pickup
+2025-06-12 11:28:48 - Delivery address: ""
+2025-06-12 11:28:48 - Customer email: kai@gmail.com
+2025-06-12 11:28:49 - Payment details: 01159887285
+2025-06-12 11:28:49 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:28:49 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:28:49 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg, HTTP code: 200
+2025-06-12 11:28:49 - Web image URL for Korean Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-06-12 11:28:49 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png, HTTP code: 200
+2025-06-12 11:28:49 - Web image URL for Iced Lemon Tea: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-06-12 11:28:49 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png, HTTP code: 200
+2025-06-12 11:28:49 - Web image URL for Crispy Whole Chicken Set: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png
+2025-06-12 11:28:52 - GET data: {"order_id":"ORD-6841B906A7CF4","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:28:52 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720530,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:28:52 - Order ORD-6841B906A7CF4 already exists with status: completed
+2025-06-12 11:28:52 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:28:52 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-12 11:28:52 - Order ORD-6841B906A7CF4 feedback eligibility: eligible
+2025-06-12 11:28:52 - Displaying confirmation for order: ORD-6841B906A7CF4, Customer ID: 49
+2025-06-12 11:28:52 - Order items count: 2
+2025-06-12 11:28:52 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-12 11:28:52 - Delivery method: pickup
+2025-06-12 11:28:52 - Delivery address: ""
+2025-06-12 11:28:52 - Customer email: kai@gmail.com
+2025-06-12 11:28:52 - Payment details: 01159887285
+2025-06-12 11:28:52 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:28:52 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:28:52 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-12 11:28:52 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-12 11:28:59 - GET data: {"order_id":"ORD-684A987EA060D","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:28:59 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720537,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:28:59 - Order ORD-684A987EA060D already exists with status: pending
+2025-06-12 11:28:59 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:28:59 - Order ORD-684A987EA060D feedback eligibility: eligible
+2025-06-12 11:28:59 - Displaying confirmation for order: ORD-684A987EA060D, Customer ID: 49
+2025-06-12 11:28:59 - Order items count: 1
+2025-06-12 11:28:59 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-12 11:28:59 - Delivery method: delivery
+2025-06-12 11:28:59 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 11:28:59 - Customer email: kai@gmail.com
+2025-06-12 11:28:59 - Payment details: 01159887285
+2025-06-12 11:28:59 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:28:59 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:29:31 - GET data: {"order_id":"ORD-684A987EA060D","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:29:31 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720569,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:29:31 - Order ORD-684A987EA060D already exists with status: pending
+2025-06-12 11:29:31 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:29:31 - Order ORD-684A987EA060D feedback eligibility: eligible
+2025-06-12 11:29:31 - Displaying confirmation for order: ORD-684A987EA060D, Customer ID: 49
+2025-06-12 11:29:31 - Order items count: 1
+2025-06-12 11:29:31 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-12 11:29:31 - Delivery method: delivery
+2025-06-12 11:29:31 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 11:29:31 - Customer email: kai@gmail.com
+2025-06-12 11:29:31 - Payment details: 01159887285
+2025-06-12 11:29:31 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:29:31 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:29:56 - GET data: {"order_id":"ORD-68445FBFB75FB","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:29:56 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720591,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:29:56 - Order ORD-68445FBFB75FB already exists with status: pending
+2025-06-12 11:29:56 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:29:56 - Fetched item: Korean Fried Chicken, image: uploads/67f73cd7566e5.jpg
+2025-06-12 11:29:56 - Order ORD-68445FBFB75FB feedback eligibility: eligible
+2025-06-12 11:29:56 - Displaying confirmation for order: ORD-68445FBFB75FB, Customer ID: 49
+2025-06-12 11:29:56 - Order items count: 2
+2025-06-12 11:29:56 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":4,"quantity":1,"price":"7.50","total":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"}]
+2025-06-12 11:29:56 - Delivery method: pickup
+2025-06-12 11:29:56 - Delivery address: ""
+2025-06-12 11:29:56 - Customer email: kai@gmail.com
+2025-06-12 11:29:56 - Payment details: 01159887285
+2025-06-12 11:29:56 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:29:56 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 11:29:56 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg, HTTP code: 200
+2025-06-12 11:29:56 - Web image URL for Korean Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-06-12 11:30:04 - GET data: {"order_id":"ORD-683350251758D","csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:30:04 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749720603,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 11:30:04 - Order ORD-683350251758D already exists with status: completed
+2025-06-12 11:30:04 - Fetched item: Crispy French Fries, image: uploads/67f87c9a83952.png
+2025-06-12 11:30:04 - Order ORD-683350251758D feedback eligibility: eligible
+2025-06-12 11:30:04 - Displaying confirmation for order: ORD-683350251758D, Customer ID: 49
+2025-06-12 11:30:04 - Order items count: 1
+2025-06-12 11:30:04 - Order items: [{"item_id":10,"quantity":1,"price":"5.00","total":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]
+2025-06-12 11:30:04 - Delivery method: delivery
+2025-06-12 11:30:04 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 11:30:04 - Customer email: kai@gmail.com
+2025-06-12 11:30:04 - Payment details: cimbclicks
+2025-06-12 11:30:04 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87c9a83952.png, HTTP code: 200
+2025-06-12 11:30:04 - Web image URL for Crispy French Fries: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87c9a83952.png
+2025-06-12 11:58:34 - GET data: {"order_id":"ORD-684AA4CAADE77"}
+2025-06-12 11:58:34 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749722314,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b","last_order":{"order_code":"ORD-684AA4CAADE77","amount":14,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-12 11:58:34","items":[{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]}}
+2025-06-12 11:58:34 - Order ORD-684AA4CAADE77 already exists with status: pending
+2025-06-12 11:58:34 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 11:58:34 - Order ORD-684AA4CAADE77 feedback eligibility: eligible
+2025-06-12 11:58:34 - Displaying confirmation for order: ORD-684AA4CAADE77, Customer ID: 49
+2025-06-12 11:58:34 - Order items count: 1
+2025-06-12 11:58:34 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-12 11:58:34 - Delivery method: delivery
+2025-06-12 11:58:34 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 11:58:34 - Customer email: kai@gmail.com
+2025-06-12 11:58:34 - Payment details: 01159887285
+2025-06-12 11:58:34 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 11:58:34 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 12:07:17 - GET data: {"order_id":"ORD-684AA4CAADE77"}
+2025-06-12 12:07:17 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749722314,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 12:07:17 - Order ORD-684AA4CAADE77 already exists with status: pending
+2025-06-12 12:07:17 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 12:07:17 - Order ORD-684AA4CAADE77 feedback eligibility: eligible
+2025-06-12 12:07:17 - Displaying confirmation for order: ORD-684AA4CAADE77, Customer ID: 49
+2025-06-12 12:07:17 - Order items count: 1
+2025-06-12 12:07:17 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-12 12:07:17 - Delivery method: delivery
+2025-06-12 12:07:17 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 12:07:17 - Customer email: kai@gmail.com
+2025-06-12 12:07:17 - Payment details: 01159887285
+2025-06-12 12:07:17 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 12:07:17 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 12:07:30 - GET data: {"order_id":"ORD-684AA6E252AFB"}
+2025-06-12 12:07:30 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749722850,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b","last_order":{"order_code":"ORD-684AA6E252AFB","amount":12,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-12 12:07:30","items":[{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]}}
+2025-06-12 12:07:30 - Order ORD-684AA6E252AFB already exists with status: pending
+2025-06-12 12:07:30 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-12 12:07:30 - Order ORD-684AA6E252AFB feedback eligibility: eligible
+2025-06-12 12:07:30 - Displaying confirmation for order: ORD-684AA6E252AFB, Customer ID: 49
+2025-06-12 12:07:30 - Order items count: 1
+2025-06-12 12:07:30 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-12 12:07:30 - Delivery method: delivery
+2025-06-12 12:07:30 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 12:07:30 - Customer email: kai@gmail.com
+2025-06-12 12:07:30 - Payment details: 01159887285
+2025-06-12 12:07:30 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-12 12:07:30 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-12 12:08:18 - GET data: {"order_id":"ORD-684AA6E252AFB"}
+2025-06-12 12:08:18 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749722850,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b","last_order":{"order_code":"ORD-684AA6E252AFB","amount":12,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-12 12:07:30","items":[{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]}}
+2025-06-12 12:08:18 - Order ORD-684AA6E252AFB already exists with status: pending
+2025-06-12 12:08:18 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-12 12:08:18 - Order ORD-684AA6E252AFB feedback eligibility: eligible
+2025-06-12 12:08:18 - Displaying confirmation for order: ORD-684AA6E252AFB, Customer ID: 49
+2025-06-12 12:08:18 - Order items count: 1
+2025-06-12 12:08:18 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-12 12:08:18 - Delivery method: delivery
+2025-06-12 12:08:18 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 12:08:18 - Customer email: kai@gmail.com
+2025-06-12 12:08:18 - Payment details: 01159887285
+2025-06-12 12:08:18 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-12 12:08:18 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-12 12:08:43 - GET data: {"order_id":"ORD-684AA72B19C4C"}
+2025-06-12 12:08:43 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749722923,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b","last_order":{"order_code":"ORD-684AA72B19C4C","amount":15,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-12 12:08:43","items":[{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]}}
+2025-06-12 12:08:43 - Order ORD-684AA72B19C4C already exists with status: pending
+2025-06-12 12:08:43 - Fetched item: Charcoal-grilled burger, image: uploads/67f7498decaa2.jpg
+2025-06-12 12:08:43 - Order ORD-684AA72B19C4C feedback eligibility: eligible
+2025-06-12 12:08:43 - Displaying confirmation for order: ORD-684AA72B19C4C, Customer ID: 49
+2025-06-12 12:08:43 - Order items count: 1
+2025-06-12 12:08:43 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","total":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-12 12:08:43 - Delivery method: delivery
+2025-06-12 12:08:43 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 12:08:43 - Customer email: kai@gmail.com
+2025-06-12 12:08:43 - Payment details: 01159887285
+2025-06-12 12:08:43 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg, HTTP code: 200
+2025-06-12 12:08:43 - Web image URL for Charcoal-grilled burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-06-12 12:20:28 - GET data: {"order_id":"ORD-684AA9EBA245F"}
+2025-06-12 12:20:28 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749723627,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b","last_order":{"order_code":"ORD-684AA9EBA245F","amount":15,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-12 12:20:27","items":[{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]}}
+2025-06-12 12:20:28 - Order ORD-684AA9EBA245F already exists with status: pending
+2025-06-12 12:20:28 - Fetched item: Charcoal-grilled burger, image: uploads/67f7498decaa2.jpg
+2025-06-12 12:20:28 - Order ORD-684AA9EBA245F feedback eligibility: eligible
+2025-06-12 12:20:28 - Displaying confirmation for order: ORD-684AA9EBA245F, Customer ID: 49
+2025-06-12 12:20:28 - Order items count: 1
+2025-06-12 12:20:28 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","total":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-12 12:20:28 - Delivery method: delivery
+2025-06-12 12:20:28 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 12:20:28 - Customer email: kai@gmail.com
+2025-06-12 12:20:28 - Payment details: 01159887285
+2025-06-12 12:20:28 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg, HTTP code: 200
+2025-06-12 12:20:28 - Web image URL for Charcoal-grilled burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-06-12 12:27:48 - GET data: {"order_id":"ORD-684AABA3AE813"}
+2025-06-12 12:27:48 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749724067,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b","last_order":{"order_code":"ORD-684AABA3AE813","amount":12,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-12 12:27:47","items":[{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]}}
+2025-06-12 12:27:48 - Order ORD-684AABA3AE813 already exists with status: pending
+2025-06-12 12:27:48 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-12 12:27:48 - Order ORD-684AABA3AE813 feedback eligibility: eligible
+2025-06-12 12:27:48 - Displaying confirmation for order: ORD-684AABA3AE813, Customer ID: 49
+2025-06-12 12:27:48 - Order items count: 1
+2025-06-12 12:27:48 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-12 12:27:48 - Delivery method: delivery
+2025-06-12 12:27:48 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 12:27:48 - Customer email: kai@gmail.com
+2025-06-12 12:27:48 - Payment details: 01159887285
+2025-06-12 12:27:48 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-12 12:27:48 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-12 12:28:27 - GET data: {"order_id":"ORD-684AABCAD2630"}
+2025-06-12 12:28:27 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749724106,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b","last_order":{"order_code":"ORD-684AABCAD2630","amount":7.5,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-12 12:28:26","items":[{"item_id":4,"quantity":1,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"}]}}
+2025-06-12 12:28:27 - Order ORD-684AABCAD2630 already exists with status: pending
+2025-06-12 12:28:27 - Fetched item: Korean Fried Chicken, image: uploads/67f73cd7566e5.jpg
+2025-06-12 12:28:27 - Order ORD-684AABCAD2630 feedback eligibility: eligible
+2025-06-12 12:28:27 - Displaying confirmation for order: ORD-684AABCAD2630, Customer ID: 49
+2025-06-12 12:28:27 - Order items count: 1
+2025-06-12 12:28:27 - Order items: [{"item_id":4,"quantity":1,"price":"7.50","total":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"}]
+2025-06-12 12:28:27 - Delivery method: delivery
+2025-06-12 12:28:27 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-12 12:28:27 - Customer email: kai@gmail.com
+2025-06-12 12:28:27 - Payment details: 01159887285
+2025-06-12 12:28:27 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg, HTTP code: 200
+2025-06-12 12:28:27 - Web image URL for Korean Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-06-12 14:48:40 - GET data: {"order_id":"ORD-6847A17DE953C"}
+2025-06-12 14:48:40 - SESSION data: {"customer_id":49,"customer_name":"Kai","last_activity":1749724574,"csrf_token":"79b90782ada77a0549b0704b126c9766445186434d199749f2e8a41c0e7dc50b"}
+2025-06-12 14:48:40 - Session expired for customer_id: unknown
+=======
 >>>>>>> a355176055edcf5264335195aa4bdbaa9f4f7871
+<<<<<<< HEAD
 2025-06-12 15:31:30 - GET data: {"order_id":"ORD-684414E0CFE07","csrf_token":"12c0d57b77c8cbe927d0cbfa9da0479091409ccd0142cde2962f32fcfca0ea30"}
 2025-06-12 15:31:30 - SESSION data: {"last_activity":1749735087,"customer_id":1,"customer_name":"Andrew","csrf_token":"12c0d57b77c8cbe927d0cbfa9da0479091409ccd0142cde2962f32fcfca0ea30"}
 2025-06-12 15:31:30 - Order ORD-684414E0CFE07 already exists with status: completed
@@ -1096,3 +1508,6 @@
 2025-06-12 17:42:04 - Payment details: 01111126184
 2025-06-12 17:42:04 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg, HTTP code: 200
 2025-06-12 17:42:04 - Web image URL for Charcoal-grilled burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+=======
+>>>>>>> 709274061a2206c4f6851875963355554b1acb01
+>>>>>>> 1ba2aa7cf0e015e2f1c87a9383174fc0e56364d9

@@ -23,15 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($error)) {
         try {
             $stmt = $pdo->prepare("INSERT INTO menu_items 
-                (category, item_name, description, price, is_available, promotion, photo)
-                VALUES (?, ?, ?, ?, ?, ?, ?)");
+                (category, item_name, description, price, is_available, photo)
+                VALUES (?, ?, ?, ?, ?, ?)");
             $stmt->execute([
                 $_POST['category'],
                 htmlspecialchars($_POST['name']),
                 htmlspecialchars($_POST['description']),
                 filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
                 isset($_POST['is_available']) ? 1 : 0,
-                $_POST['promotion'] ?? null,
                 $photoPath
             ]);
             header("Location: index.php?success=added");
@@ -39,6 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (PDOException $e) {
             $error = "Add failed: " . $e->getMessage();
         }
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $price = $_POST["price"];
+
+    if ($price < 0) {
+        $error = "Price cannot be negative.";
     }
 }
 ?>
@@ -280,7 +287,7 @@ img {
 
                 <div class="form-group">
                     <label>Price *</label>
-                    <input type="number" step="0.01" name="price" required>
+                    <input type="number" step="0.01" name="price" min="0" required>
                 </div>
 
                 <div class="form-group">
@@ -288,13 +295,8 @@ img {
                 </div>
 
                 <div class="form-group">
-                    <label>Promotion Text</label>
-                    <input type="text" name="promotion">
-                </div>
-
-                <div class="form-group">
                     <label>Upload Photo</label>
-                    <input type="file" name="photo" accept="image/*">
+                    <input type="file" name="photo" accept="image/*" required>
                 </div>
 
                 <div class="form-actions">

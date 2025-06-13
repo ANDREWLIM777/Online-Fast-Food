@@ -412,56 +412,63 @@ body {
 }
 
 
-/* 🔥 Hero Banner Animation */
+/* 🔥 Hero Banner Animation – Perfected */
 .hero-slide {
-    animation: slide 20s infinite;
-    background-size: 1;
-    background-position: center;
-    height: 333px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255, 255, 255, 0.989);
-    font-size: 3rem;
-    font-weight: bold;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 1rem;
+  animation: slide 20s infinite ease-in-out;
+  background-size: cover;
+  background-position: center;
+  height: 333px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 3rem); /* responsive text size */
+  font-weight: 800;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 1.5rem;
+  overflow: hidden;
+  transition: background-image 1s ease-in-out;
 }
 
 .hero-slide::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0); /* semi-transparent overlay */
-    border-radius: 12px;
-    z-index: 0;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.175), rgba(0, 0, 0, 0.077)); /* better overlay */
+  border-radius: inherit;
+  z-index: 0;
 }
 
 .hero-slide > div {
-    z-index: 2;
+  z-index: 2;
+  position: relative;
+  max-width: 90%;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.234); /* better readability on image */
 }
 
+/* 🌀 Background Image Animation */
 @keyframes slide {
-    0%, 18% {
-      background-image: url('../menu/pictures/burger-bg1.png');
-    }
-    21%, 38% {
-      background-image: url('../menu/pictures/burger-bg.png');
-    }
-    41%, 58% {
-      background-image: url('../menu/pictures/burger-bg2.png');
-    }
-    61%, 78% {
-      background-image: url('../menu/pictures/burger-bg3.png');
-    }
-    81%,96% {
-      background-image: url('../menu/pictures/burger-bg4.png');
-    }
+  0%, 18% {
+    background-image: url('../menu/pictures/burger-bg1.png');
+  }
+  21%, 38% {
+    background-image: url('../menu/pictures/burger-bg.png');
+  }
+  41%, 58% {
+    background-image: url('../menu/pictures/burger-bg2.png');
+  }
+  61%, 78% {
+    background-image: url('../menu/pictures/burger-bg3.png');
+  }
+  81%, 100% {
+    background-image: url('../menu/pictures/burger-bg4.png');
+  }
 }
+
 
 
 /* Ultra Toast Styles */
@@ -628,7 +635,7 @@ body {
   background-color: #e84118;
 }
 
-.bell-icon {
+.orders-icon {
   width: 30px;
   height: 30px;
   stroke-width: 1.8;

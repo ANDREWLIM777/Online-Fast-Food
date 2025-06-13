@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="login-box text-center">
-        <img src="assets/images/brizo-logo.png" alt="Brizo Fast Food" class="img-fluid logo">
+        <img src="/Online-Fast-Food/customer/logo.png" alt="Brizo Fast Food" class="img-fluid logo">
         <h4 class="mb-4"><i class="fas fa-key"></i> Enter OTP</h4>
         <?php if ($error) { ?>
             <p class="error"><?php echo htmlspecialchars($error); ?></php>

@@ -34,7 +34,7 @@
     <style>
     .menu-container {
         position: fixed;
-        top: 24px;
+        top: 18px;
         left: 24px;
         z-index: 1000;
     }
@@ -43,7 +43,7 @@
         width: 52px;
         height: 52px;
         border-radius: 50%;
-        background: #ff6b6b;
+        background: #ff4757;
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
         display: flex;
         align-items: center;

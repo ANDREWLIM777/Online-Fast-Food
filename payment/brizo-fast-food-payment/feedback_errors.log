@@ -193,6 +193,7 @@
 2025-06-11 18:59:36 - Selected order: order_id=ORD-68417034232A0, found={"order_id":"ORD-68417034232A0","total":"230.00","created_at":"2025-06-05 18:23:48","customer_id":49,"status":"completed"}
 2025-06-11 18:59:36 - Fetched feedback for order ORD-68417034232A0: Found
 2025-06-11 19:00:03 - Customer ID from session: 49
+<<<<<<< HEAD
 2025-06-12 15:31:12 - Customer ID from session: 1
 2025-06-12 15:31:12 - Admin email for notifications: jinyang@brizo.com
 2025-06-12 15:31:12 - Fetched 0 feedback entries for customer_id: 1
@@ -323,3 +324,44 @@
 2025-06-12 17:41:55 - Fetched 10 completed orders for customer_id: 1 at 2025-06-12 17:41:55
 2025-06-12 17:41:55 - Selected order: order_id=ORD-684464B548CBE, found={"order_id":"ORD-684464B548CBE","total":"27.00","created_at":"2025-06-08 00:11:33","customer_id":1,"status":"completed"} at 2025-06-12 17:41:55
 2025-06-12 17:41:55 - Fetched feedback for order ORD-684464B548CBE: Found at 2025-06-12 17:41:55
+=======
+2025-06-12 11:03:52 - Customer ID from session: 49
+2025-06-12 11:03:52 - Selected order: order_id=ORD-684A97B4D7E49, found=None
+2025-06-12 11:06:23 - Customer ID from session: 49
+2025-06-12 11:06:23 - Selected order: order_id=ORD-684A987EA060D, found=None
+2025-06-12 11:19:42 - Customer ID from session: 49
+2025-06-12 11:22:47 - Customer ID from session: 49
+2025-06-12 11:22:47 - Selected order: order_id=ORD-6841B906A7CF4, found={"order_id":"ORD-6841B906A7CF4","total":"40.00","created_at":"2025-06-05 23:34:30","customer_id":49,"status":"completed"}
+2025-06-12 11:22:47 - Fetched feedback for order ORD-6841B906A7CF4: Found
+2025-06-12 11:22:57 - Customer ID from session: 49
+2025-06-12 11:22:57 - Selected order: order_id=ORD-6841B906A7CF4, found={"order_id":"ORD-6841B906A7CF4","total":"40.00","created_at":"2025-06-05 23:34:30","customer_id":49,"status":"completed"}
+2025-06-12 11:22:57 - Fetched feedback for order ORD-6841B906A7CF4: Found
+2025-06-12 11:23:41 - Customer ID from session: 49
+2025-06-12 11:26:07 - Customer ID from session: 49
+2025-06-12 11:26:38 - Customer ID from session: 49
+2025-06-12 11:26:42 - Customer ID from session: 49
+2025-06-12 11:26:42 - Selected order: order_id=ORD-684A987EA060D, found=None
+2025-06-12 11:26:47 - Customer ID from session: 49
+2025-06-12 11:26:47 - Selected order: order_id=ORD-6848CDFAE95E8, found=None
+2025-06-12 11:27:38 - Customer ID from session: 49
+2025-06-12 11:27:38 - Selected order: order_id=ORD-68445FBFB75FB, found=None
+2025-06-12 11:27:43 - Customer ID from session: 49
+2025-06-12 11:27:43 - Selected order: order_id=ORD-6841B906A7CF4, found={"order_id":"ORD-6841B906A7CF4","total":"40.00","created_at":"2025-06-05 23:34:30","customer_id":49,"status":"completed"}
+2025-06-12 11:27:43 - Fetched feedback for order ORD-6841B906A7CF4: Found
+2025-06-12 11:28:19 - Customer ID from session: 49
+2025-06-12 11:28:42 - Customer ID from session: 49
+2025-06-12 11:28:42 - Selected order: order_id=ORD-6848CDFAE95E8, found=None
+2025-06-12 11:28:56 - Customer ID from session: 49
+2025-06-12 11:29:05 - Customer ID from session: 49
+2025-06-12 11:29:05 - Selected order: order_id=ORD-684A987EA060D, found=None
+2025-06-12 11:29:23 - Customer ID from session: 49
+2025-06-12 11:29:46 - Customer ID from session: 49
+2025-06-12 11:29:46 - Selected order: order_id=ORD-684A987EA060D, found=None
+2025-06-12 11:30:06 - Customer ID from session: 49
+2025-06-12 11:30:06 - Selected order: order_id=ORD-683350251758D, found={"order_id":"ORD-683350251758D","total":"5.00","created_at":"2025-05-26 01:15:17","customer_id":49,"status":"completed"}
+2025-06-12 11:30:06 - Fetched feedback for order ORD-683350251758D: Not found
+2025-06-12 11:30:10 - Customer ID from session: 49
+2025-06-12 11:30:10 - Selected order: order_id=ORD-683350251758D, found={"order_id":"ORD-683350251758D","total":"5.00","created_at":"2025-05-26 01:15:17","customer_id":49,"status":"completed"}
+2025-06-12 11:30:10 - Fetched feedback for order ORD-683350251758D: Not found
+2025-06-12 12:36:14 - Customer ID from session: 49
+>>>>>>> 1ba2aa7cf0e015e2f1c87a9383174fc0e56364d9
