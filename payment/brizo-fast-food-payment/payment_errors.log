@@ -1155,3 +1155,22 @@
 2025-06-14 11:06:27 - Generated order_id: ORD-684D3B93B8CCB
 2025-06-14 11:06:27 - Payment successful: order_id=ORD-684D3B93B8CCB
 2025-06-14 11:06:27 - Redirecting to confirmation.php with order_id=ORD-684D3B93B8CCB
+2025-06-14 11:10:07 - Received make_payment request: {&#34;csrf_token&#34;:&#34;722da6ceb485cf068be9055e61d160e4228f2598109856caab92a0b095cfb76f&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;2&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;8&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;online_banking&#34;,&#34;amount&#34;:&#34;15&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-14 11:10:07 - Received amount: 15, Expected total: 15
+2025-06-14 11:10:07 - Delivery method: delivery, Delivery address ID: 2
+2025-06-14 11:10:07 - Payment method: online_banking, Payment method ID: 8
+2025-06-14 11:10:07 - Generated order_id: ORD-684D3C6F0CDD1
+2025-06-14 11:10:07 - Payment successful: order_id=ORD-684D3C6F0CDD1
+2025-06-14 11:10:07 - Redirecting to confirmation.php with order_id=ORD-684D3C6F0CDD1
+2025-06-14 11:11:51 - Attempting to add delivery address: street=123 Main Street, city=Kuala Lumpur, postal_code=50450
+2025-06-14 11:11:51 - Delivery address added successfully: ID 11, 123 Main Street, Kuala Lumpur, 50450
+2025-06-14 11:12:01 - Attempting to add payment method: method_type=digital_wallet, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;digital_wallet&#34;,&#34;csrf_token&#34;:&#34;4666b6590c6445072a0dadc84739151ebfda5e30fb9ce575a9b843fda28ff820&#34;,&#34;wallet_type&#34;:&#34;shopeepay&#34;,&#34;phone_number&#34;:&#34;01111126183&#34;}
+2025-06-14 11:12:01 - Adding digital wallet - Wallet Type: shopeepay, Phone Number: 01111126183
+2025-06-14 11:12:01 - Payment method added successfully: ID 14, method_type=digital_wallet
+2025-06-14 11:12:03 - Received make_payment request: {&#34;csrf_token&#34;:&#34;4666b6590c6445072a0dadc84739151ebfda5e30fb9ce575a9b843fda28ff820&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;11&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;14&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;14&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-14 11:12:03 - Received amount: 14, Expected total: 14
+2025-06-14 11:12:03 - Delivery method: delivery, Delivery address ID: 11
+2025-06-14 11:12:03 - Payment method: digital_wallet, Payment method ID: 14
+2025-06-14 11:12:03 - Generated order_id: ORD-684D3CE357124
+2025-06-14 11:12:03 - Payment successful: order_id=ORD-684D3CE357124
+2025-06-14 11:12:03 - Redirecting to confirmation.php with order_id=ORD-684D3CE357124
