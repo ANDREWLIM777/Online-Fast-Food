@@ -448,6 +448,13 @@ include '../Admin_Account/db.php';
 </main>
 
 <main class="more-container">
+  <a href="notifications/index.php" class="more-item">
+    <span>Announcement</span>
+    <i class="fas fa-angle-right"></i>
+  </a>
+</main>
+
+<main class="more-container">
   <a href="../Admin_Account/register.php" class="more-item">
     <span>New Admin Registration</span>
     <i class="fas fa-angle-right"></i>
@@ -455,8 +462,8 @@ include '../Admin_Account/db.php';
 </main>
 
 <main class="more-container">
-  <a href="notifications/index.php" class="more-item">
-    <span>Announcement</span>
+  <a href="feedback.php" class="more-item">
+    <span>Customer Feedback</span>
     <i class="fas fa-angle-right"></i>
   </a>
 </main>
