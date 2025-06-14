@@ -259,17 +259,65 @@ if (!empty($sessionItems) && empty($orderItems)) {
 
 // Check if order allows feedback
 $isOrderCompleted = false;
+$hasFeedback = false;
 if (!empty($orderCode)) {
+    // Check order status
     $stmt = $conn->prepare("SELECT status FROM orders WHERE order_id = ? AND customer_id = ?");
     if ($stmt) {
         $stmt->bind_param("si", $orderCode, $customerId);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
-        $isOrderCompleted = $result && strtolower($result['status']) === 'completed';
-        $logMessage("Order $orderCode feedback eligibility: " . ($isOrderCompleted ? 'eligible' : 'not eligible'));
+        if ($result) {
+            $rawStatus = $result['status'];
+            $orderStatus = strtolower($rawStatus);
+            $isOrderCompleted = $orderStatus === 'completed';
+            $logMessage("Order $orderCode raw status: $rawStatus, normalized status: $orderStatus, feedback eligibility: " . ($isOrderCompleted ? 'eligible' : 'not eligible'));
+        } else {
+            $logMessage("No order found in orders table for order_id: $orderCode, customer_id: $customerId");
+            // Attempt to re-sync from payment_history
+            $stmt = $conn->prepare("SELECT amount, date FROM payment_history WHERE order_id = ? AND customer_id = ?");
+            if ($stmt) {
+                $stmt->bind_param("si", $orderCode, $customerId);
+                $stmt->execute();
+                $phOrder = $stmt->get_result()->fetch_assoc();
+                if ($phOrder) {
+                    $stmt = $conn->prepare("
+                        INSERT INTO orders (order_id, customer_id, total, status, created_at)
+                        VALUES (?, ?, ?, 'pending', ?)
+                    ");
+                    if ($stmt) {
+                        $total = $phOrder['amount'] ?? 0;
+                        $createdAt = $phOrder['date'] ?? date('Y-m-d H:i:s');
+                        $stmt->bind_param("sids", $orderCode, $customerId, $total, $createdAt);
+                        if ($stmt->execute()) {
+                            $logMessage("Re-synced order: $orderCode with status 'pending' for customer_id: $customerId");
+                        } else {
+                            $logMessage("Failed to re-sync order: $orderCode - " . $stmt->error);
+                        }
+                        $stmt->close();
+                    }
+                }
+                $stmt->close();
+            }
+        }
         $stmt->close();
     } else {
         $logMessage("Prepare failed for order status check: " . $conn->error);
+    }
+
+    // Check if feedback already exists
+    if ($isOrderCompleted) {
+        $stmt = $conn->prepare("SELECT id FROM feedback WHERE order_id = ? AND customer_id = ?");
+        if ($stmt) {
+            $stmt->bind_param("si", $orderCode, $customerId);
+            $stmt->execute();
+            $result = $stmt->get_result()->fetch_assoc();
+            $hasFeedback = $result !== null;
+            $logMessage("Feedback check for order $orderCode: " . ($hasFeedback ? 'Feedback already submitted' : 'No feedback found'));
+            $stmt->close();
+        } else {
+            $logMessage("Prepare failed for feedback check: " . $conn->error);
+        }
     }
 }
 
@@ -596,7 +644,7 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
                     <a href="/Online-Fast-Food/customer/menu/menu.php" class="btn btn-cart">
                         <i class="fas fa-utensils"></i> Go Back to Menu
                     </a>
-                    <?php if ($isOrderCompleted): ?>
+                    <?php if ($isOrderCompleted && !$hasFeedback): ?>
                         <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/feedback.php?order_id=<?php echo urlencode($orderCode); ?>&csrf_token=<?php echo $csrfParam; ?>" class="btn btn-feedback">
                             <i class="fas fa-star"></i> Provide Feedback
                         </a>
