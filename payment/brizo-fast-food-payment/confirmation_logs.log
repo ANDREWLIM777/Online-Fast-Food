@@ -1373,4 +1373,155 @@
 2025-06-12 14:48:40 - Session expired for customer_id: unknown
 =======
 >>>>>>> a355176055edcf5264335195aa4bdbaa9f4f7871
+<<<<<<< HEAD
+2025-06-12 15:31:30 - GET data: {"order_id":"ORD-684414E0CFE07","csrf_token":"12c0d57b77c8cbe927d0cbfa9da0479091409ccd0142cde2962f32fcfca0ea30"}
+2025-06-12 15:31:30 - SESSION data: {"last_activity":1749735087,"customer_id":1,"customer_name":"Andrew","csrf_token":"12c0d57b77c8cbe927d0cbfa9da0479091409ccd0142cde2962f32fcfca0ea30"}
+2025-06-12 15:31:30 - Order ORD-684414E0CFE07 already exists with status: completed
+2025-06-12 15:31:30 - Order ORD-684414E0CFE07 feedback eligibility: eligible
+2025-06-12 15:31:30 - Displaying confirmation for order: ORD-684414E0CFE07, Customer ID: 1
+2025-06-12 15:31:30 - Order items count: 0
+2025-06-12 15:31:30 - Order items: []
+2025-06-12 15:31:30 - Delivery method: delivery
+2025-06-12 15:31:30 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
+2025-06-12 15:31:30 - Customer email: andrewbrizo31@gmail.com
+2025-06-12 15:31:30 - Payment details: 01111126183
+2025-06-12 17:01:51 - GET data: {"order_id":"ORD-684AEBDFA3A5A"}
+2025-06-12 17:01:51 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749740511,"csrf_token":"d925e27cb0191d7acfd7c8b681fa90051e4db9e642aa8f33f698fe73a5784407","last_order":{"order_code":"ORD-684AEBDFA3A5A","amount":72,"method":"digital_wallet","payment_details":"01111126184","delivery_method":"delivery","delivery_address":{"street_address":"123 Main Street","city":"Kuala Lumpura","postal_code":"50450"},"timestamp":"2025-06-12 17:01:51","items":[{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":12,"quantity":1,"price":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png"}]}}
+2025-06-12 17:01:51 - Order ORD-684AEBDFA3A5A already exists with status: pending
+2025-06-12 17:01:51 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 17:01:51 - Fetched item: Crispy Whole Chicken Set, image: uploads/67f88b846c275.png
+2025-06-12 17:01:51 - Order ORD-684AEBDFA3A5A feedback eligibility: not eligible
+2025-06-12 17:01:51 - Displaying confirmation for order: ORD-684AEBDFA3A5A, Customer ID: 1
+2025-06-12 17:01:51 - Order items count: 2
+2025-06-12 17:01:51 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":12,"quantity":1,"price":"58.00","total":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png"}]
+2025-06-12 17:01:51 - Delivery method: delivery
+2025-06-12 17:01:51 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
+2025-06-12 17:01:51 - Customer email: andrewbrizo31@gmail.com
+2025-06-12 17:01:51 - Payment details: 01111126184
+2025-06-12 17:01:51 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 17:01:51 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 17:01:52 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png, HTTP code: 200
+2025-06-12 17:01:52 - Web image URL for Crispy Whole Chicken Set: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png
+2025-06-12 17:18:39 - GET data: {"order_id":"ORD-684AEBDFA3A5A"}
+2025-06-12 17:18:39 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749741510,"csrf_token":"d925e27cb0191d7acfd7c8b681fa90051e4db9e642aa8f33f698fe73a5784407"}
+2025-06-12 17:18:39 - Order ORD-684AEBDFA3A5A already exists with status: pending
+2025-06-12 17:18:39 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 17:18:39 - Fetched item: Crispy Whole Chicken Set, image: uploads/67f88b846c275.png
+2025-06-12 17:18:39 - Order ORD-684AEBDFA3A5A feedback eligibility: not eligible
+2025-06-12 17:18:39 - Displaying confirmation for order: ORD-684AEBDFA3A5A, Customer ID: 1
+2025-06-12 17:18:39 - Order items count: 2
+2025-06-12 17:18:39 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":12,"quantity":1,"price":"58.00","total":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png"}]
+2025-06-12 17:18:39 - Delivery method: delivery
+2025-06-12 17:18:39 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
+2025-06-12 17:18:39 - Customer email: andrewbrizo31@gmail.com
+2025-06-12 17:18:39 - Payment details: 01111126184
+2025-06-12 17:18:39 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 17:18:39 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 17:18:39 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png, HTTP code: 200
+2025-06-12 17:18:39 - Web image URL for Crispy Whole Chicken Set: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png
+2025-06-12 17:18:52 - GET data: {"order_id":"ORD-684464B548CBE","csrf_token":"d925e27cb0191d7acfd7c8b681fa90051e4db9e642aa8f33f698fe73a5784407"}
+2025-06-12 17:18:52 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749741521,"csrf_token":"d925e27cb0191d7acfd7c8b681fa90051e4db9e642aa8f33f698fe73a5784407"}
+2025-06-12 17:18:52 - Order ORD-684464B548CBE already exists with status: completed
+2025-06-12 17:18:52 - Order ORD-684464B548CBE feedback eligibility: eligible
+2025-06-12 17:18:52 - Displaying confirmation for order: ORD-684464B548CBE, Customer ID: 1
+2025-06-12 17:18:52 - Order items count: 0
+2025-06-12 17:18:52 - Order items: []
+2025-06-12 17:18:52 - Delivery method: delivery
+2025-06-12 17:18:52 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
+2025-06-12 17:18:52 - Customer email: andrewbrizo31@gmail.com
+2025-06-12 17:18:52 - Payment details: 01111126184
+2025-06-12 17:27:08 - GET data: {"order_id":"ORD-684464B548CBE","csrf_token":"d925e27cb0191d7acfd7c8b681fa90051e4db9e642aa8f33f698fe73a5784407"}
+2025-06-12 17:27:08 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749742027,"csrf_token":"d925e27cb0191d7acfd7c8b681fa90051e4db9e642aa8f33f698fe73a5784407"}
+2025-06-12 17:27:08 - Order ORD-684464B548CBE already exists with status: completed
+2025-06-12 17:27:08 - Order ORD-684464B548CBE feedback eligibility: eligible
+2025-06-12 17:27:08 - Displaying confirmation for order: ORD-684464B548CBE, Customer ID: 1
+2025-06-12 17:27:08 - Order items count: 0
+2025-06-12 17:27:08 - Order items: []
+2025-06-12 17:27:08 - Delivery method: delivery
+2025-06-12 17:27:08 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
+2025-06-12 17:27:08 - Customer email: andrewbrizo31@gmail.com
+2025-06-12 17:27:08 - Payment details: 01111126184
+2025-06-12 17:27:09 - GET data: {"order_id":"ORD-684AEBDFA3A5A"}
+2025-06-12 17:27:09 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749742028,"csrf_token":"d925e27cb0191d7acfd7c8b681fa90051e4db9e642aa8f33f698fe73a5784407"}
+2025-06-12 17:27:09 - Order ORD-684AEBDFA3A5A already exists with status: pending
+2025-06-12 17:27:09 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-12 17:27:09 - Fetched item: Crispy Whole Chicken Set, image: uploads/67f88b846c275.png
+2025-06-12 17:27:09 - Order ORD-684AEBDFA3A5A feedback eligibility: not eligible
+2025-06-12 17:27:09 - Displaying confirmation for order: ORD-684AEBDFA3A5A, Customer ID: 1
+2025-06-12 17:27:09 - Order items count: 2
+2025-06-12 17:27:09 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"},{"item_id":12,"quantity":1,"price":"58.00","total":"58.00","item_name":"Crispy Whole Chicken Set","photo":"uploads\/67f88b846c275.png"}]
+2025-06-12 17:27:09 - Delivery method: delivery
+2025-06-12 17:27:09 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
+2025-06-12 17:27:09 - Customer email: andrewbrizo31@gmail.com
+2025-06-12 17:27:09 - Payment details: 01111126184
+2025-06-12 17:27:09 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-12 17:27:09 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-12 17:27:09 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png, HTTP code: 200
+2025-06-12 17:27:09 - Web image URL for Crispy Whole Chicken Set: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88b846c275.png
+2025-06-12 17:27:23 - GET data: {"order_id":"ORD-684AF1DBA9B37"}
+2025-06-12 17:27:23 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749742043,"csrf_token":"d925e27cb0191d7acfd7c8b681fa90051e4db9e642aa8f33f698fe73a5784407","last_order":{"order_code":"ORD-684AF1DBA9B37","amount":15,"method":"digital_wallet","payment_details":"01111126184","delivery_method":"delivery","delivery_address":{"street_address":"Angkasa Nuri","city":"Kuala Lumpur","postal_code":"50450"},"timestamp":"2025-06-12 17:27:23","items":[{"item_id":3,"quantity":1,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]}}
+2025-06-12 17:27:23 - Order ORD-684AF1DBA9B37 already exists with status: pending
+2025-06-12 17:27:23 - Fetched item: Charcoal-grilled burger, image: uploads/67f7498decaa2.jpg
+2025-06-12 17:27:23 - Order ORD-684AF1DBA9B37 feedback eligibility: not eligible
+2025-06-12 17:27:23 - Displaying confirmation for order: ORD-684AF1DBA9B37, Customer ID: 1
+2025-06-12 17:27:23 - Order items count: 1
+2025-06-12 17:27:23 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","total":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-12 17:27:23 - Delivery method: delivery
+2025-06-12 17:27:23 - Delivery address: "{\"street_address\":\"Angkasa Nuri\",\"city\":\"Kuala Lumpur\",\"postal_code\":\"50450\"}"
+2025-06-12 17:27:23 - Customer email: andrewbrizo31@gmail.com
+2025-06-12 17:27:23 - Payment details: 01111126184
+2025-06-12 17:27:23 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg, HTTP code: 200
+2025-06-12 17:27:23 - Web image URL for Charcoal-grilled burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-06-12 17:41:39 - GET data: {"order_id":"ORD-684464B548CBE","csrf_token":"d925e27cb0191d7acfd7c8b681fa90051e4db9e642aa8f33f698fe73a5784407"}
+2025-06-12 17:41:39 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749742893,"csrf_token":"d925e27cb0191d7acfd7c8b681fa90051e4db9e642aa8f33f698fe73a5784407"}
+2025-06-12 17:41:39 - Order ORD-684464B548CBE already exists with status: completed
+2025-06-12 17:41:39 - Order ORD-684464B548CBE feedback eligibility: eligible
+2025-06-12 17:41:39 - Displaying confirmation for order: ORD-684464B548CBE, Customer ID: 1
+2025-06-12 17:41:39 - Order items count: 0
+2025-06-12 17:41:39 - Order items: []
+2025-06-12 17:41:39 - Delivery method: delivery
+2025-06-12 17:41:39 - Delivery address: "{\"street_address\":\"123 Main Street\",\"city\":\"Kuala Lumpura\",\"postal_code\":\"50450\"}"
+2025-06-12 17:41:39 - Customer email: andrewbrizo31@gmail.com
+2025-06-12 17:41:39 - Payment details: 01111126184
+2025-06-12 17:41:46 - GET data: {"order_id":"ORD-68430866C0D7D","csrf_token":"d925e27cb0191d7acfd7c8b681fa90051e4db9e642aa8f33f698fe73a5784407"}
+2025-06-12 17:41:46 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749742901,"csrf_token":"d925e27cb0191d7acfd7c8b681fa90051e4db9e642aa8f33f698fe73a5784407"}
+2025-06-12 17:41:46 - Order ORD-68430866C0D7D already exists with status: completed
+2025-06-12 17:41:46 - Order ORD-68430866C0D7D feedback eligibility: eligible
+2025-06-12 17:41:46 - Displaying confirmation for order: ORD-68430866C0D7D, Customer ID: 1
+2025-06-12 17:41:46 - Order items count: 0
+2025-06-12 17:41:46 - Order items: []
+2025-06-12 17:41:46 - Delivery method: pickup
+2025-06-12 17:41:46 - Delivery address: ""
+2025-06-12 17:41:46 - Customer email: andrewbrizo31@gmail.com
+2025-06-12 17:41:46 - Payment details: 0111112618311
+2025-06-12 17:42:04 - GET data: {"order_id":"ORD-684AF1DBA9B37"}
+2025-06-12 17:42:04 - SESSION data: {"customer_id":1,"customer_name":"Andrew","last_activity":1749742915,"csrf_token":"d925e27cb0191d7acfd7c8b681fa90051e4db9e642aa8f33f698fe73a5784407"}
+2025-06-12 17:42:04 - Order ORD-684AF1DBA9B37 already exists with status: pending
+2025-06-12 17:42:04 - Fetched item: Charcoal-grilled burger, image: uploads/67f7498decaa2.jpg
+2025-06-12 17:42:04 - Order ORD-684AF1DBA9B37 feedback eligibility: not eligible
+2025-06-12 17:42:04 - Displaying confirmation for order: ORD-684AF1DBA9B37, Customer ID: 1
+2025-06-12 17:42:04 - Order items count: 1
+2025-06-12 17:42:04 - Order items: [{"item_id":3,"quantity":1,"price":"15.00","total":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"}]
+2025-06-12 17:42:04 - Delivery method: delivery
+2025-06-12 17:42:04 - Delivery address: "{\"street_address\":\"Angkasa Nuri\",\"city\":\"Kuala Lumpur\",\"postal_code\":\"50450\"}"
+2025-06-12 17:42:04 - Customer email: andrewbrizo31@gmail.com
+2025-06-12 17:42:04 - Payment details: 01111126184
+2025-06-12 17:42:04 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg, HTTP code: 200
+2025-06-12 17:42:04 - Web image URL for Charcoal-grilled burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+=======
 >>>>>>> 709274061a2206c4f6851875963355554b1acb01
+>>>>>>> 1ba2aa7cf0e015e2f1c87a9383174fc0e56364d9
+2025-06-14 00:50:42 - GET data: {"order_id":"ORD-684CAB4264F79"}
+2025-06-14 00:50:42 - SESSION data: {"user_id":1,"user_name":"Ng Jin Yang","user_email":"jinyang@brizo.com","user_role":"superadmin","customer_id":1,"customer_name":"Andrew","last_activity":1749855042,"csrf_token":"9d924cb6bafd76eb53ce2db7d4458d1fa51f972294298cd2435995bb0f67ecb0","last_order":{"order_code":"ORD-684CAB4264F79","amount":28,"method":"digital_wallet","payment_details":"01111126184","delivery_method":"delivery","delivery_address":{"street_address":"123 Taman Maju Jaya","city":"Johor Bahru","postal_code":"81301"},"timestamp":"2025-06-14 00:50:42","items":[{"item_id":2,"quantity":2,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]}}
+2025-06-14 00:50:43 - Order ORD-684CAB4264F79 already exists with status: pending
+2025-06-14 00:50:43 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-14 00:50:43 - Order ORD-684CAB4264F79 feedback eligibility: not eligible
+2025-06-14 00:50:43 - Displaying confirmation for order: ORD-684CAB4264F79, Customer ID: 1
+2025-06-14 00:50:43 - Order items count: 1
+2025-06-14 00:50:43 - Order items: [{"item_id":2,"quantity":2,"price":"14.00","total":"28.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-14 00:50:43 - Delivery method: delivery
+2025-06-14 00:50:43 - Delivery address: "{\"street_address\":\"123 Taman Maju Jaya\",\"city\":\"Johor Bahru\",\"postal_code\":\"81301\"}"
+2025-06-14 00:50:43 - Customer email: andrewbrizo31@gmail.com
+2025-06-14 00:50:43 - Payment details: 01111126184
+2025-06-14 00:50:43 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-14 00:50:43 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
