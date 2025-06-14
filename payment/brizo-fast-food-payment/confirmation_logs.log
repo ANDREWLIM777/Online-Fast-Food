@@ -1525,3 +1525,270 @@
 2025-06-14 00:50:43 - Payment details: 01111126184
 2025-06-14 00:50:43 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
 2025-06-14 00:50:43 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-14 07:52:00 - GET data: {"order_id":"ORD-684D0E0090BE4"}
+2025-06-14 07:52:00 - SESSION data: {"customer_name":"test","customer_id":51,"last_activity":1749880320,"csrf_token":"87f273dbd4fa02b9a58d3c8c61e60525b1d44a3b6a670f7a107dfb8dba57533e","last_order":{"order_code":"ORD-684D0E0090BE4","amount":26.5,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-14 07:52:00","items":[{"item_id":1,"quantity":1,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":4,"quantity":1,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":5,"quantity":1,"price":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"}]}}
+2025-06-14 07:52:00 - Order ORD-684D0E0090BE4 already exists with status: pending
+2025-06-14 07:52:00 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-14 07:52:00 - Fetched item: Korean Fried Chicken, image: uploads/67f73cd7566e5.jpg
+2025-06-14 07:52:00 - Fetched item: Buttermilk Fried Chicken, image: uploads/67f889fd4887d.png
+2025-06-14 07:52:00 - Order ORD-684D0E0090BE4 feedback eligibility: not eligible
+2025-06-14 07:52:00 - Displaying confirmation for order: ORD-684D0E0090BE4, Customer ID: 51
+2025-06-14 07:52:00 - Order items count: 3
+2025-06-14 07:52:00 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":4,"quantity":1,"price":"7.50","total":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":5,"quantity":1,"price":"7.00","total":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"}]
+2025-06-14 07:52:00 - Delivery method: delivery
+2025-06-14 07:52:00 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 07:52:00 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 07:52:00 - Payment details: 01159887285
+2025-06-14 07:52:00 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-14 07:52:00 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-14 07:52:00 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg, HTTP code: 200
+2025-06-14 07:52:00 - Web image URL for Korean Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-06-14 07:52:00 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f889fd4887d.png, HTTP code: 200
+2025-06-14 07:52:00 - Web image URL for Buttermilk Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f889fd4887d.png
+2025-06-14 07:52:19 - GET data: {"order_id":"ORD-684D0E0090BE4","csrf_token":"87f273dbd4fa02b9a58d3c8c61e60525b1d44a3b6a670f7a107dfb8dba57533e"}
+2025-06-14 07:52:19 - SESSION data: {"customer_name":"test","customer_id":51,"last_activity":1749880332,"csrf_token":"87f273dbd4fa02b9a58d3c8c61e60525b1d44a3b6a670f7a107dfb8dba57533e"}
+2025-06-14 07:52:19 - Order ORD-684D0E0090BE4 already exists with status: pending
+2025-06-14 07:52:19 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-14 07:52:19 - Fetched item: Korean Fried Chicken, image: uploads/67f73cd7566e5.jpg
+2025-06-14 07:52:19 - Fetched item: Buttermilk Fried Chicken, image: uploads/67f889fd4887d.png
+2025-06-14 07:52:19 - Order ORD-684D0E0090BE4 feedback eligibility: not eligible
+2025-06-14 07:52:19 - Displaying confirmation for order: ORD-684D0E0090BE4, Customer ID: 51
+2025-06-14 07:52:19 - Order items count: 3
+2025-06-14 07:52:19 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":4,"quantity":1,"price":"7.50","total":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":5,"quantity":1,"price":"7.00","total":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"}]
+2025-06-14 07:52:19 - Delivery method: delivery
+2025-06-14 07:52:19 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 07:52:19 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 07:52:19 - Payment details: 01159887285
+2025-06-14 07:52:19 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-14 07:52:19 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-14 07:52:19 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg, HTTP code: 200
+2025-06-14 07:52:19 - Web image URL for Korean Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-06-14 07:52:19 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f889fd4887d.png, HTTP code: 200
+2025-06-14 07:52:19 - Web image URL for Buttermilk Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f889fd4887d.png
+2025-06-14 07:52:22 - GET data: {"order_id":"ORD-684D0E0090BE4"}
+2025-06-14 07:52:22 - SESSION data: {"customer_name":"test","customer_id":51,"last_activity":1749880342,"csrf_token":"87f273dbd4fa02b9a58d3c8c61e60525b1d44a3b6a670f7a107dfb8dba57533e"}
+2025-06-14 07:52:22 - Order ORD-684D0E0090BE4 already exists with status: pending
+2025-06-14 07:52:22 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-14 07:52:22 - Fetched item: Korean Fried Chicken, image: uploads/67f73cd7566e5.jpg
+2025-06-14 07:52:22 - Fetched item: Buttermilk Fried Chicken, image: uploads/67f889fd4887d.png
+2025-06-14 07:52:22 - Order ORD-684D0E0090BE4 feedback eligibility: not eligible
+2025-06-14 07:52:22 - Displaying confirmation for order: ORD-684D0E0090BE4, Customer ID: 51
+2025-06-14 07:52:22 - Order items count: 3
+2025-06-14 07:52:22 - Order items: [{"item_id":1,"quantity":1,"price":"12.00","total":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"},{"item_id":4,"quantity":1,"price":"7.50","total":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"},{"item_id":5,"quantity":1,"price":"7.00","total":"7.00","item_name":"Buttermilk Fried Chicken","photo":"uploads\/67f889fd4887d.png"}]
+2025-06-14 07:52:22 - Delivery method: delivery
+2025-06-14 07:52:22 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 07:52:22 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 07:52:22 - Payment details: 01159887285
+2025-06-14 07:52:22 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-14 07:52:22 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-14 07:52:22 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg, HTTP code: 200
+2025-06-14 07:52:22 - Web image URL for Korean Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-06-14 07:52:22 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f889fd4887d.png, HTTP code: 200
+2025-06-14 07:52:22 - Web image URL for Buttermilk Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f889fd4887d.png
+2025-06-14 07:52:48 - GET data: {"order_id":"ORD-684D0E3038D58"}
+2025-06-14 07:52:48 - SESSION data: {"customer_name":"test","customer_id":51,"last_activity":1749880368,"csrf_token":"87f273dbd4fa02b9a58d3c8c61e60525b1d44a3b6a670f7a107dfb8dba57533e","last_order":{"order_code":"ORD-684D0E3038D58","amount":37.5,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-14 07:52:48","items":[{"item_id":3,"quantity":2,"price":"15.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":4,"quantity":1,"price":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"}]}}
+2025-06-14 07:52:48 - Order ORD-684D0E3038D58 already exists with status: pending
+2025-06-14 07:52:48 - Fetched item: Charcoal-grilled burger, image: uploads/67f7498decaa2.jpg
+2025-06-14 07:52:48 - Fetched item: Korean Fried Chicken, image: uploads/67f73cd7566e5.jpg
+2025-06-14 07:52:48 - Order ORD-684D0E3038D58 feedback eligibility: not eligible
+2025-06-14 07:52:48 - Displaying confirmation for order: ORD-684D0E3038D58, Customer ID: 51
+2025-06-14 07:52:48 - Order items count: 2
+2025-06-14 07:52:48 - Order items: [{"item_id":3,"quantity":2,"price":"15.00","total":"30.00","item_name":"Charcoal-grilled burger","photo":"uploads\/67f7498decaa2.jpg"},{"item_id":4,"quantity":1,"price":"7.50","total":"7.50","item_name":"Korean Fried Chicken","photo":"uploads\/67f73cd7566e5.jpg"}]
+2025-06-14 07:52:48 - Delivery method: delivery
+2025-06-14 07:52:48 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 07:52:48 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 07:52:48 - Payment details: 01159887285
+2025-06-14 07:52:48 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg, HTTP code: 200
+2025-06-14 07:52:48 - Web image URL for Charcoal-grilled burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7498decaa2.jpg
+2025-06-14 07:52:48 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg, HTTP code: 200
+2025-06-14 07:52:48 - Web image URL for Korean Fried Chicken: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f73cd7566e5.jpg
+2025-06-14 07:53:01 - GET data: {"order_id":"ORD-684D0E3D02F72"}
+2025-06-14 07:53:01 - SESSION data: {"customer_name":"test","customer_id":51,"last_activity":1749880381,"csrf_token":"87f273dbd4fa02b9a58d3c8c61e60525b1d44a3b6a670f7a107dfb8dba57533e","last_order":{"order_code":"ORD-684D0E3D02F72","amount":7.5,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-14 07:53:01","items":[{"item_id":6,"quantity":1,"price":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":10,"quantity":1,"price":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]}}
+2025-06-14 07:53:01 - Order ORD-684D0E3D02F72 already exists with status: pending
+2025-06-14 07:53:01 - Fetched item: Coke (Soft Drink), image: uploads/67f74af6740d1.png
+2025-06-14 07:53:01 - Fetched item: Crispy French Fries, image: uploads/67f87c9a83952.png
+2025-06-14 07:53:01 - Order ORD-684D0E3D02F72 feedback eligibility: not eligible
+2025-06-14 07:53:01 - Displaying confirmation for order: ORD-684D0E3D02F72, Customer ID: 51
+2025-06-14 07:53:01 - Order items count: 2
+2025-06-14 07:53:01 - Order items: [{"item_id":6,"quantity":1,"price":"2.50","total":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":10,"quantity":1,"price":"5.00","total":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]
+2025-06-14 07:53:01 - Delivery method: delivery
+2025-06-14 07:53:01 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 07:53:01 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 07:53:01 - Payment details: 01159887285
+2025-06-14 07:53:01 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png, HTTP code: 200
+2025-06-14 07:53:01 - Web image URL for Coke (Soft Drink): http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png
+2025-06-14 07:53:01 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87c9a83952.png, HTTP code: 200
+2025-06-14 07:53:01 - Web image URL for Crispy French Fries: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87c9a83952.png
+2025-06-14 07:53:26 - GET data: {"order_id":"ORD-684D0E56BCC5E"}
+2025-06-14 07:53:26 - SESSION data: {"customer_name":"test","customer_id":51,"last_activity":1749880406,"csrf_token":"87f273dbd4fa02b9a58d3c8c61e60525b1d44a3b6a670f7a107dfb8dba57533e","last_order":{"order_code":"ORD-684D0E56BCC5E","amount":15,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-14 07:53:26","items":[{"item_id":8,"quantity":1,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":11,"quantity":2,"price":"6.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png"}]}}
+2025-06-14 07:53:26 - Order ORD-684D0E56BCC5E already exists with status: pending
+2025-06-14 07:53:26 - Fetched item: Iced Lemon Tea, image: uploads/67f88981a15cb.png
+2025-06-14 07:53:26 - Fetched item: Mac and Cheese Wedge Bites, image: uploads/67f87d8fa0f7d.png
+2025-06-14 07:53:26 - Order ORD-684D0E56BCC5E feedback eligibility: not eligible
+2025-06-14 07:53:26 - Displaying confirmation for order: ORD-684D0E56BCC5E, Customer ID: 51
+2025-06-14 07:53:26 - Order items count: 2
+2025-06-14 07:53:26 - Order items: [{"item_id":8,"quantity":1,"price":"3.00","total":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":11,"quantity":2,"price":"6.00","total":"12.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png"}]
+2025-06-14 07:53:26 - Delivery method: delivery
+2025-06-14 07:53:26 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 07:53:26 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 07:53:26 - Payment details: 01159887285
+2025-06-14 07:53:26 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png, HTTP code: 200
+2025-06-14 07:53:26 - Web image URL for Iced Lemon Tea: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-06-14 07:53:26 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png, HTTP code: 200
+2025-06-14 07:53:26 - Web image URL for Mac and Cheese Wedge Bites: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-06-14 07:54:39 - GET data: {"order_id":"ORD-684D0E9F7C53A"}
+2025-06-14 07:54:39 - SESSION data: {"customer_name":"test","customer_id":51,"last_activity":1749880479,"csrf_token":"87f273dbd4fa02b9a58d3c8c61e60525b1d44a3b6a670f7a107dfb8dba57533e","last_order":{"order_code":"ORD-684D0E9F7C53A","amount":8,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-14 07:54:39","items":[{"item_id":6,"quantity":1,"price":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":8,"quantity":1,"price":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":7,"quantity":1,"price":"2.50","item_name":"Sprite (Soft Drink)","photo":"uploads\/67f74ac2d2f20.jpg"}]}}
+2025-06-14 07:54:39 - Order ORD-684D0E9F7C53A already exists with status: pending
+2025-06-14 07:54:39 - Fetched item: Coke (Soft Drink), image: uploads/67f74af6740d1.png
+2025-06-14 07:54:39 - Fetched item: Iced Lemon Tea, image: uploads/67f88981a15cb.png
+2025-06-14 07:54:39 - Fetched item: Sprite (Soft Drink), image: uploads/67f74ac2d2f20.jpg
+2025-06-14 07:54:39 - Order ORD-684D0E9F7C53A feedback eligibility: not eligible
+2025-06-14 07:54:39 - Displaying confirmation for order: ORD-684D0E9F7C53A, Customer ID: 51
+2025-06-14 07:54:39 - Order items count: 3
+2025-06-14 07:54:39 - Order items: [{"item_id":6,"quantity":1,"price":"2.50","total":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":8,"quantity":1,"price":"3.00","total":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":7,"quantity":1,"price":"2.50","total":"2.50","item_name":"Sprite (Soft Drink)","photo":"uploads\/67f74ac2d2f20.jpg"}]
+2025-06-14 07:54:39 - Delivery method: delivery
+2025-06-14 07:54:39 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 07:54:39 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 07:54:39 - Payment details: 01159887285
+2025-06-14 07:54:39 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png, HTTP code: 200
+2025-06-14 07:54:39 - Web image URL for Coke (Soft Drink): http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png
+2025-06-14 07:54:39 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png, HTTP code: 200
+2025-06-14 07:54:39 - Web image URL for Iced Lemon Tea: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-06-14 07:54:39 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74ac2d2f20.jpg, HTTP code: 200
+2025-06-14 07:54:39 - Web image URL for Sprite (Soft Drink): http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74ac2d2f20.jpg
+2025-06-14 07:57:15 - GET data: {"order_id":"ORD-684D0E3D02F72","csrf_token":"87f273dbd4fa02b9a58d3c8c61e60525b1d44a3b6a670f7a107dfb8dba57533e"}
+2025-06-14 07:57:15 - SESSION data: {"customer_name":"test","customer_id":51,"last_activity":1749880630,"csrf_token":"87f273dbd4fa02b9a58d3c8c61e60525b1d44a3b6a670f7a107dfb8dba57533e"}
+2025-06-14 07:57:15 - Order ORD-684D0E3D02F72 already exists with status: pending
+2025-06-14 07:57:15 - Fetched item: Coke (Soft Drink), image: uploads/67f74af6740d1.png
+2025-06-14 07:57:15 - Fetched item: Crispy French Fries, image: uploads/67f87c9a83952.png
+2025-06-14 07:57:15 - Order ORD-684D0E3D02F72 feedback eligibility: not eligible
+2025-06-14 07:57:15 - Displaying confirmation for order: ORD-684D0E3D02F72, Customer ID: 51
+2025-06-14 07:57:15 - Order items count: 2
+2025-06-14 07:57:15 - Order items: [{"item_id":6,"quantity":1,"price":"2.50","total":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":10,"quantity":1,"price":"5.00","total":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]
+2025-06-14 07:57:15 - Delivery method: delivery
+2025-06-14 07:57:15 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 07:57:15 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 07:57:15 - Payment details: 01159887285
+2025-06-14 07:57:15 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png, HTTP code: 200
+2025-06-14 07:57:15 - Web image URL for Coke (Soft Drink): http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png
+2025-06-14 07:57:16 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87c9a83952.png, HTTP code: 200
+2025-06-14 07:57:16 - Web image URL for Crispy French Fries: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87c9a83952.png
+2025-06-14 09:13:33 - GET data: {"order_id":"ORD-684D211D62FC1"}
+2025-06-14 09:13:33 - SESSION data: {"customer_id":51,"customer_name":"Pang Jun Kai","last_activity":1749885213,"csrf_token":"bdfc1044694d79a8998b2db8d7016419343b030ca199c1741418d21a966d06e0","last_order":{"order_code":"ORD-684D211D62FC1","amount":14,"method":"digital_wallet","payment_details":"01159887285","delivery_method":"delivery","delivery_address":{"street_address":"AA-7,Lorong A-3,Pekan Nenas","city":"Johor","postal_code":"81500"},"timestamp":"2025-06-14 09:13:33","items":[{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]}}
+2025-06-14 09:13:33 - Order ORD-684D211D62FC1 already exists with status: pending
+2025-06-14 09:13:33 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-14 09:13:33 - Order ORD-684D211D62FC1 feedback eligibility: not eligible
+2025-06-14 09:13:33 - Displaying confirmation for order: ORD-684D211D62FC1, Customer ID: 51
+2025-06-14 09:13:33 - Order items count: 1
+2025-06-14 09:13:33 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-14 09:13:33 - Delivery method: delivery
+2025-06-14 09:13:33 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 09:13:33 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 09:13:33 - Payment details: 01159887285
+2025-06-14 09:13:33 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-14 09:13:33 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-14 09:15:28 - GET data: {"order_id":"ORD-684D211D62FC1","csrf_token":"bdfc1044694d79a8998b2db8d7016419343b030ca199c1741418d21a966d06e0"}
+2025-06-14 09:15:28 - SESSION data: {"customer_id":51,"customer_name":"Pang Jun Kai","last_activity":1749885324,"csrf_token":"bdfc1044694d79a8998b2db8d7016419343b030ca199c1741418d21a966d06e0"}
+2025-06-14 09:15:28 - Order ORD-684D211D62FC1 already exists with status: pending
+2025-06-14 09:15:28 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-14 09:15:28 - Order ORD-684D211D62FC1 feedback eligibility: not eligible
+2025-06-14 09:15:28 - Displaying confirmation for order: ORD-684D211D62FC1, Customer ID: 51
+2025-06-14 09:15:28 - Order items count: 1
+2025-06-14 09:15:28 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-14 09:15:28 - Delivery method: delivery
+2025-06-14 09:15:28 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 09:15:28 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 09:15:28 - Payment details: 01159887285
+2025-06-14 09:15:28 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-14 09:15:28 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-14 09:15:32 - GET data: {"order_id":"ORD-684D0E9F7C53A","csrf_token":"bdfc1044694d79a8998b2db8d7016419343b030ca199c1741418d21a966d06e0"}
+2025-06-14 09:15:32 - SESSION data: {"customer_id":51,"customer_name":"Pang Jun Kai","last_activity":1749885331,"csrf_token":"bdfc1044694d79a8998b2db8d7016419343b030ca199c1741418d21a966d06e0"}
+2025-06-14 09:15:32 - Order ORD-684D0E9F7C53A already exists with status: completed
+2025-06-14 09:15:32 - Fetched item: Coke (Soft Drink), image: uploads/67f74af6740d1.png
+2025-06-14 09:15:32 - Fetched item: Iced Lemon Tea, image: uploads/67f88981a15cb.png
+2025-06-14 09:15:32 - Fetched item: Sprite (Soft Drink), image: uploads/67f74ac2d2f20.jpg
+2025-06-14 09:15:32 - Order ORD-684D0E9F7C53A feedback eligibility: eligible
+2025-06-14 09:15:32 - Displaying confirmation for order: ORD-684D0E9F7C53A, Customer ID: 51
+2025-06-14 09:15:32 - Order items count: 3
+2025-06-14 09:15:32 - Order items: [{"item_id":6,"quantity":1,"price":"2.50","total":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":8,"quantity":1,"price":"3.00","total":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":7,"quantity":1,"price":"2.50","total":"2.50","item_name":"Sprite (Soft Drink)","photo":"uploads\/67f74ac2d2f20.jpg"}]
+2025-06-14 09:15:32 - Delivery method: delivery
+2025-06-14 09:15:32 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 09:15:32 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 09:15:32 - Payment details: 01159887285
+2025-06-14 09:15:32 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png, HTTP code: 200
+2025-06-14 09:15:32 - Web image URL for Coke (Soft Drink): http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png
+2025-06-14 09:15:32 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png, HTTP code: 200
+2025-06-14 09:15:32 - Web image URL for Iced Lemon Tea: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-06-14 09:15:32 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74ac2d2f20.jpg, HTTP code: 200
+2025-06-14 09:15:32 - Web image URL for Sprite (Soft Drink): http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74ac2d2f20.jpg
+2025-06-14 09:16:04 - GET data: {"order_id":"ORD-684D0E3D02F72","csrf_token":"bdfc1044694d79a8998b2db8d7016419343b030ca199c1741418d21a966d06e0"}
+2025-06-14 09:16:04 - SESSION data: {"customer_id":51,"customer_name":"Pang Jun Kai","last_activity":1749885361,"csrf_token":"bdfc1044694d79a8998b2db8d7016419343b030ca199c1741418d21a966d06e0"}
+2025-06-14 09:16:04 - Order ORD-684D0E3D02F72 already exists with status: completed
+2025-06-14 09:16:04 - Fetched item: Coke (Soft Drink), image: uploads/67f74af6740d1.png
+2025-06-14 09:16:04 - Fetched item: Crispy French Fries, image: uploads/67f87c9a83952.png
+2025-06-14 09:16:04 - Order ORD-684D0E3D02F72 feedback eligibility: eligible
+2025-06-14 09:16:04 - Displaying confirmation for order: ORD-684D0E3D02F72, Customer ID: 51
+2025-06-14 09:16:04 - Order items count: 2
+2025-06-14 09:16:04 - Order items: [{"item_id":6,"quantity":1,"price":"2.50","total":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":10,"quantity":1,"price":"5.00","total":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]
+2025-06-14 09:16:04 - Delivery method: delivery
+2025-06-14 09:16:04 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 09:16:04 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 09:16:04 - Payment details: 01159887285
+2025-06-14 09:16:04 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png, HTTP code: 200
+2025-06-14 09:16:04 - Web image URL for Coke (Soft Drink): http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png
+2025-06-14 09:16:04 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87c9a83952.png, HTTP code: 200
+2025-06-14 09:16:04 - Web image URL for Crispy French Fries: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87c9a83952.png
+2025-06-14 09:17:51 - GET data: {"order_id":"ORD-684D0E3D02F72","csrf_token":"bdfc1044694d79a8998b2db8d7016419343b030ca199c1741418d21a966d06e0"}
+2025-06-14 09:17:51 - SESSION data: {"customer_id":51,"customer_name":"Pang Jun Kai","last_activity":1749885464,"csrf_token":"bdfc1044694d79a8998b2db8d7016419343b030ca199c1741418d21a966d06e0"}
+2025-06-14 09:17:51 - Order ORD-684D0E3D02F72 already exists with status: completed
+2025-06-14 09:17:51 - Fetched item: Coke (Soft Drink), image: uploads/67f74af6740d1.png
+2025-06-14 09:17:51 - Fetched item: Crispy French Fries, image: uploads/67f87c9a83952.png
+2025-06-14 09:17:51 - Order ORD-684D0E3D02F72 feedback eligibility: eligible
+2025-06-14 09:17:51 - Displaying confirmation for order: ORD-684D0E3D02F72, Customer ID: 51
+2025-06-14 09:17:51 - Order items count: 2
+2025-06-14 09:17:51 - Order items: [{"item_id":6,"quantity":1,"price":"2.50","total":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":10,"quantity":1,"price":"5.00","total":"5.00","item_name":"Crispy French Fries","photo":"uploads\/67f87c9a83952.png"}]
+2025-06-14 09:17:51 - Delivery method: delivery
+2025-06-14 09:17:51 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 09:17:51 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 09:17:51 - Payment details: 01159887285
+2025-06-14 09:17:51 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png, HTTP code: 200
+2025-06-14 09:17:51 - Web image URL for Coke (Soft Drink): http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png
+2025-06-14 09:17:51 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87c9a83952.png, HTTP code: 200
+2025-06-14 09:17:51 - Web image URL for Crispy French Fries: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87c9a83952.png
+2025-06-14 09:18:00 - GET data: {"order_id":"ORD-684D0E56BCC5E","csrf_token":"bdfc1044694d79a8998b2db8d7016419343b030ca199c1741418d21a966d06e0"}
+2025-06-14 09:18:00 - SESSION data: {"customer_id":51,"customer_name":"Pang Jun Kai","last_activity":1749885477,"csrf_token":"bdfc1044694d79a8998b2db8d7016419343b030ca199c1741418d21a966d06e0"}
+2025-06-14 09:18:00 - Order ORD-684D0E56BCC5E already exists with status: pending
+2025-06-14 09:18:00 - Fetched item: Iced Lemon Tea, image: uploads/67f88981a15cb.png
+2025-06-14 09:18:00 - Fetched item: Mac and Cheese Wedge Bites, image: uploads/67f87d8fa0f7d.png
+2025-06-14 09:18:00 - Order ORD-684D0E56BCC5E feedback eligibility: not eligible
+2025-06-14 09:18:00 - Displaying confirmation for order: ORD-684D0E56BCC5E, Customer ID: 51
+2025-06-14 09:18:00 - Order items count: 2
+2025-06-14 09:18:00 - Order items: [{"item_id":8,"quantity":1,"price":"3.00","total":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":11,"quantity":2,"price":"6.00","total":"12.00","item_name":"Mac and Cheese Wedge Bites","photo":"uploads\/67f87d8fa0f7d.png"}]
+2025-06-14 09:18:00 - Delivery method: delivery
+2025-06-14 09:18:00 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 09:18:00 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 09:18:00 - Payment details: 01159887285
+2025-06-14 09:18:00 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png, HTTP code: 200
+2025-06-14 09:18:00 - Web image URL for Iced Lemon Tea: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-06-14 09:18:00 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png, HTTP code: 200
+2025-06-14 09:18:00 - Web image URL for Mac and Cheese Wedge Bites: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f87d8fa0f7d.png
+2025-06-14 09:18:03 - GET data: {"order_id":"ORD-684D0E9F7C53A","csrf_token":"bdfc1044694d79a8998b2db8d7016419343b030ca199c1741418d21a966d06e0"}
+2025-06-14 09:18:03 - SESSION data: {"customer_id":51,"customer_name":"Pang Jun Kai","last_activity":1749885482,"csrf_token":"bdfc1044694d79a8998b2db8d7016419343b030ca199c1741418d21a966d06e0"}
+2025-06-14 09:18:03 - Order ORD-684D0E9F7C53A already exists with status: completed
+2025-06-14 09:18:03 - Fetched item: Coke (Soft Drink), image: uploads/67f74af6740d1.png
+2025-06-14 09:18:03 - Fetched item: Iced Lemon Tea, image: uploads/67f88981a15cb.png
+2025-06-14 09:18:03 - Fetched item: Sprite (Soft Drink), image: uploads/67f74ac2d2f20.jpg
+2025-06-14 09:18:03 - Order ORD-684D0E9F7C53A feedback eligibility: eligible
+2025-06-14 09:18:03 - Displaying confirmation for order: ORD-684D0E9F7C53A, Customer ID: 51
+2025-06-14 09:18:03 - Order items count: 3
+2025-06-14 09:18:03 - Order items: [{"item_id":6,"quantity":1,"price":"2.50","total":"2.50","item_name":"Coke (Soft Drink)","photo":"uploads\/67f74af6740d1.png"},{"item_id":8,"quantity":1,"price":"3.00","total":"3.00","item_name":"Iced Lemon Tea","photo":"uploads\/67f88981a15cb.png"},{"item_id":7,"quantity":1,"price":"2.50","total":"2.50","item_name":"Sprite (Soft Drink)","photo":"uploads\/67f74ac2d2f20.jpg"}]
+2025-06-14 09:18:03 - Delivery method: delivery
+2025-06-14 09:18:03 - Delivery address: "{\"street_address\":\"AA-7,Lorong A-3,Pekan Nenas\",\"city\":\"Johor\",\"postal_code\":\"81500\"}"
+2025-06-14 09:18:03 - Customer email: iqxiaomowang@gmail.com
+2025-06-14 09:18:03 - Payment details: 01159887285
+2025-06-14 09:18:03 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png, HTTP code: 200
+2025-06-14 09:18:03 - Web image URL for Coke (Soft Drink): http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74af6740d1.png
+2025-06-14 09:18:03 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png, HTTP code: 200
+2025-06-14 09:18:03 - Web image URL for Iced Lemon Tea: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f88981a15cb.png
+2025-06-14 09:18:03 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74ac2d2f20.jpg, HTTP code: 200
+2025-06-14 09:18:03 - Web image URL for Sprite (Soft Drink): http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f74ac2d2f20.jpg

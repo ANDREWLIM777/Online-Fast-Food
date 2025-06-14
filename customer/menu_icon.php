@@ -11,6 +11,7 @@
         <a href="../manage_account/profile.php">Profile</a>
                 <a href="/Online-Fast-Food/customer/orders/orders.php">My Orders</a>
         <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php">Payment History</a>
+        <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/feedback.php">Feedback</a>
 
         <?php if (isset($_SESSION['customer_id'])): ?>
         <a href="#" class="btn-logout-animated">Log out</a>
