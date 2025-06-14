@@ -1134,3 +1134,17 @@
 2025-06-14 00:50:42 - Generated order_id: ORD-684CAB4264F79
 2025-06-14 00:50:42 - Payment successful: order_id=ORD-684CAB4264F79
 2025-06-14 00:50:42 - Redirecting to confirmation.php with order_id=ORD-684CAB4264F79
+2025-06-14 09:52:34 - Received make_payment request: {&#34;csrf_token&#34;:&#34;722da6ceb485cf068be9055e61d160e4228f2598109856caab92a0b095cfb76f&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;10&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;10&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;24&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-14 09:52:34 - Received amount: 24, Expected total: 24
+2025-06-14 09:52:34 - Delivery method: delivery, Delivery address ID: 10
+2025-06-14 09:52:34 - Payment method: card, Payment method ID: 10
+2025-06-14 09:52:34 - Generated order_id: ORD-684D2A42DD59B
+2025-06-14 09:52:34 - Payment successful: order_id=ORD-684D2A42DD59B
+2025-06-14 09:52:34 - Redirecting to confirmation.php with order_id=ORD-684D2A42DD59B
+2025-06-14 10:05:43 - Received make_payment request: {&#34;csrf_token&#34;:&#34;722da6ceb485cf068be9055e61d160e4228f2598109856caab92a0b095cfb76f&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;10&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;7&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;card&#34;,&#34;amount&#34;:&#34;14&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-14 10:05:43 - Received amount: 14, Expected total: 14
+2025-06-14 10:05:43 - Delivery method: delivery, Delivery address ID: 10
+2025-06-14 10:05:43 - Payment method: card, Payment method ID: 7
+2025-06-14 10:05:43 - Generated order_id: ORD-684D2D570DA22
+2025-06-14 10:05:43 - Payment successful: order_id=ORD-684D2D570DA22
+2025-06-14 10:05:43 - Redirecting to confirmation.php with order_id=ORD-684D2D570DA22

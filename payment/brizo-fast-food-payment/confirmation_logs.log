@@ -1525,3 +1525,59 @@
 2025-06-14 00:50:43 - Payment details: 01111126184
 2025-06-14 00:50:43 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
 2025-06-14 00:50:43 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-14 09:52:34 - GET data: {"order_id":"ORD-684D2A42DD59B"}
+2025-06-14 09:52:34 - SESSION data: {"last_activity":1749887554,"customer_id":1,"customer_name":"Andrew","csrf_token":"722da6ceb485cf068be9055e61d160e4228f2598109856caab92a0b095cfb76f","last_order":{"order_code":"ORD-684D2A42DD59B","amount":24,"method":"card","payment_details":"4242","delivery_method":"delivery","delivery_address":{"street_address":"123 Taman Maju Jaya","city":"Johor Bahru","postal_code":"81301"},"timestamp":"2025-06-14 09:52:34","items":[{"item_id":1,"quantity":2,"price":"12.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]}}
+2025-06-14 09:52:36 - Order ORD-684D2A42DD59B already exists with status: pending
+2025-06-14 09:52:36 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-14 09:52:36 - Order ORD-684D2A42DD59B feedback eligibility: not eligible
+2025-06-14 09:52:36 - Displaying confirmation for order: ORD-684D2A42DD59B, Customer ID: 1
+2025-06-14 09:52:36 - Order items count: 1
+2025-06-14 09:52:36 - Order items: [{"item_id":1,"quantity":2,"price":"12.00","total":"24.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-14 09:52:36 - Delivery method: delivery
+2025-06-14 09:52:36 - Delivery address: "{\"street_address\":\"123 Taman Maju Jaya\",\"city\":\"Johor Bahru\",\"postal_code\":\"81301\"}"
+2025-06-14 09:52:36 - Customer email: andrewbrizo31@gmail.com
+2025-06-14 09:52:36 - Payment details: 4242
+2025-06-14 09:52:36 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-14 09:52:36 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-14 09:56:17 - GET data: {"order_id":"ORD-684D2A42DD59B"}
+2025-06-14 09:56:17 - SESSION data: {"last_activity":1749887563,"customer_id":1,"customer_name":"Andrew","csrf_token":"722da6ceb485cf068be9055e61d160e4228f2598109856caab92a0b095cfb76f"}
+2025-06-14 09:56:17 - Order ORD-684D2A42DD59B already exists with status: pending
+2025-06-14 09:56:17 - Fetched item: Classic Onion Burger, image: uploads/67f53fc11969d.jpg
+2025-06-14 09:56:17 - Order ORD-684D2A42DD59B feedback eligibility: not eligible
+2025-06-14 09:56:17 - Displaying confirmation for order: ORD-684D2A42DD59B, Customer ID: 1
+2025-06-14 09:56:17 - Order items count: 1
+2025-06-14 09:56:17 - Order items: [{"item_id":1,"quantity":2,"price":"12.00","total":"24.00","item_name":"Classic Onion Burger","photo":"uploads\/67f53fc11969d.jpg"}]
+2025-06-14 09:56:17 - Delivery method: delivery
+2025-06-14 09:56:17 - Delivery address: "{\"street_address\":\"123 Taman Maju Jaya\",\"city\":\"Johor Bahru\",\"postal_code\":\"81301\"}"
+2025-06-14 09:56:17 - Customer email: andrewbrizo31@gmail.com
+2025-06-14 09:56:17 - Payment details: 4242
+2025-06-14 09:56:17 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg, HTTP code: 200
+2025-06-14 09:56:17 - Web image URL for Classic Onion Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f53fc11969d.jpg
+2025-06-14 10:05:43 - GET data: {"order_id":"ORD-684D2D570DA22"}
+2025-06-14 10:05:43 - SESSION data: {"last_activity":1749888343,"customer_id":1,"customer_name":"Andrew","csrf_token":"722da6ceb485cf068be9055e61d160e4228f2598109856caab92a0b095cfb76f","last_order":{"order_code":"ORD-684D2D570DA22","amount":14,"method":"card","payment_details":"1111","delivery_method":"delivery","delivery_address":{"street_address":"123 Taman Maju Jaya","city":"Johor Bahru","postal_code":"81301"},"timestamp":"2025-06-14 10:05:43","items":[{"item_id":2,"quantity":1,"price":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]}}
+2025-06-14 10:05:43 - Order ORD-684D2D570DA22 already exists with status: pending
+2025-06-14 10:05:43 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-14 10:05:43 - Order ORD-684D2D570DA22 feedback eligibility: not eligible
+2025-06-14 10:05:43 - Displaying confirmation for order: ORD-684D2D570DA22, Customer ID: 1
+2025-06-14 10:05:43 - Order items count: 1
+2025-06-14 10:05:43 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-14 10:05:43 - Delivery method: delivery
+2025-06-14 10:05:43 - Delivery address: "{\"street_address\":\"123 Taman Maju Jaya\",\"city\":\"Johor Bahru\",\"postal_code\":\"81301\"}"
+2025-06-14 10:05:43 - Customer email: andrewbrizo31@gmail.com
+2025-06-14 10:05:43 - Payment details: 1111
+2025-06-14 10:05:43 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-14 10:05:43 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
+2025-06-14 10:21:59 - GET data: {"order_id":"ORD-684D2D570DA22"}
+2025-06-14 10:21:59 - SESSION data: {"last_activity":1749889306,"customer_id":1,"customer_name":"Andrew","csrf_token":"722da6ceb485cf068be9055e61d160e4228f2598109856caab92a0b095cfb76f"}
+2025-06-14 10:21:59 - Order ORD-684D2D570DA22 already exists with status: pending
+2025-06-14 10:21:59 - Fetched item: Crispy Chicken Burger, image: uploads/67f7403a6e20b.jpg
+2025-06-14 10:21:59 - Order ORD-684D2D570DA22 feedback eligibility: not eligible
+2025-06-14 10:21:59 - Displaying confirmation for order: ORD-684D2D570DA22, Customer ID: 1
+2025-06-14 10:21:59 - Order items count: 1
+2025-06-14 10:21:59 - Order items: [{"item_id":2,"quantity":1,"price":"14.00","total":"14.00","item_name":"Crispy Chicken Burger","photo":"uploads\/67f7403a6e20b.jpg"}]
+2025-06-14 10:21:59 - Delivery method: delivery
+2025-06-14 10:21:59 - Delivery address: "{\"street_address\":\"123 Taman Maju Jaya\",\"city\":\"Johor Bahru\",\"postal_code\":\"81301\"}"
+2025-06-14 10:21:59 - Customer email: andrewbrizo31@gmail.com
+2025-06-14 10:21:59 - Payment details: 1111
+2025-06-14 10:21:59 - Checked image URL: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg, HTTP code: 200
+2025-06-14 10:21:59 - Web image URL for Crispy Chicken Burger: http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/uploads/67f7403a6e20b.jpg
