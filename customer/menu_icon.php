@@ -9,7 +9,8 @@
     <nav class="dropdown-menu">
         <a href="/Online-Fast-Food/customer/menu/menu.php">Home</a>
         <a href="../manage_account/profile.php">Profile</a>
-        <a href="/Online-Fast-Food/customer/payment_history/payment_history.php">Payment History</a>
+                <a href="/Online-Fast-Food/customer/orders/orders.php">My Orders</a>
+        <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php">Payment History</a>
 
         <?php if (isset($_SESSION['customer_id'])): ?>
         <a href="#" class="btn-logout-animated">Log out</a>

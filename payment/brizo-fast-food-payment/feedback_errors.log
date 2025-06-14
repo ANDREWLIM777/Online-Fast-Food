@@ -364,4 +364,17 @@
 2025-06-12 11:30:10 - Selected order: order_id=ORD-683350251758D, found={"order_id":"ORD-683350251758D","total":"5.00","created_at":"2025-05-26 01:15:17","customer_id":49,"status":"completed"}
 2025-06-12 11:30:10 - Fetched feedback for order ORD-683350251758D: Not found
 2025-06-12 12:36:14 - Customer ID from session: 49
+<<<<<<< HEAD
+2025-06-14 07:48:42 - Customer ID from session: 51
+=======
 >>>>>>> 1ba2aa7cf0e015e2f1c87a9383174fc0e56364d9
+>>>>>>> 054417ddeb372568ea47bc9a28027409ceb5be65
+2025-06-14 10:48:34 - Customer ID: 1 at 2025-06-14 10:48:34
+2025-06-14 10:48:34 - Admin email for notifications: jinyang@brizo.com at 2025-06-14 10:48:34
+2025-06-14 10:48:34 - Fetched 10 completed orders for customer_id: 1 at 2025-06-14 10:48:34
+2025-06-14 10:52:40 - Customer ID: 1 at 2025-06-14 10:52:40
+2025-06-14 10:52:40 - Admin email for notifications: jinyang@brizo.com at 2025-06-14 10:52:40
+2025-06-14 10:52:40 - Fetched 10 completed orders for customer_id: 1 at 2025-06-14 10:52:40
+2025-06-14 11:01:55 - Customer ID: 1 at 2025-06-14 11:01:55
+2025-06-14 11:01:55 - Admin email for notifications: jinyang@brizo.com at 2025-06-14 11:01:55
+2025-06-14 11:01:55 - Fetched 10 completed orders for customer_id: 1 at 2025-06-14 11:01:55

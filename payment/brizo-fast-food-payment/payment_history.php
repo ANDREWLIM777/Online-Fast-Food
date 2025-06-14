@@ -106,7 +106,7 @@ $logMessage("Payment history accessed for customer_id: $customerId, page: $page"
 
 // Function to get status color
 function getStatusColor($status) {
-    // Always return green for "Complete" display
+    // Always return green for "Successful" display
     return 'text-green-600';
 }
 
@@ -135,8 +135,10 @@ function formatDeliveryAddress($address) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .fade-in { animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
         .table-container { overflow-x: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); }
         .history-table {
             width: 100%;
@@ -158,24 +160,25 @@ function formatDeliveryAddress($address) {
         .history-table tr:nth-child(even) { background-color: #f9fafb; }
         .history-table tr:hover { background-color: #f1f5f9; }
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-weight: 500;
-            font-size: 14px;
-            color: white;
-            text-decoration: none;
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 10px 20px; border-radius: 10px;
+            font-weight: 500; font-size: 14px; color: white; text-decoration: none;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-            border: none;
-            width: 80px;
-            height: 36px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+            cursor: pointer; border: none;
+            white-space: nowrap; /* Prevent text wrapping */
         }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); opacity: 0.9; }
+        .btn:focus { outline: none; box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.3); }
+        .btn:active { transform: scale(1); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
+        .btn i { margin-right: 6px; font-size: 14px; }
         .btn-primary { background-color: #ff4757; }
-        .btn-primary:hover { background-color: #e63946; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        .btn-primary:hover { background-color: #e63946; }
+        .btn-orders {
+            background-color: #3b82f6;
+            width: 150px; /* Adjusted width to fit "Go to Orders" on one line */
+        }
+        .btn-orders:hover { background-color: #2563eb; }
         .text-primary { color: #ff4757; }
         .text-primary:hover { color: #e63946; }
         .pagination span { background-color: #e5e7eb; color: #374151; padding: 8px 16px; border-radius: 8px; font-weight: 500; }
@@ -196,8 +199,8 @@ function formatDeliveryAddress($address) {
     <header class="sticky top-0 bg-white shadow z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-primary">Brizo Fast Food Melaka</h1>
-            <a href="/Online-Fast-Food/customer/menu/cart/cart.php" class="text-primary hover:text-primary flex items-center">
-                <i class="fas fa-shopping-cart mr-2"></i> Back to Cart
+            <a href="http://localhost/Online-Fast-Food/customer/menu/menu.php" class="text-primary hover:text-primary flex items-center">
+                <i class="fas fa-utensils mr-2"></i> Back to Menu
             </a>
         </div>
     </header>
@@ -206,6 +209,13 @@ function formatDeliveryAddress($address) {
         <div class="card p-6">
             <h2 class="text-2xl font-semibold text-gray-800 mb-6">Payment History</h2>
             <p class="text-gray-600 mb-4">Customer ID: <?= htmlspecialchars($customerId) ?></p>
+
+            <!-- Actions -->
+            <div class="mb-6 flex justify-end">
+                <a href="/Online-Fast-Food/customer/orders/orders.php" class="btn btn-orders">
+                    <i class="fas fa-list-alt"></i> Go to Orders
+                </a>
+            </div>
 
             <?php if (empty($payment_history)): ?>
                 <p class="text-gray-600">No payment history found.</p>
@@ -232,7 +242,7 @@ function formatDeliveryAddress($address) {
                                     <td>RM <?= number_format($row['amount'], 2) ?></td>
                                     <td class="<?= getStatusColor($row['status']) ?>">
                                         <i class="fas fa-circle icon text-xs"></i>
-                                        Complete
+                                        Successful
                                     </td>
                                     <td>
                                         <i class="fas <?= ($row['method'] ?? 'unknown') === 'card' ? 'fa-credit-card' : (($row['method'] ?? 'unknown') === 'online_banking' ? 'fa-university' : 'fa-wallet') ?> icon"></i>
