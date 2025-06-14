@@ -232,3 +232,4 @@
 2025-06-12 11:30:10 - Selected order: order_id=ORD-683350251758D, found={"order_id":"ORD-683350251758D","total":"5.00","created_at":"2025-05-26 01:15:17","customer_id":49,"status":"completed"}
 2025-06-12 11:30:10 - Fetched feedback for order ORD-683350251758D: Not found
 2025-06-12 12:36:14 - Customer ID from session: 49
+2025-06-14 07:48:42 - Customer ID from session: 51
