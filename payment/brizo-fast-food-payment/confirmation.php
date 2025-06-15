@@ -106,16 +106,25 @@ if (isset($_GET['order_id'])) {
     if (!$order) {
         $logMessage("Order not found: $orderCode for customer_id: $customerId");
         $errorMessage = "Order not found. Please select an order from your payment history.";
+    } else {
+        // Log raw delivery address for debugging
+        $logMessage("Raw delivery_address for order $orderCode: " . ($order['delivery_address'] ?? 'NULL'));
     }
 } elseif (isset($_SESSION['last_order'])) {
     $order = $_SESSION['last_order'];
     $orderCode = $order['order_code'] ?? '';
     $deliveryAddress = $order['delivery_address'] ?? null;
+    $logMessage("Raw session delivery_address for order $orderCode: " . json_encode($deliveryAddress));
+    // Handle delivery address from session
     if (is_string($deliveryAddress)) {
-        $deliveryAddress = json_decode($deliveryAddress, true);
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            $logMessage("JSON decode error for delivery_address: " . json_last_error_msg());
-            $deliveryAddress = null;
+        // Try JSON decode
+        $decodedAddress = json_decode($deliveryAddress, true);
+        if (json_last_error() === JSON_ERROR_NONE && is_array($decodedAddress)) {
+            $deliveryAddress = $decodedAddress;
+        } else {
+            // Treat as plain text if not valid JSON
+            $logMessage("JSON decode failed for session delivery_address: " . json_last_error_msg() . ". Treating as plain text.");
+            $deliveryAddress = ['raw_address' => $deliveryAddress];
         }
     } elseif (!is_array($deliveryAddress)) {
         $deliveryAddress = null;
@@ -146,6 +155,46 @@ $stmt->execute();
 $customer = $stmt->get_result()->fetch_assoc();
 $customerEmail = $customer['email'] ?? 'unknown@example.com';
 $stmt->close();
+
+// Process delivery address from database
+if (!empty($order) && isset($order['delivery_address']) && is_string($order['delivery_address'])) {
+    $decodedAddress = json_decode($order['delivery_address'], true);
+    if (json_last_error() === JSON_ERROR_NONE && is_array($decodedAddress)) {
+        $order['delivery_address'] = $decodedAddress;
+    } else {
+        // Treat as plain text if not valid JSON
+        $logMessage("JSON decode failed for database delivery_address: " . json_last_error_msg() . ". Treating as plain text.");
+        $order['delivery_address'] = ['raw_address' => $order['delivery_address']];
+    }
+}
+
+// Fallback to delivery_addresses table if delivery_address is empty
+if (empty($order['delivery_address']) && ($order['delivery_method'] ?? 'pickup') === 'delivery') {
+    $stmt = $conn->prepare("
+        SELECT street_address, city, postal_code
+        FROM delivery_addresses
+        WHERE customer_id = ? AND is_default = 1
+        LIMIT 1
+    ");
+    if ($stmt) {
+        $stmt->bind_param("i", $customerId);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+        if ($result) {
+            $order['delivery_address'] = [
+                'street_address' => $result['street_address'],
+                'city' => $result['city'],
+                'postal_code' => $result['postal_code']
+            ];
+            $logMessage("Fetched delivery address from delivery_addresses for customer_id: $customerId");
+        } else {
+            $logMessage("No default delivery address found for customer_id: $customerId");
+        }
+        $stmt->close();
+    } else {
+        $logMessage("Prepare failed for delivery_addresses query: " . $conn->error);
+    }
+}
 
 // Sync order to orders table with 'pending' status
 if (!empty($orderCode)) {
@@ -326,7 +375,7 @@ $logMessage("Displaying confirmation for order: $orderCode, Customer ID: $custom
 $logMessage("Order items count: " . count($orderItems));
 $logMessage("Order items: " . json_encode($orderItems));
 $logMessage("Delivery method: " . ($order['delivery_method'] ?? 'N/A'));
-$logMessage("Delivery address: " . json_encode($order['delivery_address'] ?? null));
+$logMessage("Processed delivery address: " . json_encode($order['delivery_address'] ?? null));
 $logMessage("Customer email: $customerEmail");
 $logMessage("Payment details: " . ($order['payment_details'] ?? 'N/A'));
 
@@ -395,19 +444,23 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
                 <p><strong>Delivery Address:</strong> 
                     <?php
                     $deliveryAddress = $order['delivery_address'] ?? null;
-                    if ($deliveryAddress && $order['delivery_method'] === 'delivery') {
+                    if ($deliveryAddress && ($order['delivery_method'] ?? 'pickup') === 'delivery') {
                         if (is_array($deliveryAddress)) {
-                            $addressParts = [];
-                            if (!empty($deliveryAddress['street_address'])) {
-                                $addressParts[] = htmlspecialchars($deliveryAddress['street_address']);
+                            if (!empty($deliveryAddress['raw_address'])) {
+                                echo htmlspecialchars($deliveryAddress['raw_address']);
+                            } else {
+                                $addressParts = [];
+                                if (!empty($deliveryAddress['street_address'])) {
+                                    $addressParts[] = htmlspecialchars($deliveryAddress['street_address']);
+                                }
+                                if (!empty($deliveryAddress['city'])) {
+                                    $addressParts[] = htmlspecialchars($deliveryAddress['city']);
+                                }
+                                if (!empty($deliveryAddress['postal_code'])) {
+                                    $addressParts[] = htmlspecialchars($deliveryAddress['postal_code']);
+                                }
+                                echo implode(', ', $addressParts) ?: 'N/A';
                             }
-                            if (!empty($deliveryAddress['city'])) {
-                                $addressParts[] = htmlspecialchars($deliveryAddress['city']);
-                            }
-                            if (!empty($deliveryAddress['postal_code'])) {
-                                $addressParts[] = htmlspecialchars($deliveryAddress['postal_code']);
-                            }
-                            echo implode(', ', $addressParts) ?: 'N/A';
                         } else {
                             echo 'N/A';
                         }
@@ -565,17 +618,21 @@ if (isset($_GET['download_invoice']) && !empty($orderCode)) {
                             $deliveryAddress = $order['delivery_address'] ?? null;
                             if ($deliveryAddress && ($order['delivery_method'] ?? 'pickup') === 'delivery') {
                                 if (is_array($deliveryAddress)) {
-                                    $addressParts = [];
-                                    if (!empty($deliveryAddress['street_address'])) {
-                                        $addressParts[] = htmlspecialchars($deliveryAddress['street_address']);
+                                    if (!empty($deliveryAddress['raw_address'])) {
+                                        echo htmlspecialchars($deliveryAddress['raw_address']);
+                                    } else {
+                                        $addressParts = [];
+                                        if (!empty($deliveryAddress['street_address'])) {
+                                            $addressParts[] = htmlspecialchars($deliveryAddress['street_address']);
+                                        }
+                                        if (!empty($deliveryAddress['city'])) {
+                                            $addressParts[] = htmlspecialchars($deliveryAddress['city']);
+                                        }
+                                        if (!empty($deliveryAddress['postal_code'])) {
+                                            $addressParts[] = htmlspecialchars($deliveryAddress['postal_code']);
+                                        }
+                                        echo implode(', ', $addressParts) ?: 'N/A';
                                     }
-                                    if (!empty($deliveryAddress['city'])) {
-                                        $addressParts[] = htmlspecialchars($deliveryAddress['city']);
-                                    }
-                                    if (!empty($deliveryAddress['postal_code'])) {
-                                        $addressParts[] = htmlspecialchars($deliveryAddress['postal_code']);
-                                    }
-                                    echo implode(', ', $addressParts) ?: 'N/A';
                                 } else {
                                     echo 'N/A';
                                 }
