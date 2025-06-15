@@ -391,26 +391,34 @@ table th:nth-child(7) { width: 160px; }     /* Actions */
 }
 
 .password-field {
-    position: relative;
+  position: relative;
 }
 
 .password-field input {
-    position: relative;
-    z-index: 1;
-    padding-left: 45px;
-    padding-right: 45px;
+  padding-left: 45px;
+  padding-right: 45px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
 .password-field .toggle-password {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #888;
-    z-index: 3;
-    pointer-events: auto; 
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #c0a23d;
+  z-index: 3;
 }
+
 
 .password-field .toggle-password:hover {
     color: #c0a23d;

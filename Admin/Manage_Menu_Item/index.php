@@ -125,7 +125,7 @@ foreach ($items as $item) {
                         <p class="item-desc"><?= htmlspecialchars($item['description']) ?></p>
                         <div class="price-row">
                             <div class="price-bubble">
-                                $<?= number_format($item['price'], 2) ?>
+                                RM<?= number_format($item['price'], 2) ?>
                                
                             </div>
                             <div class="action-buttons">

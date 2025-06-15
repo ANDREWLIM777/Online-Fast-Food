@@ -209,6 +209,26 @@
 >>>>>>> 1ba2aa7cf0e015e2f1c87a9383174fc0e56364d9
 2025-06-13 23:46:07 - Payment history accessed for customer_id: 1, page: 1
 >>>>>>> 054417ddeb372568ea47bc9a28027409ceb5be65
+<<<<<<< HEAD
+2025-06-14 07:49:47 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 07:51:14 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 07:52:12 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 07:52:22 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 07:54:43 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 07:56:42 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 07:57:10 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 07:57:20 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 08:06:58 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 09:15:24 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 09:15:31 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 09:15:45 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 09:16:01 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 09:17:57 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 09:18:02 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 09:18:30 - Payment history accessed for customer_id: 51, page: 1
+2025-06-14 18:27:21 - Payment history accessed for customer_id: 51, page: 1
+2025-06-15 14:45:00 - Payment history accessed for customer_id: 51, page: 1
+=======
 2025-06-14 09:52:43 - Payment history accessed for customer_id: 1, page: 1
 2025-06-14 10:05:45 - Payment history accessed for customer_id: 1, page: 1
 2025-06-14 10:21:36 - Payment history accessed for customer_id: 1, page: 1
@@ -245,9 +265,13 @@
 2025-06-14 15:14:14 - Payment history accessed for customer_id: 1, page: 1
 2025-06-14 15:15:12 - Payment history accessed for customer_id: 1, page: 1
 2025-06-14 15:15:23 - Payment history accessed for customer_id: 1, page: 1
+<<<<<<< HEAD
 2025-06-14 15:24:59 - Payment history accessed for customer_id: 1, page: 1
 2025-06-14 15:34:47 - Payment history accessed for customer_id: 1, page: 1
 2025-06-14 15:38:57 - Payment history accessed for customer_id: 1, page: 1
 2025-06-14 15:40:27 - Payment history accessed for customer_id: 1, page: 1
 2025-06-14 18:29:47 - Session expired for customer_id: unknown
 2025-06-14 18:29:58 - Payment history accessed for customer_id: 1, page: 1
+=======
+>>>>>>> 537264ea27c068617ae5e8c32338c1eca0704ba7
+>>>>>>> e012d2e48e0289f565b658a82ab2268da5c9453b
