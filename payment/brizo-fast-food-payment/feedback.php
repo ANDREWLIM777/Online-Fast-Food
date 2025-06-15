@@ -194,8 +194,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_feedback'])) {
 
     // Save feedback
     $stmt = $conn->prepare("
-        INSERT INTO feedback (order_id, customer_id, rating, comments, status, evidence_path, created_at, updated_at)
-        VALUES (?, ?, ?, ?, 'pending', ?, NOW(), NOW())
+        INSERT INTO feedback (order_id, customer_id, rating, comments, evidence_path, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, NOW(), NOW())
     ");
     if (!$stmt) {
         $logMessage("Prepare failed for feedback insert: " . $conn->error . " at " . date('Y-m-d H:i:s', time()));
@@ -392,9 +392,9 @@ $baseUrl = 'http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/';
                     const orderId = e.target.value;
                     showFeedback(orderId);
                     if (orderId) {
-                        window.history.pushState({}, '', `?order_id=${encodeURIComponent(orderId)}`);
+                        window.history.pushState({}, '', `?order_id=${encodeURIComponent(orderId)}&csrf_token=${encodeURIComponent('<?= $csrfToken ?>')}`);
                     } else {
-                        window.history.pushState({}, '', window.location.pathname);
+                        window.history.pushState({}, '', `?csrf_token=${encodeURIComponent('<?= $csrfToken ?>')}`);
                     }
                 });
 
@@ -412,8 +412,8 @@ $baseUrl = 'http://localhost/Online-Fast-Food/Admin/Manage_Menu_Item/';
     <header class="sticky top-0 bg-white shadow z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-primary">Brizo Fast Food Melaka</h1>
-            <a href="/Online-Fast-Food/customer/menu/cart/cart.php" class="text-primary hover:text-primary flex items-center" aria-label="Return to cart page">
-                <i class="fas fa-shopping-cart mr-2"></i> Back to Cart
+            <a href="http://localhost/Online-Fast-Food/customer/menu/menu.php" class="text-primary hover:text-primary flex items-center" aria-label="Return to menu page">
+                <i class="fas fa-utensils mr-2"></i> Back to Menu
             </a>
         </div>
     </header>

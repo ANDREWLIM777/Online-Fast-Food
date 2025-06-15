@@ -76,7 +76,7 @@ $totalPages = ceil($totalRecords / $recordsPerPage);
 
 // Fetch feedback history
 $stmt = $conn->prepare("
-    SELECT f.order_id, f.rating, f.comments, f.evidence_path, f.status, f.created_at, o.total
+    SELECT f.order_id, f.rating, f.comments, f.evidence_path, f.created_at, o.total
     FROM feedback f
     INNER JOIN orders o ON f.order_id = o.order_id
     WHERE f.customer_id = ?
@@ -95,16 +95,6 @@ $stmt->close();
 
 // Log page access
 $logMessage("Feedback history accessed for customer_id: $customerId, page: $page");
-
-// Function to get status color
-function getStatusColor($status) {
-    switch (strtolower($status)) {
-        case 'pending': return 'text-yellow-600';
-        case 'approved': return 'text-green-600';
-        case 'rejected': return 'text-red-600';
-        default: return 'text-gray-600';
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -177,8 +167,8 @@ function getStatusColor($status) {
     <header class="sticky top-0 bg-white shadow z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-primary">Brizo Fast Food Melaka</h1>
-            <a href="/Online-Fast-Food/customer/menu/cart/cart.php" class="text-primary hover:text-primary flex items-center">
-                <i class="fas fa-shopping-cart mr-2"></i> Back to Cart
+            <a href="http://localhost/Online-Fast-Food/customer/menu/menu.php" class="text-primary hover:text-primary flex items-center">
+                <i class="fas fa-utensils mr-2"></i> Back to Menu
             </a>
         </div>
     </header>
@@ -199,7 +189,6 @@ function getStatusColor($status) {
                                 <th scope="col">Rating</th>
                                 <th scope="col">Comments</th>
                                 <th scope="col">Evidence</th>
-                                <th scope="col">Status</th>
                                 <th scope="col">Submitted On</th>
                                 <th scope="col">Total</th>
                             </tr>
@@ -224,10 +213,6 @@ function getStatusColor($status) {
                                         <?php else: ?>
                                             None
                                         <?php endif; ?>
-                                    </td>
-                                    <td class="<?= getStatusColor($row['status']) ?>">
-                                        <i class="fas fa-circle icon text-xs"></i>
-                                        <?= ucfirst(htmlspecialchars($row['status'])) ?>
                                     </td>
                                     <td>
                                         <?= date('d M Y, H:i:s', strtotime($row['created_at'])) ?>

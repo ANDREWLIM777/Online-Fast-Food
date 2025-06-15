@@ -52,6 +52,8 @@ $admin = $result->fetch_assoc();
     opacity: 0;
     pointer-events: none;
 }
+
+
     </style>
         <?php if (isset($_SESSION['error'])): ?>
     <div class="error-box">
@@ -90,7 +92,7 @@ $admin = $result->fetch_assoc();
 
         
 <div class="form-section">
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom: 20px;">
         <label>Full Name</label>
         <div class="input-with-icon">
             <i class="fas fa-user"></i>
@@ -128,14 +130,19 @@ $admin = $result->fetch_assoc();
     <?php endif; ?>
 </div>
 
-    <div class="form-row">
-        <div class="form-group">
-            <label>Email</label>
-            <div class="input-with-icon">
-                <i class="fas fa-envelope"></i>
-                <input type="email" name="email" value="<?= htmlspecialchars($admin['email']) ?>" required>
-            </div>
-        </div>
+   <div class="form-group">
+    <label>Email</label>
+    <div class="input-with-icon">
+        <i class="fas fa-envelope"></i>
+        <?php if ($admin['role'] === 'superadmin'): ?>
+            <input type="email" value="<?= htmlspecialchars($admin['email']) ?>" disabled>
+            <input type="hidden" name="email" value="<?= htmlspecialchars($admin['email']) ?>">
+        <?php else: ?>
+            <input type="email" name="email" value="<?= htmlspecialchars($admin['email']) ?>" required>
+        <?php endif; ?>
+    </div>
+</div>
+
 
         <div class="form-group">
             <label>Phone</label>
@@ -152,18 +159,23 @@ $admin = $result->fetch_assoc();
 </div>
 
 
-    <div class="form-group">
-        <label>New Password</label>
-        <div class="input-with-icon password-field">
-            <input type="password" name="password" id="password"
-       placeholder="••••••••"
-       onkeydown="return event.key !== ' '"
-       oninput="this.value = this.value.replace(/\s/g, '')"
-       onpaste="return false">
-            <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
-        </div>
-        <small class="form-note">Leave blank to keep current password</small>
-    </div>
+<div class="form-group">
+  <label>New Password</label>
+  <div class="password-field">
+    <?php if ($admin['role'] === 'superadmin'): ?>
+      <input type="password" id="password" placeholder="••••••••" disabled>
+      <small class="form-note">Super Admin password cannot be changed</small>
+    <?php else: ?>
+      <input type="password" name="password" id="password"
+             placeholder="••••••••"
+             onkeydown="return event.key !== ' '"
+             oninput="this.value = this.value.replace(/\s/g, '')"
+             onpaste="return false">
+      <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+      <small class="form-note">Leave blank to keep current password</small>
+    <?php endif; ?>
+  </div>
+</div>
 
     <div class="form-actions">
         <button type="submit" class="btn save-btn">

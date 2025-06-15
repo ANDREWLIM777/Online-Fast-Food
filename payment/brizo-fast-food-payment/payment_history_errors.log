@@ -209,6 +209,7 @@
 >>>>>>> 1ba2aa7cf0e015e2f1c87a9383174fc0e56364d9
 2025-06-13 23:46:07 - Payment history accessed for customer_id: 1, page: 1
 >>>>>>> 054417ddeb372568ea47bc9a28027409ceb5be65
+<<<<<<< HEAD
 2025-06-14 07:49:47 - Payment history accessed for customer_id: 51, page: 1
 2025-06-14 07:51:14 - Payment history accessed for customer_id: 51, page: 1
 2025-06-14 07:52:12 - Payment history accessed for customer_id: 51, page: 1
@@ -227,3 +228,41 @@
 2025-06-14 09:18:30 - Payment history accessed for customer_id: 51, page: 1
 2025-06-14 18:27:21 - Payment history accessed for customer_id: 51, page: 1
 2025-06-15 14:45:00 - Payment history accessed for customer_id: 51, page: 1
+=======
+2025-06-14 09:52:43 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 10:05:45 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 10:21:36 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 10:21:46 - Payment history accessed for customer_id: 1, page: 2
+2025-06-14 10:27:49 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 10:30:09 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 10:42:37 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 10:42:46 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 10:46:35 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 12:08:35 - Session expired for customer_id: unknown
+2025-06-14 12:39:36 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 12:39:44 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 14:44:17 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 14:45:19 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 14:45:28 - Payment history accessed for customer_id: 1, page: 2
+2025-06-14 14:45:29 - Payment history accessed for customer_id: 1, page: 3
+2025-06-14 14:45:34 - Payment history accessed for customer_id: 1, page: 2
+2025-06-14 14:46:39 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 14:46:50 - Payment history accessed for customer_id: 1, page: 2
+2025-06-14 14:46:52 - Payment history accessed for customer_id: 1, page: 3
+2025-06-14 14:47:25 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 14:47:46 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 14:48:01 - Payment history accessed for customer_id: 1, page: 2
+2025-06-14 14:48:07 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 14:48:29 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 15:01:10 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 15:01:53 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 15:02:06 - Payment history accessed for customer_id: 1, page: 2
+2025-06-14 15:02:08 - Payment history accessed for customer_id: 1, page: 3
+2025-06-14 15:03:33 - Payment history accessed for customer_id: 1, page: 3
+2025-06-14 15:03:33 - Payment history accessed for customer_id: 1, page: 2
+2025-06-14 15:03:34 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 15:03:41 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 15:14:14 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 15:15:12 - Payment history accessed for customer_id: 1, page: 1
+2025-06-14 15:15:23 - Payment history accessed for customer_id: 1, page: 1
+>>>>>>> 537264ea27c068617ae5e8c32338c1eca0704ba7
