@@ -287,7 +287,7 @@ img {
 
                 <div class="form-group">
                     <label>Price *</label>
-                    <input type="number" step="0.01" name="price" min="0" required>
+                    <input type="number" step="0.1" name="price" min="0" required>
                 </div>
 
                 <div class="form-group">
