@@ -1,6 +1,12 @@
 <?php
+ob_start();
 require_once("../db_connect.php");
 session_start();
+
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', 'C:/xampp/htdocs/Online-Fast-Food/php_errors.log');
+error_reporting(E_ALL);
 
 $error = '';
 $success = '';
@@ -8,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = isset($_SESSION['reset_email']) ? filter_var($_SESSION['reset_email'], FILTER_SANITIZE_EMAIL) : '';
     $password = $_POST['password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
+
+    error_log('reset_password.php: Session reset_email = ' . ($email ?? 'not set'));
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Invalid or missing email. Please restart the password reset process.";
@@ -26,20 +34,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare($query);
         if ($stmt === false) {
             $error = "Database error: " . $conn->error;
+            error_log('reset_password.php: Database error - ' . $conn->error);
         } else {
             $stmt->bind_param("ss", $hashed_password, $email);
             if ($stmt->execute()) {
-                $success = "Password reset successfully. You can now log in.";
-                unset($_SESSION['reset_email']); // Clear session
-                session_destroy(); // End session
+                // Insert notification
+                $title = "Password Reset Successful";
+                $message = "Your password has been reset. Contact support if you didn’t initiate this.";
+                $type = "announcement";
+                $stmt = $conn->prepare("INSERT INTO customer_notifications (customer_id, title, message, type, created_at) 
+                                       SELECT id, ?, ?, ?, NOW() FROM customers WHERE email = ?");
+                $stmt->bind_param("ssss", $title, $message, $type, $email);
+                $stmt->execute();
+                $success = "Password reset successfully. Redirecting to login...";
+                unset($_SESSION['reset_email']);
+                session_write_close();
+                error_log('reset_password.php: Password reset successful, redirecting to login.php');
+                // Add meta refresh for brief success message display
+                echo "<meta http-equiv='refresh' content='2;url=http://localhost/Online-Fast-Food/customer/login.php?success=" . urlencode($success) . "'>";
+                // Ensure no further output interferes
+                ob_end_flush();
             } else {
                 $error = "Failed to update password: " . $stmt->error;
+                error_log('reset_password.php: Failed to update password - ' . $stmt->error);
             }
             $stmt->close();
         }
     }
     $conn->close();
 }
+ob_end_flush();
 ?>
 
 <!DOCTYPE html>
@@ -109,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php } ?>
         <?php if ($success) { ?>
             <p class="success"><?php echo htmlspecialchars($success); ?></p>
-            <p><a href="login.php" style="color: #ffa751;">Go to Login</a></p>
+            <p><a href="http://localhost/Online-Fast-Food/customer/login.php" style="color: #ffa751;">Go to Login</a></p>
         <?php } else { ?>
             <form method="POST">
                 <div class="form-group">
@@ -124,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         <?php } ?>
         <hr>
-        <p><a href="login.php" style="color: #ffa751;">Back to Login</a></p>
+        <p><a href="http://localhost/Online-Fast-Food/customer/login.php" style="color: #ffa751;">Back to Login</a></p>
     </div>
 </body>
 </html>

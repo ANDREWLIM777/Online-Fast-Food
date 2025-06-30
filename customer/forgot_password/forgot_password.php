@@ -1,6 +1,8 @@
 <?php
 require_once("../db_connect.php");
 session_start();
+
+// Redirect logged-in users to account page
 if (isset($_SESSION["login_sess"])) {
     header("Location: account.php");
     exit;
@@ -93,7 +95,7 @@ if (isset($_SESSION["login_sess"])) {
         $(document).ready(function() {
             $('#forgotForm').on('submit', function(e) {
                 e.preventDefault();
-                const email = $('input[name=email]').val();
+                const email = $('input[name=email]').val().trim();
                 if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                     showToast("Please enter a valid email.", "error");
                     return;
@@ -103,10 +105,10 @@ if (isset($_SESSION["login_sess"])) {
                 $.ajax({
                     url: 'forgot_process.php',
                     type: 'POST',
-                    data: $(this).serialize(),
+                    data: { email: email },
                     dataType: 'json',
                     success: function(response) {
-                        console.log('Raw response:', response);
+                        console.log('Response:', response);
                         showToast(response.message, response.status);
                         if (response.status === 'success') {
                             setTimeout(() => {
@@ -116,7 +118,16 @@ if (isset($_SESSION["login_sess"])) {
                     },
                     error: function(xhr, status, error) {
                         console.error('AJAX error:', status, error, 'Response:', xhr.responseText);
-                        showToast("Server error: " + xhr.responseText, "error");
+                        let errorMessage = "Server error: Unable to process request.";
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response.message) {
+                                errorMessage = response.message;
+                            }
+                        } catch (e) {
+                            errorMessage += " (Invalid response format)";
+                        }
+                        showToast(errorMessage, "error");
                     },
                     complete: function() {
                         $btn.prop('disabled', false).html('Send OTP');

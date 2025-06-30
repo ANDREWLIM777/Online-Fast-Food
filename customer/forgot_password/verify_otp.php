@@ -2,17 +2,17 @@
 require_once("../db_connect.php");
 session_start();
 
-error_log('verify_otp.php: Session reset_email = ' . ($_SESSION['reset_email'] ?? 'not set')); // Debug session
+error_log('verify_otp.php: Session reset_email = ' . ($_SESSION['reset_email'] ?? 'not set'));
 
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = isset($_SESSION['reset_email']) ? filter_var($_SESSION['reset_email'], FILTER_SANITIZE_EMAIL) : '';
-    $otp = filter_var($_POST['otp'], FILTER_SANITIZE_STRING);
+    $otp = filter_var($_POST['otp'] ?? '', FILTER_SANITIZE_STRING);
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Invalid or missing email. Please request a new OTP.";
-    } elseif (empty($otp)) {
-        $error = "Please enter the OTP.";
+    } elseif (empty($otp) || !preg_match('/^\d{6}$/', $otp)) {
+        $error = "Please enter a valid 6-digit OTP.";
     } else {
         $query = "SELECT * FROM otp_verification WHERE email = ? AND otp = ? AND expires_at > NOW()";
         $stmt = $conn->prepare($query);
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="POST">
             <div class="form-group">
                 <label for="otp">OTP</label>
-                <input type="text" name="otp" id="otp" class="form-control" placeholder="Enter OTP" required>
+                <input type="text" name="otp" id="otp" class="form-control" placeholder="Enter 6-digit OTP" maxlength="6" pattern="\d{6}" required>
             </div>
             <button type="submit" class="btn form_btn btn-block">Verify OTP</button>
         </form>
