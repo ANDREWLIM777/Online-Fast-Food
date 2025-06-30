@@ -2,13 +2,17 @@
 require_once("../db_connect.php");
 session_start();
 
+error_log('verify_otp.php: Session reset_email = ' . ($_SESSION['reset_email'] ?? 'not set')); // Debug session
+
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = filter_var($_GET['email'], FILTER_SANITIZE_EMAIL);
+    $email = isset($_SESSION['reset_email']) ? filter_var($_SESSION['reset_email'], FILTER_SANITIZE_EMAIL) : '';
     $otp = filter_var($_POST['otp'], FILTER_SANITIZE_STRING);
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = "Invalid email format";
+        $error = "Invalid or missing email. Please request a new OTP.";
+    } elseif (empty($otp)) {
+        $error = "Please enter the OTP.";
     } else {
         $query = "SELECT * FROM otp_verification WHERE email = ? AND otp = ? AND expires_at > NOW()";
         $stmt = $conn->prepare($query);
@@ -20,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-                $_SESSION['reset_email'] = $email;
+                // OTP is valid, delete it
                 $delete_query = "DELETE FROM otp_verification WHERE email = ?";
                 $delete_stmt = $conn->prepare($delete_query);
                 $delete_stmt->bind_param("s", $email);
@@ -97,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <img src="/Online-Fast-Food/customer/logo.png" alt="Brizo Fast Food" class="img-fluid logo">
         <h4 class="mb-4"><i class="fas fa-key"></i> Enter OTP</h4>
         <?php if ($error) { ?>
-            <p class="error"><?php echo htmlspecialchars($error); ?></php>
+            <p class="error"><?php echo htmlspecialchars($error); ?></p>
         <?php } ?>
         <form method="POST">
             <div class="form-group">

@@ -104,20 +104,14 @@ if (isset($_SESSION["login_sess"])) {
                     url: 'forgot_process.php',
                     type: 'POST',
                     data: $(this).serialize(),
-                    dataType: 'text', // Force text response to inspect raw data
+                    dataType: 'json',
                     success: function(response) {
                         console.log('Raw response:', response);
-                        try {
-                            const res = JSON.parse(response);
-                            showToast(res.message, res.status);
-                            if (res.status === 'success') {
-                                setTimeout(() => {
-                                    window.location.href = 'verify_otp.php?email=' + encodeURIComponent(email);
-                                }, 2000);
-                            }
-                        } catch (e) {
-                            console.error('JSON parse error:', e.message, 'Response:', response);
-                            showToast("Invalid server response: " + response, "error");
+                        showToast(response.message, response.status);
+                        if (response.status === 'success') {
+                            setTimeout(() => {
+                                window.location.href = 'verify_otp.php';
+                            }, 2000);
                         }
                     },
                     error: function(xhr, status, error) {
