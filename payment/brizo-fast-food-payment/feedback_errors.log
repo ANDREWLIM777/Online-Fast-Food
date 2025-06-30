@@ -520,7 +520,60 @@
 2025-06-14 15:25:12 - Invalid CSRF token for order_id: ORD-68430866C0D7D at 2025-06-14 15:25:12
 =======
 >>>>>>> 537264ea27c068617ae5e8c32338c1eca0704ba7
+<<<<<<< HEAD
+2025-06-27 04:16:35 - Customer ID: 48 at 2025-06-27 04:16:35
+2025-06-27 04:16:35 - Admin email for notifications: jinyang@brizo.com at 2025-06-27 04:16:35
+2025-06-27 04:16:35 - Fetched 0 completed orders for customer_id: 48 at 2025-06-27 04:16:35
+2025-06-27 04:45:15 - Customer ID: 48 at 2025-06-27 04:45:15
+2025-06-27 04:45:15 - Admin email for notifications: jinyang@brizo.com at 2025-06-27 04:45:15
+2025-06-27 04:45:15 - Fetched 1 completed orders for customer_id: 48 at 2025-06-27 04:45:15
+2025-06-27 04:45:55 - No customer_id in session at 2025-06-27 04:45:55
+=======
 >>>>>>> e012d2e48e0289f565b658a82ab2268da5c9453b
+<<<<<<< HEAD
+2025-06-19 04:07:37 - Customer ID: 1 at 2025-06-19 04:07:37
+2025-06-19 04:07:37 - Admin email for notifications: jinyang@brizo.com at 2025-06-19 04:07:37
+2025-06-19 04:07:37 - Fetched 13 completed orders for customer_id: 1 at 2025-06-19 04:07:37
+2025-06-27 04:26:29 - Customer ID: 1 at 2025-06-27 04:26:29
+2025-06-27 04:26:29 - Admin email for notifications: jinyang@brizo.com at 2025-06-27 04:26:29
+2025-06-27 04:26:29 - Fetched 14 completed orders for customer_id: 1 at 2025-06-27 04:26:29
+2025-06-27 04:26:29 - Selected order: order_id=ORD-685E0029C67B1, found={"order_id":"ORD-685E0029C67B1","total":"27.00","created_at":"2025-06-27 10:21:29","customer_id":1,"status":"completed"} at 2025-06-27 04:26:29
+2025-06-27 04:26:29 - Fetched feedback for order ORD-685E0029C67B1: Not found at 2025-06-27 04:26:29
+2025-06-27 04:26:59 - Customer ID: 1 at 2025-06-27 04:26:59
+2025-06-27 04:26:59 - Admin email for notifications: jinyang@brizo.com at 2025-06-27 04:26:59
+2025-06-27 04:26:59 - Fetched 14 completed orders for customer_id: 1 at 2025-06-27 04:26:59
+2025-06-27 04:26:59 - Feedback saved for order: ORD-685E0029C67B1, rating: 5 at 2025-06-27 04:26:59
+2025-06-27 04:27:00 - Feedback email failed for order: ORD-685E0029C67B1 - SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT command failed at 2025-06-27 04:27:00
+2025-06-27 04:27:00 - Customer ID: 1 at 2025-06-27 04:27:00
+2025-06-27 04:27:00 - Admin email for notifications: jinyang@brizo.com at 2025-06-27 04:27:00
+2025-06-27 04:27:00 - Fetched 14 completed orders for customer_id: 1 at 2025-06-27 04:27:00
+2025-06-27 04:27:22 - Customer ID: 1 at 2025-06-27 04:27:22
+2025-06-27 04:27:22 - Admin email for notifications: jinyang@brizo.com at 2025-06-27 04:27:22
+2025-06-27 04:27:22 - Fetched 14 completed orders for customer_id: 1 at 2025-06-27 04:27:22
+2025-06-27 04:28:08 - Customer ID: 1 at 2025-06-27 04:28:08
+2025-06-27 04:28:08 - Admin email for notifications: jinyang@brizo.com at 2025-06-27 04:28:08
+2025-06-27 04:28:08 - Fetched 14 completed orders for customer_id: 1 at 2025-06-27 04:28:08
+2025-06-27 04:28:11 - Customer ID: 1 at 2025-06-27 04:28:11
+2025-06-27 04:28:11 - Admin email for notifications: jinyang@brizo.com at 2025-06-27 04:28:11
+2025-06-27 04:28:11 - Fetched 14 completed orders for customer_id: 1 at 2025-06-27 04:28:11
+2025-06-27 04:28:12 - Customer ID: 1 at 2025-06-27 04:28:12
+2025-06-27 04:28:12 - Admin email for notifications: jinyang@brizo.com at 2025-06-27 04:28:12
+2025-06-27 04:28:12 - Fetched 14 completed orders for customer_id: 1 at 2025-06-27 04:28:12
+2025-06-27 04:28:12 - Selected order: order_id=ORD-685E0029C67B1, found={"order_id":"ORD-685E0029C67B1","total":"27.00","created_at":"2025-06-27 10:21:29","customer_id":1,"status":"completed"} at 2025-06-27 04:28:12
+2025-06-27 04:28:12 - Fetched feedback for order ORD-685E0029C67B1: Found at 2025-06-27 04:28:12
+2025-06-27 04:28:15 - Customer ID: 1 at 2025-06-27 04:28:15
+2025-06-27 04:28:15 - Admin email for notifications: jinyang@brizo.com at 2025-06-27 04:28:15
+2025-06-27 04:28:15 - Fetched 14 completed orders for customer_id: 1 at 2025-06-27 04:28:15
+2025-06-27 04:28:16 - Customer ID: 1 at 2025-06-27 04:28:16
+2025-06-27 04:28:16 - Admin email for notifications: jinyang@brizo.com at 2025-06-27 04:28:16
+2025-06-27 04:28:16 - Fetched 14 completed orders for customer_id: 1 at 2025-06-27 04:28:16
+2025-06-27 04:28:16 - Selected order: order_id=ORD-685E0029C67B1, found={"order_id":"ORD-685E0029C67B1","total":"27.00","created_at":"2025-06-27 10:21:29","customer_id":1,"status":"completed"} at 2025-06-27 04:28:16
+2025-06-27 04:28:16 - Fetched feedback for order ORD-685E0029C67B1: Found at 2025-06-27 04:28:16
+2025-06-30 07:08:05 - Customer ID: 1 at 2025-06-30 07:08:05
+2025-06-30 07:08:05 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 07:08:05
+2025-06-30 07:08:05 - Fetched 14 completed orders for customer_id: 1 at 2025-06-30 07:08:05
+=======
 2025-06-15 15:09:53 - Customer ID: 57 at 2025-06-15 15:09:53
 2025-06-15 15:09:53 - Admin email for notifications: jinyang@brizo.com at 2025-06-15 15:09:53
 2025-06-15 15:09:53 - Fetched 0 completed orders for customer_id: 57 at 2025-06-15 15:09:53
@@ -533,3 +586,18 @@
 2025-06-15 15:17:42 - Customer ID: 57 at 2025-06-15 15:17:42
 2025-06-15 15:17:42 - Admin email for notifications: jinyang@brizo.com at 2025-06-15 15:17:42
 2025-06-15 15:17:42 - Fetched 0 completed orders for customer_id: 57 at 2025-06-15 15:17:42
+>>>>>>> 5cdadbf466bcd21d79d21df646f6d69b941773e0
+2025-06-30 10:36:36 - Session expired for customer_id: unknown at 2025-06-30 10:36:36
+>>>>>>> c3ba60dd07a9d2b25ba5ca4cfdd739865f37da19
+2025-06-30 16:12:31 - Customer ID: 1 at 2025-06-30 16:12:31
+2025-06-30 16:12:31 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 16:12:31
+2025-06-30 16:12:31 - Fetched 14 completed orders for customer_id: 1 at 2025-06-30 16:12:31
+2025-06-30 16:39:59 - Customer ID: 1 at 2025-06-30 16:39:59
+2025-06-30 16:39:59 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 16:39:59
+2025-06-30 16:39:59 - Fetched 14 completed orders for customer_id: 1 at 2025-06-30 16:39:59
+2025-06-30 16:47:38 - Customer ID: 1 at 2025-06-30 16:47:38
+2025-06-30 16:47:38 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 16:47:38
+2025-06-30 16:47:38 - Fetched 14 completed orders for customer_id: 1 at 2025-06-30 16:47:38
+2025-06-30 16:47:45 - Customer ID: 1 at 2025-06-30 16:47:45
+2025-06-30 16:47:45 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 16:47:45
+2025-06-30 16:47:45 - Fetched 14 completed orders for customer_id: 1 at 2025-06-30 16:47:45
