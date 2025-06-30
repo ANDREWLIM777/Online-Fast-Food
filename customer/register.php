@@ -41,26 +41,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $check = $conn->prepare("SELECT id FROM customers WHERE email = ?");
+// Check for duplicate email or phone
+$check = $conn->prepare("SELECT id FROM customers WHERE email = ? OR phone = ?");
         if ($check) {
-            $check->bind_param("s", $email);
-            $check->execute();
-            $check->store_result();
+    $check->bind_param("ss", $email, $phone);
+    $check->execute();
+    $check->store_result();
 
-            if ($check->num_rows > 0) {
+    if ($check->num_rows > 0) {
+        // Fetch to identify if it's email or phone causing conflict
+        $check->bind_result($existingId);
+        $check->fetch();
+
+        // Optional: Do more advanced check here by selecting full row and comparing
+        $duplicateStmt = $conn->prepare("SELECT email, phone FROM customers WHERE email = ? OR phone = ?");
+        $duplicateStmt->bind_param("ss", $email, $phone);
+        $duplicateStmt->execute();
+        $duplicateResult = $duplicateStmt->get_result();
+        $row = $duplicateResult->fetch_assoc();
+        if ($row) {
+            if ($row['email'] === $email) {
                 $showError = "⚠️ This email is already registered. Try logging in instead.";
+            } elseif ($row['phone'] === $phone) {
+                $showError = "⚠️ This phone number is already in use. Please use another.";
             } else {
-                $stmt = $conn->prepare("INSERT INTO customers (fullname, email, password, phone) VALUES (?, ?, ?, ?)");
-                if ($stmt) {
-                    $stmt->bind_param("ssss", $fullname, $email, $hashedPassword, $phone);
-                    if ($stmt->execute()) {
-                        header("Location: register-success.php");
-                        exit();
-                    } else {
-                        $showError = "❌ Something went wrong. Please try again.";
-                    }
-                }
+                $showError = "⚠️ Duplicate registration information.";
             }
+        } else {
+            $showError = "⚠️ This email or phone number is already in use.";
+        }
+    } else {
+        // Proceed with registration
+        $stmt = $conn->prepare("INSERT INTO customers (fullname, email, password, phone) VALUES (?, ?, ?, ?)");
+        if ($stmt) {
+            $stmt->bind_param("ssss", $fullname, $email, $hashedPassword, $phone);
+            if ($stmt->execute()) {
+                header("Location: register-success.php");
+                exit();
+            } else {
+                $showError = "❌ Something went wrong. Please try again.";
+            }
+        }
+    }
         } else {
             $showError = "❌ Database error (prepare failed).";
         }
