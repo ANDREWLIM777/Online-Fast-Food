@@ -589,3 +589,9 @@ error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT c
 >>>>>>> 5cdadbf466bcd21d79d21df646f6d69b941773e0
 2025-06-30 10:36:36 - Session expired for customer_id: unknown at 2025-06-30 10:36:36
 >>>>>>> c3ba60dd07a9d2b25ba5ca4cfdd739865f37da19
+2025-06-30 16:12:31 - Customer ID: 1 at 2025-06-30 16:12:31
+2025-06-30 16:12:31 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 16:12:31
+2025-06-30 16:12:31 - Fetched 14 completed orders for customer_id: 1 at 2025-06-30 16:12:31
+2025-06-30 16:39:59 - Customer ID: 1 at 2025-06-30 16:39:59
+2025-06-30 16:39:59 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 16:39:59
+2025-06-30 16:39:59 - Fetched 14 completed orders for customer_id: 1 at 2025-06-30 16:39:59
