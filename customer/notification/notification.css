@@ -14,12 +14,12 @@ body {
 }
 
 .notification-container {
-  max-width: 800px;
+  max-width: 850px;
   margin: auto;
-  background: white;
-  padding: 30px 40px;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  background: #fff;
+  padding: 35px 45px;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.5s ease-in;
 }
 
@@ -29,61 +29,73 @@ body {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: #d62828;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   text-align: center;
   border-bottom: 3px solid #ffa200;
   display: inline-block;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
 }
 
-.notice {
+.notification-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notification {
   background: #fff9ed;
-  border-left: 5px solid #ffa200;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 12px rgba(255, 166, 0, 0.1);
-  transition: transform 0.2s ease;
+  border-left: 6px solid #ffa200;
+  padding: 22px 24px;
+  margin-bottom: 22px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(255, 166, 0, 0.12);
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.3s;
 }
 
-.notice:hover {
-  transform: scale(1.02);
+.notification:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
 
-.notice h2 {
-  font-size: 1.3rem;
+.notification h2 {
+  font-size: 1.4rem;
   margin-bottom: 10px;
   color: #333;
 }
 
-.notice .msg {
+.notification p {
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.7;
   margin-bottom: 12px;
 }
 
-.notice .meta {
+.notification .meta {
   font-size: 0.9rem;
-  color: #7a7a7a;
-  text-align: right;
+  color: #666;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
 }
 
-.notice.pinned {
+.notification.pinned {
   background: #fff1cc;
   border-left-color: #f77f00;
-  position: relative;
 }
 
-.pin-tag {
+.notification.pinned::before {
+  content: '📌 Pinned';
   position: absolute;
-  top: -12px;
+  top: -10px;
   right: 20px;
   background: #f77f00;
   color: white;
   font-size: 0.75rem;
-  padding: 3px 8px;
+  font-weight: bold;
+  padding: 4px 10px;
   border-radius: 50px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
@@ -92,12 +104,13 @@ h1 {
   text-align: center;
   font-style: italic;
   color: #999;
+  padding: 20px 0;
 }
 
 .back-menu {
   display: inline-block;
-  margin-top: 34px; 
-  padding: 12px 22px;
+  margin-top: 35px; 
+  padding: 12px 24px;
   background: linear-gradient(145deg, #28a745, #218838);
   color: white;
   font-weight: 600;

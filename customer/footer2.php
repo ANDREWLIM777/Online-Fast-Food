@@ -6,7 +6,6 @@
       <h4>Company</h4>
       <ul>
         <li><a href="../brizo/about_brizo.php">About Brizo</a></li>
-        <li><a href="/Online-Fast-Food/customer/customer_notification/customer_notification.php">Notifications</a></li>
       </ul>
     </div>
 
