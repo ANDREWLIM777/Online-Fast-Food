@@ -595,3 +595,9 @@ error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT c
 2025-06-30 16:39:59 - Customer ID: 1 at 2025-06-30 16:39:59
 2025-06-30 16:39:59 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 16:39:59
 2025-06-30 16:39:59 - Fetched 14 completed orders for customer_id: 1 at 2025-06-30 16:39:59
+2025-06-30 16:47:38 - Customer ID: 1 at 2025-06-30 16:47:38
+2025-06-30 16:47:38 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 16:47:38
+2025-06-30 16:47:38 - Fetched 14 completed orders for customer_id: 1 at 2025-06-30 16:47:38
+2025-06-30 16:47:45 - Customer ID: 1 at 2025-06-30 16:47:45
+2025-06-30 16:47:45 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 16:47:45
+2025-06-30 16:47:45 - Fetched 14 completed orders for customer_id: 1 at 2025-06-30 16:47:45
