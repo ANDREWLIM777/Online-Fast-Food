@@ -341,7 +341,7 @@ img {
 
                 <div class="form-group">
                     <label>Price *</label>
-                    <input type="number" step="0.01" name="price" min="0" value="<?= $item['price'] ?>" required>
+                    <input type="number" step="0.1" name="price" min="0" value="<?= $item['price'] ?>" required>
                 </div>
 
                 <div class="form-group">

@@ -1238,6 +1238,7 @@
 2025-06-14 14:43:47 - Payment successful: order_id=ORD-684D6E837FA79
 2025-06-14 14:43:47 - Redirecting to confirmation.php with order_id=ORD-684D6E837FA79
 >>>>>>> 537264ea27c068617ae5e8c32338c1eca0704ba7
+<<<<<<< HEAD
 2025-06-27 04:19:55 - Attempting to add delivery address: street=AA-7,Lorong A-3,Pekan Nenas, city=Johor, postal_code=81500
 2025-06-27 04:19:55 - Delivery address added successfully: ID 4, AA-7,Lorong A-3,Pekan Nenas, Johor, 81500
 2025-06-27 04:20:15 - Attempting to add payment method: method_type=online_banking, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;online_banking&#34;,&#34;csrf_token&#34;:&#34;e83d0eef932823486d47cd9783082a679433acf890ace757981b42fe83cc7990&#34;,&#34;bank_name&#34;:&#34;hongleong&#34;}
@@ -1256,3 +1257,24 @@
 2025-06-27 04:32:21 - Generated order_id: ORD-685E02B5A2BDC
 2025-06-27 04:32:21 - Payment successful: order_id=ORD-685E02B5A2BDC
 2025-06-27 04:32:21 - Redirecting to confirmation.php with order_id=ORD-685E02B5A2BDC
+=======
+2025-06-15 15:16:05 - Attempting to add delivery address: street=12 Mm, city=adsfsdf, postal_code=12345
+2025-06-15 15:16:05 - Delivery address added successfully: ID 4, 12 Mm, adsfsdf, 12345
+2025-06-15 15:16:24 - Attempting to add payment method: method_type=digital_wallet, POST data: {&#34;add_payment_method&#34;:&#34;1&#34;,&#34;method_type&#34;:&#34;digital_wallet&#34;,&#34;csrf_token&#34;:&#34;4c14e9d7857ec81ee31e29c9f4f47e174f139f771c3f6011e2de0c2a5a2cc5bb&#34;,&#34;wallet_type&#34;:&#34;tng&#34;,&#34;phone_number&#34;:&#34;0231231233&#34;}
+2025-06-15 15:16:24 - Adding digital wallet - Wallet Type: tng, Phone Number: 0231231233
+2025-06-15 15:16:24 - Payment method added successfully: ID 5, method_type=digital_wallet
+2025-06-15 15:16:26 - Received make_payment request: {&#34;csrf_token&#34;:&#34;4c14e9d7857ec81ee31e29c9f4f47e174f139f771c3f6011e2de0c2a5a2cc5bb&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;4&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;5&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;65&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-15 15:16:26 - Received amount: 65, Expected total: 65
+2025-06-15 15:16:26 - Delivery method: delivery, Delivery address ID: 4
+2025-06-15 15:16:26 - Payment method: digital_wallet, Payment method ID: 5
+2025-06-15 15:16:26 - Generated order_id: ORD-684EC7AAEC94D
+2025-06-15 15:16:26 - Payment successful: order_id=ORD-684EC7AAEC94D
+2025-06-15 15:16:26 - Redirecting to confirmation.php with order_id=ORD-684EC7AAEC94D
+2025-06-15 15:32:25 - Received make_payment request: {&#34;csrf_token&#34;:&#34;a9ee4534afd3bd39e05961c0ec955a45cf4c5273f5a7688883dd944e2f78b3f0&#34;,&#34;delivery_method&#34;:&#34;delivery&#34;,&#34;delivery_address_id&#34;:&#34;4&#34;,&#34;street_address&#34;:&#34;&#34;,&#34;city&#34;:&#34;&#34;,&#34;postal_code&#34;:&#34;&#34;,&#34;payment_method_id&#34;:&#34;5&#34;,&#34;method_type&#34;:&#34;&#34;,&#34;card_type&#34;:&#34;&#34;,&#34;card_number&#34;:&#34;&#34;,&#34;expiry_date&#34;:&#34;&#34;,&#34;cvv&#34;:&#34;&#34;,&#34;card_name&#34;:&#34;&#34;,&#34;bank_name&#34;:&#34;&#34;,&#34;wallet_type&#34;:&#34;&#34;,&#34;phone_number&#34;:&#34;&#34;,&#34;method&#34;:&#34;digital_wallet&#34;,&#34;amount&#34;:&#34;24&#34;,&#34;make_payment&#34;:&#34;1&#34;}
+2025-06-15 15:32:25 - Received amount: 24, Expected total: 24
+2025-06-15 15:32:25 - Delivery method: delivery, Delivery address ID: 4
+2025-06-15 15:32:25 - Payment method: digital_wallet, Payment method ID: 5
+2025-06-15 15:32:25 - Generated order_id: ORD-684ECB699A6FC
+2025-06-15 15:32:25 - Payment successful: order_id=ORD-684ECB699A6FC
+2025-06-15 15:32:25 - Redirecting to confirmation.php with order_id=ORD-684ECB699A6FC
+>>>>>>> 5cdadbf466bcd21d79d21df646f6d69b941773e0
