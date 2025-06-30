@@ -21,7 +21,6 @@
       <h4>Services</h4>
       <ul>
         <li><a href="/Online-Fast-Food/customer/notification/notification.php">News</a></li>
-        <li><a href="#">e-Invoice</a></li>
       </ul>
     </div>
 
