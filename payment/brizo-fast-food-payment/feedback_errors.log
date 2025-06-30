@@ -520,7 +520,17 @@
 2025-06-14 15:25:12 - Invalid CSRF token for order_id: ORD-68430866C0D7D at 2025-06-14 15:25:12
 =======
 >>>>>>> 537264ea27c068617ae5e8c32338c1eca0704ba7
+<<<<<<< HEAD
+2025-06-27 04:16:35 - Customer ID: 48 at 2025-06-27 04:16:35
+2025-06-27 04:16:35 - Admin email for notifications: jinyang@brizo.com at 2025-06-27 04:16:35
+2025-06-27 04:16:35 - Fetched 0 completed orders for customer_id: 48 at 2025-06-27 04:16:35
+2025-06-27 04:45:15 - Customer ID: 48 at 2025-06-27 04:45:15
+2025-06-27 04:45:15 - Admin email for notifications: jinyang@brizo.com at 2025-06-27 04:45:15
+2025-06-27 04:45:15 - Fetched 1 completed orders for customer_id: 48 at 2025-06-27 04:45:15
+2025-06-27 04:45:55 - No customer_id in session at 2025-06-27 04:45:55
+=======
 >>>>>>> e012d2e48e0289f565b658a82ab2268da5c9453b
+<<<<<<< HEAD
 2025-06-19 04:07:37 - Customer ID: 1 at 2025-06-19 04:07:37
 2025-06-19 04:07:37 - Admin email for notifications: jinyang@brizo.com at 2025-06-19 04:07:37
 2025-06-19 04:07:37 - Fetched 13 completed orders for customer_id: 1 at 2025-06-19 04:07:37
@@ -563,3 +573,19 @@ error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT c
 2025-06-30 07:08:05 - Customer ID: 1 at 2025-06-30 07:08:05
 2025-06-30 07:08:05 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 07:08:05
 2025-06-30 07:08:05 - Fetched 14 completed orders for customer_id: 1 at 2025-06-30 07:08:05
+=======
+2025-06-15 15:09:53 - Customer ID: 57 at 2025-06-15 15:09:53
+2025-06-15 15:09:53 - Admin email for notifications: jinyang@brizo.com at 2025-06-15 15:09:53
+2025-06-15 15:09:53 - Fetched 0 completed orders for customer_id: 57 at 2025-06-15 15:09:53
+2025-06-15 15:11:43 - Customer ID: 57 at 2025-06-15 15:11:43
+2025-06-15 15:11:43 - Admin email for notifications: jinyang@brizo.com at 2025-06-15 15:11:43
+2025-06-15 15:11:43 - Fetched 0 completed orders for customer_id: 57 at 2025-06-15 15:11:43
+2025-06-15 15:12:03 - Customer ID: 57 at 2025-06-15 15:12:03
+2025-06-15 15:12:03 - Admin email for notifications: jinyang@brizo.com at 2025-06-15 15:12:03
+2025-06-15 15:12:03 - Fetched 0 completed orders for customer_id: 57 at 2025-06-15 15:12:03
+2025-06-15 15:17:42 - Customer ID: 57 at 2025-06-15 15:17:42
+2025-06-15 15:17:42 - Admin email for notifications: jinyang@brizo.com at 2025-06-15 15:17:42
+2025-06-15 15:17:42 - Fetched 0 completed orders for customer_id: 57 at 2025-06-15 15:17:42
+>>>>>>> 5cdadbf466bcd21d79d21df646f6d69b941773e0
+2025-06-30 10:36:36 - Session expired for customer_id: unknown at 2025-06-30 10:36:36
+>>>>>>> c3ba60dd07a9d2b25ba5ca4cfdd739865f37da19

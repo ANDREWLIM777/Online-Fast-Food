@@ -6,7 +6,6 @@
       <h4>Company</h4>
       <ul>
         <li><a href="../brizo/about_brizo.php">About Brizo</a></li>
-        <li><a href="/Online-Fast-Food/customer/customer_notification/customer_notification.php">Notifications</a></li>
       </ul>
     </div>
 
@@ -22,7 +21,6 @@
       <h4>Services</h4>
       <ul>
         <li><a href="/Online-Fast-Food/customer/notification/notification.php">News</a></li>
-        <li><a href="#">e-Invoice</a></li>
       </ul>
     </div>
 

@@ -114,6 +114,17 @@ document.addEventListener("DOMContentLoaded", () => {
           newQty = 20;
           this.value = newQty;
         }
+        
+              // If somehow a decimal got in, round it down
+      if (this.value.includes('.')) {
+        this.value = Math.floor(parseFloat(this.value));
+      }
+ // Prevent typing "." key directly
+    input.addEventListener('keypress', function (e) {
+      if (e.key === "." || e.key === "," || e.key === "e") {
+        e.preventDefault();
+      }
+    });
 
         const price = parseFloat(row.querySelector('.price').dataset.price);
 

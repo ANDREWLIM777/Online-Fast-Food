@@ -62,10 +62,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['delete_account'])) {
         $errors[] = "❌ Address must be at least 5 characters if provided.";
     }
 
-    // Validate City (optional, but if provided, no numbers)
-    if (!empty($city) && preg_match('/[0-9]/', $city)) {
-        $errors[] = "❌ City name must not contain numbers.";
-    }
+// Validate City (optional, but must be logical if provided)
+if (!empty($city) && !preg_match('/^[A-Za-z\s\-]{2,}$/', $city)) {
+    $errors[] = "❌ City name must contain only letters, spaces, or hyphens and be at least 2 characters.";
+}
 
     // Validate Postal Code (exactly 5 digits)
     if (!preg_match('/^\d{5}$/', $postal_code)) {
@@ -186,13 +186,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['delete_account'])) {
         name="address"><?= htmlspecialchars($_POST['address'] ?? $customer['address']) ?></textarea>
 
       <label for="city">City</label>
-      <input 
-        type="text" 
-        id="city" 
-        name="city" 
-        value="<?= htmlspecialchars($_POST['city'] ?? $customer['city']) ?>" 
-        pattern="[A-Za-z\s]+" 
-        title="City name must contain only letters and spaces.">
+<input 
+  type="text" 
+  id="city" 
+  name="city" 
+  value="<?= htmlspecialchars($_POST['city'] ?? $customer['city']) ?>" 
+  pattern="[A-Za-z\s\-]{2,}" 
+  title="City name must contain only letters, spaces, or hyphens and be at least 2 characters.">
+
 
       <label for="postal_code">Postal Code</label>
       <input 
