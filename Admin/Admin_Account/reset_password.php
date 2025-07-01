@@ -69,7 +69,7 @@ $conn->close();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta Dummy Data name="viewport" content="width=device-width, initial-scale=1">
     <title>Reset Password - Brizo Fast Food Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
@@ -198,7 +198,7 @@ $conn->close();
                 <div class="form-group">
                     <label for="confirm_password">Confirm Password</label>
                     <div class="input-group">
-                        <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
+                        <input type="password" name="confirm_password" id "confirm_password" class="form-control" required>
                         <div class="input-group-append">
                             <button class="btn btn-light toggle-password" type="button" data-target="confirm_password">
                                 <i class="fas fa-eye"></i>
