@@ -128,19 +128,21 @@ while ($row = $result->fetch_assoc()) {
                    class="menu-img-square product-img">
             <?php endif; ?>
 
-            <div class="menu-info">
-              <h3><?= htmlspecialchars($item['item_name']) ?></h3>
-              <p class="price">RM <?= number_format($item['price'], 2) ?></p>
+<div class="menu-info">
+  <h3><?= htmlspecialchars($item['item_name']) ?></h3>
+  <p class="description"><?= htmlspecialchars($item['description']) ?></p>
+  <p class="price">RM <?= number_format($item['price'], 2) ?></p>
 
-              <?php if ($isGuest): ?>
-                <a href="/Online-Fast-Food/customer/login.php" class="sign-in-link">Sign in to start ordering!</a>
-              <?php else: ?>
-                <!-- 🛒 Normal Customer Form -->
-                <form class="add-to-cart-form" data-id="<?= $item['id'] ?>">
-                  <button type="submit" class="add-to-cart-btn">🛒 Add to Cart</button>
-                </form>
-              <?php endif; ?>
-            </div>
+  <?php if ($isGuest): ?>
+    <a href="/Online-Fast-Food/customer/login.php" class="sign-in-link">Sign in to start ordering!</a>
+  <?php else: ?>
+    <!-- 🛒 Normal Customer Form -->
+    <form class="add-to-cart-form" data-id="<?= $item['id'] ?>">
+      <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+    </form>
+  <?php endif; ?>
+</div>
+
           </div>
         <?php endforeach; ?>
       </div>
