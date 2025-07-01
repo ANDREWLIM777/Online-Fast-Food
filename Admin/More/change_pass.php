@@ -302,7 +302,7 @@ body::before {
     </form>
 
     <div class="forgot-link">
-      <p>Forgot your password? <a href="forgot_password.php">Click here</a></p>
+      <p>Forgot your password? <a href="../Admin_Account/forgot_password.php">Click here</a></p>
     </div>
   </div>
 
