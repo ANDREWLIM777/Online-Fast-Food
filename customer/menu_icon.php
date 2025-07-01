@@ -7,7 +7,7 @@
     </div>
 
     <nav class="dropdown-menu">
-        <a href="/Online-Fast-Food/customer/menu/menu.php">Home</a>
+        <a href="/Online-Fast-Food/customer/home/home.php">Home</a>
         <a href="../manage_account/profile.php">Profile</a>
                 <a href="/Online-Fast-Food/customer/orders/orders.php">My Orders</a>
         <a href="/Online-Fast-Food/payment/brizo-fast-food-payment/payment_history.php">Payment History</a>
