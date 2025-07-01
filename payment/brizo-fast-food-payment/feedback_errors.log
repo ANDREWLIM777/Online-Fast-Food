@@ -601,3 +601,14 @@ error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT c
 2025-06-30 16:47:45 - Customer ID: 1 at 2025-06-30 16:47:45
 2025-06-30 16:47:45 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 16:47:45
 2025-06-30 16:47:45 - Fetched 14 completed orders for customer_id: 1 at 2025-06-30 16:47:45
+2025-06-30 17:04:51 - Customer ID: 3 at 2025-06-30 17:04:51
+2025-06-30 17:04:51 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 17:04:51
+2025-06-30 17:04:51 - Fetched 1 completed orders for customer_id: 3 at 2025-06-30 17:04:51
+2025-06-30 17:04:51 - Selected order: order_id=ORD-6862A6423E147, found={"order_id":"ORD-6862A6423E147","total":"14.00","created_at":"2025-06-30 22:59:14","customer_id":3,"status":"completed"} at 2025-06-30 17:04:51
+2025-06-30 17:04:51 - Fetched feedback for order ORD-6862A6423E147: Not found at 2025-06-30 17:04:51
+2025-06-30 17:40:13 - Customer ID: 59 at 2025-06-30 17:40:13
+2025-06-30 17:40:13 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 17:40:13
+2025-06-30 17:40:13 - Fetched 1 completed orders for customer_id: 59 at 2025-06-30 17:40:13
+2025-06-30 17:40:42 - Customer ID: 59 at 2025-06-30 17:40:42
+2025-06-30 17:40:42 - Admin email for notifications: jinyang@brizo.com at 2025-06-30 17:40:42
+2025-06-30 17:40:42 - Fetched 1 completed orders for customer_id: 59 at 2025-06-30 17:40:42

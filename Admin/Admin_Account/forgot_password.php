@@ -12,7 +12,7 @@ if (isset($_SESSION['login_sess'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta Dummy Data name="viewport" content="width=device-width, initial-scale=1">
     <title>Forgot Password - Brizo Fast Food Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
@@ -76,7 +76,7 @@ if (isset($_SESSION['login_sess'])) {
         }
         .toast {
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
         }
         .error {
             background: #4e1e1e;

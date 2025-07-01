@@ -1376,3 +1376,487 @@ CLIENT -> SERVER: QUIT
 
 SERVER -> CLIENT: 221 2.0.0 closing connection 98e67ed59e1d1-313c19d2dd0sm3908761a91.17 - gsmtp
 
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-23acb2e1a8asm86905335ad.47 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2404:160:8028:9dc3:bdef:a1f:7041:1de5]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 
+SMTP ERROR: QUIT command failed: 
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-74af540b25dsm8981774b3a.25 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2404:160:8028:9dc3:bdef:a1f:7041:1de5]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 
+SMTP ERROR: QUIT command failed: 
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-74af55786efsm9414239b3a.82 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2404:160:8028:9dc3:bdef:a1f:7041:1de5]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 
+SMTP ERROR: QUIT command failed: 
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-74af57f0e62sm8941939b3a.162 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2404:160:8028:9dc3:bdef:a1f:7041:1de5]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 
+SMTP ERROR: QUIT command failed: 
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 98e67ed59e1d1-315f5437b40sm13549910a91.37 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2404:160:8028:9dc3:bdef:a1f:7041:1de5]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 
+SMTP ERROR: QUIT command failed: 
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 98e67ed59e1d1-315f5382ef7sm14206160a91.4 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2404:160:8028:9dc3:bdef:a1f:7041:1de5]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 
+SMTP ERROR: QUIT command failed: 
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-23acb39c0b8sm88949785ad.138 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2404:160:8028:9dc3:bdef:a1f:7041:1de5]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 
+SMTP ERROR: QUIT command failed: 
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-23acb2f0b63sm85281765ad.61 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:40a5:2470:aa7:b768:6225]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 
+SMTP ERROR: QUIT command failed: 
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-74af54099ecsm9399870b3a.11 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:40a5:2470:aa7:b768:6225]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:40a5:2470:aa7:b768:6225]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d2e1a72fcca58-74af54099ecsm9399870b3a.11 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<brizofastfood@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d2e1a72fcca58-74af54099ecsm9399870b3a.11 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d2e1a72fcca58-74af54099ecsm9399870b3a.11 - gsmtp
+
+CLIENT -> SERVER: Date: Mon, 30 Jun 2025 18:50:52 +0200
+
+CLIENT -> SERVER: To: brizofastfood@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Test Email
+
+CLIENT -> SERVER: Message-ID: <Bt9qqabQToY97bOSulVbNPWP4SDoDJ42eKYDdjRks9w@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: <h3>Test Email</h3><p>This is a test email.</p>
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1751302256 d2e1a72fcca58-74af54099ecsm9399870b3a.11 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d2e1a72fcca58-74af54099ecsm9399870b3a.11 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-74af540b203sm9481254b3a.8 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:40a5:2470:aa7:b768:6225]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:40a5:2470:aa7:b768:6225]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d2e1a72fcca58-74af540b203sm9481254b3a.8 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<brizofastfood@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d2e1a72fcca58-74af540b203sm9481254b3a.8 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d2e1a72fcca58-74af540b203sm9481254b3a.8 - gsmtp
+
+CLIENT -> SERVER: Date: Mon, 30 Jun 2025 18:51:06 +0200
+
+CLIENT -> SERVER: To: brizofastfood@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Test Email
+
+CLIENT -> SERVER: Message-ID: <zF4V9Y5ScbXhhF5MgLYWQBwtsNxTK2RHj1gUO8fxs@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: <h3>Test Email</h3><p>This is a test email.</p>
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1751302270 d2e1a72fcca58-74af540b203sm9481254b3a.8 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d2e1a72fcca58-74af540b203sm9481254b3a.8 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-23acb2f2557sm85279885ad.83 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:40a5:2470:aa7:b768:6225]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 
+SMTP ERROR: QUIT command failed: 
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 98e67ed59e1d1-318c152338bsm9540258a91.47 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:40a5:2470:aa7:b768:6225]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 
+SMTP ERROR: QUIT command failed: 
+SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-23acb39b9f2sm91340055ad.99 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:40a5:2470:aa7:b768:6225]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:d08:e6:40a5:2470:aa7:b768:6225]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<andrewbrizo31@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d9443c01a7336-23acb39b9f2sm91340055ad.99 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<brizofastfood@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.5 OK d9443c01a7336-23acb39b9f2sm91340055ad.99 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d9443c01a7336-23acb39b9f2sm91340055ad.99 - gsmtp
+
+CLIENT -> SERVER: Date: Tue, 1 Jul 2025 01:34:20 +0800
+
+CLIENT -> SERVER: To: brizofastfood@gmail.com
+
+CLIENT -> SERVER: From: Brizo Fast Food Melaka <andrewbrizo31@gmail.com>
+
+CLIENT -> SERVER: Subject: Your OTP for Admin Password Reset
+
+CLIENT -> SERVER: Message-ID: <Re0UPKp2NVYuiyjFNjfSqfIDJOhzZjdTWZvPZNKZs@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER:         <h3>Brizo Fast Food - Admin Password Reset</h3>
+
+CLIENT -> SERVER:         <p>Your OTP for password reset is: <strong>989321</strong></p>
+
+CLIENT -> SERVER:         <p>This OTP is valid for 5 minutes.</p>
+
+CLIENT -> SERVER:         <p>If you did not request this, please ignore this email.</p>
+
+CLIENT -> SERVER:     
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1751304865 d9443c01a7336-23acb39b9f2sm91340055ad.99 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-23acb39b9f2sm91340055ad.99 - gsmtp
+

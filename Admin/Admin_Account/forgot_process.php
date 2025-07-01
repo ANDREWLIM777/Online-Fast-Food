@@ -77,6 +77,13 @@ try {
     $mail->Password = $_ENV['SMTP_PASSWORD'];
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = (int)$_ENV['SMTP_PORT'];
+    $mail->SMTPOptions = [
+        'ssl' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        ]
+    ];
     $mail->setFrom($_ENV['SMTP_FROM_EMAIL'], $_ENV['SMTP_FROM_NAME']);
     $mail->addAddress($email);
     $mail->isHTML(true);
